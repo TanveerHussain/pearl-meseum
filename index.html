@@ -1,0 +1,1805 @@
+<!doctype html>
+<!--
+  Emirates NBD Pearl Museum, Chapter I: "One Breath". Round 2, photoreal build.
+  Governing idea (STORY.md): Everything precious here began with one breath.
+  The visitor is the diver. The museum and Sultan Ali Al-Owais are the keepers. The pearl is what the story earns.
+
+  Every scene is a short scroll-scrubbed clip (assets/sN-name.mp4) with its poster first (sN-name-poster.jpg),
+  the still as fallback (sN-name.jpg, sN-name-m.jpg on phones), and the dive's own clips
+  (s4-ascent, s4-surface, s4-redive). Every layer carries a CSS gradient fallback and shows the expected file name while it is missing.
+  Code only does type, layout, scroll choreography, parallax between photo planes, grade shifts, transitions and the hold-to-dive.
+
+  FACT-CHECK:
+  - Crew role transliterations (nakhuda, nahham, ghais, saib): confirm house spelling with the museum.
+  - "Pearling built the fortunes of most of the Gulf's great merchant dynasties" paraphrases the museum history page line.
+  - Sound (assets/audio, AUDIO.md): the deck rhythm is percussion and claps inspired by Gulf sea work songs, generated, not a transcription of a real song; no vocals.
+  - The breath meter, the depth gauge and the heartbeat are experiential, not historical claims. No dive depths, breath times or counts are stated.
+  - "Every voyage answered to him." is an interpretive line about the captain's role, not from the facts list.
+  - The 1949 view of the Creek (s1-arrival-1949) is a reimagined reconstruction, captioned as such.
+  - Quiet doors link to the new pages: Meet the crew (history.html#crew), Read a pearl like a merchant (collection.html), Who was Sultan Ali Al-Owais? (about.html), Chapter II: Follow your pearl (merchants.html).
+  MARKETING COPY PASS (2026-10-27, see marketing/copy-changes.md):
+  - The search title now leads with "Emirates NBD Pearl Museum, Dubai Creek" (how travellers search) and keeps "One Breath" second.
+  - The share text says "come and see the real collection on Dubai Creek": it rests on the museum's own statement that the collection
+    is "now on display at the Emirates NBD Pearl Museum". The images on the site are reconstructions; the collection itself is real.
+  - Footer "By appointment.": third-party sources only (see visit.html FACT-CHECK 14). Kept, not restated anywhere new.
+  - "From dhows to divers. A story that began in 1963." is the museum's own line and stays verbatim. Brand team to confirm it should
+    close a 7,000-year story, since a heritage reader may take it as the bank claiming the start of the pearling story.
+-->
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Emirates NBD Pearl Museum, Dubai Creek | One Breath</title>
+<meta name="description" content="The natural Gulf pearls of Sultan Ali Al-Owais, kept on Dubai Creek, and the divers who found them. Dive with a pearling crew in Chapter I, then plan your visit.">
+<link rel="canonical" href="index.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Emirates NBD Pearl Museum">
+<meta property="og:title" content="One Breath | Emirates NBD Pearl Museum, Dubai">
+<meta property="og:description" content="Everything precious here began with one breath. Take one with a 1949 pearling crew, dive for a Gulf pearl, then come and see the real collection on Dubai Creek.">
+<meta property="og:image" content="assets/og/index.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="One Breath | Emirates NBD Pearl Museum, Dubai">
+<meta name="twitter:description" content="Everything precious here began with one breath. Take one with a 1949 pearling crew, dive for a Gulf pearl, then come and see the real collection on Dubai Creek.">
+<meta name="twitter:image" content="assets/og/index.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/og/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/og/apple-touch-icon.png">
+<meta name="theme-color" content="#05070b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3CradialGradient id='g' cx='.36' cy='.32' r='.75'%3E%3Cstop offset='0' stop-color='%23fffdf8'/%3E%3Cstop offset='.5' stop-color='%23e6dad0'/%3E%3Cstop offset='1' stop-color='%238f8590'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='12' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/s1-arrival.jpg" media="(min-width:720px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/s1-arrival-m.jpg" media="(max-width:719.98px)" fetchpriority="high">
+<script>
+  (function(){
+    var q = new URLSearchParams(location.search);
+    var rm = q.get('rm') === '1' || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+    document.documentElement.className = 'js ' + (rm ? 'rm' : 'fx');
+    // missing assets: the phone file falls back to the desktop one, the poster to the still, then the gradient placeholder shows
+    document.addEventListener('error', function(e){
+      var t = e.target;
+      // the self-hosted GSAP failed: fall back to the cdnjs copy (was an inline onerror on the script tag)
+      if (t && t.tagName === 'SCRIPT' && /kit\/vendor\/gsap/.test(t.src) && !window.__gsapFb) { window.__gsapFb = 1; var g = document.createElement('script'); g.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js'; document.head.appendChild(g); return; }
+      if (!t || t.tagName !== 'IMG') return;
+      var pic = t.parentNode;
+      if (pic && pic.tagName === 'PICTURE' && !t.dataset.fbm) {
+        var s = pic.querySelector('source');
+        if (s && /-m[.-]/.test(t.currentSrc || '')) {
+          if (s.dataset.next) { var n = s.dataset.next.split('|'); s.srcset = n.shift(); if (n.length) s.dataset.next = n.join('|'); else delete s.dataset.next; return; }
+          t.dataset.fbm = '1'; s.parentNode.removeChild(s); return;
+        }
+      }
+      if (t.dataset.standin && !t.dataset.sti) { t.dataset.sti = '1'; if (pic && pic.querySelector('source')) pic.querySelector('source').srcset = 'assets/s1-arrival-m.jpg'; t.src = 'assets/s1-arrival.jpg'; t.classList.add('is-standin'); var fr = t.closest('.frame'); if (fr) fr.classList.add('is-ph'); return; }
+      if (t.dataset.alt) { var a = t.dataset.alt.split('|'); t.src = a.shift(); if (a.length) t.dataset.alt = a.join('|'); else delete t.dataset.alt; return; }
+      t.classList.add('is-missing');
+      var f = t.closest('.frame');
+      if (f && t.dataset.role === 'bg') f.classList.add('is-ph');
+      var sp = t.closest('.st-plane'); if (sp) sp.classList.add('is-ph');
+    }, true);
+  })();
+</script>
+<style>
+/* ================= FOUNDATION - tokens ================= */
+:root{
+  --ink:#05070b;
+  --pearl:#f4eee6;
+  --pearl-2:rgba(244,238,230,.92);  /* secondary copy over photos, AA with the scrims */
+  --pearl-3:rgba(244,238,230,.86);  /* small meta, still AA over the scrims */
+  --line:rgba(244,238,230,.3);
+  --rose:#efcdbf;
+  --umber:#1d1813;
+  --umber-2:#4a3f35;
+  --rose-ink:#8e4f3e;
+  --gut:clamp(16px,4.2vw,64px);
+  --top-safe:max(96px,13vh);        /* copy always clears the fixed header */
+  --f-display:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;
+  --f-ui:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;
+  --shadow-t:0 1px 2px rgba(0,0,0,.35),0 2px 18px rgba(0,0,0,.32);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--ink)}
+body{margin:0;background:var(--ink);color:var(--pearl);font-family:var(--f-ui);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:clip}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit}
+a{color:inherit}
+p,h1,h2,h3,blockquote,figure,ul,ol{margin:0}
+em{font-style:italic}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+:focus{outline:none}
+:focus-visible{outline:2px solid var(--rose);outline-offset:4px;border-radius:999px}
+.skip{position:fixed;left:var(--gut);top:12px;z-index:80;background:var(--pearl);color:var(--ink);padding:10px 16px;border-radius:999px;font:500 13px/1 var(--f-ui);transform:translateY(-200%);text-decoration:none}
+.skip:focus-visible{transform:none}
+
+/* ================= SHELL ================= */
+.top{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px var(--gut);pointer-events:none;color:var(--pearl);transition:color .5s}
+.top::before{content:"";position:absolute;inset:0 0 -40px 0;z-index:-1;background:linear-gradient(180deg,rgba(4,6,10,.6),rgba(4,6,10,.26) 55%,transparent);pointer-events:none;transition:opacity .5s}
+.top > *{pointer-events:auto}
+.mark{display:flex;align-items:center;gap:14px;min-width:0;text-decoration:none;color:inherit;white-space:nowrap}
+/* lock-up: the official Emirates NBD logo (white on dark scenes, the DS navy on light), a hairline, "Pearl Museum" */
+.mark__logo{display:block;flex:none;width:auto;height:30px;aspect-ratio:190/52}
+.mark__logo--c{display:none}
+.mark__div{flex:none;width:1px;height:22px;background:currentColor;opacity:.55}
+.mark__t{font:500 14px/1 var(--f-ui);letter-spacing:-.005em;padding-top:1px}
+.theme-light .mark__logo--w{display:none}
+.theme-light .mark__logo--c{display:block}
+.mark i{width:7px;height:7px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#e8d9cf 45%,#8f8590);flex:none}
+.tgl{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 14px;border-radius:999px;border:1px solid rgba(244,238,230,.34);background:rgba(5,7,11,.36);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font:500 12px/1 var(--f-ui);letter-spacing:.06em;color:inherit;cursor:pointer;flex:none;transition:border-color .3s,background .5s}
+.tgl:hover{border-color:rgba(244,238,230,.7)}
+.tgl svg{width:16px;height:16px;flex:none}
+.tgl[aria-pressed="true"]{border-color:rgba(239,205,191,.75)}
+.tgl .w{opacity:0;transition:opacity .3s}
+.tgl[aria-pressed="true"] .w{opacity:1}
+.tgl .x{transition:opacity .3s}
+.tgl[aria-pressed="true"] .x{opacity:0}
+.theme-light .top{color:#072447}
+.theme-light .top::before{opacity:0}
+.theme-light .tgl{background:rgba(241,235,227,.5);border-color:rgba(29,24,19,.3)}
+
+/* depth gauge: ours, only while you are under */
+.gauge{position:fixed;right:clamp(10px,2vw,28px);top:50%;z-index:40;height:min(42vh,340px);margin-top:calc(min(42vh,340px) / -2);width:44px;pointer-events:none;opacity:0;transition:opacity .6s}
+.gauge.is-on{opacity:1}
+.gauge__line{position:absolute;right:6px;top:18px;bottom:18px;width:1px;background:linear-gradient(180deg,rgba(244,238,230,.55),rgba(244,238,230,.12))}
+.gauge__dot{position:absolute;right:2px;top:18px;width:9px;height:9px;margin-top:-4.5px;border-radius:50%;background:var(--pearl);box-shadow:0 0 0 3px rgba(244,238,230,.16);will-change:transform}
+.gauge__t,.gauge__b{position:absolute;right:0;font:500 9px/1 var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--pearl-3);text-shadow:var(--shadow-t)}
+.gauge__t{top:0}.gauge__b{bottom:0}
+
+/* ================= TYPE ================= */
+.line{font:400 clamp(25px,min(3vw,5.1vh),49px)/1.1 var(--f-display);letter-spacing:-.01em;color:var(--pearl);text-wrap:balance;text-shadow:var(--shadow-t)}
+.line em{font-style:italic;font-weight:400}
+.line--xl{font-size:clamp(37px,min(5.5vw,9.8vh),90px);line-height:1.03;letter-spacing:-.016em}
+.line--air{font-style:italic;font-size:clamp(66px,min(10.6vw,18.5vh),168px);line-height:.98;letter-spacing:-.022em}
+h1.line{font-size:clamp(30px,min(3.8vw,6.4vh),62px);line-height:1.06;letter-spacing:-.012em}
+.breathe{display:inline-block;transform-origin:0 70%;will-change:transform}
+.sub{margin-top:1.2em;font:400 clamp(16px,min(1.4vw,2.5vh),20px)/1.55 var(--f-ui);color:var(--pearl-2);max-width:30em;text-wrap:pretty;text-shadow:var(--shadow-t)}
+.caption{font:500 11px/1.45 var(--f-ui);letter-spacing:.12em;text-transform:uppercase;color:var(--pearl-3);text-shadow:var(--shadow-t)}
+.caption i{font:italic 500 12px/1 var(--f-display);letter-spacing:.02em;text-transform:none}
+
+/* ================= BUTTONS ================= */
+.pill{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 24px;border-radius:999px;border:1px solid rgba(244,238,230,.48);background:rgba(5,7,11,.38);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:var(--pearl);font:400 14px/1 var(--f-ui);letter-spacing:.02em;cursor:pointer;text-decoration:none;transition:border-color .3s,background .3s}
+.pill:hover{border-color:rgba(244,238,230,.85);background:rgba(244,238,230,.08)}
+.pill svg{width:16px;height:16px;flex:none}
+.pill--solid{background:var(--pearl);color:var(--ink);border-color:var(--pearl);font-weight:500}
+.pill--solid:hover{background:#fff}
+.pill--solid svg{transition:transform .3s}
+.pill--solid:hover svg{transform:translateX(3px)}
+.ghost{background:none;border:0;padding:10px 4px;cursor:pointer;font:400 14px/1 var(--f-ui);letter-spacing:.02em;color:var(--pearl);text-decoration:underline;text-decoration-color:rgba(244,238,230,.5);text-underline-offset:5px;text-shadow:var(--shadow-t)}
+.ghost:hover{text-decoration-color:var(--pearl)}
+/* quiet doors: small, inside the story, never a menu */
+.door{display:inline-flex;align-items:center;gap:10px;padding:10px 0;font:500 13px/1 var(--f-ui);letter-spacing:.12em;text-transform:uppercase;color:var(--pearl);text-decoration:none;text-shadow:var(--shadow-t)}
+.door span{border-bottom:1px solid rgba(244,238,230,.45);padding-bottom:5px;transition:border-color .3s}
+.door:hover span{border-color:var(--pearl)}
+.door svg{width:15px;height:15px;transition:transform .3s}
+.door:hover svg{transform:translateX(3px)}
+
+/* ================= SCENES: flow layout (reduced motion and no JS) ================= */
+.scene{position:relative}
+.stage{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;gap:clamp(18px,3vh,32px);padding:var(--top-safe) var(--gut) clamp(48px,8vh,96px)}
+.stage > *{position:relative;z-index:3}
+.stage > .frame,.stage > .fx-layer{position:absolute;z-index:0}
+.frame{inset:0;overflow:hidden;background:var(--ph,#14171c)}
+.plane{position:absolute;inset:0}
+.plane img,.plane video{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:var(--op,50% 50%)}
+.poster{position:absolute;inset:0;display:block}
+.plane--fg{pointer-events:none}
+.is-missing{visibility:hidden}
+.frame.is-ph::after{content:attr(data-ph);position:absolute;right:calc(var(--gut) + 36px);bottom:14px;z-index:5;font:500 10px/1.3 ui-monospace,Menlo,monospace;letter-spacing:.06em;color:rgba(244,238,230,.6);padding:6px 9px;border:1px dashed rgba(244,238,230,.35);border-radius:6px;background:rgba(0,0,0,.25);max-width:60vw;text-align:right}
+.scrim{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(0deg,rgba(4,6,10,.84),rgba(4,6,10,.42) 45%,rgba(4,6,10,.16) 70%,rgba(4,6,10,.48))}
+.fx-only,.fx-layer{display:none}
+.rm [data-e]{display:none}
+html:not(.js) .holdui{display:none}
+.copy{max-width:36em}
+.invite{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:clamp(26px,4.4vh,44px)}
+.invite__s{font:400 13px/1.3 var(--f-ui);color:var(--pearl);text-shadow:0 1px 2px rgba(0,0,0,.65),0 0 16px rgba(0,0,0,.6)}
+
+/* placeholder grounds (palette hints only; the real clips cover them) */
+#s1{--ph:linear-gradient(180deg,#3a3358 0%,#7d5a70 30%,#d39a6c 52%,#3a3a4a 53%,#1a2130 100%)}
+#s2{--ph:linear-gradient(180deg,#f1d7b1 0%,#dcc8ad 36%,#b5c3c0 54%,#71878d 55%,#3c5058 100%)}
+#s3{--ph:linear-gradient(170deg,#e2b47e 0%,#a87b54 38%,#5e4130 68%,#2c1e14 100%)}
+#s4{--ph:linear-gradient(180deg,#8fc0bd 0%,#3f8086 22%,#14474f 55%,#06191e 100%)}
+#s5{--ph:radial-gradient(90% 60% at 50% 18%,#1d3438 0%,#0a1619 45%,#030708 100%)}
+#s6{--ph:linear-gradient(120deg,#efbf86 0%,#b58258 36%,#62432e 68%,#2a1d14 100%)}
+#s7{--ph:radial-gradient(34% 40% at 50% 50%,#ece5db 0%,#b3aaa1 18%,#4a423d 34%,#171312 70%,#0b0909 100%)}
+#s8{--ph:linear-gradient(180deg,#1d3366 0%,#2c4377 40%,#4a4c6a 58%,#111a33 59%,#0a1020 100%)}
+
+
+/* the dive */
+.holdui{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+.hold{position:relative;width:118px;height:118px;border-radius:50%;border:0;background:radial-gradient(circle at 50% 40%,rgba(5,7,11,.55),rgba(5,7,11,.3) 70%);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);cursor:pointer;touch-action:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;display:grid;place-items:center;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.hold svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.hold .trk{fill:none;stroke:rgba(244,238,230,.32);stroke-width:1.5}
+.hold .lvl{fill:none;stroke:var(--pearl);stroke-width:2.2;stroke-linecap:round;transition:stroke .3s}
+.hold__t{position:relative;max-width:80px;font:500 11px/1.4 var(--f-ui);letter-spacing:.12em;text-transform:uppercase}
+.hold.is-holding{transform:scale(.93)}
+.hold.is-low .lvl{stroke:#f0a891}
+.hold:focus-visible{outline-offset:6px;border-radius:50%}
+.hold__hint{font:400 13px/1.6 var(--f-ui);color:var(--pearl-2);max-width:28em;text-shadow:var(--shadow-t)}
+.midslot{display:grid;justify-items:center;text-align:center}
+.midslot > .state{grid-area:1/1;opacity:0;transition:opacity .16s ease-out}
+.midslot > .state.is-on{opacity:1;transition:opacity .24s ease-in .14s}
+.rm .midslot > .state{transition:none}
+.rm .midslot{justify-items:start;text-align:left}
+.rm .holdui{align-items:flex-start;text-align:left}
+.rm #s7 .stage{justify-content:flex-start}
+.rm #s8 .scrim{background:linear-gradient(0deg,rgba(14,10,6,.9) 0%,rgba(14,10,6,.72) 50%,rgba(14,10,6,.3) 78%,rgba(14,10,6,.1))}
+
+/* the poet */
+.verse blockquote p{font:400 clamp(22px,min(2.35vw,4vh),37px)/1.26 var(--f-display);letter-spacing:-.006em;color:var(--pearl);text-wrap:balance;text-shadow:var(--shadow-t)}
+.verse blockquote p + p{margin-top:clamp(10px,1.9vh,20px)}
+.verse figcaption{margin-top:clamp(24px,4vh,40px);display:flex;flex-direction:column;gap:6px}
+.cap1{font:500 12px/1.5 var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--rose);text-shadow:var(--shadow-t)}
+.cap2{font:400 14px/1.6 var(--f-ui);color:var(--pearl-2);text-shadow:var(--shadow-t)}
+
+/* qualities coda (a bright ground: the return to light) */
+#q .stage{background:radial-gradient(120% 90% at 50% 42%,#f7f3ed 0%,#ede6dc 62%,#e3dacd 100%);color:var(--umber)}
+#q .line,#q .sub,#q .door{color:var(--umber);text-shadow:none}
+#q .door span{border-color:rgba(29,24,19,.45)}
+.qpearl{width:min(42vmin,400px);aspect-ratio:1;margin:0 auto;position:relative}
+.qpearl img{width:100%;height:100%;object-fit:contain}
+.qpearl .ph-pearl{position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle at 36% 32%,#fffdf8 0%,#f1e9df 18%,#d3c7bc 44%,#a0958c 72%,#6d625b 100%);box-shadow:0 24px 50px rgba(60,44,30,.25)}
+.qpearl img:not(.is-missing) ~ .ph-pearl,.qpearl img:not(.is-missing) ~ .ph-tag{display:none}
+.qpearl .ph-tag{position:absolute;left:50%;bottom:-24px;transform:translateX(-50%);font:500 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.06em;color:var(--umber-2);white-space:nowrap}
+.qlist{list-style:none;padding:0;display:grid;gap:clamp(18px,3vh,36px)}
+.qitem{display:grid;gap:4px}
+.qword{font:400 clamp(54px,9.6vw,160px)/1 var(--f-display);letter-spacing:-.03em;color:var(--umber);white-space:nowrap}
+.qname{font:500 12px/1.4 var(--f-ui);letter-spacing:.15em;text-transform:uppercase;color:var(--rose-ink)}
+.qnum{font:italic 500 14px/1 var(--f-display);color:var(--rose-ink);margin-right:10px;letter-spacing:0;text-transform:none}
+
+/* close */
+.end__row{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center;margin-top:clamp(28px,4.8vh,44px)}
+.end__doors{display:flex;flex-wrap:wrap;gap:4px 28px;margin-top:clamp(14px,2.6vh,24px)}
+.foot{position:relative;z-index:6;padding:20px var(--gut) 28px;font:400 12px/1.6 var(--f-ui);color:var(--pearl-3);background:var(--ink)}
+
+/* ================= SCENES: cinematic layout ================= */
+.fx .scene{height:calc(var(--span) * 1vh)}
+.fx .stage{position:fixed;inset:0;min-height:0;height:100%;padding:0;display:block;overflow:hidden;pointer-events:none;z-index:var(--z,1)}
+.fx .stage{transform:translate3d(0,14000px,0)}
+.fx #s1 .stage,.fx .stage.is-near{transform:none}  /* stages start parked far away so lazy images below the fold do not load before the script runs */
+.fx #s1 .stage.is-far{transform:translate3d(0,14000px,0)}
+.fx .stage.is-off{opacity:0}
+.fx .stage > *{position:absolute}
+.fx .fx-only{display:revert}
+.fx .fx-layer{display:block}
+.fx .beat{opacity:0;will-change:opacity,transform}
+.fx .beat.is-live a,.fx .beat.is-live button{pointer-events:auto}
+.fx .frame{will-change:transform,opacity}
+.fx .plane{will-change:transform}
+.fx .scrim{background:var(--scrim,none)}
+.fx .foot{position:fixed;left:0;right:0;bottom:0;z-index:20;background:none;padding:0 var(--gut) 16px;pointer-events:none;text-shadow:var(--shadow-t)}
+.fx .ln{left:var(--gut);right:var(--gut)}
+/* copy anchors, varied per scene and composition */
+.fx .at-lead{top:max(var(--top-safe),30vh);max-width:min(46vw,680px)}
+.fx .at-top{top:var(--top-safe);text-align:center}
+.fx .at-top.line,.fx .at-top .line{max-width:16em;margin-inline:auto}
+.fx .at-trail{top:max(var(--top-safe),20vh);text-align:right;left:auto;right:calc(var(--gut) + 64px);max-width:min(48vw,640px)}
+.fx .at-low{top:auto;bottom:calc(clamp(64px,14vh,150px) + var(--lift-foot));max-width:min(52vw,720px)}
+
+/* clip layers and transition elements (our own sea: haze, splash, bubbles, silt, dawn, glow) */
+.scrub{opacity:0}
+.scrub.is-shown{opacity:1}
+.tx{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;will-change:opacity,transform}
+.tx--haze{background:linear-gradient(90deg,transparent 0%,rgba(236,206,172,.22) 30%,rgba(246,222,194,.5) 62%,rgba(250,230,206,.56) 78%,transparent 100%)}
+.tx--warm{background:radial-gradient(90% 70% at 70% 30%,rgba(255,226,182,.9),rgba(240,196,150,.55) 50%,rgba(220,170,120,.2) 80%)}
+.tx--surface{background:radial-gradient(130% 70% at 50% 0%,#eef7f5 0%,#c9e6e2 34%,#7fb4b4 68%,#2f6c72 100%)}
+.tx--silt{background:radial-gradient(90% 70% at 50% 85%,rgba(98,84,62,.97),rgba(54,46,34,.96) 46%,rgba(12,11,8,.98) 100%)}
+.tx--black{background:#020304}
+.tx--dusk{background:radial-gradient(110% 90% at 30% 30%,#f8ead2 0%,#efd6ae 50%,#d9b88a 100%)}
+.tx--dawn{background:radial-gradient(110% 90% at 18% 30%,#fff0d2 0%,#ffd7a2 32%,rgba(250,190,126,.75) 58%,rgba(235,170,110,.3) 86%)}
+.tx--glow{left:50%;top:50%;right:auto;bottom:auto;width:160vmax;height:160vmax;margin:-80vmax 0 0 -80vmax;background:radial-gradient(circle closest-side,#fffaf2 0%,rgba(255,247,234,.94) 22%,rgba(250,238,222,.55) 50%,rgba(240,228,214,0) 100%)}
+.endfade{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;background:#020405}
+.shade{position:absolute;inset:0;z-index:1;pointer-events:none;background:#020405;opacity:0}
+.dive-dark,.air-flash{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0}
+.dive-dark{background:#01080b}
+.air-flash{background:radial-gradient(120% 80% at 50% 0%,#eef7f5,#bfe0dc 60%,#7fb4b4)}
+.dive-iris{position:absolute;left:50%;top:42%;width:480vmax;height:480vmax;margin:-240vmax 0 0 -240vmax;z-index:2;pointer-events:none;opacity:0;background:radial-gradient(circle closest-side,transparent 26%,rgba(1,6,9,.96) 46%);will-change:transform,opacity}
+.pulse{position:absolute;inset:0;will-change:transform}
+.st-plane{opacity:0;background:var(--ph)}
+#s4 .st-plane[data-st="ascent"]{--ph:linear-gradient(180deg,#d8efe9 0%,#7fbcb8 30%,#2c6d73 70%,#0d3138 100%)}
+#s4 .st-plane[data-st="surface"]{--ph:linear-gradient(180deg,#f0d9b8 0%,#cdb79a 44%,#3c5a5e 46%,#1d3438 100%)}
+#s4 .st-plane[data-st="redive"]{--ph:linear-gradient(180deg,#ead6b6 0%,#9ab7b0 42%,#2a5a60 60%,#0e2b31 100%)}
+.st-plane.is-ph::after{content:attr(data-ph);position:absolute;right:calc(var(--gut) + 36px);bottom:14px;font:500 10px/1.3 ui-monospace,Menlo,monospace;color:rgba(244,238,230,.7);padding:6px 9px;border:1px dashed rgba(244,238,230,.4);border-radius:6px;background:rgba(0,0,0,.25)}
+.st-plane.is-on{opacity:1}
+/* "Air." and the lines above the water get their own soft backing, the sky behind them is the brightest frame on the page */
+.fx #midslot .state{position:relative}
+.fx #midslot .state::before{content:"";position:absolute;left:-16%;right:-16%;top:max(-90%,-90px);bottom:max(-90%,-90px);z-index:-1;pointer-events:none;opacity:0;transition:opacity .4s;background:radial-gradient(closest-side,rgba(5,11,15,.74) 0%,rgba(5,11,15,.56) 50%,rgba(5,11,15,.2) 80%,rgba(5,11,15,0) 100%)}
+.fx .is-above #midslot .state::before{opacity:1}
+/* above the water the sky is bright: a scrim where the copy sits */
+#s4 .st-plane[data-st="surface"]::before,#s4 .st-plane[data-st="redive"]::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(60% 62% at 14% 74%,rgba(6,12,16,.72) 0%,rgba(6,12,16,.42) 46%,rgba(6,12,16,0) 78%),linear-gradient(0deg,rgba(6,12,16,.55) 0%,rgba(6,12,16,0) 34%)}
+@media (max-width:719.98px){#s4 .st-plane[data-st="surface"]::before,#s4 .st-plane[data-st="redive"]::before{background:linear-gradient(0deg,rgba(6,12,16,.86) 0%,rgba(6,12,16,.6) 30%,rgba(6,12,16,0) 56%)}}
+.fx .st-plane{transition:opacity .28s ease}
+.hold.is-ring .hold__t{opacity:0}
+.hold__t{transition:opacity .2s}
+.holdui.is-hidden{opacity:0;pointer-events:none;visibility:hidden}
+.fx .holdui{transition:opacity .3s,visibility .3s}
+#harshScroll.is-said{display:none}
+
+/* S1 arrival, today: the clip drifts, the foreground plane outruns it */
+.fx #s1 .stage{--z:1;--x:-30%}
+.s1-drift .s1-breathe,.s1-drift picture,.s1-drift img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:var(--op,50% 50%)}
+.fx .s1-breathe{animation:s1breathe 22s ease-in-out infinite alternate}
+.s1-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--op,50% 50%)}
+html:not(.fx) .s1-vid{display:none}
+/* the abra crosses the left middle of the frame: on wider screens the opening line runs wide and low, under the boat, its invite just above the caption */
+@media (min-width:720px){.fx #s1 .stage .copy--low-left{--copy-span:8;bottom:calc(var(--num-b) + clamp(136px,16vh,164px))}}
+@keyframes s1breathe{from{transform:scale(1)}to{transform:scale(1.018)}}
+/* the 1949 twin is uncovered by a soft, wide edge; a warm band of light rides that edge */
+.fx .s1-then{-webkit-mask-image:linear-gradient(100deg,#000 calc(var(--x) - 42%),rgba(0,0,0,.6) calc(var(--x) - 18%),transparent var(--x));mask-image:linear-gradient(100deg,#000 calc(var(--x) - 42%),rgba(0,0,0,.6) calc(var(--x) - 18%),transparent var(--x))}
+.s1-then img.is-standin{filter:sepia(.75) saturate(.7) contrast(1.05) brightness(.96)}
+.fx .tx--sun{left:-60%;width:60%;right:auto;z-index:2;opacity:0;transform:translate3d(calc(var(--x) * 1.667 + 30%),0,0);background:linear-gradient(90deg,rgba(255,196,120,0) 0%,rgba(255,206,140,.2) 40%,rgba(255,226,186,.38) 68%,rgba(255,214,160,.12) 86%,rgba(255,196,120,0) 100%)}
+.fx .tx--sunglow{z-index:2;opacity:0;background:radial-gradient(34% 46% at var(--sun-x,29%) var(--sun-y,34%),rgba(255,232,190,.62) 0%,rgba(255,206,140,.3) 32%,rgba(255,180,110,0) 72%)}
+@media (max-width:719.98px){
+  .fx .tx--sun{left:-100%;width:100%;transform:translate3d(calc(var(--x) + 50%),0,0);background:linear-gradient(90deg,rgba(255,196,120,0) 0%,rgba(255,210,150,.16) 30%,rgba(255,226,186,.32) 55%,rgba(255,214,160,.1) 80%,rgba(255,196,120,0) 100%)}
+  .fx .s1-then{-webkit-mask-image:linear-gradient(100deg,#000 calc(var(--x) - 75%),rgba(0,0,0,.6) calc(var(--x) - 35%),transparent var(--x));mask-image:linear-gradient(100deg,#000 calc(var(--x) - 75%),rgba(0,0,0,.6) calc(var(--x) - 35%),transparent var(--x))}
+}
+@media (max-width:719.98px){.fx .tx--sunglow{--sun-x:15%;--sun-y:30%;background:radial-gradient(70% 34% at var(--sun-x) var(--sun-y),rgba(255,232,190,.62) 0%,rgba(255,206,140,.3) 32%,rgba(255,180,110,0) 72%)}}
+.fx .tx--copyscrim{z-index:2;opacity:1;background:radial-gradient(44% 34% at 20% 30%,rgba(6,7,14,.5) 0%,rgba(6,7,14,.24) 55%,rgba(6,7,14,0) 100%)}
+@media (max-width:719.98px){.fx .tx--copyscrim{background:linear-gradient(180deg,rgba(6,7,14,.42) 0%,rgba(6,7,14,.3) 26%,rgba(6,7,14,0) 42%)}}
+.s1-rm{display:none}
+html:not(.fx) .s1-rm{display:flex;position:relative;min-height:100vh;min-height:100svh;overflow:hidden;flex-direction:column;justify-content:flex-end;padding:var(--top-safe) var(--gut) clamp(48px,8vh,96px)}
+.s1-rm picture,.s1-rm img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover}
+.s1-rm::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(6,7,14,.84),rgba(6,7,14,.4) 45%,rgba(6,7,14,.1) 70%,rgba(6,7,14,.4))}
+.s1-rm__copy{position:relative;z-index:2;display:grid;gap:14px}
+.fx #s1 .frame{animation:fadeup .9s ease-out both}
+.fx #s1{--scrim:linear-gradient(0deg,rgba(6,7,14,.82) 0%,rgba(6,7,14,.56) 24%,rgba(6,7,14,.18) 44%,rgba(6,7,14,0) 58%),linear-gradient(180deg,rgba(6,7,14,.34),transparent 22%)}
+.fx #s1 .in1{animation:rise .8s .1s cubic-bezier(.2,.7,.2,1) both}
+.fx #s1 .in2{animation:rise .7s .36s cubic-bezier(.2,.7,.2,1) both}
+@keyframes fadeup{from{opacity:0}to{opacity:1}}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* S2 1949: a tide line slips today into the past, sea haze riding its edge */
+.fx #s2 .stage{--z:2;--w:0%}
+.fx #s2 .frame{-webkit-mask-image:linear-gradient(90deg,#000 calc(var(--w) - 55%),transparent var(--w));mask-image:linear-gradient(90deg,#000 calc(var(--w) - 55%),transparent var(--w))}
+.fx #s2 .tx--haze{left:-60%;width:60%;right:auto;opacity:.55;transform:translate3d(calc(var(--w) * 1.667 + 8%),0,0)}
+.fx #s2{--scrim:linear-gradient(0deg,rgba(8,14,18,.5) 0%,rgba(8,14,18,.2) 30%,transparent 50%)}
+
+/* S3 on deck */
+.fx #s3 .stage{--z:3}
+.fx #s3{--scrim:radial-gradient(44% 34% at 12% 68%,rgba(14,9,5,.62) 0%,rgba(14,9,5,0) 100%),radial-gradient(46% 42% at 16% 24%,rgba(14,9,5,.6) 0%,rgba(14,9,5,0) 100%),linear-gradient(100deg,rgba(14,9,5,.62) 0%,rgba(14,9,5,.3) 34%,transparent 58%),linear-gradient(0deg,rgba(14,9,5,.8) 0%,rgba(14,9,5,.36) 24%,transparent 44%)}
+/* deck sequence: four chained clips, cut on the exact boundary (each starts on the last frame of the one before) */
+.fx .deck__seg{opacity:0}
+.fx .deck.is-seq .deck__fb{opacity:0}
+.fx .deck.is-seq .deck__seg.is-on,.fx .deck.is-seq .deck__seg.is-under{opacity:1}
+/* s3b: captain to singer, a sideways camera truck built from green plate layers (assets/s3b-plates/PLATES.md).
+   1920 x 1080 frame units; the camera box is fitted to the screen (phones follow a 608-unit crop path); no layer is ever scaled */
+.fx .deck__seg.s3b{z-index:1;overflow:hidden}
+.s3b__cam,.s3b__cap,.s3b__fx,.s3b__g{position:absolute;left:0;top:0;width:1920px;height:1080px;pointer-events:none}
+.s3b__cam,.s3b__cap,.s3b__fx{transform-origin:0 0}
+.s3b__cam,.s3b__cap{opacity:0}
+.s3b__g{will-change:transform}
+.s3b__g[data-l="L1"]{transform-origin:0 580px}
+.plane .s3b__g img{inset:auto;object-fit:fill;max-width:none}
+/* each plate layer's box in the 1920x1080 plate space, passed as custom properties on the img */
+.plane .s3b__g > img{left:var(--x,0);top:var(--y,0);width:var(--w,100%);height:var(--h,100%)}
+.sprite{position:absolute}
+/* the haulers' rope was cut just short of the roller in the plate; a short drawn continuation, under their layer, carries it on to the roller top */
+.s3b__bridge{position:absolute;left:0;top:0;overflow:visible}
+/* the swinging rope was shot in studio light: darken it to the backlit dawn on deck */
+.s3b__g[data-l="B1"] img{filter:brightness(.58) saturate(.78)}
+.s3b__fx .s3b__g{opacity:0}
+.s3b__grain{position:absolute;inset:-60px;opacity:0;mix-blend-mode:overlay;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1.6 -.3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E") 0 0/160px 160px}
+.s3b-still{display:none}
+html:not(.fx) .deck-rm__beat .s3b-still{position:absolute;inset:0;width:100%;height:100%}
+html:not(.fx) .deck-rm__beat .s3b-still--d{display:block}
+@media (max-width:719.98px){html:not(.fx) .deck-rm__beat .s3b-still--d{display:none}html:not(.fx) .deck-rm__beat .s3b-still--m{display:block}}
+.card__rule{display:block;position:relative;width:72px;height:1px;margin-bottom:20px;background:var(--line);overflow:hidden}
+.card__rule::after{content:"";position:absolute;inset:0;background:var(--rose);transform-origin:0 50%;transform:scaleX(var(--k,0))}
+.card .line{display:block}
+.card__more{margin-top:clamp(10px,1.8vh,18px);color:var(--pearl-2)}
+.fx .card{left:var(--gut);bottom:calc(var(--num-b) + var(--lift-foot));max-width:min(52vw,720px)}
+/* the deck lines sit low too, stacked just above the crew cards */
+@media (min-width:720px){.fx #s3 .stage .s3-copy{bottom:calc(var(--num-b) + var(--lift-foot) + clamp(120px,16vh,170px))}}
+.fx .s3-breath{left:var(--gut);bottom:var(--s4-copy);max-width:min(46vw,660px)}
+.holdlayer{position:fixed;inset:0;z-index:45;pointer-events:none}
+.fx .holdlayer .s4-hold{position:absolute}
+/* reduced motion and no JS: one still per crew beat */
+.deck-rm{display:none}
+html:not(.fx) #s3 > .stage{display:none}
+html:not(.fx) .deck-rm{display:block;list-style:none;margin:0;padding:0}
+.deck-rm__beat{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:var(--top-safe) var(--gut) clamp(48px,8vh,96px);background:var(--ph)}
+.deck-rm__beat picture,.deck-rm__beat img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover}
+.deck-rm__beat::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(14,9,5,.86),rgba(14,9,5,.45) 40%,rgba(14,9,5,.1) 70%,rgba(14,9,5,.4))}
+.deck-rm__copy{position:relative;z-index:2;display:grid;gap:clamp(12px,2vh,22px);max-width:36em}
+.door-wrap{margin-top:clamp(18px,3vh,28px)}
+
+/* S4 the plunge (signature) */
+.fx #s4 .stage{--z:4}
+.fx #s4{--scrim:linear-gradient(180deg,rgba(2,10,14,.42) 0%,transparent 22%),radial-gradient(60% 70% at 12% 78%,rgba(2,10,14,.62) 0%,rgba(2,10,14,.3) 50%,transparent 80%)}
+.fx{--s4-copy:calc(var(--num-b) + var(--lift-foot) + 236px)}
+.fx .s4-mid{top:auto;bottom:var(--s4-copy);right:auto;max-width:min(46vw,660px)}
+.fx .s4-mid .midslot{justify-items:start;align-items:end;text-align:left}
+.fx .at-lead.s4-copy{top:auto;bottom:var(--s4-copy)}
+.fx .s4-hold{left:var(--gut);bottom:calc(var(--num-b) + var(--lift-foot))}
+.fx .s4-hold .holdui{align-items:flex-start;text-align:left}
+
+/* S5 seabed: a dark reveal from the hands outward */
+.fx #s5 .stage{--z:5;--r:0%}
+.fx #s5 .frame{-webkit-mask-image:radial-gradient(ellipse var(--r) calc(var(--r) * .8) at 50% 72%,#000 35%,transparent 100%);mask-image:radial-gradient(ellipse var(--r) calc(var(--r) * .8) at 50% 72%,#000 35%,transparent 100%)}
+.fx #s5{--scrim:radial-gradient(60% 50% at 16% 22%,rgba(1,4,5,.55),transparent 75%)}
+
+/* S6 next morning: silt, black, then dawn floods the deck */
+.fx #s6 .stage{--z:6}
+.fx #s6{--scrim:linear-gradient(15deg,rgba(14,8,4,.7) 0%,rgba(14,8,4,.32) 30%,transparent 55%)}
+
+/* S7 the pearl: a pearl glow opens the frame */
+.fx #s7 .stage{--z:7}
+.fx #s7 .tx--glow{left:61%;top:55%}
+.fx #s7{--scrim:linear-gradient(90deg,rgba(6,5,4,.7) 0%,rgba(6,5,4,.4) 30%,transparent 54%)}
+
+/* Q five qualities: a bright ground, giant words pass behind the floating pearl */
+.fx #q .stage{--z:8;background:none}
+.fx .qbg{position:absolute;inset:0;opacity:0;background:radial-gradient(120% 90% at 50% 42%,#f7f3ed 0%,#ede6dc 62%,#e3dacd 100%)}
+.fx .qhead{text-align:center;max-width:16em;margin-inline:auto}
+.fx .qrows{inset:0;z-index:1}
+.fx .qrow{position:absolute;inset:0;display:flex;align-items:center;padding:0 var(--gut);pointer-events:none}
+.fx .qrow:nth-child(even){justify-content:flex-end}
+.fx .qword{font-size:clamp(84px,13vw,230px);line-height:1;color:rgba(29,24,19,.92)}
+.fx .qpearl{position:absolute;left:50%;top:50%;width:min(40vmin,400px);margin:calc(min(40vmin,400px) / -2) 0 0 calc(min(40vmin,400px) / -2);z-index:2;opacity:0}
+.fx .qp,.fx .qfloat{position:absolute;inset:0}
+.fx .qshadow{position:absolute;left:18%;right:18%;bottom:4%;height:12%;border-radius:50%;background:radial-gradient(closest-side,rgba(74,54,36,.34),rgba(74,54,36,0))}
+/* where the photographed pearl sits in s7-pearl (centre x, centre y, diameter as a share of the viewport height) and how much of the cut-out's box the pearl fills */
+#q{--pc-x:.635;--pc-y:.53;--pc-d:.461;--clip-ar:1.7778;--cut-fill:.899}
+.fx .qfloat{animation:float 7s ease-in-out infinite}
+.fx .qshine{position:absolute;inset:8%;border-radius:50%;overflow:hidden;mix-blend-mode:screen;opacity:0}
+.fx .qshine::before{content:"";position:absolute;width:60%;height:60%;left:-30%;top:-10%;border-radius:50%;background:radial-gradient(circle,rgba(255,250,242,.6),transparent 65%);transform:translate3d(var(--sx,0%),var(--sy,0%),0)}
+@keyframes float{0%,100%{transform:translate3d(0,-1.2%,0) rotate(-1deg)}50%{transform:translate3d(0,1.2%,0) rotate(1deg)}}
+.fx .qnames{left:var(--gut);right:var(--gut);bottom:calc(clamp(28px,8vh,84px) + var(--lift-foot));z-index:3;text-align:center;height:20px}
+.fx .qname{position:absolute;left:0;right:0;bottom:0}
+.fx .q-door{left:0;right:0;bottom:calc(clamp(28px,8vh,84px) + var(--lift-foot));z-index:3;text-align:center}
+.fx .qlist{display:none}
+
+/* S8 home tonight: a calm crossfade, then it holds */
+.fx #s8 .stage{--z:9}
+/* copy low left over the creek water, light type on a dark lift from the bottom (as on phones) */
+.fx #s8{--scrim:linear-gradient(0deg,rgba(14,10,6,.84) 0%,rgba(14,10,6,.6) 30%,rgba(14,10,6,.26) 50%,transparent 64%)}
+.fx #s8 .line,.fx #s8 .ghost,.fx #s8 .door{color:var(--pearl);text-shadow:var(--shadow-t)}
+.fx .foot{color:var(--pearl);text-shadow:0 1px 2px rgba(0,0,0,.6),0 0 16px rgba(0,0,0,.5)}
+.fx #s8 .door span{border-color:rgba(244,238,230,.5)}
+.fx #s8 .ghost{text-decoration-color:rgba(244,238,230,.5)}
+.fx #s8 .pill--solid{background:var(--pearl);border-color:var(--pearl);color:var(--ink)}
+.fx #s8 .pill--solid:hover{background:#fff}
+/* the three keeper lines sit low over the creek water, wide and short, so they clear the buildings; the end block keeps the lower line */
+@media (min-width:720px){.fx #s8 .stage p.copy--low-left{--copy-span:7;bottom:calc(var(--num-b) + var(--lift-foot) + 2vh)}.fx #s8 .stage .s8-end{--copy-span:8;bottom:calc(var(--num-b) + var(--lift-foot))}}
+
+/* GSAP missing: land every scene on its settled state */
+.no-tl #s2 .stage{--w:160%}.no-tl #s1 .stage{--x:170%}.no-tl #s5 .stage{--r:160%}.no-tl .shade{opacity:.18}
+.no-tl #q .qbg,.no-tl #q .qpearl{opacity:1}.no-tl .qrows{display:none}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:719.98px){
+  :root{--top-safe:max(86px,11.5vh)}
+  .top{padding:14px var(--gut)}
+  .mark{gap:10px}
+  .mark__logo{height:23px}
+  .mark__div{height:17px}
+  .mark__t{font-size:12px}
+  .tgl{height:34px;padding:0 11px}
+  .tgl .lbl{display:none}
+  .line{font-size:clamp(23px,6.4vw,31px);line-height:1.14}
+  .line--xl{font-size:clamp(35px,9.6vw,47px);line-height:1.06}
+  .line--air{font-size:clamp(62px,17.4vw,88px);line-height:1}
+  h1.line{font-size:clamp(27px,7.4vw,33px);line-height:1.1}
+  .hold{width:84px;height:84px}
+  .hold__t{font-size:10px;max-width:64px}
+  .fx .s4-hold{left:var(--gut);right:calc(var(--gut) + 18px);bottom:calc(max(14px,2.6vh) + var(--lift-foot))}
+  .fx .s4-hold .holdui{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:16px;row-gap:6px;align-items:center;text-align:left}
+  .fx .s4-hold .hold{grid-row:1 / span 2}
+  .fx .s4-hold .hold__hint{align-self:end}
+  .fx .s4-hold .ghost{justify-self:start;align-self:start;padding:4px 0}
+  .fx .s4-mid{right:calc(var(--gut) + 14px);max-width:none}
+  .fx{--s4-copy:calc(max(14px,2.6vh) + var(--lift-foot) + 112px)}
+  .fx #s4{--scrim:linear-gradient(0deg,rgba(2,10,14,.82) 0%,rgba(2,10,14,.5) 30%,transparent 50%),linear-gradient(180deg,rgba(2,10,14,.4),transparent 18%)}
+  .fx .qrow{align-items:flex-start;padding-top:24vh}
+  .fx .qpearl{top:62%}
+  #q{--pc-x:.463;--pc-y:.606;--pc-d:.308;--clip-ar:.5574}
+  .gauge{right:6px;width:30px}
+  .gauge__t,.gauge__b{display:none}
+  .fx .ln{right:calc(var(--gut) + 14px)}
+  .fx .at-lead,.fx .at-trail,.fx .at-low{top:var(--top-safe);bottom:auto;left:var(--gut);right:calc(var(--gut) + 14px);max-width:none;text-align:left}
+  .fx .at-top{left:var(--gut);right:var(--gut)}
+  .fx #s1{--scrim:linear-gradient(180deg,rgba(6,7,14,.84) 0%,rgba(6,7,14,.7) 26%,rgba(6,7,14,.36) 40%,transparent 54%,transparent 76%,rgba(6,7,14,.5) 90%,rgba(6,7,14,.8) 100%)}
+  .fx #s2{--scrim:linear-gradient(0deg,rgba(8,14,18,.6) 0%,rgba(8,14,18,.3) 30%,transparent 50%)}
+  /* phones: the dhow fills the middle, so the lines sit at the foot, just above the caption */
+  .fx #s2 .stage .copy--low-left{bottom:calc(var(--num-b) + var(--lift-foot))}
+  .fx #s3{--scrim:linear-gradient(180deg,rgba(14,9,5,.82) 0%,rgba(14,9,5,.7) 30%,rgba(14,9,5,.44) 46%,rgba(14,9,5,.1) 60%,transparent 66%),linear-gradient(0deg,rgba(14,9,5,.84) 0%,rgba(14,9,5,.42) 28%,transparent 46%),radial-gradient(80% 26% at 20% 72%,rgba(14,9,5,.55) 0%,rgba(14,9,5,0) 100%)}
+  .fx .card{right:calc(var(--gut) + 14px);bottom:calc(clamp(40px,8vh,84px) + var(--lift-foot));max-width:none}
+  .fx .s3-breath{right:calc(var(--gut) + 14px);max-width:none}
+  .fx #s5{--scrim:linear-gradient(180deg,rgba(1,4,5,.6) 0%,transparent 42%)}
+  .fx #s6{--scrim:linear-gradient(180deg,rgba(14,8,4,.8) 0%,rgba(14,8,4,.64) 28%,rgba(14,8,4,.32) 44%,transparent 58%)}
+  .fx #s2 .tx--haze{display:none}
+  .fx #s7{--scrim:linear-gradient(180deg,rgba(6,5,4,.74) 0%,rgba(6,5,4,.38) 42%,transparent 60%)}
+  .verse blockquote p{font-size:clamp(19px,5.2vw,24px)}
+  .fx #s7 .tx--glow{left:50%;top:60%}
+  .fx .qword{font-size:clamp(58px,17vw,98px)}
+  .fx .qpearl{width:50vw;margin:-25vw 0 0 -25vw}
+  .fx #s8{--scrim:linear-gradient(0deg,rgba(14,10,6,.9) 0%,rgba(14,10,6,.66) 38%,rgba(14,10,6,.3) 56%,transparent 70%)}
+  .fx #s8 .line,.fx #s8 .ghost,.fx #s8 .door{color:var(--pearl);text-shadow:var(--shadow-t)}
+  .fx #s8 .door span{border-color:rgba(244,238,230,.5)}
+  .fx #s8 .ghost{text-decoration-color:rgba(244,238,230,.5)}
+  .fx #s8 .pill--solid{background:var(--pearl);border-color:var(--pearl);color:var(--ink)}
+}
+@media (max-height:640px){
+  :root{--top-safe:max(72px,13vh)}
+  .line{font-size:clamp(20px,min(2.7vw,4.6vh),33px)}
+  .line--xl{font-size:clamp(28px,min(4.4vw,7.4vh),50px)}
+  .line--air{font-size:clamp(52px,min(10vw,16vh),106px)}
+  h1.line{font-size:clamp(22px,min(3.3vw,5.3vh),40px)}
+  .sub{font-size:15px;margin-top:.6em}
+  .fx .card{bottom:28px}
+  .verse blockquote p{font-size:18px}
+  .cap2{display:none}
+  .hold{width:92px;height:92px}
+  .hold__hint{display:none}
+  .fx .s4-hold{bottom:12px}
+  .fx{--s4-copy:166px}
+  .fx .foot{padding-bottom:6px;font-size:11px}
+  .invite{margin-top:14px}
+  .end__row{margin-top:16px}
+  .fx .at-lead{top:var(--top-safe)}
+}
+@media (min-width:720px) and (max-height:640px){
+  .fx #s1{--scrim:linear-gradient(0deg,rgba(6,7,14,.82) 0%,rgba(6,7,14,.56) 24%,rgba(6,7,14,.18) 44%,rgba(6,7,14,0) 58%),linear-gradient(180deg,rgba(6,7,14,.34),transparent 22%)}
+}
+@media (max-width:719.98px) and (max-height:640px){
+  .fx #s6{--scrim:linear-gradient(180deg,rgba(14,8,4,.86) 0%,rgba(14,8,4,.72) 36%,rgba(14,8,4,.4) 54%,transparent 66%)}
+  .line{font-size:21px}
+  .line.line--air{font-size:58px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+</style>
+<link rel="stylesheet" href="kit/placement.css">
+<link rel="stylesheet" href="kit/menu.css">
+<script src="kit/menu.js" defer></script>
+<script src="kit/vendor/gsap-3.12.5.min.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#story">Skip to the story</a>
+<svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false"><symbol id="enbd-logo" viewBox="0 0 190 52"><path d="M107.834 22.4723H109.464V20.854H107.834V22.4723ZM110.121 38.6014V33.5198H113.937V31.7111H111.227L110.121 33.3474V29.0842H110.1L106.068 33.5198H108.127V38.7092C108.127 40.8192 109.558 42.4769 111.964 42.4769C112.657 42.4769 113.373 42.3478 113.98 42.0681V40.2591C113.373 40.5823 112.787 40.6683 112.289 40.6683C110.837 40.6683 110.121 39.764 110.121 38.6014ZM119.009 36.0176L117.903 37.5676L117.881 37.051C117.881 34.7469 119.421 33.2183 121.328 33.2183C122.976 33.2183 124.168 34.3163 124.471 36.0176H119.009ZM121.285 31.4957C118.315 31.4957 115.974 33.8212 115.974 37.0079C115.974 40.1945 118.293 42.4769 121.696 42.4769C123.192 42.4769 124.579 42.0249 125.512 41.3143V39.4412C124.254 40.3668 123.127 40.7328 121.87 40.7328C119.616 40.7328 118.142 39.5271 117.925 37.6107H126.379V36.9001C126.379 33.7994 124.254 31.4957 121.285 31.4957ZM118.11 16.4658C118.041 15.582 117.807 14.9833 117.2 14.4295C116.593 13.8757 115.889 13.5986 115.086 13.5986H112.491V15.2336H115.086C115.108 15.2336 115.127 15.2328 115.148 15.2336C115.166 15.2328 115.183 15.2336 115.202 15.2336C115.557 15.2399 115.896 15.3845 116.146 15.6365C116.395 15.8885 116.534 16.2276 116.534 16.5809C116.534 16.9341 116.395 17.2732 116.146 17.5252C115.896 17.7772 115.557 17.9219 115.202 17.9281C115.179 17.9281 115.159 17.9289 115.137 17.9281C115.12 17.9294 115.104 17.9273 115.086 17.9281H111.77V19.5489H115.086C115.889 19.5489 116.593 19.2684 117.2 18.7058C117.807 18.1432 118.183 17.3936 118.11 16.4658ZM108.521 19.5489C109.895 19.5489 110.77 18.414 110.77 17.3135V13.8187H109.142V17.0988C109.142 17.604 108.724 17.9306 108.306 17.9306H106.028V16.2038C106.028 14.0841 104.378 13.1248 103.05 13.1248C101.605 13.1248 100.074 14.1985 100.074 16.2038V17.9306L95.5577 17.9302C95.4476 17.9308 95.3385 17.9096 95.2366 17.8681C95.1347 17.8265 95.0422 17.7653 94.9642 17.688C94.8863 17.6107 94.8246 17.5189 94.7826 17.4177C94.7406 17.3166 94.7192 17.2082 94.7195 17.0988V13.7285L93.0929 14.2249V17.3135C93.0929 18.6584 94.2194 19.5493 95.3421 19.5493H101.7V16.0885C101.7 15.3447 102.295 14.7414 103.045 14.7414C103.404 14.7414 103.749 14.8833 104.004 15.1359C104.258 15.3885 104.401 15.7311 104.401 16.0885V19.5489H108.521ZM101.429 33.5198V39.9149C100.54 40.4532 99.7812 40.6469 98.9578 40.6469C96.8986 40.6469 95.4463 39.1825 95.4463 37.0942C95.4463 35.0483 96.8551 33.5198 99.2828 33.5198H101.429ZM93.4302 37.0942C93.4302 40.1945 95.5763 42.4555 98.6759 42.4555C99.2613 42.4555 99.8032 42.3264 100.193 42.1327L101.429 40.0872V42.2618H103.423V31.7111H99.0443C95.7278 31.7111 93.4302 34.0149 93.4302 37.0942ZM88.5744 31.9048L87.3171 33.9289V31.7111H85.3229V42.2618H87.3171V34.0794C88.141 33.5198 89.0083 33.3043 90.1137 33.3043C90.764 33.3043 91.306 33.3906 91.9559 33.6057V31.668C91.5225 31.5388 91.0675 31.4957 90.5906 31.4957C89.7883 31.4957 89.0948 31.6466 88.5744 31.9048ZM99.747 20.854H98.1179V22.4723H99.747V20.854ZM95.6911 22.4807H97.3202V20.8624H95.6911V22.4807ZM133.966 36.2545L131.993 35.8235C131.126 35.6512 130.714 35.2424 130.714 34.5964C130.714 33.6703 131.494 33.1965 133.12 33.1965C134.356 33.1965 135.375 33.4552 136.068 33.9289V32.0771C135.396 31.668 134.507 31.4957 133.402 31.4957C130.541 31.4957 128.915 32.6582 128.915 34.6823C128.915 36.2113 129.804 37.1802 131.516 37.5462L133.511 37.9767C134.442 38.1708 134.854 38.6442 134.854 39.312C134.854 40.2809 134.052 40.776 132.275 40.776C130.996 40.776 129.956 40.5391 128.937 39.9795V41.8526C129.891 42.2618 130.909 42.4555 132.166 42.4555C135.136 42.4555 136.632 41.3357 136.632 39.2257C136.632 37.5248 135.678 36.6205 133.966 36.2545ZM179.141 19.5497H182.182C182.586 19.5112 182.995 19.3904 183.246 19.1133C183.503 18.7968 183.648 18.5918 183.648 18.105L184.902 19.5497H187.118C188.302 19.5497 189.367 18.5934 189.367 17.3156V13.8187H187.739V17.0674C187.739 17.5734 187.385 17.9306 186.896 17.9306H183.648V14.2752H182.019V17.0674C182.019 17.3114 181.936 17.5118 181.769 17.669C181.611 17.8434 181.409 17.9306 181.163 17.9306H179.312C178.908 17.9306 178.605 17.778 178.403 17.4728C178.438 17.2896 178.456 17.1152 178.456 16.9496V10.7029L176.831 9.52353V17.0674C176.831 17.3026 176.738 17.5055 176.58 17.6757C176.423 17.8455 176.22 17.9306 175.975 17.9306H169.547C169.113 17.9306 168.691 17.6225 168.691 17.0674V14.5662L167.065 15.0634V17.3156C167.065 18.6521 168.163 19.5497 169.314 19.5497H175.981C176.534 19.5497 177.051 19.3665 177.534 19.0001C178.061 19.3665 178.596 19.5497 179.141 19.5497ZM81.6696 17.9776L81.4983 18.0585C81.2019 18.2022 80.8759 18.2752 80.5461 18.2715C79.51 18.2715 78.8912 17.7122 78.8912 16.776C78.8912 15.7631 79.5965 15.1087 80.6883 15.1087H81.6696V17.9776ZM86.7773 17.09V9.52353H85.1579V17.0938C85.1579 17.329 85.0655 17.521 84.9076 17.6694C84.7498 17.8438 84.5476 17.931 84.302 17.931H83.1675V13.7256H80.487C78.7233 13.7256 77.3929 15.037 77.3929 16.776C77.3929 18.5243 78.538 19.6541 80.3098 19.6541C80.5368 19.6541 80.7744 19.6147 80.9791 19.5439L81.0467 19.5208L81.6696 18.461V20.4142C81.6696 20.8444 81.3223 21.2481 80.831 21.2481H79.0297L79.7278 22.863H81.1062C82.1537 22.863 83.2958 21.9759 83.2958 20.6293V19.5489H84.302C84.9865 19.5489 85.5707 19.3116 86.0531 18.8362C86.5359 18.3612 86.7773 17.7789 86.7773 17.09ZM168.28 40.5392H164.443V35.4793H168.323C169.754 35.4793 170.946 36.319 170.946 38.0845C170.946 39.678 169.949 40.5392 168.28 40.5392ZM164.443 29.1269H167.846C169.169 29.1269 170.274 29.9453 170.274 31.4957C170.274 33.0246 169.212 33.778 167.846 33.778H165.635L164.443 35.3716V29.1269ZM170.253 34.5532C171.423 33.9717 172.29 32.6582 172.29 31.1942C172.29 29.0196 170.512 27.4047 168.15 27.4047H162.427V42.2618H168.648C171.119 42.2618 172.984 40.5823 172.984 38.2136C172.984 36.5341 171.878 35.0701 170.253 34.5532ZM186.277 22.4723H187.906V20.854H186.277V22.4723ZM182.196 40.4532H180.202L178.945 42.1109V29.2347H182.196C185.621 29.2347 187.962 31.4743 187.962 34.8114C187.962 38.1059 185.6 40.4532 182.196 40.4532ZM182.196 27.4047H176.929V42.2618H182.196C186.705 42.2618 190 39.0752 190 34.8114C190 30.5482 186.705 27.4047 182.196 27.4047ZM138.961 20.4142C138.961 20.8444 138.614 21.2481 138.122 21.2481H136.321L137.019 22.863H138.397C139.445 22.863 140.587 21.9759 140.587 20.6293V13.8187H138.961V20.4142ZM163.709 9.52353H162.082V19.5497H163.709V9.52353ZM155.837 40.1086L148.966 27.4047H146.04V42.2618H148.055V29.5793L154.927 42.2618H157.853V27.4047H155.837V40.1086ZM148.306 15.1087H149.287C150.379 15.1087 151.084 15.7631 151.084 16.776C151.084 17.7122 150.465 18.2715 149.429 18.2715C149.083 18.2715 148.789 18.2056 148.477 18.0585L148.306 17.9776V15.1087ZM148.306 18.461L148.929 19.5208L148.996 19.5439C149.212 19.6166 149.438 19.6539 149.666 19.6541C151.437 19.6541 152.582 18.5243 152.582 16.776C152.582 15.037 151.252 13.7256 149.488 13.7256H146.808V17.931H144.637C144.525 17.9332 144.414 17.9131 144.31 17.8719C144.206 17.8306 144.111 17.7691 144.031 17.6909C143.951 17.6127 143.888 17.5194 143.845 17.4166C143.802 17.3138 143.781 17.2034 143.781 17.0921V10.7171L142.155 9.52269V17.3135C142.155 18.575 143.19 19.5489 144.404 19.5489H148.306V18.461ZM157.14 22.4958C156.93 22.4958 156.776 22.4438 156.679 22.3398C156.581 22.2354 156.532 22.0971 156.532 21.9247C156.532 21.7453 156.599 21.5868 156.733 21.4506C156.867 21.3139 157.038 21.246 157.248 21.246H157.769L157.454 20.5563H157.129C156.766 20.5509 156.416 20.6861 156.152 20.9332C155.871 21.1919 155.73 21.5223 155.73 21.9247C155.73 22.1189 155.784 22.3088 155.892 22.4958H155.328L155.437 23.3041H157.942L157.78 22.4958H157.14ZM159.231 17.0988C159.231 17.4841 158.941 17.9285 158.381 17.9285H157.302V10.7616H155.675V16.8376L156.808 17.9285H153.28L153.786 19.5493H158.608C159.923 19.5476 160.858 18.4643 160.858 17.3135V9.52353H159.231V17.0988ZM79.3838 29.3856H81.378V27.4047H79.3838V29.3856ZM137.017 10.7171L135.391 9.52269V19.5493H137.017V10.7171ZM127.333 12.6662H125.703V14.2845H127.333V12.6662ZM129.76 12.6578H128.131V14.2761H129.76V12.6578ZM63.4305 11.3607H61.8014V12.9789H63.4305V11.3607ZM124.146 19.5493H131.317C132.545 19.5493 133.566 18.5389 133.566 17.3135V13.7L131.941 14.894V17.0942C131.941 17.5218 131.605 17.9302 131.101 17.9302H124.362C123.864 17.9302 123.524 17.5286 123.524 17.0988V14.8194L121.897 16.0055V17.3135C121.897 18.6584 123.024 19.5493 124.146 19.5493ZM48.451 35.5221H55.3659V33.7348H49.6863L48.451 35.3498V29.2347H55.7559V27.4047H46.4348V42.2618H55.8644V40.4314H48.451V35.5221ZM89.5257 9.52353H87.8987V19.5497H89.5257V9.52353ZM171.459 14.6169H173.964L173.802 13.8086H173.162C172.952 13.8086 172.798 13.7566 172.701 13.6522C172.603 13.5483 172.554 13.4099 172.554 13.2376C172.554 13.0577 172.621 12.8997 172.755 12.7634C172.889 12.6268 173.06 12.5588 173.27 12.5588H173.791L173.476 11.8688H173.151C172.775 11.8688 172.449 11.9945 172.175 12.2461C171.893 12.5048 171.752 12.8351 171.752 13.2376C171.752 13.4313 171.806 13.6216 171.914 13.8086H171.35L171.459 14.6169ZM72.9335 13.6346H68.9215L67.9001 15.25H73.0496C73.7987 15.25 74.4056 15.8411 74.4056 16.5853C74.4056 16.7621 74.3706 16.9372 74.3024 17.1006C74.2342 17.264 74.1343 17.4124 74.0084 17.5375C73.8825 17.6625 73.733 17.7616 73.5685 17.8292C73.4039 17.8968 73.2276 17.9316 73.0496 17.9315L67.8836 17.9323V10.7171L66.257 9.52269V17.9323C64.7022 17.9323 63.4377 17.9315 63.4377 17.9315V14.2752H61.8124V17.9315H59.405V16.2038C59.405 14.0841 57.7548 13.1248 56.4265 13.1248C54.9814 13.1248 53.4511 14.1985 53.4511 16.2038V17.9315H48.9001C48.402 17.9315 48.0614 17.5286 48.0614 17.0988V13.7285L46.4348 14.2249V17.3135C46.4348 18.6584 47.5613 19.5493 48.684 19.5493H55.0768V16.0901C55.0768 15.3447 55.6719 14.7414 56.4211 14.7414C56.5993 14.7415 56.7758 14.7764 56.9405 14.8442C57.1051 14.912 57.2547 15.0114 57.3807 15.1366C57.5067 15.2619 57.6066 15.4105 57.6748 15.5741C57.743 15.7377 57.778 15.9131 57.778 16.0901V19.5493H72.9335C75.0674 19.551 76.0331 17.9097 76.0331 16.5907C76.0331 15.1548 74.9522 13.6346 72.9335 13.6346ZM49.0912 22.4807H50.7204V20.8624H49.0912V22.4807ZM71.6015 31.4957C70.7127 31.4957 69.9542 31.7325 69.5208 32.0126L68.307 34.1012C67.895 32.6368 66.6593 31.4957 64.3181 31.4957C63.4297 31.4957 62.6924 31.7111 62.2809 31.948L61.0451 33.9289V31.7111H59.0509V42.2618H61.0451V34.0794C61.7769 33.5744 62.6467 33.3039 63.5377 33.3043C65.4454 33.3043 66.3558 34.3595 66.3558 35.6944V42.2618H68.35V34.2731C69.0654 33.6703 69.8892 33.3043 70.8431 33.3043C72.7504 33.3043 73.6607 34.4027 73.6607 36.1249V42.2618H75.6549V35.6298C75.6549 33.0028 74.2026 31.4957 71.6015 31.4957ZM79.3838 42.2618H81.378V31.7111H79.3838V42.2618ZM183.648 11.3607H182.019V12.9789H183.648V11.3607ZM51.5185 22.4723H53.1476V20.854H51.5185V22.4723ZM18.3952 39.7413C18.4471 39.8243 19.8969 39.0362 20.7444 38.4652C22.0422 37.591 23.1923 36.5391 24.1972 35.3569C27.0921 31.9497 28.6862 27.5254 28.7546 23.0798C28.809 19.499 27.8011 16.3828 26.8722 14.4542C26.3927 13.4569 25.6778 12.1979 25.5782 12.2494C25.533 12.2717 25.5782 12.4654 25.6647 12.7467C25.7862 13.1437 27.6091 18.9179 26.2235 25.9084C25.9568 27.2546 25.5326 28.6016 24.9903 29.9193C25.0928 29.1307 25.1274 28.3349 25.0937 27.5405C24.9839 25.0095 24.1348 22.8496 23.3911 21.526C23.0066 20.8406 22.4448 19.9807 22.3756 20.021C22.3448 20.039 22.3841 20.1744 22.4584 20.3694C22.5618 20.6452 24.1031 24.6486 23.4054 29.6439C22.9087 33.2083 20.8786 36.8695 18.6198 39.455C18.4826 39.6114 18.3653 39.7049 18.3952 39.7413ZM3.10885 3.08899H17.4393C10.9215 10.5721 7.69701 20.0281 8.33557 29.734C8.8585 37.6694 13.3306 45.0133 17.029 48.9098H3.10885V3.08899ZM25.6791 3.08899C18.1935 9.55624 13.1622 18.6291 12.9537 28.7157C12.795 36.4075 14.2249 42.3155 18.1298 48.2084C14.395 42.7867 11.9631 38.0338 11.3967 31.6952C10.4716 21.3546 14.5119 10.9481 22.4866 3.08899H25.6791ZM31.8178 3.08899H34.4333V48.9098H20.1653C16.8332 43.2722 15.7793 37.3575 16.0127 30.9737C16.4268 19.6432 22.5757 9.61158 31.8178 3.08899ZM0 52H37.4611V0H0V52Z"/></symbol></svg>
+
+<header class="top">
+  <a class="mark" href="index.html" aria-label="Emirates NBD Pearl Museum, home"><svg class="mark__logo mark__logo--w" viewBox="0 0 190 52" fill="#ffffff" aria-hidden="true" focusable="false"><use href="#enbd-logo"/></svg><svg class="mark__logo mark__logo--c" viewBox="0 0 190 52" fill="#072447" aria-hidden="true" focusable="false"><use href="#enbd-logo"/></svg><span class="mark__div" aria-hidden="true"></span><span class="mark__t" aria-hidden="true">Pearl Museum</span></a>
+  <div class="top__end">
+  <button class="tgl" id="soundTgl" type="button" aria-pressed="false" aria-label="Sound">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path class="w" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/><path class="x" d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+      <span class="lbl" aria-hidden="true" id="soundState">Sound off</span>
+    </button>
+  </div>
+</header>
+
+<div class="gauge fx-only" id="gauge" aria-hidden="true">
+  <span class="gauge__t">Surface</span><span class="gauge__line"></span><span class="gauge__dot" id="gaugeDot"></span><span class="gauge__b">Seabed</span>
+</div>
+
+<main id="story">
+
+  <!-- S1 CREEK TODAY, THEN 1949, IN THE SAME FRAME. Thesis. Two pixel-aligned stills share one drift, a warm light sweeps the present into the past. -->
+  <section class="scene scrim--copy-low scrim--copy-m-off" id="s1" style="--span:190" aria-labelledby="h1">
+    <div class="stage">
+      <div class="frame" data-ph="s1-arrival.jpg + s1-arrival-1949.jpg">
+        <div class="plane plane--bg s1-drift">
+          <div class="s1-breathe">
+            <picture class="s1-now"><source media="(max-width:719.98px)" srcset="assets/s1-arrival-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/s1-arrival.jpg" width="2560" height="1440" decoding="async" fetchpriority="high" alt="An abra crosses Dubai Creek at sunset, the old Deira waterfront in silhouette against a golden sky."></picture>
+            <!-- the Creek today moves: stock video "Traditional Abra Cruising On Dubai Creek Near Al Fahidi District" (BlackBoxGuild, Freepik premium,
+                 downloaded on Hakan's account 2026-10-29), 1 to 9 s cut into an 8 s loop with a 1 s dissolve. The still above stays for reduced motion. -->
+            <video class="s1-vid fx-layer" muted playsinline loop preload="auto" aria-hidden="true" poster="assets/s1-abra-poster.jpg" data-src="assets/s1-abra.mp4" data-src-m="assets/s1-abra-m.mp4" data-poster-m="assets/s1-abra-m-poster.jpg"></video>
+          </div>
+        </div>
+        <div class="scrim"></div>
+      </div>
+      <div class="tx tx--copyscrim fx-layer" aria-hidden="true"></div>
+      <div class="beat copy ln copy--low-left copy--m-high" data-cue="-1 .64">
+        <h1 id="h1" class="line in1">Everything precious here began with one <em>breath</em>.</h1>
+        <div class="copy__after"><div class="invite in2">
+          <button class="pill" id="soundInvite" type="button" aria-pressed="false" data-fp="0">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+            <span id="inviteLbl">Turn on sound</span>
+          </button>
+          <span class="invite__s">Best with headphones</span>
+        </div></div>
+      </div>
+      <div class="beat copy ln copy--low-left copy--m-high fx-only" data-cue=".66 .93"><p class="line line--xl"><span class="breathe" id="breathe">Take a <em>breath</em>.</span></p></div>
+      <p class="beat caption cap--base s1-cap" data-cue="-1 .93">Dubai Creek, today</p>
+    </div>
+    <div class="s1-rm">
+      <picture><source media="(max-width:719.98px)" srcset="assets/s1-arrival-m.jpg" width="1080" height="1920"><img src="assets/s1-arrival.jpg" data-alt="assets/s1-arrival-poster.jpg" width="2560" height="1440" decoding="async" loading="lazy" alt="The same view reimagined around 1949: a small wooden boat on the Creek, low coral-stone houses, wind towers and moored dhows along the bank."></picture>
+      <div class="s1-rm__copy">
+        <p class="line line--xl">Take a <em>breath</em>.</p>
+        <p class="caption">Dubai Creek, today</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- S2 THE FLEET, 1949. Context: before the towers. -->
+  <section class="scene scrim--copy-low" id="s2" style="--span:220" aria-labelledby="s2h">
+    <div class="stage">
+      <div class="frame" data-ph="s2-fleet.mp4 (+ -poster.jpg, s2-fleet.jpg)">
+        <div class="plane plane--bg">
+          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s2-fleet-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/s2-fleet-poster.jpg" data-alt="assets/s2-fleet.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="Dawn, 1949: a fleet of wooden pearling dhows at anchor on a calm, hazy Gulf, the low sun on the horizon."></picture>
+          <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/s2-fleet.mp4" data-m="still"></video>
+        </div>
+        <div class="scrim"></div>
+      </div>
+      <div class="tx tx--haze fx-layer" aria-hidden="true"></div>
+      <h2 class="beat ln copy--low-left line" id="s2h" data-cue=".3 .52">Before the towers, there was the <em>sea</em>.</h2>
+      <p class="beat ln copy--low-left line" data-cue=".52 .74">Pearling built the fortunes of most of the Gulf's great merchant <em>dynasties</em>.</p>
+      <p class="beat ln copy--low-left line" data-cue=".74 .95">In 1949, the <em>last</em> pearling fleet of any size put into Dubai.</p>
+      <p class="beat caption cap--base s2-cap" data-cue=".3 .95">The Gulf, 1949</p>
+    </div>
+  </section>
+
+  <!-- S3 ON DECK. The people: nobody dived alone. One continuous camera move along the deck, the crew one by one, the diver last. -->
+  <section class="scene" id="s3" style="--span:520" aria-label="On deck">
+    <div class="stage">
+      <div class="frame deck" data-ph="s3-deck-film-b.mp4 (falls back to s3-deck)">
+        <div class="plane plane--bg deck__fb">
+          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s3-deck-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/s3-deck-poster.jpg" data-alt="assets/s3-deck.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="On deck at sunrise, 1949: the crew of a pearling dhow, the captain, the singer, the haulers on the rope and the diver."></picture>
+          <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/s3-deck.mp4" data-m="still" data-deck="fb"></video>
+        </div>
+        <!-- the deck film (Ram's new cut, 2026-11-03, source assets/s3-deck-video/1031.mp4): one continuous move, captain 0 to 1.4 s, the seated singer to 3.4,
+             the hauler on the rope to 4.5, then the diver: nose clip, breath, the step off the rail and the splash. The 2026-10-29 cut (s3-deck-film) and the
+             old four clips with the s3b plate move stay in assets as earlier versions. -->
+        <div class="plane deck__seg fx-layer" data-seg="0">
+          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s3-deck-film-b-m-poster.jpg" width="608" height="1080"><img src="assets/s3-deck-film-b-poster.jpg" data-alt="assets/s3-deck-poster.jpg|assets/s3-deck.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt=""></picture>
+          <video class="scrub" muted playsinline preload="none" aria-hidden="true" data-src="assets/s3-deck-film-b.mp4" data-src-m="assets/s3-deck-film-b-m.mp4" data-m-only="1" data-deck="0"></video>
+        </div>
+        <div class="tx tx--warm fx-layer"></div>
+        <div class="scrim"></div>
+      </div>
+      <h2 class="beat ln copy--low-left s3-copy line" id="s3h" data-cue=".05 .2" data-dc="0:.05 1:.3">No pearl was ever found <em>alone</em>.</h2>
+      <p class="beat card" data-cue=".13 .235" data-dc="0:.4 1:.97"><span class="card__rule" aria-hidden="true"></span><span class="line"><em>Nakhuda</em>, the captain</span><span class="beat line card__more" data-cue=".2 .3" data-dc="1:.2 1:.97">Every voyage answered to <em>him</em>.</span></p>
+      <p class="beat ln copy--low-left s3-copy line" data-cue=".29 .465" data-dc="2:.25 3:.3">Everything on board was done to <em>singing</em>, stamping and hand-clapping.</p>
+      <p class="beat card" data-cue=".27 .465" data-dc="2:.1 3:.3"><span class="card__rule" aria-hidden="true"></span><span class="line"><em>Nahham</em>, the singer</span></p>
+      <div class="beat card card--saib" data-cue=".51 .665" data-dc="3:.35 4:.1"><span class="card__rule" aria-hidden="true"></span><p class="line"><em>Saib</em>, the haulers who pulled the divers back up</p><p class="door-wrap"><a class="door" href="history.html#crew" data-fp=".58"><span>Meet the crew</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p></div>
+      <p class="beat card" data-cue=".71 .83" data-dc="4:.12 4:breath"><span class="card__rule" aria-hidden="true"></span><span class="line"><em>Ghais</em>, the diver</span></p>
+      <p class="beat s3-breath line" data-cue=".84 .985" data-dc="4:breath 4:step+.1">Take a <em>breath</em> with him.</p>
+    </div>
+    <ol class="deck-rm" aria-label="The crew">
+        <li class="deck-rm__beat">
+          <picture><source media="(max-width:719.98px)" srcset="assets/s3a-captain-m-still.jpg" data-next="assets/s3a-captain-m-poster.jpg|assets/s3a-captain-m.jpg|assets/s3-deck-m.jpg" width="1080" height="1920"><img src="assets/s3a-captain-still.jpg" data-alt="assets/s3a-captain-poster.jpg|assets/s3-deck.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="The captain stands at the stern of the pearling dhow at dawn, calm, watching the water."></picture>
+          <div class="deck-rm__copy">
+            <h2 class="line">No pearl was ever found <em>alone</em>.</h2>
+            <p class="line"><em>Nakhuda</em>, the captain</p>
+          </div>
+        </li>
+        <li class="deck-rm__beat">
+          <picture><source media="(max-width:719.98px)" srcset="assets/s3a2-captain-close-m-still.jpg" data-next="assets/s3a2-captain-close-m-poster.jpg|assets/s3a-captain-m-still.jpg|assets/s3-deck-m.jpg" width="1080" height="1920"><img src="assets/s3a2-captain-close-still.jpg" data-alt="assets/s3a2-captain-close-poster.jpg|assets/s3a-captain-still.jpg|assets/s3-deck.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="Close on the captain at the tiller, his weathered face in profile, eyes on the horizon, the wind in his head cloth."></picture>
+          <div class="deck-rm__copy">
+            <p class="line">Every voyage answered to <em>him</em>.</p>
+          </div>
+        </li>
+        <li class="deck-rm__beat">
+          <svg class="s3b-still s3b-still--d" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Midships, the singer leads the chant and claps the rhythm, the haulers on the rope beside him."><image href="assets/s3b-plates/s3b-L0-sky-sea.jpg" x="0" y="0" width="1920.0" height="1080.0"/><image href="assets/s3b-plates/s3b-L1-deck-sea.webp" x="0" y="576" width="2045.333" height="504.0"/><image href="assets/s3b-plates/s3b-C2-man-at-bow-shadow.webp" x="956.5" y="673" width="131.333" height="58.0"/><image href="assets/s3b-plates/s3b-C2-man-at-bow.webp" x="965.3" y="454" width="82.667" height="254.667"/><image href="assets/s3b-plates/s3b-L2-mast-rigging.webp" x="0" y="0" width="2045.333" height="840.0"/><image href="assets/s3b-plates/s3b-C3-haulers-shadow.webp" x="676.4" y="893.7" width="156.667" height="58.0"/><path d="M678 720 L636 753" stroke="#8a6247" stroke-width="5.4" stroke-linecap="round" fill="none"/><path d="M678 720 L636 753" stroke="#4f3726" stroke-width="5.4" stroke-dasharray="1.3 2.5" opacity=".38" fill="none"/><image href="assets/s3b-plates/s3b-C3-haulers.webp" x="662" y="460" width="304.0" height="469.333"/><image href="assets/s3b-plates/s3b-C4-singer-shadow.webp" x="1101.3" y="863" width="145.333" height="58.0"/><image href="assets/s3b-plates/s3b-C4-singer.webp" x="1074" y="403.3" width="138.667" height="495.333"/></svg><svg class="s3b-still s3b-still--m" viewBox="841 0 608 1080" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><image href="assets/s3b-plates/s3b-L0-sky-sea.jpg" x="0" y="0" width="1920.0" height="1080.0"/><image href="assets/s3b-plates/s3b-L1-deck-sea.webp" x="0" y="576" width="2045.333" height="504.0"/><image href="assets/s3b-plates/s3b-C2-man-at-bow-shadow.webp" x="956.5" y="673" width="131.333" height="58.0"/><image href="assets/s3b-plates/s3b-C2-man-at-bow.webp" x="965.3" y="454" width="82.667" height="254.667"/><image href="assets/s3b-plates/s3b-L2-mast-rigging.webp" x="0" y="0" width="2045.333" height="840.0"/><image href="assets/s3b-plates/s3b-C3-haulers-shadow.webp" x="676.4" y="893.7" width="156.667" height="58.0"/><path d="M678 720 L636 753" stroke="#8a6247" stroke-width="5.4" stroke-linecap="round" fill="none"/><path d="M678 720 L636 753" stroke="#4f3726" stroke-width="5.4" stroke-dasharray="1.3 2.5" opacity=".38" fill="none"/><image href="assets/s3b-plates/s3b-C3-haulers.webp" x="662" y="460" width="304.0" height="469.333"/><image href="assets/s3b-plates/s3b-C4-singer-shadow.webp" x="1101.3" y="863" width="145.333" height="58.0"/><image href="assets/s3b-plates/s3b-C4-singer.webp" x="1074" y="403.3" width="138.667" height="495.333"/></svg>
+          <div class="deck-rm__copy">
+            <p class="line"><em>Nahham</em>, the singer</p>
+            <p class="line">Everything on board was done to <em>singing</em>, stamping and hand-clapping.</p>
+          </div>
+        </li>
+        <li class="deck-rm__beat">
+          <picture><source media="(max-width:719.98px)" srcset="assets/s3c-haulers-m-still.jpg" data-next="assets/s3d-diver-m-poster.jpg|assets/s3c-haulers-m.jpg|assets/s3-deck-m.jpg" width="1080" height="1920"><img src="assets/s3c-haulers-still.jpg" data-alt="assets/s3d-diver-poster.jpg|assets/s3-deck.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="Two haulers lean back on the rope that runs over the side to the sea."></picture>
+          <div class="deck-rm__copy">
+            <p class="line"><em>Saib</em>, the haulers who pulled the divers back up</p>
+            <p><a class="door" href="history.html#crew"><span>Meet the crew</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+          </div>
+        </li>
+        <li class="deck-rm__beat">
+          <picture><source media="(max-width:719.98px)" srcset="assets/s3d-diver-m-still.jpg" data-next="assets/s3d-diver-m.jpg|assets/s3-deck-m.jpg" width="1080" height="1920"><img src="assets/s3d-diver-still.jpg" data-alt="assets/s3-deck.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="At the forward rail the diver fits his nose clip and takes one deep breath, his rope and stone ready."></picture>
+          <div class="deck-rm__copy">
+            <p class="line"><em>Ghais</em>, the diver</p>
+            <p class="line">Take a <em>breath</em> with him.</p>
+          </div>
+        </li>
+    </ol>
+  </section>
+
+  <!-- S4 THE PLUNGE (signature). The stakes: the price of a pearl was a breath. -->
+  <section class="scene" id="s4" style="--span:320" aria-labelledby="s4h">
+    <div class="stage">
+      <div class="frame" data-ph="s4-plunge.mp4 (falls back to s4-plunge-v1)">
+        <div class="pulse" id="pulse4">
+          <div class="plane plane--bg">
+            <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s4-plunge-m-poster.jpg" data-next="assets/s4-plunge-m.jpg|assets/s4-plunge-v1-m-poster.jpg|assets/s4-plunge-v1-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/s4-plunge-poster.jpg" data-alt="assets/s4-plunge.jpg|assets/s4-plunge-v1-poster.jpg|assets/s4-plunge-v1.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="A pearl diver in a plain cotton suit sinks feet-first down a rope weighted with a stone, sunlight streaming through the water above him."></picture>
+            <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/s4-plunge.mp4|assets/s4-plunge-v1.mp4" data-src-m="assets/s4-plunge-m.mp4|assets/s4-plunge-v1-m.mp4"></video>
+          </div>
+          <div class="plane st-plane" data-st="ascent" data-ph="s4-ascent.mp4">
+            <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s4-ascent-m-poster.jpg" width="608" height="1080"><img src="assets/s4-ascent-poster.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="The haulers pull the diver up the taut rope toward the bright surface."></picture>
+            <video class="stclip fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/s4-ascent.mp4" data-src-m="assets/s4-ascent-m.mp4" data-dur="3.6"></video>
+          </div>
+          <div class="plane st-plane" data-st="surface" data-ph="s4-surface.mp4">
+            <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s4-surface-m-poster.jpg" width="608" height="1080"><img src="assets/s4-surface-poster.jpg" data-still="assets/s4-surface-still.jpg" data-still-m="assets/s4-surface-m-still.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="Beside the dark wooden hull, the diver breaks the surface and gasps for air, one hand on the rope."></picture>
+            <video class="stclip fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/s4-surface.mp4" data-src-m="assets/s4-surface-m.mp4" data-dur="4.2"></video>
+          </div>
+          <div class="plane st-plane" data-st="redive" data-ph="s4-redive.mp4">
+            <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s4-redive-m-poster.jpg" width="608" height="1080"><img src="assets/s4-redive-poster.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="At the surface the diver takes one breath and sinks feet-first along the rope."></picture>
+            <video class="stclip fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/s4-redive.mp4" data-src-m="assets/s4-redive-m.mp4" data-dur="4"></video>
+          </div>
+        </div>
+        <div class="scrim"></div>
+        <div class="dive-dark fx-layer" id="dark4"></div>
+        <div class="dive-iris fx-layer" id="iris4"></div>
+        <div class="air-flash fx-layer" id="flash4"></div>
+        <div class="endfade fx-layer"></div>
+      </div>
+      <div class="tx tx--surface fx-layer" aria-hidden="true"></div>
+      <h2 class="sr-only" id="s4h">The dive</h2>
+      <div class="beat ln s4-mid" data-cue=".1 .56">
+        <div class="midslot" id="midslot">
+          <p class="state line" data-state="prompt">One rope. One stone.<br>One <em>breath</em>.</p>
+          <p class="state line" data-state="hold" aria-hidden="true"><em>Hold</em> it.</p>
+          <p class="state line" data-state="low" aria-hidden="true">Let go when you <em>must</em>.</p>
+          <p class="state line" data-state="up" aria-hidden="true">Come up. <em>Breathe</em>.</p>
+          <p class="state line line--air" data-state="air" aria-hidden="true"><em>Air.</em></p>
+          <p class="state line" data-state="harsh" aria-hidden="true">The life of a diver was often short and <em>harsh</em>.</p>
+        </div>
+      </div>
+      <p class="beat ln at-lead s4-copy line" id="harshScroll" data-cue=".65 .93">The life of a diver was often short and <em>harsh</em>.</p>
+      <div class="beat s4-hold" id="holdBeat">
+        <div class="holdui">
+          <button class="hold" id="holdBtn" type="button" aria-describedby="holdHint" data-fp="breath" data-fp-scene="s3">
+            <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="trk" cx="60" cy="60" r="57"/><circle class="lvl" id="holdLvl" cx="60" cy="60" r="57" stroke-dasharray="358.14" stroke-dashoffset="0"/></svg>
+            <span class="hold__t" id="holdLbl">Hold to dive</span>
+          </button>
+          <div class="sr-only" role="meter" id="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" aria-label="Breath"></div>
+          <p class="hold__hint" id="holdHint">Press and hold. Let go to come up for air.</p>
+          <button class="ghost" id="diveForMe" type="button" data-fp="breath" data-fp-scene="s3">Dive for me</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S5 THE SEABED. Patience in the dark. -->
+  <section class="scene scrim--copy-low" id="s5" style="--span:180" aria-labelledby="s5h">
+    <div class="stage">
+      <div class="frame" data-ph="s5-seabed.mp4 (+ -poster.jpg, s5-seabed.jpg)">
+        <div class="plane plane--bg">
+          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s5-seabed-m-poster.jpg" data-next="assets/s5-seabed-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/s5-seabed-poster.jpg" data-alt="assets/s5-seabed.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="In near darkness on the seabed, a diver's hands feel for oysters and gather them into a rope net basket."></picture>
+          <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/s5-seabed.mp4" data-src-m="assets/s5-seabed-m.mp4"></video>
+        </div>
+        <div class="shade fx-layer"></div>
+        <div class="scrim"></div>
+      </div>
+      <h2 class="beat ln copy--low-left s5-copy line" id="s5h" data-cue=".3 .62">Down here, everything is <em>patience</em>.</h2>
+      <p class="beat ln copy--low-left s5-copy line" data-cue=".62 .95">Your hands search the bed by <em>touch</em>.</p>
+    </div>
+  </section>
+
+  <!-- S6 THE NEXT MORNING. The reward is slow. -->
+  <section class="scene scrim--copy-low" id="s6" style="--span:200" aria-labelledby="s6h">
+    <div class="stage">
+      <div class="tx tx--silt fx-layer" aria-hidden="true"></div>
+      <div class="tx tx--black fx-layer" aria-hidden="true"></div>
+      <div class="frame" data-ph="s6-morning.mp4 (+ -poster.jpg, s6-morning.jpg)">
+        <div class="plane plane--bg">
+          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s6-morning-m-poster.jpg" data-next="assets/s6-morning-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/s6-morning-poster.jpg" data-alt="assets/s6-morning.jpg" data-still="assets/s6-morning.jpg" data-still-m="assets/s6-morning-m.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="At dawn on the dhow's deck, a diver's weathered hands open an oyster with a small knife, revealing a pearl inside."></picture>
+          <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/s6-morning.mp4" data-src-m="assets/s6-morning-m.mp4"></video>
+        </div>
+        <div class="scrim"></div>
+      </div>
+      <div class="tx tx--dawn fx-layer" aria-hidden="true"></div>
+      <h2 class="beat ln copy--low-left copy--m-high line" id="s6h" data-cue=".26 .56">The sea gives <em>slowly</em>.</h2>
+      <p class="beat ln copy--low-left copy--m-high line" data-cue=".56 .95">The crew opened the shells the following <em>day</em>.</p>
+      <p class="beat caption cap--base s6-cap" data-cue=".56 .95"><i lang="la">Pinctada margaritifera</i>, one of the Gulf pearl oysters</p>
+    </div>
+  </section>
+
+  <!-- S7 THE PEARL. The peak: the poet's voice, alone, unhurried. -->
+  <section class="scene" id="s7" style="--span:230" aria-labelledby="s7h">
+    <div class="stage">
+      <div class="frame" data-ph="s7-pearl.mp4 (+ -poster.jpg, s7-pearl.jpg)">
+        <div class="plane plane--bg">
+          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s7-pearl-m-poster.jpg" data-next="assets/s7-pearl-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/s7-pearl-poster.jpg" data-alt="assets/s7-pearl.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="A single natural Gulf pearl, softly lit on dark velvet, its surface glowing with a faint rose and green sheen."></picture>
+          <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/s7-pearl.mp4" data-src-m="assets/s7-pearl-m.mp4"></video>
+        </div>
+        <div class="scrim"></div>
+      </div>
+      <div class="tx tx--glow fx-layer" aria-hidden="true"></div>
+      <h2 class="sr-only" id="s7h">The pearl</h2>
+      <figure class="beat verse copy--low-left copy--m-high s7-verse" data-cue=".26 .95">
+        <blockquote>
+          <p class="beat" data-cue=".26 .95">Oh sea! Oh <em>sea</em>!</p>
+          <p class="beat" data-cue=".39 .95">This is the <em>pearl</em> of the land.</p>
+          <p class="beat" data-cue=".52 .95">Have you in the cradles of your shells a pearl to <em>match</em>?</p>
+        </blockquote>
+        <figcaption class="beat copy__after" data-cue=".65 .95">
+          <span class="cap1">Sultan Ali Al-Owais, 1925 to 2000</span>
+          <span class="cap2">Poet, pearl collector, and a founder of the National Bank of Dubai</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Q THE FIVE QUALITIES. A short coda, back in the light. -->
+  <section class="scene" id="q" style="--span:250" aria-labelledby="qh">
+    <div class="stage">
+      <div class="qbg fx-layer"></div>
+      <h2 class="beat ln copy--peak-centre-low qhead line" id="qh" data-cue=".1 .25">What makes a pearl <em>special</em>.</h2>
+      <div class="qrows fx-layer" aria-hidden="true">
+        <div class="qrow"><p class="qword">Size</p></div>
+        <div class="qrow"><p class="qword">Shape</p></div>
+        <div class="qrow"><p class="qword">Colour</p></div>
+        <div class="qrow"><p class="qword">Lustre</p></div>
+        <div class="qrow"><p class="qword">Surface</p></div>
+      </div>
+      <div class="qpearl" aria-hidden="true">
+        <div class="qp"><span class="qshadow fx-layer"></span><div class="qfloat">
+          <img src="assets/s7-pearl-cut.png" width="892" height="822" decoding="async" loading="lazy" alt="">
+          <span class="ph-pearl"></span><span class="ph-tag">s7-pearl-cut.png</span>
+          <span class="qshine fx-layer"></span>
+        </div></div>
+      </div>
+      <div class="qnames fx-layer" aria-hidden="true">
+        <p class="qname beat" data-cue=".29 .38"><span class="qnum">i.</span>Size and weight</p>
+        <p class="qname beat" data-cue=".42 .51"><span class="qnum">ii.</span>Shape</p>
+        <p class="qname beat" data-cue=".55 .64"><span class="qnum">iii.</span>Colour</p>
+        <p class="qname beat" data-cue=".68 .77"><span class="qnum">iv.</span>Lustre</p>
+        <p class="qname beat" data-cue=".81 .87"><span class="qnum">v.</span>Surface quality</p>
+      </div>
+      <ol class="qlist">
+        <li class="qitem"><span class="qword" aria-hidden="true">Size</span><span class="qname">Size and weight</span></li>
+        <li class="qitem"><span class="qword" aria-hidden="true">Shape</span><span class="qname">Shape</span></li>
+        <li class="qitem"><span class="qword" aria-hidden="true">Colour</span><span class="qname">Colour</span></li>
+        <li class="qitem"><span class="qword" aria-hidden="true">Lustre</span><span class="qname">Lustre</span></li>
+        <li class="qitem"><span class="qword" aria-hidden="true">Surface</span><span class="qname">Surface quality</span></li>
+      </ol>
+      <div class="beat copy--peak-centre-foot q-door" data-cue=".88 .97"><a class="door" href="collection.html" data-fp=".92"><span>Read a pearl like a merchant</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    </div>
+  </section>
+
+  <!-- S8 THE HQ ON THE CREEK, golden hour. The keeper, the promise, one action. -->
+  <section class="scene" id="s8" style="--span:250" aria-labelledby="s8h">
+    <div class="stage">
+      <div class="tx tx--dusk fx-layer" aria-hidden="true"></div>
+      <div class="frame" data-ph="s8-hq.mp4 (+ -poster.jpg, s8-hq.jpg)">
+        <div class="plane plane--bg">
+          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s8-hq-m-poster.jpg" data-next="assets/s8-hq-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/s8-hq-poster.jpg" data-alt="assets/s8-hq.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="The Emirates NBD headquarters on the Deira bank of Dubai Creek in golden late-afternoon light, its curved bronze glass facade rising above the water."></picture>
+          <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/s8-hq.mp4" data-src-m="assets/s8-hq-m.mp4"></video>
+        </div>
+        <div class="scrim"></div>
+      </div>
+      <p class="beat ln copy--low-left copy--m-low line" data-cue=".36 .52">Sultan Ali Al-Owais, a pearl merchant's son, <em>kept</em> them.</p>
+      <p class="beat ln copy--low-left copy--m-low line" data-cue=".52 .69">It was his wish to display his natural Gulf pearls “as a reminder of a way of life now <em>lost</em>”.</p>
+      <p class="beat ln copy--low-left copy--m-low line" data-cue=".69 .84">“From dhows to divers. A story that began in <em>1963</em>.”</p>
+      <div class="beat copy ln copy--low-left copy--m-low s8-end" data-cue=".84 9">
+        <h2 class="line" id="s8h">Come and see what one breath was <em>worth</em>.</h2>
+        <div class="end__row">
+          <a class="pill pill--solid" href="visit.html" data-fp="1"><span>Plan your visit</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <button class="ghost" id="replay" type="button" data-fp="1">Take another breath</button>
+        </div>
+        <div class="end__doors">
+          <a class="door" href="about.html" data-fp="1"><span>Who was Sultan Ali Al-Owais?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="door" href="merchants.html" data-fp="1"><span>Chapter II: Follow your pearl</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot beat" data-scene="s8" data-cue=".86 9">
+  <p>Emirates NBD Pearl Museum, Emirates NBD HQ, Dubai Creek, Deira. By appointment.</p>
+</footer>
+
+<p class="sr-only" aria-live="polite" id="live"></p>
+
+<script>
+(() => {
+'use strict';
+/* ================= UTIL ================= */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const clamp = (x, a = 0, b = 1) => x < a ? a : x > b ? b : x;
+const lerp = (a, b, t) => a + (b - a) * t;
+const sm = (a, b, x) => { const t = clamp((x - a) / (b - a)); return t * t * (3 - 2 * t); };
+const dwell = (x, d) => clamp(x + d * Math.sin(x * 6.2832) / 6.2832); // settles mid-scene, moves quicker at the edges
+const Q = new URLSearchParams(location.search);
+const root = document.documentElement;
+const RM = root.classList.contains('rm');
+const FX = !RM;
+const MQ = matchMedia('(max-width:719.98px)');
+let MOBILE = MQ.matches;
+
+/* ================= SOUND: produced stems (assets/audio, see AUDIO.md) =================
+   Off until the visitor turns it on. Stems are fetched and decoded only then, nearest scene first; a missing file is silent.
+   Loops play from Web Audio buffers between 0.5 s and 0.5 s + L (each file carries 0.5 s of its own material either side).
+   Beds and music crossfade with the scroll at AUDIO.md's suggested levels; one-shots fire on the story's events and duck
+   the music; everything except the underwater world itself goes through one low-pass while we are under. Master -6 dB. */
+const BEAT = 777, STEP = BEAT / 4; // the deck rhythm is about 77 BPM: 0.777 s per beat
+const DB = d => d <= -90 ? 0 : Math.pow(10, d / 20);
+const STEMS = {
+  // role: [bus, loop length L in s (0 = one-shot), mix dB from AUDIO.md, scene index for load order]
+  'amb-creek-today':     ['bed', 28, 0, 1], 'amb-creek-1949': ['bed', 28, 0, 1], 'music-drone-bed': ['music', 40, 0, 1],
+  'amb-open-sea':        ['bed', 28, 0, 2], 'music-oud-sparse': ['music', 39, 0, 2],
+  'amb-deck':            ['bed', 28, 0, 3], 'music-deck-rhythm': ['music', 33.568, 0, 3], 'sfx-rope-roller': ['fx', 0, 0, 3], 'sfx-inhale': ['fx', 0, 0, 3], 'sfx-sail-gust': ['fx', 0, -2, 3], 'music-nahham-voice': ['fx', 28.8, -2, 3],
+  'sfx-splash-entry':    ['fx', 0, 0, 4], 'amb-underwater': ['under', 28, 0, 4], 'sfx-heartbeat': ['under', 0, 0, 4], 'sfx-heartbeat-loop': ['under', 5.19, -4, 4],
+  'sfx-bubbles-nose':    ['under', 0, 0, 4], 'sfx-ascent-rush': ['under', 0, 0, 4], 'music-ascent-swell': ['music', 0, -6, 4],
+  'sfx-surface-break':   ['fx', 0, 0, 4], 'sfx-gasp': ['fx', 0, 0, 4], 'sfx-redive-close': ['fx', 0, 0, 4],
+  'amb-seabed':          ['under', 28, 0, 5], 'sfx-shell-lift': ['under', 0, 0, 5],
+  'amb-dawn-deck':       ['bed', 28, 0, 6], 'sfx-shell-open': ['fx', 0, 0, 6],
+  'music-pearl-theme':   ['music', 0, 0, 7], 'music-end-resolve': ['music', 0, -3, 9]
+};
+// the stems are delivered quiet (ambience -26 to -32 LUFS, music -20): +8 dB lifts a scene to about -20 LUFS; the limiter catches the splash
+const MASTER_DB = 8;
+const SNDX = (() => {
+  let ctx = null, on = false, loading = false, master, lp, duck, offT = 0, t0Load = 0;
+  const bus = {}, buf = {}, loops = {}, want = {}, cues = {}, loadedAt = {}, fired = {};
+// scroll speed in screens per second: beds glide longer and passing moments are skipped when the visitor scrolls fast,
+// so a fast and a slow reader hear the same story instead of a pile-up of effects
+let spd = 0, sy = scrollY, st = performance.now();
+addEventListener('scroll', () => { const t = performance.now(), dt = Math.max(16, t - st) / 1000; spd = spd * .6 + (Math.abs(scrollY - sy) / innerHeight / dt) * .4; sy = scrollY; st = t; }, { passive: true });
+const speed = () => spd * Math.exp(-(performance.now() - st) / 250);
+const lastShot = {}, pend = {};
+  // a moment skipped at speed still plays if the visitor settles within 1.2 s (only the latest one, so they never pile up)
+  function flush() { if (speed() > .8) return; let r = null; for (const k in pend) if (!r || pend[k].at > pend[r].at) r = k; if (!r) return; const q = pend[r]; for (const k in pend) delete pend[k]; if (performance.now() < q.until) shot(r, q.o); }
+// a short outdoor space for the effects (generated, no file): stereo noise with a 0.9 s fall, dark, so close-miked takes sit in the scene
+function space(c) {
+  const n = Math.round(c.sampleRate * .9), ir = c.createBuffer(2, n, c.sampleRate);
+  for (let ch = 0; ch < 2; ch++) { const d = ir.getChannelData(ch); let lpS = 0; for (let i = 0; i < n; i++) { lpS = lpS * .82 + (Math.random() * 2 - 1) * .18; d[i] = lpS * Math.pow(1 - i / n, 3.2); } }
+  const cv = c.createConvolver(); cv.buffer = ir; return cv;
+}
+  function init() {
+    const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return false;
+    ctx = new AC();
+    const lim = ctx.createDynamicsCompressor(); lim.threshold.value = -4; lim.knee.value = 2; lim.ratio.value = 20; lim.attack.value = .002; lim.release.value = .18; lim.connect(ctx.destination);
+    master = ctx.createGain(); master.gain.value = 0; master.connect(lim);
+    lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 18000; lp.Q.value = .5; lp.connect(master);
+    duck = ctx.createGain(); duck.connect(lp);
+    bus.music = ctx.createGain(); bus.music.connect(duck);
+    bus.bed = ctx.createGain(); bus.bed.connect(lp);
+    bus.fx = ctx.createGain();
+  const fxTone = ctx.createBiquadFilter(); fxTone.type = 'highshelf'; fxTone.frequency.value = 7500; fxTone.gain.value = -4; bus.fx.connect(fxTone); fxTone.connect(lp);
+  const rv = space(ctx), rvG = ctx.createGain(); rvG.gain.value = .14; bus.fx.connect(rv); rv.connect(rvG); rvG.connect(lp);
+    bus.under = ctx.createGain(); bus.under.connect(master); // the underwater world is heard as it is, not muffled again
+    return true;
+  }
+  async function loadAll(near) {
+    if (loading) return; loading = true; t0Load = performance.now();
+    const roles = Object.keys(STEMS).sort((a, b) => Math.abs(STEMS[a][3] - near) - Math.abs(STEMS[b][3] - near) || STEMS[a][3] - STEMS[b][3]);
+    for (const role of roles) {
+      try {
+        const r = await fetch('assets/audio/' + role + '.m4a'); if (!r.ok) continue;
+        buf[role] = await ctx.decodeAudioData(await r.arrayBuffer());
+        loadedAt[role] = Math.round(performance.now() - t0Load);
+        if (STEMS[role][1] && want[role] > 0) startLoop(role);
+      } catch (_) {}
+    }
+  }
+  function startLoop(role) {
+    if (loops[role] || !buf[role]) return;
+    const L = STEMS[role][1], b = buf[role];
+    const src = ctx.createBufferSource(); src.buffer = b; src.loop = true;
+    src.loopStart = .5; src.loopEnd = Math.min(b.duration, .5 + L);
+    const g = ctx.createGain(); g.gain.value = 0; src.connect(g); g.connect(bus[STEMS[role][0]]);
+    // the deck rhythm starts on its loop point (just before a drum hit) so the cards can pulse with it; beds start anywhere inside
+    const off = role === 'music-deck-rhythm' ? .5 : .5 + Math.random() * L;
+    const at = ctx.currentTime + .03; src.start(at, off);
+    loops[role] = { src, g, cur: -1, at, off };
+    if (role === 'music-deck-rhythm' && SNDX.onBeatStart) SNDX.onBeatStart(performance.now() + 30);
+  }
+  function level(role, v, tc) { flush();
+    v = Math.max(0, v || 0); want[role] = v;
+    if (!ctx || !buf[role]) return;
+    if (v > .0005 && !loops[role]) startLoop(role);
+    const Lp = loops[role]; if (!Lp) return;
+    if (Math.abs(Lp.cur - v) < .0005) return; Lp.cur = v;
+    Lp.g.gain.setTargetAtTime(v * DB(STEMS[role][2]), ctx.currentTime, (tc || .35) * (1 + Math.min(3, speed() * 1.5)));
+  }
+  function duckFor(t, dur) { duck.gain.cancelScheduledValues(t); duck.gain.setTargetAtTime(.7, t, .08); duck.gain.setTargetAtTime(1, t + Math.min(1.6, dur * .7), .5); }
+  function shot(role, o) {
+    if (!on || !ctx || !buf[role]) return false;
+    o = o || {};
+    const t = ctx.currentTime + Math.max(0, ((o.at || performance.now()) - performance.now()) / 1000);
+  if (!o.at && !o.always && speed() > 1.6) { pend[role] = { o, at: performance.now(), until: performance.now() + 1200 }; return false; }
+  const nowS = performance.now(); if (!o.always && nowS - (lastShot[role] || -1e9) < 800) return false; lastShot[role] = nowS;
+    const src = ctx.createBufferSource(); src.buffer = buf[role];
+    const g = ctx.createGain(); g.gain.value = DB(STEMS[role][2] + (o.db || 0));
+    src.playbackRate.value = 1 + (Math.random() - .5) * .05; src.connect(g); g.connect(bus[STEMS[role][0]]); src.start(t);
+    fired[role] = (fired[role] || 0) + 1;
+    if (STEMS[role][0] !== 'music' && !o.noDuck) duckFor(t, buf[role].duration);
+    return true;
+  }
+  // a played-once music cue that can fade out if the visitor leaves
+  function cue(role, play, fade) {
+    if (!ctx || !buf[role]) return;
+    const c = cues[role];
+    if (play && !c) {
+      const src = ctx.createBufferSource(); src.buffer = buf[role];
+      const g = ctx.createGain(); g.gain.value = 0; g.gain.setTargetAtTime(DB(STEMS[role][2]), ctx.currentTime, .4);
+      src.connect(g); g.connect(bus.music); src.start();
+      cues[role] = { src, g, end: performance.now() + buf[role].duration * 1000 };
+      src.onended = () => { if (cues[role] && cues[role].src === src) cues[role].done = true; };
+      fired[role] = (fired[role] || 0) + 1;
+    } else if (!play && c && !c.stopping && !c.done) {
+      c.stopping = true; c.g.gain.setTargetAtTime(0, ctx.currentTime, fade || .8);
+      setTimeout(() => { try { c.src.stop(); } catch (_) {} if (cues[role] === c) delete cues[role]; }, (fade || .8) * 5000);
+    } else if (!play && c && c.done) delete cues[role];
+  }
+  // seam check: the sample step across loopEnd -> loopStart against the typical step inside the loop
+  function seams() {
+    const out = {};
+    for (const role in buf) {
+      const L = STEMS[role][1]; if (!L) continue;
+      const b = buf[role], sr = b.sampleRate, d = b.getChannelData(0), a = Math.round(.5 * sr), e = Math.min(d.length - 1, Math.round((.5 + L) * sr));
+      let typ = 0; for (let i = a; i < a + sr; i++) typ += Math.abs(d[i + 1] - d[i]); typ /= sr;
+      out[role] = { jump: +Math.abs(d[e] - d[a]).toFixed(4), typicalStep: +typ.toFixed(4), loopEnd: +(e / sr).toFixed(3), dur: +b.duration.toFixed(3) };
+    }
+    return out;
+  }
+  return {
+    get on() { return on; },
+    set(v, near) {
+      if (v && !ctx && !init()) return false;
+      on = v; if (!ctx) return true;
+      clearTimeout(offT);
+      if (v) { ctx.resume(); master.gain.setTargetAtTime(DB(MASTER_DB), ctx.currentTime, .6); loadAll(near || 1); }
+      else { master.gain.setTargetAtTime(0, ctx.currentTime, .15); offT = setTimeout(() => { if (!on) ctx.suspend(); }, 900); }
+      return true;
+    },
+    suspend(h) {
+      if (!ctx) return;
+      if (h) { master.gain.setTargetAtTime(0, ctx.currentTime, .08); setTimeout(() => { if (document.hidden) ctx.suspend(); }, 400); }
+      else if (on) { ctx.resume(); master.gain.setTargetAtTime(DB(MASTER_DB), ctx.currentTime, .5); }
+    },
+    level, shot, cue,
+    filter(hz) { if (ctx) lp.frequency.setTargetAtTime(hz, ctx.currentTime, .12); },
+    has: role => !!buf[role],
+    debug: () => ({ on, state: ctx ? ctx.state : 'none', master: master ? +master.gain.value.toFixed(3) : 0, lp: lp ? Math.round(lp.frequency.value) : 0, duck: duck ? +duck.gain.value.toFixed(2) : 1,
+      loaded: Object.keys(buf).length, loadedAt, live: Object.fromEntries(Object.entries(loops).map(([k, v]) => [k, +v.cur.toFixed(3)])), cues: Object.keys(cues), fired: { ...fired }, seams: seams() })
+  };
+})();
+const SND = SNDX;
+if (Q.get('audiodebug') === '1') window.__snd = SNDX.debug; // read-only diagnostics
+
+/* ================= SCENES ================= */
+const SC = $$('.scene').map((el, i) => ({ id: el.id, el, i, stage: $('.stage', el), top: 0, len: 1, tp: -2, far: null, off: null }));
+const SI = {}; SC.forEach(s => SI[s.id] = s);
+// how far into its own scroll a scene must be before the scene beneath it is fully covered
+const ENTER = { s1: 0, s2: .3, s3: .1, s4: .035, s5: .56, s6: .1, s7: .16, q: .14, s8: .16 };
+let vh = innerHeight, maxY = 1, IDLE = false;
+// idle prefetch of the NEXT scene's clip only: after the first scroll and 2.5 s after load, never on Save-Data or a 2g/3g link
+const slowNet = () => { const c = navigator.connection; return !!c && (!!c.saveData || /2g|3g/.test(c.effectiveType || '')); };
+let loadedIdle = false, scrolledOnce = false;
+const idleCheck = () => { IDLE = loadedIdle && scrolledOnce && !slowNet(); };
+addEventListener('load', () => setTimeout(() => { loadedIdle = true; idleCheck(); }, 2500));
+addEventListener('scroll', () => { if (!scrolledOnce) { scrolledOnce = true; idleCheck(); } }, { passive: true });
+function measure() {
+  vh = innerHeight; MOBILE = MQ.matches;
+  maxY = Math.max(1, document.documentElement.scrollHeight - vh);
+  SC.forEach((s, i) => { s.top = s.el.offsetTop; s.len = Math.max(1, s.el.offsetHeight - (i === SC.length - 1 ? vh : 0)); s.tp = -2; });
+  if (TL.q) { handoff(); TL.q.invalidate(); }
+}
+const P = (id, y) => { const s = SI[id]; return (y - s.top) / s.len; };
+
+/* ================= CUES: opacity straight from the scroll position, no smoothing ================= */
+const CUES = $$('[data-cue]').map(el => {
+  const sc = el.dataset.scene ? SI[el.dataset.scene] : SI[el.closest('.scene').id];
+  const [a, b, r] = el.dataset.cue.split(' ').map(Number);
+  return { el, sc, a, b, r: r || .035, o: -1 };
+});
+function updateCues(y) {
+  for (const c of CUES) {
+    const p = (y - c.sc.top) / c.sc.len;
+    let o = c.a < 0 ? 1 : sm(c.a, c.a + c.r, p);
+    if (c.b < 1.5) o *= 1 - sm(c.b - c.r, c.b, p);
+    o = Math.round(o * 1000) / 1000;
+    if (o === c.o) continue;
+    c.o = o;
+    c.el.style.opacity = o;
+    c.el.style.transform = o < 1 ? `translate3d(0,${((1 - o) * 12).toFixed(1)}px,0)` : 'none';
+    c.el.classList.toggle('is-live', o > .5);
+  }
+}
+
+/* ================= STAGES: near ones are rendered, the next one waits transparent ================= */
+function updateStages(y) {
+  let k = 0; SC.forEach((s, i) => { if (y >= s.top - 1) k = i; });
+  const kp = (y - SC[k].top) / SC[k].len, covered = kp >= (ENTER[SC[k].id] || 0);
+  SC.forEach((s, i) => {
+    const far = i < k - 1 || i > k + 1;
+    const off = i < k - 1 || (i === k - 1 && covered) || i === k + 1;
+    if (far !== s.far) { s.far = far; s.stage.classList.toggle('is-far', far); s.stage.classList.toggle('is-near', !far); }
+    // clips load for the scene you are in and the one behind it; the next one waits until you are under way (or the page is idle)
+    if (!far && (i <= k || kp > .2 || (IDLE && i === k + 1))) CLIPS.forEach(c => c.scene === s.id && c.deck === undefined && c.load());
+    if (!far && s.id === 's3') deckInit();
+    if (off !== s.off) { s.off = off; s.stage.classList.toggle('is-off', off); }
+  });
+  return k;
+}
+
+/* ================= SCRUB SCENE: one component for every clip =================
+   Poster first. The clip is fetched as a blob (so it seeks without range support) once its scene is near.
+   Scroll writes a target, the playhead walks to it. If the clip is missing, the poster carries the move. */
+function Clip(v) {
+  this.v = v; this.scene = v.closest('.scene').id; this.poster = v.parentNode.querySelector('.poster');
+  this.ready = false; this.t = 0; this.seeking = false; this.loading = false; this.shown = false; this.dur = 0;
+  v.addEventListener('seeked', () => { this.seeking = false; if (!this.shown) { this.shown = true; v.classList.add('is-shown'); } });
+  v.addEventListener('loadedmetadata', () => { this.dur = v.duration || 0; this.ready = this.dur > 0; this.seek(Math.max(.001, this.t)); });
+}
+Clip.prototype.load = async function () {
+  if (this.loading || RM) return; this.loading = true;
+  MOBILE = MQ.matches;
+  if (MOBILE && this.v.dataset.m === 'still') return; // the phone keeps its own composition as a still with a slow push
+  const L = x => (x || '').split('|').filter(Boolean);
+  const srcs = MOBILE && this.v.dataset.srcM ? (this.v.dataset.mOnly ? L(this.v.dataset.srcM) : L(this.v.dataset.srcM).concat(L(this.v.dataset.src))) : L(this.v.dataset.src);
+  for (const s of srcs) {
+    try {
+      const r = await fetch(s);
+      if (!r.ok) continue;
+      const b = await r.blob(); if (!b.size) continue;
+      this.v.src = URL.createObjectURL(b); this.v.load(); return;
+    } catch (_) { if (location.protocol === 'file:') { this.v.src = s; this.v.load(); return; } }
+  }
+  useStill(this.poster);
+};
+function useStill(pic) {
+  const img = pic && pic.querySelector('img[data-still]'); if (!img) return;
+  const src = pic.querySelector('source'); if (src) src.srcset = img.dataset.stillM;
+  img.removeAttribute('data-alt'); img.src = img.dataset.still;
+}
+if (RM) $$('img[data-still]').forEach(i => useStill(i.parentNode));
+Clip.prototype.seek = function (t) { if (!this.ready || this.seeking) return; if (Math.abs(this.v.currentTime - t) < .008) return; this.seeking = true; try { this.v.currentTime = t; } catch (_) { this.seeking = false; } };
+Clip.prototype.update = function (frac, instant) {
+  frac = clamp(frac);
+  if (!this.ready) {
+    if (this.poster) this.poster.style.transform = `scale(${(1.02 + .1 * frac).toFixed(4)}) translate3d(0,${(-1.5 * frac).toFixed(2)}%,0)`;
+    return;
+  }
+  if (this.poster && this.poster.style.transform) this.poster.style.transform = '';
+  const tgt = frac * Math.max(0, this.dur - .04);
+  if (instant) this.t = tgt; else { this.t += (tgt - this.t) * .2; if (Math.abs(tgt - this.t) < .01) this.t = tgt; }
+  this.seek(this.t);
+};
+const CLIPS = $$('video.scrub').map(v => new Clip(v));
+CLIPS.forEach(c => { if (c.v.dataset.deck !== undefined) c.deck = c.v.dataset.deck; });
+const CLIP = {}; CLIPS.forEach(c => { if (c.deck === undefined) CLIP[c.scene] = c; });
+
+/* ================= S3B: captain to singer, built from green plate layers (no video) ================= */
+/* Positions are 1920 x 1080 frame units from assets/s3b-plates/PLATES.md. Each layer sits at its END place in the markup
+   and slides from its START offset to 0, a truck left, so every layer travels right at the speed of its own depth.
+   The sky never moves, the deck and sea shear about the horizon (y 580), and nothing is scaled. */
+const S3B = { el: $('#s3 .s3b'), MOVE: 4.04, HOLD: .25, JOIN: .5, K: .391,
+  off: { C2: -48.5, L2: -63.3, C3: -134.8, C4: -122.8, C1: -1152 }, dirty: true, key: '' };
+S3B.total = S3B.MOVE + S3B.HOLD + S3B.JOIN; // in footage seconds, like the clips around it
+if (S3B.el) { S3B.cap = $('.s3b__cap', S3B.el); S3B.cam = $('.s3b__cam', S3B.el); S3B.fx = $('.s3b__fx', S3B.el); S3B.grain = $('.s3b__grain', S3B.el); S3B.g = {}; $$('.s3b__g', S3B.el).forEach(g => { S3B.g[g.dataset.l] = g; }); }
+// linear to scroll, easing out over the last quarter; the speed builds up over the opening dissolve (12%), because the
+// s3a2 frame under it is a still frame: a captain already at full speed would leave a double image of his face
+S3B.ease = p => { const R = .12, a = 1 / (.75 - R / 2 + .125); if (p < R) return a * p * p / (2 * R); if (p < .75) return a * (p - R / 2); const u = (p - .75) / .25; return a * (.75 - R / 2 + .25 * (u - u * u / 2)); };
+S3B.fit = () => {
+  const fr = $('#s3 .deck'), W = (fr && fr.clientWidth) || innerWidth, H = (fr && fr.clientHeight) || innerHeight, mob = MQ.matches;
+  const fw = mob ? 608 : 1920, sc = Math.max(W / fw, H / 1080);
+  Object.assign(S3B, { W, H, mob, sc, tx: (W - fw * sc) / 2, ty: (H - 1080 * sc) / 2, dirty: false, key: '' });
+};
+addEventListener('resize', () => { S3B.dirty = true; });
+S3B.px = v => v.toFixed(2) + 'px';
+S3B.render = fr => {
+  if (!S3B.el) return;
+  if (S3B.dirty) S3B.fit();
+  const t = clamp(fr) * S3B.total, key = t.toFixed(4);
+  if (key === S3B.key) return; S3B.key = key;
+  const px = S3B.px, pm = clamp(t / S3B.MOVE), e = S3B.ease(pm), r = 1 - e;
+  const jn = clamp((t - S3B.MOVE - S3B.HOLD) / S3B.JOIN), cut = jn >= .5;
+  // the camera box: the full frame on wide screens; on phones a 608-unit crop that starts where s3a2-m ends (x 1040)
+  // and settles on the singer, full figure (x 841), by 80% of the move
+  const cx = S3B.mob ? lerp(1040, 841, easeIO(clamp(pm / .8))) : 0;
+  const cam = `translate3d(${px(S3B.tx - cx * S3B.sc)},${px(S3B.ty)},0) scale(${S3B.sc.toFixed(5)})`;
+  S3B.cam.style.transform = cam; S3B.cap.style.transform = cam; S3B.fx.style.transform = cam;
+  const G = S3B.g, O = S3B.off;
+  G.L1.style.transform = `skewX(${Math.atan(-S3B.K * r).toFixed(5)}rad)`;
+  for (const k of ['C2', 'L2', 'C3', 'C4', 'C1']) G[k].style.transform = `translate3d(${px(O[k] * r)},0,0)`;
+  // focus pull: the background is soft at the seam (as s3a2 is) and sharp by about 45%; the captain softens as he leaves
+  const f = 1 - sm(0, .45, pm), bl = (g, b) => { const v = b > .05 ? `blur(${b.toFixed(2)}px)` : 'none'; if (g.style.filter !== v) g.style.filter = v; };
+  bl(G.L0, 2.5 * f); bl(G.L1, 2 * f); bl(G.L2, 3 * f); bl(G.C2, 3 * f); bl(G.C3, 3 * f); bl(G.C4, 3 * f); bl(G.C1, 3 * sm(.2, .7, pm));
+  // the seam from s3a2: the captain (registered to its last frame) takes over within 4% of the move, the rest of the frame
+  // (a few pixels different) dissolves over the first 8%, the layers already moving; all out under the rope at the cut
+  const op = cut ? 0 : sm(0, .08, pm), oc = cut ? 0 : sm(0, .04, pm);
+  S3B.cam.style.opacity = op.toFixed(3); S3B.cap.style.opacity = oc.toFixed(3); S3B.grain.style.opacity = (.09 * Math.max(op, oc)).toFixed(3);
+  // the join into s3c: the near rope swings across from the upper left, the haze rises and drifts right,
+  // s3c's first frame is cut in under them at the midpoint, then the haze clears
+  const k = easeIO(jn);
+  G.B1.style.opacity = jn > 0 && jn < 1 ? 1 : 0;
+  if (S3B.mob) {
+    // small screens: the rope swings much closer to the lens (1.8x, its sag through the middle of the 608-unit crop),
+    // so it covers the cut there too; scaled about the low point of its sag (1084, 936 in frame units)
+    G.B1.style.transformOrigin = '1084px 936px';
+    G.B1.style.transform = `translate3d(${px(lerp(845, 1445, k) - 1084)},${px(lerp(-300, 2000, k) - 936)},0) scale(1.8)`;
+    bl(G.B1, 10 + 6 * Math.sin(Math.PI * jn));
+  } else {
+    G.B1.style.transformOrigin = '0 0';
+    G.B1.style.transform = `translate3d(${px(lerp(-1920, 1671, k))},${px(lerp(-975, 1080, k))},0)`;
+    bl(G.B1, 6 + 4 * Math.sin(Math.PI * jn));
+  }
+  // the haze peaks (0.9) exactly at the cut
+  G.B2.style.opacity = (.9 * (jn < .5 ? sm(0, .5, jn) : 1 - sm(.5, 1, jn))).toFixed(3);
+  G.B2.style.transform = `translate3d(${px(77 * jn)},0,0)`;
+};
+// one shared film grain over the composite, so the layers read as one photograph
+S3B.tick = now => { if (!S3B.el || !S3B.on) return; const n = Math.floor(now / 42); if (n === S3B.gn) return; S3B.gn = n; S3B.grain.style.transform = `translate3d(${(n * 37) % 60 - 30}px,${(n * 53) % 60 - 30}px,0)`; };
+S3B.clip = { plate: true, v: { dataset: {} }, load() {}, update(fr) { S3B.render(fr); } };
+
+/* ================= DECK SEQUENCE: captain, singer, haulers, diver ================= */
+const DECK = { el: $('#s3 .deck'), mode: '', cur: -1, fb: CLIPS.find(c => c.deck === 'fb'), segs: CLIPS.filter(c => /^\d$/.test(c.deck || '')), segEls: $$('#s3 .deck__seg') };
+/* The four clips play as one camera move. Scroll maps to footage time, at one steady rate, except the
+   diver's breath, which plays slower so there is time to take it with him. Marks are fractions of s3d's own
+   length, so a re-shot clip only needs these three numbers checked. */
+const DK = {
+  dur: [4.04, 4.04, S3B.total, 4.04, 12.04], // captain, captain close, singer (the plate move), haulers, diver; replaced by each clip's real duration as it loads
+  // the deck film is one clip: these are its five beats in seconds (captain, captain close, singer, haulers, diver), so every cue
+  // and sound mark that names a beat keeps working; film is its length, replaced by the real duration as it loads
+  vseg: [0, .7, 1.4, 3.4, 4.5], film: 10.04,
+  breath: .21,                     // diver beat: his hands come up with the nose clip and he takes the breath (the hold button and the breath line arrive here)
+  step: .59,                       // diver beat: the breath ends as he leans out over the rail; the step, the fall and the splash play after it
+  splash: .8,                      // diver beat: he hits the water (the splash sound lands here; the plunge section opens already under)
+  slow: 1.6,                       // the breath plays this many times slower per scroll than the rest of the deck (used when share is not set)
+  // share of the deck's scroll for each stretch of footage: the five beats, but the diver's split into before the breath, the breath, and the
+  // step off with the splash. The film spends only 1.4 s on the captain, so footage time alone would rush his lines.
+  share: [.13, .13, .17, .13, .12, .19, .13]
+};
+function deckLayout() {
+  const one = DECK.segs.length === 1;
+  const d = one ? DK.vseg.map((s, i, a) => (i < a.length - 1 ? a[i + 1] : DK.film) - s) : DK.dur, n = d.length, start = [0]; for (let i = 1; i < n; i++) start[i] = start[i - 1] + d[i - 1];
+  const L = n - 1, total = start[L] + d[L];
+  const tb = start[L] + DK.breath * d[L], ts = start[L] + DK.step * d[L];
+  // scroll is piecewise linear in footage time: knots at each beat start, the breath, the step and the end
+  const T = [...start, tb, ts, total];
+  const w = DK.share && DK.share.length === T.length - 1 ? DK.share : T.slice(1).map((t, i) => (t - T[i]) * (i === T.length - 3 ? DK.slow : 1));
+  const Pk = [0]; w.forEach((x, i) => { Pk[i + 1] = Pk[i] + x; }); const wT = Pk[Pk.length - 1]; Pk.forEach((x, i) => { Pk[i] = x / wT; });
+  Object.assign(DK, { start, total, tb, ts, T, Pk });
+  const seg = (a, v) => { let i = 0; while (i < a.length - 2 && v > a[i + 1]) i++; return i; };
+  DK.pOf = t => { t = Math.min(Math.max(t, 0), total); const i = seg(T, t); return Pk[i] + (Pk[i + 1] - Pk[i]) * ((t - T[i]) / ((T[i + 1] - T[i]) || 1)); };
+  DK.tOf = p => { p = clamp(p); const i = seg(Pk, p); return T[i] + (T[i + 1] - T[i]) * ((p - Pk[i]) / ((Pk[i + 1] - Pk[i]) || 1)); };
+  DK.at = (ci, f) => DK.pOf(start[ci] + clamp(f) * d[ci]);
+  DK.L = L;
+  DK.pBreath = DK.pOf(tb); DK.pStep = DK.pOf(ts);
+  // footage-time cues: "clip:fraction", where fraction may be a number or breath / step with an optional offset
+  CUES.forEach(c => {
+    const dc = c.el.dataset.dc; if (!dc) return;
+    const [a, b] = dc.split(' ').map(x => { const [ci, f] = x.split(':'); const m = /^(breath|step)([+-][\d.]+)?$/.exec(f); return DK.at(+ci, m ? DK[m[1]] + (+m[2] || 0) : +f); });
+    c.a = a; c.b = b; c.r = Math.min(.03, (b - a) * .25); c.o = -1;
+  });
+}
+if (S3B.el) DECK.segs.splice(2, 0, S3B.clip); // the singer is the plate move, between the two clips it joins
+if (Q.get('deckdebug') === '1') window.__deck = { DK, DECK, S3B }; // read-only diagnostics for the verification harness
+deckLayout();
+async function deckInit() {
+  if (DECK.mode || RM) return; DECK.mode = 'checking';
+  // a clip counts as present if any of its sources answers; the captain close-up is optional (left out, the rest still plays)
+  const has = async c => { if (c.plate) return true; for (const u of (c.v.dataset.src || '').split('|')) { try { const r = await fetch(u, { method: 'HEAD' }); if (r.ok) return true; } catch (_) {} } return false; };
+  let ok = [];
+  try { ok = await Promise.all(DECK.segs.map(has)); } catch (_) {}
+  const required = DECK.segs.every((c, j) => ok[j] || c.v.dataset.optional);
+  if (ok.length === DECK.segs.length && required) {
+    DECK.mode = 'seq'; DECK.el.classList.add('is-seq');
+    DECK.segs.forEach((c, j) => {
+      if (!ok[j]) { DK.dur[j] = 0; DECK.segEls[j].remove(); return; }
+      if (c.plate) { DK.dur[j] = S3B.total; return; }
+      c.v.addEventListener('loadedmetadata', () => { if (c.v.duration > 0) { if (DECK.segs.length === 1) DK.film = c.v.duration; else DK.dur[j] = c.v.duration; deckLayout(); } }); c.load();
+    });
+    deckLayout();
+  }
+  else {
+    DECK.mode = 'fb'; if (DECK.fb) DECK.fb.load();
+    if ((DECK.tries = (DECK.tries || 0) + 1) < 4) setTimeout(() => { if (DECK.mode === 'fb') { DECK.mode = ''; deckInit(); } }, 4000);
+  }
+}
+function updateDeck(p3) {
+  const p = clamp(p3);
+  if (DECK.mode === 'seq') {
+    const t = DK.tOf(p);
+    if (DECK.segs.length === 1) { if (DECK.cur !== 0) { DECK.cur = 0; DECK.segEls[0].classList.add('is-on'); } DECK.segs[0].update(t / DK.film, true); return; }
+    let i = DK.L; for (let j = 0; j < DK.L; j++) if (DK.dur[j] > 0 && t < DK.start[j + 1]) { i = j; break; }
+    if (i !== DECK.cur) { DECK.cur = i; DECK.segEls.forEach(el => el.classList.toggle('is-on', +el.dataset.seg === i)); }
+    DECK.segs.forEach((c, j) => { if (DK.dur[j] > 0 && Math.abs(j - i) <= 1) c.update((t - DK.start[j]) / DK.dur[j], true); });
+    // the plate move shows s3a2's last frame under its opening dissolve, and s3c's first frame under the rope after the cut
+    if (S3B.el) {
+      const ts = t - DK.start[2], u1 = i === 2 && ts < S3B.MOVE * .1, u3 = i === 2 && ts >= S3B.MOVE + S3B.HOLD + S3B.JOIN * .5;
+      S3B.on = i === 2;
+      if (u1 !== S3B.u1) { S3B.u1 = u1; DECK.segEls.forEach(el => { if (+el.dataset.seg === 1) el.classList.toggle('is-under', u1); }); }
+      if (u3 !== S3B.u3) { S3B.u3 = u3; DECK.segEls.forEach(el => { if (+el.dataset.seg === 3) el.classList.toggle('is-under', u3); }); }
+    }
+  } else if (DECK.fb) DECK.fb.update(dwell(p, .3));
+}
+
+/* ================= TIMELINES (GSAP is the tween engine; progress comes straight from the scroll) ================= */
+const TL = {};
+// the cut-out pearl takes over from the photographed one, in the same place and size, then floats to the centre
+const HAND = { x: 0, y: 0, s: 1 };
+function handoff() {
+  // the clip is drawn with object-fit: cover, so map clip coordinates through the same cover transform
+  const cs = getComputedStyle($('#q')), el = $('#q .qpearl');
+  const v = k => parseFloat(cs.getPropertyValue(k));
+  const ar = v('--clip-ar') || 1.7778, W = innerWidth, H = innerHeight;
+  const sc = Math.max(W / (ar * 1000), H / 1000), rw = ar * 1000 * sc, rh = 1000 * sc;
+  const x = (W - rw) / 2 + v('--pc-x') * rw, y = (H - rh) / 2 + v('--pc-y') * rh, d = v('--pc-d') * rh;
+  // layout centre of the cut-out (offsets ignore the transforms GSAP has applied)
+  HAND.x = x - (el.offsetLeft + el.offsetWidth / 2); HAND.y = y - (el.offsetTop + el.offsetHeight / 2);
+  HAND.s = d / Math.max(1, el.offsetWidth * (v('--cut-fill') || .9));
+}
+function buildTimelines() {
+  handoff();
+  if (!FX || !window.gsap) return false;
+  const g = window.gsap;
+  const T = () => g.timeline({ paused: true, defaults: { ease: 'none', duration: 1 } });
+  let t;
+  // S1: the clip drifts; the foreground plane travels faster than the clip behind it
+  t = T();
+  // one slow drift over the Creek today (the 1949 sweep was removed 2026-10-29, Ram)
+  t.fromTo('#s1 .plane--bg', { scale: 1.03, xPercent: 0, yPercent: 0 }, { scale: 1.11, xPercent: -1.6, yPercent: -1, ease: 'sine.inOut' }, 0);
+  TL.s1 = t;
+  // S2: a tide line slips today into 1949; sea haze rides its edge
+  t = T();
+  t.fromTo('#s2 .stage', { '--w': '0%' }, { '--w': '160%', duration: .3, ease: 'power1.inOut' }, 0)
+   .fromTo('#s1 .frame', { filter: 'saturate(1) brightness(1)' }, { filter: 'saturate(.4) brightness(1.08)', duration: .3 }, 0)
+   .fromTo('#s2 .plane--bg', { scale: 1.1 }, { scale: 1.0, ease: 'power1.out' }, 0);
+  TL.s2 = t;
+  // S3: warm sun haze carries us aboard; the rigging plane slides across faster than the deck
+  t = T();
+  t.fromTo('#s3 .tx--warm', { opacity: 0 }, { opacity: .9, duration: .04 }, 0)
+   .fromTo('#s3 .frame', { opacity: 0 }, { opacity: 1, duration: .07 }, .012)
+   .to('#s3 .tx--warm', { opacity: 0, duration: .09 }, .05);
+  TL.s3 = t;
+  // S4: he steps off the side and we go with him: one shot, a single silver flash as we break the surface
+  t = T();
+  t.fromTo('#s4 .tx--surface', { opacity: 0 }, { opacity: .85, duration: .02, ease: 'power2.in' }, 0)
+   .fromTo('#s4 .frame', { opacity: 0 }, { opacity: 1, duration: .015 }, .012)
+   .to('#s4 .tx--surface', { opacity: 0, duration: .06, ease: 'power1.out' }, .026)
+   .fromTo('#s4 .endfade', { opacity: 0 }, { opacity: .92, duration: .14 }, .86);
+  TL.s4 = t;
+  // S5: a burst of bubbles, then the dark reveal from the hands outward, exposure rising slowly
+  t = T();
+  t.fromTo('#s5 .stage', { '--r': '0%' }, { '--r': '160%', duration: .56, ease: 'power1.inOut' }, .04)
+   .fromTo('#s5 .shade', { opacity: .92 }, { opacity: .16, duration: .7, ease: 'sine.inOut' }, .04)
+   .fromTo('#s5 .plane--bg', { scale: 1.08 }, { scale: 1.0 }, 0);
+  TL.s5 = t;
+  // S6: silt rises, black, then dawn floods the deck
+  t = T();
+  t.fromTo('#s6 .tx--silt', { opacity: 0, yPercent: 30 }, { opacity: 1, yPercent: 0, duration: .07, ease: 'power1.out' }, 0)
+   .fromTo('#s6 .tx--black', { opacity: 0 }, { opacity: 1, duration: .04 }, .055)
+   .fromTo('#s6 .frame', { opacity: 0 }, { opacity: 1, duration: .05 }, .095)
+   .fromTo('#s6 .tx--dawn', { opacity: 0 }, { opacity: 1, duration: .04, ease: 'power1.in' }, .085)
+   .to('#s6 .tx--dawn', { opacity: 0, duration: .2, ease: 'sine.out' }, .13)
+   .fromTo('#s6 .plane--bg', { scale: 1.06 }, { scale: 1.0, ease: 'power1.out' }, .08);
+  TL.s6 = t;
+  // S7: the pearl's own glow opens the frame
+  t = T();
+  t.fromTo('#s7 .tx--glow', { opacity: 0, scale: .3 }, { opacity: 1, scale: 1.5, duration: .09, ease: 'sine.out' }, 0)
+   .fromTo('#s7 .frame', { opacity: 0 }, { opacity: 1, duration: .05 }, .07)
+   .to('#s7 .tx--glow', { opacity: 0, scale: 2.6, duration: .11, ease: 'sine.inOut' }, .1)
+   .fromTo('#s7 .plane--bg', { scale: 1.12 }, { scale: 1.0, duration: .6, ease: 'power1.out' }, .1);
+  TL.s7 = t;
+  // Q: the photo recedes, the pearl stays, a bright ground rises, five words pass behind it
+  t = T();
+  t.fromTo('#s7 .frame', { scale: 1 }, { scale: .9, duration: .14, ease: 'power1.in' }, 0)
+   .fromTo('#q .qbg', { opacity: 0 }, { opacity: 1, duration: .14 }, 0)
+   .fromTo('#s7 .plane--bg', { opacity: 1 }, { opacity: 0, duration: .05 }, .055)
+   .fromTo('#q .qpearl', { opacity: 0 }, { opacity: 1, duration: .05 }, .02)
+   .fromTo('#q .qpearl', { x: () => HAND.x, y: () => HAND.y, scale: () => HAND.s }, { x: 0, y: 0, scale: 1, duration: .14, ease: 'power2.inOut' }, .04);
+  const rows = $$('#q .qrow'), S0 = .26, SL = .13;
+  rows.forEach((r, i) => t.fromTo(r, { yPercent: 76 }, { yPercent: -76, duration: SL * 1.15 }, S0 + i * SL - SL * .08));
+  const qp = '#q .qp', qi = '#q .qp img';
+  t.fromTo(qp, { scale: 1, xPercent: 0, rotation: 0 }, { scale: 1.16, xPercent: () => MOBILE ? 10 : 28, duration: SL }, S0)
+   .to(qp, { scale: 1, rotation: 24, xPercent: () => MOBILE ? -10 : -28, duration: SL }, S0 + SL)
+   .fromTo(qi, { filter: 'hue-rotate(0deg) saturate(1) brightness(1)' }, { filter: 'hue-rotate(-10deg) saturate(1.16) brightness(1.03)', duration: SL * .5 }, S0 + SL * 2)
+   .to(qp, { rotation: 0, xPercent: () => MOBILE ? 10 : 28, duration: SL }, S0 + SL * 2)
+   .to(qi, { filter: 'hue-rotate(0deg) saturate(1) brightness(1.12)', duration: SL * .5 }, S0 + SL * 3)
+   .fromTo('#q .qshine', { opacity: 0, '--sx': '0%', '--sy': '0%' }, { opacity: 1, '--sx': '150%', '--sy': '90%', duration: SL }, S0 + SL * 3)
+   .to(qp, { xPercent: () => MOBILE ? -10 : -28, duration: SL }, S0 + SL * 3)
+   .to('#q .qshine', { opacity: 0, duration: SL * .3 }, S0 + SL * 4)
+   .to(qi, { filter: 'hue-rotate(0deg) saturate(1) brightness(1)', duration: SL * .4 }, S0 + SL * 4)
+   .to(qp, { scale: 1.45, xPercent: 0, duration: SL }, S0 + SL * 4)
+   .to(qp, { scale: 1, duration: .08 }, S0 + SL * 5);
+  TL.q = t;
+  // S8: golden light carries us home to the Creek, where the keeper's building stands
+  t = T();
+  t.fromTo('#q .qfloat', { opacity: 1 }, { opacity: 0, duration: .1 }, 0)
+   .fromTo('#s8 .tx--dusk', { opacity: 0 }, { opacity: 1, duration: .12, ease: 'sine.inOut' }, 0)
+   .fromTo('#s8 .frame', { opacity: 0 }, { opacity: 1, duration: .2, ease: 'sine.inOut' }, .1)
+   .fromTo('#s8 .plane--bg', { scale: 1.06 }, { scale: 1.0, duration: .7, ease: 'power1.out' }, 0);
+  TL.s8 = t;
+  return true;
+}
+function updateTimelines(y) {
+  for (const s of SC) {
+    const tl = TL[s.id]; if (!tl) continue;
+    const p = clamp((y - s.top) / s.len);
+    if (p === s.tp) continue;
+    s.tp = p; tl.time(p); // positions are authored in scene progress, so time = progress whatever the timeline's length
+  }
+}
+
+/* ================= STATE ================= */
+const st = { holding: false, heldMs: 0, breath: 1, holdDepth: 0, dived: false, airFlash: 0, kick: 0, flash: 0, heartPulse: 0 };
+const S = {};
+const VQ = [];
+let clockT0 = performance.now(), nextStep = 0, nextHeart = 0;
+const live = $('#live');
+const say = t => { live.textContent = t; };
+
+/* ================= THE DIVE: the button only, or Space and Enter while it has focus =================
+   idle -> holding (the descent, the breath runs down) -> ascent ("Come up. Breathe.") -> surface ("Air.")
+   -> ready ("Dive again") -> redive (one breath, under again) -> holding ... Scrolling on always continues to the seabed. */
+const holdBtn = $('#holdBtn'), holdLvl = $('#holdLvl'), holdLbl = $('#holdLbl'), meter = $('#meter'), holdHint = $('#holdHint'), holdUI = $('#holdBeat .holdui'), diveForMe = $('#diveForMe');
+const harshScroll = $('#harshScroll');
+const inDiveWindow = () => RM || (S.p3 > DK.pBreath - .005 && S.p4 < .565);
+const easeIO = x => .5 - .5 * Math.cos(Math.PI * clamp(x));
+const D = { state: 'idle', t0: 0, dur: 1, auto: false, autoT: 0, reentry: 1, from: 0, paused: false, pauseK: 0, gasped: false };
+// footage marks (fractions of each clip): s4-ascent opens on s4-plunge at 2.5 s, his first gasp in s4-surface is 0.7 s to 2 s
+const MK = { branch: .5, gaspIn: .175, gaspOut: .52 };
+// one player per surfacing clip: it plays in real time, and falls back to a timer on its poster when the clip is missing
+const STC = {};
+$$('#s4 .st-plane').forEach(el => {
+  const v = el.querySelector('video'), poster = el.querySelector('.poster');
+  const c = { el, v, poster, ready: false, loading: false, dur: parseFloat(v.dataset.dur) || 4 };
+  STC[el.dataset.st] = c;
+  v.addEventListener('loadedmetadata', () => { c.ready = v.duration > 0; if (c.ready) c.dur = v.duration; });
+});
+async function loadStates() {
+  if (RM) return;
+  for (const k in STC) {
+    const c = STC[k]; if (c.loading) continue; c.loading = true;
+    const src = MOBILE && c.v.dataset.srcM ? [c.v.dataset.srcM, c.v.dataset.src] : [c.v.dataset.src];
+    for (const u of src) { try { const r = await fetch(u); if (!r.ok) continue; const b = await r.blob(); if (b.size) { c.v.src = URL.createObjectURL(b); c.v.load(); break; } } catch (_) {} }
+  }
+}
+function showPlane(name) {
+  for (const k in STC) STC[k].el.classList.toggle('is-on', k === name || (name === 'ready' && k === 'surface'));
+}
+function play(name) {
+  const c = STC[name]; D.t0 = performance.now(); D.dur = c.dur * 1000;
+  if (c.ready) { try { c.v.currentTime = 0; const pr = c.v.play(); if (pr) pr.catch(() => {}); } catch (_) {} }
+}
+function go(state) {
+  D.state = state;
+  SI.s4.stage.classList.toggle('is-above', state === 'surface' || state === 'ready' || state === 'redive');
+  if (state === 'ascent') { showPlane('ascent'); play('ascent'); SNDX.shot('sfx-ascent-rush'); SNDX.shot('music-ascent-swell'); say('Come up. Breathe.'); }
+  else if (state === 'branch') { D.t0 = performance.now(); D.dur = 650; D.from = CLIP.s4.t / Math.max(.1, CLIP.s4.dur || 5); }
+  else if (state === 'surface') { showPlane('surface'); play('surface'); D.gasped = false; harshScroll.classList.add('is-said'); SNDX.shot('sfx-surface-break', { at: performance.now() + 700 }); SNDX.shot('sfx-gasp', { at: performance.now() + 900 }); }
+  else if (state === 'ready') { showPlane('ready'); say('Hold to dive again.'); if (D.auto) D.autoT = performance.now() + 1400; }
+  else if (state === 'redive') { showPlane('redive'); play('redive'); st.breath = 1; D.paused = false; SNDX.shot('sfx-redive-close'); }
+  else { showPlane(''); for (const k in STC) { try { STC[k].v.pause(); } catch (_) {} } }
+  syncHoldUI();
+}
+function syncHoldUI() {
+  const s = D.state, again = s === 'ready' || (s === 'redive' && D.paused);
+  holdLbl.textContent = again ? 'Dive again' : 'Hold to dive';
+  holdBtn.setAttribute('aria-label', again ? 'Dive again, press and hold' : 'Hold to dive, press and hold');
+  holdBtn.classList.toggle('is-ring', s === 'holding' || (s === 'redive' && !D.paused));
+  holdUI.classList.toggle('is-hidden', s === 'ascent' || s === 'surface' || s === 'branch');
+  holdHint.textContent = again ? 'Hold to take a breath and go under again.' : 'Press and hold. Let go to come up for air.';
+  diveForMe.hidden = D.auto || !(s === 'idle' || s === 'ready');
+}
+function startHold() {
+  if (st.holding || !inDiveWindow()) return;
+  if (D.state === 'idle') {
+    st.holding = true; st.heldMs = 0; D.reentry = 1; go('holding');
+    // still on deck: holding carries him over the side and down to where the dive holds
+    if (FX && S.p4 < .2) { const s4 = SI.s4, y0 = scrollY, y1 = Math.min(maxY, s4.top + .3 * s4.len); st.carry = { t0: performance.now(), y0, y1, dur: clamp((y1 - y0) / 650, 1.6, 3.2) * 1000 }; }
+    D.nextBub = performance.now() + 2000; say(S.p4 < .1 ? 'Breath held. Over the side.' : 'Diving. Let go to come up for air.');
+  } else if (D.state === 'ready') {
+    st.holding = true; st.heldMs = 0; go('redive'); say('One breath, and under again.');
+  } else if (D.state === 'redive' && D.paused) { // holding again picks the redive up where it was let go
+    st.holding = true; D.paused = false; D.t0 = performance.now() - D.pauseK * D.dur;
+    const c = STC.redive; if (c.ready) { const pr = c.v.play(); if (pr) pr.catch(() => {}); }
+    syncHoldUI();
+  } else return;
+  holdBtn.classList.add('is-holding');
+}
+function endHold() {
+  if (!st.holding) return;
+  st.holding = false; st.carry = null; holdBtn.classList.remove('is-holding', 'is-low');
+  // letting go underwater: the plunge eases to the frame s4-ascent opens on, then the haulers pull him up
+  if (D.state === 'holding') { if ((st.heldMs > 650 || D.auto) && (RM || S.p4 > .1)) { st.dived = true; go(RM ? 'ascent' : 'branch'); } else go('idle'); }
+  else if (D.state === 'redive') { // letting go mid-breath pauses him at the surface until the hold resumes
+    D.paused = true; D.pauseK = clamp((performance.now() - D.t0) / D.dur); try { STC.redive.v.pause(); } catch (_) {}
+    syncHoldUI();
+  }
+  else syncHoldUI();
+}
+function stepDive(now) {
+  // "Dive for me": one full loop, then it rests underwater
+  if (D.auto && st.holding && D.state === 'holding' && now > D.autoT) endHold();
+  if (D.auto && D.state === 'ready' && now > D.autoT) { st.holding = true; st.heldMs = 0; holdBtn.classList.add('is-holding'); go('redive'); }
+  if (D.state === 'branch' && now - D.t0 >= D.dur) go('ascent');
+  if (D.state === 'surface' && !D.gasped && (now - D.t0) / D.dur >= MK.gaspIn) { D.gasped = true; st.airFlash = 1; say('Air. You surfaced.'); }
+  if ((D.state === 'ascent' || D.state === 'surface' || D.state === 'redive') && !(D.state === 'redive' && D.paused)) {
+    const k = (now - D.t0) / D.dur, c = STC[D.state];
+    if (!c.ready && c.poster) c.poster.style.transform = `scale(${(1.04 + .06 * clamp(k)).toFixed(4)})`;
+    if (k >= 1) {
+      if (D.state === 'ascent') go('surface');
+      else if (D.state === 'surface') go('ready');
+      else { // the redive hands into the plunge from its first frame, and the hold carries on
+        D.reentry = 0; st.holdDepth = 0;
+        if (D.auto) { D.auto = false; st.holding = false; holdBtn.classList.remove('is-holding'); go('idle'); }
+        else if (st.holding) { st.heldMs = 0; go('holding'); }
+        else go('idle');
+      }
+    }
+  }
+  // scrolling out of the dive closes the loop quietly
+  if (!RM && D.state !== 'idle' && D.state !== 'holding' && !(S.p4 > .12 && S.p4 < .565)) { st.holding = false; D.auto = false; D.paused = false; holdBtn.classList.remove('is-holding'); go('idle'); }
+}
+holdBtn.addEventListener('pointerdown', e => { if (e.button !== 0) return; e.preventDefault(); try { holdBtn.setPointerCapture(e.pointerId); } catch (_) {} startHold(); });
+['pointerup', 'pointercancel', 'lostpointercapture'].forEach(n => holdBtn.addEventListener(n, () => { if (!D.auto) endHold(); }));
+holdBtn.addEventListener('contextmenu', e => e.preventDefault());
+holdBtn.addEventListener('keydown', e => { if (e.key === 'Enter' || e.code === 'Space') { e.preventDefault(); if (!e.repeat) startHold(); } });
+holdBtn.addEventListener('keyup', e => { if (e.key === 'Enter' || e.code === 'Space') { e.preventDefault(); if (!D.auto) endHold(); } });
+holdBtn.addEventListener('click', e => e.preventDefault());
+holdBtn.addEventListener('blur', () => { if (!D.auto) endHold(); });
+diveForMe.addEventListener('click', () => {
+  if (st.holding || !(D.state === 'idle' || D.state === 'ready')) return;
+  D.auto = true;
+  if (D.state === 'ready') { D.autoT = 0; syncHoldUI(); return; }
+  startHold(); if (!st.holding) { D.auto = false; return; }
+  D.autoT = performance.now() + 4500 + (st.carry ? st.carry.dur : 0);
+  syncHoldUI();
+});
+// a visitor who scrolls takes the camera back
+['wheel', 'touchmove'].forEach(n => addEventListener(n, () => { st.carry = null; }, { passive: true }));
+const holdBeat = $('#holdBeat');
+if (FX) { const layer = document.createElement('div'); layer.className = 'holdlayer'; document.body.appendChild(layer); layer.appendChild(holdBeat); }
+let holdOpLast = -1;
+
+// quiet doors are placeholders until those pages exist
+$$('[data-door]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); say(a.dataset.door + ': coming soon.'); }));
+
+// keyboard focus brings its moment into view (cinematic layout only)
+document.addEventListener('focusin', e => {
+  if (!FX) return;
+  const host = e.target.closest && e.target.closest('[data-fp]'); if (!host) return;
+  const sc = host.dataset.fpScene ? SI[host.dataset.fpScene] : host.closest('.scene') && SI[host.closest('.scene').id]; if (!sc) return;
+  const s = sc, target = s.top + (host.dataset.fp === 'breath' ? DK.pBreath + .02 : parseFloat(host.dataset.fp)) * s.len;
+  if (Math.abs(target - scrollY) > vh * .25) scrollTo({ top: Math.min(target, maxY), behavior: 'auto' });
+});
+$('#replay').addEventListener('click', () => {
+  st.dived = false; st.breath = 1; harshScroll.classList.remove('is-said'); go('idle');
+  scrollTo({ top: 0, behavior: RM ? 'auto' : 'smooth' });
+  setTimeout(() => { const h = $('#h1'); h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }, RM ? 0 : 900);
+});
+
+// sound
+const soundTgl = $('#soundTgl'), soundInvite = $('#soundInvite');
+function syncSoundUI() {
+  const on = SND.on;
+  soundTgl.setAttribute('aria-pressed', on); soundInvite.setAttribute('aria-pressed', on);
+  $('#soundState').textContent = on ? 'Sound on' : 'Sound off';
+  $('#inviteLbl').textContent = on ? 'Sound is on' : 'Turn on sound';
+}
+function toggleSound() { const near = SC.reduce((k, s, i) => (scrollY >= s.top - 1 ? i : k), 0); SND.set(!SND.on, [1, 2, 3, 4, 5, 6, 7, 7, 9][near]); syncSoundUI(); }
+soundTgl.addEventListener('click', toggleSound);
+soundInvite.addEventListener('click', toggleSound);
+
+/* ================= CLOCK (shared by the audio and the crew) ================= */
+function schedule() {
+  const now = performance.now(), ahead = now + 140;
+  if (clockT0 + nextStep * STEP < now - 250) nextStep = Math.ceil((now - clockT0) / STEP);
+  while (clockT0 + nextStep * STEP < ahead) {
+    const st16 = nextStep, tms = clockT0 + st16 * STEP, q = st16 % 4, L = S.layers || 0;
+    if (L >= 1 && q === 0) VQ.push({ t: tms, k: 'dum', v: st16 % 16 === 0 ? 1 : .7 });
+    if (L >= 3 && q === 2) VQ.push({ t: tms, k: 'clap', v: .8 });
+    nextStep++;
+  }
+  // one muffled heartbeat at a time: 1.7 s apart at -6 dB with a full breath, quickening toward 0.9 s and 0 dB as it drains
+  const heartOn = (st.holding && (D.state === 'holding' || D.state === 'redive')) || D.state === 'branch' || D.state === 'ascent';
+  if (heartOn) {
+    if (nextHeart < now) nextHeart = now + 120;
+    while (nextHeart < ahead) {
+      const k = 1 - st.breath; VQ.push({ t: nextHeart, k: 'heart' });
+      if (SNDX.on && !SNDX.shot('sfx-heartbeat', { at: nextHeart, db: lerp(-6, 0, k), noDuck: true })) SNDX.level('sfx-heartbeat-loop', 1);
+      nextHeart += lerp(1700, 900, k);
+    }
+  } else { nextHeart = 0; SNDX.level('sfx-heartbeat-loop', 0, .3); }
+}
+SNDX.onBeatStart = t => { clockT0 = t; nextStep = 0; };
+setInterval(schedule, 25);
+
+/* ================= LOOP ================= */
+const breathe = $('#breathe'), roles = $$('#s3 .card'), gauge = $('#gauge'), gaugeDot = $('#gaugeDot');
+const dark4 = $('#dark4'), iris4 = $('#iris4'), flash4 = $('#flash4'), pulse4 = $('#pulse4');
+const states = {}; $$('#midslot .state').forEach(el => states[el.dataset.state] = el);
+const XS = {};
+let lastT = performance.now(), running = true, sndT = 0, meterLast = 100, stateLast = '', chimed6 = false, chimed7 = false, lightLast = null, gaugeLast = null;
+function passiveBump(p) { return sm(.3, .42, p) * (1 - sm(.49, .555, p)) * .85; }
+function setState() {
+  const ds = D.state, k = (performance.now() - D.t0) / D.dur;
+  const stt = ds === 'ascent' || ds === 'branch' ? 'up' : ds === 'surface' ? (k < MK.gaspIn ? 'up' : k < MK.gaspOut ? 'air' : 'harsh') : ds === 'ready' ? 'harsh'
+    : ds === 'redive' ? (D.paused ? 'harsh' : 'hold') : ds === 'holding' ? (st.breath < .4 ? 'low' : 'hold') : 'prompt';
+  if (stt === stateLast) return; stateLast = stt;
+  for (const k in states) { states[k].classList.toggle('is-on', k === stt); states[k].setAttribute('aria-hidden', k === stt ? 'false' : 'true'); }
+}
+function frame(now) {
+  if (!running) return;
+  requestAnimationFrame(frame);
+  const dt = Math.min(.05, (now - lastT) / 1000); lastT = now;
+  const y = scrollY;
+  XS.vy = lerp(XS.vy || 0, (y - (XS.y0 == null ? y : XS.y0)) / Math.max(.001, dt), .25); XS.y0 = y;
+  S.p1 = P('s1', y); S.p3 = P('s3', y); S.p4 = P('s4', y); S.p5 = P('s5', y); S.p6 = P('s6', y); S.p7 = P('s7', y); S.pq = P('q', y); S.p8 = P('s8', y);
+  // the rhythm builds with the crew and swells at the singer, then falls back to the drum as the diver takes his breath
+  const p3 = S.p3;
+  S.layers = p3 < .02 ? 0 : p3 < DK.at(2, .35) ? 1 : p3 < DK.at(2, .55) ? 2 : p3 < DK.at(2, .7) ? 3 : p3 < DK.at(4, .3) ? 4 : p3 < DK.pBreath ? 2 : 1;
+  if (S.p4 > .03) S.layers = 0;
+  S.swell = sm(DK.at(2, .5), DK.at(2, .8), p3) * (1 - sm(DK.at(3, .6), DK.at(3, .95), p3));
+
+  // "Take a breath." breathes on an 8 s cycle
+  if (FX && S.p1 > .3 && S.p1 < 1) { const b = .5 - .5 * Math.cos(now / 8000 * 6.283); breathe.style.transform = `scale(${(1 + .022 * b).toFixed(4)})`; }
+
+  // the dive (on deck, holding carries the camera over the side)
+  stepDive(now);
+  if (st.carry && st.holding) {
+    const k = (now - st.carry.t0) / st.carry.dur;
+    scrollTo(0, lerp(st.carry.y0, st.carry.y1, easeIO(k)));
+    if (k >= 1) st.carry = null;
+  }
+  if (st.holding) {
+    st.heldMs += dt * 1000;
+    if (D.state === 'holding') st.breath = Math.max(0, st.breath - dt / 9);
+    st.holdDepth = 1 - Math.exp(-st.heldMs / 2600);
+    if (D.state === 'holding' && (st.breath <= 0 || !inDiveWindow())) endHold();
+    holdBtn.classList.toggle('is-low', st.breath < .4);
+  } else {
+    st.holdDepth = Math.max(0, st.holdDepth - dt * 1.25);
+    st.breath = Math.min(1, st.breath + dt * .45);
+  }
+  st.airFlash = Math.max(0, st.airFlash - dt * 1.4);
+  D.reentry = Math.min(1, D.reentry + dt / 1.4);
+  holdLvl.style.strokeDashoffset = (358.14 * (1 - st.breath)).toFixed(1);
+  const mv = Math.round(st.breath * 10) * 10; if (mv !== meterLast) { meterLast = mv; meter.setAttribute('aria-valuenow', mv); }
+
+  for (let i = VQ.length - 1; i >= 0; i--) {
+    const e = VQ[i]; if (e.t > now) continue; VQ.splice(i, 1);
+    if (e.k === 'dum') st.kick = Math.max(st.kick, e.v);
+    else if (e.k === 'clap') st.flash = Math.min(1, st.flash + .55 * e.v);
+    else if (e.k === 'heart') st.heartPulse = 1;
+  }
+  st.kick = Math.max(0, st.kick - dt * 3); st.flash = Math.max(0, st.flash - dt * 3.2); st.heartPulse = Math.max(0, st.heartPulse - dt * 3.5);
+
+  const win = sm(.12, .16, S.p4) * (1 - sm(.555, .6, S.p4));
+  S.passive = (!st.dived && FX && D.state === 'idle') ? passiveBump(S.p4) : 0;
+  S.depth = (D.state === 'idle' || D.state === 'holding' || D.state === 'branch') ? Math.max(st.holdDepth, S.passive) * win : 0;
+  setState();
+
+  if (FX) {
+    updateStages(y);
+    updateTimelines(y);
+    updateCues(y);
+    updateDeck(S.p3); S3B.tick(now);
+    const hv = sm(DK.pBreath - .012, DK.pBreath + .012, S.p3) * (1 - sm(.52, .56, S.p4));
+    const ho = Math.round(hv * 1000) / 1000;
+    if (ho !== holdOpLast) { holdOpLast = ho; holdBeat.style.opacity = ho; holdBeat.style.transform = ho < 1 ? `translate3d(0,${((1 - ho) * 12).toFixed(1)}px,0)` : 'none'; holdBeat.classList.toggle('is-live', ho > .5); }
+
+    // every scene scrubs its own clip across its scroll; S4 adds the held breath on top
+    for (const c of CLIPS) {
+      if (c.scene === 's4' || c.deck !== undefined) continue;
+      const s = SI[c.scene]; if (s.far) continue;
+      c.update(dwell(clamp((y - s.top) / s.len), .3));
+    }
+    const base = S.p4 < .6 ? .18 * sm(.04, .16, S.p4) : .18 + .82 * sm(.6, .985, S.p4);
+    // the held breath takes him deeper, toward the frame where the ascent begins (never past it)
+    const plungeF = D.state === 'branch' ? lerp(D.from, MK.branch, easeIO((performance.now() - D.t0) / D.dur))
+      : lerp(0, lerp(base, Math.max(base, MK.branch), S.depth), 1 - Math.pow(1 - D.reentry, 3));
+    if (!SI.s4.far) { CLIP.s4.update(plungeF, D.reentry < 1 || D.state === 'branch'); if (!STC.ascent.loading) loadStates(); }
+    const d = S.depth;
+    dark4.style.opacity = (d * .55).toFixed(3);
+    iris4.style.opacity = sm(0, .25, d).toFixed(3);
+    iris4.style.transform = `scale(${(lerp(1.15, .27, Math.pow(d, .8)) * (1 + .025 * st.heartPulse * d)).toFixed(4)})`;
+    flash4.style.opacity = (st.airFlash * .6).toFixed(3);
+    pulse4.style.transform = d > .02 ? `scale(${(1 + .008 * st.heartPulse * d).toFixed(4)})` : '';
+
+    // the depth gauge: only while you are under
+    const under = S.p4 > .05 && S.p6 < .06;
+    const dk = clamp((performance.now() - D.t0) / D.dur);
+    const depth = D.state === 'ascent' ? lerp(.45, 0, dk) : (D.state === 'surface' || D.state === 'ready') ? 0 : D.state === 'redive' ? .15 * dk
+      : S.p4 < 1 ? clamp(base * .8 + d * .5) * D.reentry : S.p5 < 1 ? lerp(.8, 1, sm(0, .5, S.p5)) : 1;
+    if (under !== gaugeLast) { gaugeLast = under; gauge.classList.toggle('is-on', under); }
+    if (under) gaugeDot.style.transform = `translate3d(0,${(depth * (gauge.offsetHeight - 36)).toFixed(1)}px,0)`;
+
+    // the bright coda inverts the chrome
+    const light = S.pq > .08;
+    if (light !== lightLast) { lightLast = light; root.classList.toggle('theme-light', light); }
+
+    // events that belong to places in the story: each fires once on the way down, and again only after scrolling back past it
+    if (SNDX.on) {
+      const cross = (key, v, at) => { const was = XS[key]; XS[key] = v > at; return XS[key] && was === false; };
+      if (cross('inhale', S.p3, DK.pBreath + .004)) SNDX.shot('sfx-inhale');
+      if (cross('sail', S.p3, DK.at(0, .08))) SNDX.shot('sfx-sail-gust', { noDuck: true });
+      if (cross('rope', S.p3, DK.at(3, .15))) SNDX.shot('sfx-rope-roller');
+      if (cross('rope2', S.p3, DK.at(3, .62))) SNDX.shot('sfx-rope-roller', { db: -3 });
+      if (cross('shell', S.p5, .62)) SNDX.shot('sfx-shell-lift');
+      if (cross('open', S.p6, .58)) SNDX.shot('sfx-shell-open');
+      // the splash leads the picture by 0.4 s (its impact is 0.4 s into the file), predicted from the scroll speed
+      const sy = SI.s3.top + DK.at(4, DK.splash) * SI.s3.len, lead = clamp(XS.vy || 0, 0, 1250) * .4; // at most 500 px ahead, so a fast scroll that stops short of the water stays dry
+      if (y < sy - .5 * vh && y + lead < sy - 100) XS.splashArmed = true; // re-armed above the entry, once not already heading into it
+      if (XS.splashArmed && y < sy + 300 && y + lead >= sy) { XS.splashArmed = false; SNDX.shot('sfx-splash-entry', { always: true }); }
+      if (y > sy + 300) XS.splashArmed = false;                       // jumped past the entry: no late splash
+      // fine bubbles from the nose, now and then, while he holds his breath
+      if (D.state === 'holding' && st.holding && S.p4 > .05 && now > (D.nextBub || 0)) { SNDX.shot('sfx-bubbles-nose', { noDuck: true }); D.nextBub = now + 6000 + Math.random() * 4000; }
+      // music cues that play once: the pearl theme from the moment S7 opens, the resolve at the end
+      SNDX.cue('music-pearl-theme', S.p7 > .01 && S.p8 < .06, 1.2);
+      SNDX.cue('music-end-resolve', S.p8 > .1, 1.5);
+    }
+    const voice = 0;
+    roles[0].style.setProperty('--k', (st.kick * .9).toFixed(2));
+    roles[1].style.setProperty('--k', Math.max(voice * .8, st.flash * .6).toFixed(2));
+    roles[2].style.setProperty('--k', Math.max(st.kick, st.flash * .7).toFixed(2));
+    roles[3].style.setProperty('--k', (st.heartPulse * .9).toFixed(2));
+  }
+
+  // the mix (throttled): AUDIO.md's suggested levels, crossfaded with the scroll
+  if (SNDX.on && now - sndT > 60) {
+    sndT = now;
+    const p1 = S.p1, p2 = P('s2', y), p3 = S.p3, p4 = S.p4, p5 = S.p5, p6 = S.p6, p7 = S.p7, pq = S.pq, p8 = S.p8;
+    const ek = (performance.now() - D.t0) / D.dur;
+    const then = 0;                                                  // no 1949 reveal any more: the Creek today plays through the opening
+    const into2 = sm(0, .3, p2), into3 = sm(0, .12, p3), into6 = sm(0, .1, p6);
+    const into4 = sm(.012, .02, p4);                                 // under water just after the splash
+    const breath = sm(DK.pBreath - .004, DK.pBreath + .004, p3);   // music out over about 0.4 s of scroll on the breath
+    // above water in the dive loop: from the moment his head breaks the surface (0.7 s) until the water closes on the redive (1.3 s)
+    const tIn = (performance.now() - D.t0) / 1000;
+    const above = D.state === 'surface' ? (tIn > .7 ? 1 : 0) : D.state === 'ready' ? 1 : D.state === 'redive' ? (tIn < 1.3 ? 1 : 0) : 0;
+    const under = sm(.012, .03, p4) * (1 - into6);
+    const uw = under * (p4 < .6 ? (.4 + .6 * S.depth) : 1) * (1 - above);
+    const eq = x => [Math.cos(x * Math.PI / 2), Math.sin(x * Math.PI / 2)];
+    const [cToday, c1949] = eq(then);
+    // ambiences (0 dB as delivered unless AUDIO.md says otherwise)
+    SNDX.level('amb-creek-today', cToday * (1 - into2) + DB(-4) * sm(.05, .4, p8), .5);
+    SNDX.level('amb-creek-1949', c1949 * (1 - into2), .5);
+    SNDX.level('amb-open-sea', into2 * (1 - into3) + DB(-3) * above, .3);
+    const rPeak = sm(DK.at(2, .1), DK.at(3, .3), p3) * (1 - sm(DK.at(4, .2), DK.pBreath, p3));
+    SNDX.level('amb-deck', into3 * (1 - sm(-.01, .012, p4)) * lerp(1, DB(-6), rPeak));
+    SNDX.level('amb-underwater', into4 * (1 - above) * (1 - sm(0, .3, p5)) * (1 - into6), above ? .03 : .1);
+    SNDX.level('amb-seabed', sm(0, .3, p5) * (1 - into6));
+    SNDX.level('amb-dawn-deck', sm(.08, .2, p6) * (1 - sm(0, .15, p7)));
+    // music
+    const droneS13 = (p2 < 0 ? DB(-14) * then : lerp(DB(-14), DB(-8), into2)) * (1 - breath) * (p4 > 0 ? 0 : 1);
+    const droneS5 = DB(-20) * sm(.1, .4, p5) * (1 - into6);
+    const droneS6 = DB(-12) * sm(.15, .45, p6) * (1 - sm(0, .1, p7));
+    const droneS8 = DB(-14) * sm(0, .1, p8) * (1 - sm(.12, .35, p8));
+    // the singer's voice (wordless work-song call, plays in real time): in as he appears, softer under the haulers he leads, gone before the diver
+    const voice = sm(DK.at(1, .92), DK.at(2, .08), p3) * lerp(1, .55, sm(DK.at(3, 0), DK.at(3, .3), p3)) * (1 - sm(DK.at(3, .85), DK.at(4, .1), p3)) * (1 - breath);
+    SNDX.level('music-nahham-voice', voice, .6);
+    SNDX.level('music-drone-bed', Math.max(droneS13 * (1 - .6 * voice), droneS5, droneS6, droneS8), breath > 0 && breath < 1 ? .13 : 1.2);
+    SNDX.level('music-oud-sparse', DB(-4) * sm(.08, .35, p2) * (1 - sm(0, .3, p3)) + DB(-6) * sm(.15, .45, p6) * (1 - sm(0, .2, p7)), 1.5);
+    const rIn = sm(DK.at(1, .92), DK.at(2, .12), p3), rBuild = sm(DK.at(2, .1), DK.at(3, .3), p3), rFall = sm(DK.at(4, .2), DK.pBreath, p3);
+    SNDX.level('music-deck-rhythm', rIn * DB(lerp(lerp(-30, -8, rBuild), -30, rFall)) * (1 - breath), breath > 0 ? .13 : .6);
+    SNDX.filter(lerp(18000, 520, Math.pow(uw, .6)));
+  }
+}
+
+/* ================= S1: the Creek today as a quiet loop (phones get their own 9:16 crop; reduced motion keeps the still) ================= */
+(() => {
+  const v = $('#s1 .s1-vid'); if (!v || RM) return;
+  const m = matchMedia('(max-width:719.98px)').matches;
+  if (m) v.poster = v.dataset.posterM;
+  v.src = m ? v.dataset.srcM : v.dataset.src;
+  const go = () => { const p = v.play(); if (p) p.catch(() => {}); };
+  // play only while the opening is on screen
+  if ('IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? go() : v.pause()), { threshold: .01 }).observe($('#s1')); else go();
+})();
+
+/* ================= BOOT ================= */
+let rz = 0, lastW = innerWidth, lastH = innerHeight;
+addEventListener('resize', () => {
+  clearTimeout(rz);
+  rz = setTimeout(() => {
+    if (innerWidth === lastW && Math.abs(innerHeight - lastH) < 140 && matchMedia('(pointer:coarse)').matches) return; // phone toolbar
+    lastW = innerWidth; lastH = innerHeight; measure();
+  }, 120);
+});
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) { running = false; SND.suspend(true); }
+  else { running = true; lastT = performance.now(); SND.suspend(false); requestAnimationFrame(frame); }
+});
+function boot() {
+  measure();
+  if (FX && !buildTimelines()) root.classList.add('no-tl');
+  syncSoundUI(); syncHoldUI();
+  if (Q.get('s')) { const s = SI[Q.get('s')]; if (s) scrollTo(0, Math.min(maxY, s.top + parseFloat(Q.get('p') || 0) * s.len)); } // test hook: ?s=s4&p=.3
+  else if (Q.get('at')) scrollTo(0, parseFloat(Q.get('at')) * maxY);
+  if (FX) { const y = scrollY; updateStages(y); updateTimelines(y); updateCues(y); }
+  requestAnimationFrame(frame);
+}
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+addEventListener('load', measure);
+})();
+</script>
+</body>
+</html>

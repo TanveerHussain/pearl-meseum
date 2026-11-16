@@ -1,0 +1,588 @@
+<!doctype html>
+<!--
+  Emirates NBD Pearl Museum: Coinage (wave 2). Built from kit/ (template.html, site.css, site.js, KIT.md).
+  Governing idea: Every coin here once changed hands for something precious. The visitor walks five eras of the
+  museum's own text, each opened by one coin on dark velvet; the emotional peak is the diver's open palm receiving
+  a Maria Theresa Thaler, because "Pearl divers were often still paid in Maria Theresa Thalers".
+  Two scroll-driven moments only (the owl coin turning; the thaler dropping into the diver's hand). Storyboard approved by
+  Ram (26 Oct): row A made (assets/coinage/k1-turn.mp4, scroll-scrubbed, handed over from the plate and cut-out on its
+  first frame), rows B and D built from stills, row C skipped. The era openers scroll normally, with a light sweep.
+
+  FACT-CHECK (please confirm or correct; everything else on the page is the museum's own coinage text, verbatim):
+  1. "Australian" changed to "Austrian". The museum's text reads "it was an Australian silver coin which was to become
+     the most popular and celebrated coin of the age". The Maria Theresa Thaler is an Austrian coin, so the page says
+     "Austrian". Please correct the museum's own copy too, or tell us to quote it with [sic].
+  2. "Since 1973, a currency of its own" (Today heading) is inferred from the museum's group name "UAE Currency Board
+     1973 issue"; the page gives no other date for the UAE's own currency.
+  3. Short era names used in the index and eyebrows ("Before Islam", "The coming of Islam", "Expansion, trade and
+     diversity", "Continuity and complexity", "The Trucial States", "Today") shorten the museum's era titles, which
+     are quoted in full under each heading. The year ranges are the museum's.
+  4. Coin designs shown are general knowledge of each coin type, not objects from the collection: the owl, olive
+     sprig and crescent (Athens); a head in a lion-skin headdress (Alexander type); a cross on steps (Byzantine
+     solidus); a fire altar with two attendants (Sasanian drachm); two standing figures with a banner (Venetian
+     ducat); two pillars and two crowned globes over waves (Spanish Pillar Dollar); the crowned double-headed eagle
+     (Maria Theresa Thaler reverse). No inscriptions are shown or translated.
+  5. Every coin photograph is an illustration made for this site, labelled as such, to be replaced by photographs of
+     the actual collection. The Mughal gold coins are shown with natural pearls as an illustration of the museum's
+     sentence about pearl exports, not as a historical scene.
+  6. The diver's lines ("You came up with pearls." / "A breath, paid in silver.") are narrative, not claims; the only
+     fact in that scene is the museum's sentence about divers' pay, quoted exactly.
+  7. Headlines paraphrase the museum's text: "The first coins in Gulf hands came from the Aegean", "A new coinage,
+     with no images", "Pearls went out. Gold came back.", "One silver coin crossed borders", "Small change for every
+     day. Silver and gold for the larger trade.", "Coins and notes, for a region not yet its own". Please confirm
+     the wording reads true to the museum.
+  8. Quiet doors to merchants.html and visit.html point to wave 2 pages built in parallel by other page teams (both files exist).
+  MARKETING COPY PASS (2026-10-27, see marketing/copy-changes.md):
+  - The search title now uses the museum's own name, "Coinage Collection".
+  - "Austrian" for the museum's "Australian" and "Since 1973" stay flagged above (items 1 and 2). Real photographs of a few key coins,
+    the thaler first, would do most for collectors.
+  - Pass 2: door labels now say where they lead. "Bringing a class?" and "Bringing guests?" open the visit request form; they invite
+    a request only and promise no school or hosting service (see visit.html FACT-CHECK 16 and 17).
+-->
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Coinage Collection | Emirates NBD Pearl Museum</title>
+<meta name="description" content="From the owl of Athens to the Maria Theresa Thaler that paid the pearl divers: five eras of coins and notes in the Emirates NBD Pearl Museum's collection, and the UAE's own currency.">
+<link rel="canonical" href="coinage.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Emirates NBD Pearl Museum">
+<meta property="og:title" content="The Coinage Collection | Emirates NBD Pearl Museum">
+<meta property="og:description" content="Every coin here once changed hands for something precious. Walk five eras of the Emirates NBD Pearl Museum's coinage collection, from the owl of Athens to the Maria Theresa Thaler that paid the pearl divers, and the UAE's own currency today.">
+<meta property="og:image" content="assets/og/coinage.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Coinage Collection | Emirates NBD Pearl Museum">
+<meta name="twitter:description" content="Every coin here once changed hands for something precious. Walk five eras of the Emirates NBD Pearl Museum's coinage collection, from the owl of Athens to the Maria Theresa Thaler that paid the pearl divers, and the UAE's own currency today.">
+<meta name="twitter:image" content="assets/og/coinage.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/og/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/og/apple-touch-icon.png">
+<meta name="theme-color" content="#05070b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3CradialGradient id='g' cx='.36' cy='.32' r='.75'%3E%3Cstop offset='0' stop-color='%23fffdf8'/%3E%3Cstop offset='.5' stop-color='%23e6dad0'/%3E%3Cstop offset='1' stop-color='%238f8590'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='12' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/coinage/k1-plate.jpg" media="(min-width:720px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/coinage/k1-plate-m.jpg" media="(max-width:719.98px)" fetchpriority="high">
+<link rel="stylesheet" href="kit/site.css">
+<link rel="stylesheet" href="kit/menu.css">
+<script src="kit/site.js"></script>
+<style>
+/* ================= page looks (the kit covers everything shared) ================= */
+#k1,#k5{--ph:radial-gradient(34% 40% at 50% 60%,#5b5650 0%,#2a2724 22%,#121110 60%,#070606 100%)}
+
+/* a cut-out shown as a JPEG plus an alpha mask (lighter than a 24-bit PNG) */
+.masked{-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.m-owl{-webkit-mask-image:url(assets/coinage/k1-owl-mask.png);mask-image:url(assets/coinage/k1-owl-mask.png)}
+.m-hand{-webkit-mask-image:url(assets/coinage/k5-hand-mask.png);mask-image:url(assets/coinage/k5-hand-mask.png)}
+.m-thaler{-webkit-mask-image:url(assets/coinage/k5-thaler-mask.png);mask-image:url(assets/coinage/k5-thaler-mask.png)}
+
+/* S1 the owl coin (plate method): velvet plate, the coin settles, the raking light moves from left to right */
+.fx #k1{--scrim:linear-gradient(0deg,rgba(4,6,9,.86) 0%,rgba(4,6,9,.6) 22%,rgba(4,6,9,.22) 40%,transparent 54%)}
+/* the title sits low and centred, stacked just above the sub-line on the numeral shelf */
+@media (min-width:720px){.fx #k1 .stage .k1-sub .sub{max-width:48em}.fx #k1 .stage .k1-head{bottom:calc(var(--num-b) + var(--lift-foot) + clamp(40px,5.6vh,58px))}}
+@media (max-width:719.98px){.fx #k1 .stage .k1-head{bottom:calc(var(--num-b) + var(--lift-foot) + clamp(70px,10vh,110px))}}
+/* one box with the clip's aspect, covering the frame: plate, shadow, cut-out and clip share its percentages */
+.k1-box{position:absolute;left:50%;top:50%;width:max(100%,177.78vh);aspect-ratio:16/9;transform:translate(-50%,-50%)}
+#k1 .plate__bg img{inset:0;width:100%;height:100%}
+#k1 .plate__cut{--cx:50%;--cy:58%;--cw:24.74%;--cx-m:50%;--cy-m:58%;--cw-m:78.13%}
+#k1 .plate__shadow{--sx:50%;--sy:79%;--sw:22.5%;--sx-m:50%;--sy-m:79%;--sw-m:71.05%}
+#k1 .k1-turn{position:absolute;inset:0;z-index:4}
+#k1 .k1-turn img,#k1 .k1-turn video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#k1 .plate__atmos{z-index:5}
+#k1 .plate__atmos{--atmos:radial-gradient(36% 30% at 40% 46%,rgba(255,236,210,.12),transparent 70%)}
+.k1-hint{font:500 11px/1 var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--pearl-3)}
+.rm .k1-hint{display:none}
+.rm #k1 .stage{justify-content:flex-start;text-align:center;align-items:center}
+.rm #k1 .k1-box{top:56%}
+.rm #k1 .k1-sub .sub{margin-inline:auto}
+.rm #k1 .scrim{background:radial-gradient(90% 52% at 50% 16%,rgba(4,6,9,.86) 0%,rgba(4,6,9,.6) 55%,transparent 92%)}
+.rm #k5 .scrim{background:linear-gradient(90deg,rgba(6,5,4,.78) 0%,rgba(6,5,4,.52) 38%,rgba(6,5,4,0) 62%)}
+
+/* the era index */
+.eindex{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px 12px}
+.eindex a{display:inline-flex;align-items:baseline;gap:8px;padding:10px 16px;border:1px solid rgba(244,238,230,.3);border-radius:999px;color:var(--pearl);text-decoration:none;font:400 15px/1.2 var(--f-ui);transition:border-color .3s,background .3s}
+.eindex a:hover{border-color:rgba(244,238,230,.8);background:rgba(244,238,230,.06)}
+.eindex i{font:italic 500 13px/1 var(--f-display);color:var(--rose)}
+.eindex small{font:400 12px/1 var(--f-ui);color:var(--pearl-3);letter-spacing:.02em}
+[id^="r"]{scroll-margin-top:calc(var(--top-safe) - 24px)}
+.era{scroll-margin-top:0}
+
+/* ERA OPENER: one coin on velvet, full bleed, normal scroll; a band of light sweeps across the metal only */
+.era{padding:0;overflow:hidden;--tint:rgba(5,7,11,.7)}
+.era__media{position:relative;height:min(100vh,56.25vw);min-height:520px;overflow:hidden;background:#06080c}
+.era__plane{position:absolute;inset:-3% 0;will-change:transform}
+.era__plane img,.era__sheen{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.era__sheen{pointer-events:none;mix-blend-mode:soft-light;opacity:.95;background:linear-gradient(100deg,transparent 0%,transparent 40%,rgba(255,240,214,.95) 50%,transparent 60%,transparent 100%);background-size:260% 100%;background-position:calc(var(--sp,.5) * 100%) 0;-webkit-mask-size:cover;mask-size:cover;-webkit-mask-position:center;mask-position:center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+/* each sheen is masked to its own coin, the mask passed as --mask on the element */
+.era__sheen{-webkit-mask-image:var(--mask);mask-image:var(--mask)}
+.era__sheen--m{display:none}
+.rm .era__sheen{display:none}
+.era__scrim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(5,7,11,.72) 0%,rgba(5,7,11,.42) 30%,rgba(5,7,11,0) 55%),linear-gradient(0deg,rgba(5,7,11,.6) 0%,transparent 22%)}
+.era__copy{display:grid;gap:clamp(10px,1.8vh,18px)}
+.era__yr{margin:0;font:400 clamp(52px,min(7.4vw,12vh),124px)/.95 var(--f-display);letter-spacing:-.035em;color:var(--pearl);text-shadow:var(--shadow-t);font-variant-numeric:lining-nums}
+.era__yr span{font-size:.42em;letter-spacing:-.01em;color:var(--pearl-2);vertical-align:.32em;margin:0 .18em}
+.era__yr small{font-size:.24em;letter-spacing:.08em;color:var(--pearl-3);margin-left:.3em;vertical-align:.1em}
+.era__copy .line{margin:0;max-width:13em;text-align:left}
+.era__cap{margin:0;max-width:32em}
+
+/* reading after each opener */
+.era-read{padding-top:clamp(48px,9vh,110px)}
+.etitle{font:400 15px/1.5 var(--f-ui);color:var(--pearl-3);max-width:40em;margin:-6px 0 0}
+.etitle b{font-weight:500;color:var(--pearl-2)}
+.coins .obj{background:#07090d}
+.coins figcaption b{font:400 clamp(18px,1.6vw,23px)/1.25 var(--f-display);letter-spacing:-.01em}
+.note{font:400 13px/1.55 var(--f-ui);color:var(--pearl-3);max-width:46em;margin:0}
+.big1780{font:400 clamp(72px,10vw,168px)/.9 var(--f-display);letter-spacing:-.04em;color:var(--pearl);margin:0}
+.big1780 + p{margin:10px 0 0;font:400 14px/1.55 var(--f-ui);color:var(--pearl-3);max-width:24em}
+
+/* S5 THE PEAK: the thaler drops into the diver's open hand (plate method) */
+.fx #k5{--scrim:linear-gradient(90deg,rgba(6,5,4,.62) 0%,rgba(6,5,4,.34) 30%,rgba(6,5,4,0) 52%)}
+#k5 .plate__bg img{inset:0;width:100%;height:100%}
+#k5 .plate__cut{--cx:76%;--cy:66%;--cw:min(56vw,104vh);--cx-m:62%;--cy-m:70%;--cw-m:120vw}
+.hand{position:relative}
+.hand > img{display:block;width:100%;height:auto}
+.coin{position:absolute;left:37.5%;top:40%;width:14%;transform:translate(-50%,-66%);z-index:2}
+.coin img{display:block;width:100%;height:auto}
+.coin__shadow{position:absolute;left:38%;top:41.5%;width:15%;aspect-ratio:3.4/1;transform:translate(-50%,-50%);z-index:1}
+.coin__shadow > div{width:100%;height:100%;border-radius:50%;background:radial-gradient(closest-side,rgba(40,20,8,.6),rgba(40,20,8,0))}
+#k5 .plate__atmos{--atmos:linear-gradient(200deg,rgba(255,226,180,.16),transparent 40%)}
+.k5-copy .line{text-align:left;margin:0}
+.k5-copy .caption{display:block;margin-top:14px}
+.k5-last{margin-top:clamp(28px,6vh,64px)!important}
+.fx .k5-last{position:relative}
+.rm #k5 .stage{justify-content:flex-start}
+.rm #k5 .k5-copy{max-width:min(40vw,560px)}
+
+/* the Trucial States and Today */
+.groups .k{font:500 12px/1.5 var(--f-ui);letter-spacing:.12em;text-transform:uppercase}
+.flow--cream .eyebrow{color:var(--rose-ink,#8e4f3e);text-shadow:none}
+.flow--cream .prose{color:var(--umber-2)}
+.flow--cream .prose em{color:var(--umber)}
+.flow--cream .figcap{color:var(--umber-2)}
+.flow--cream .note{color:var(--umber-2)}
+.end__row{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center}
+.end__doors{display:flex;flex-wrap:wrap;gap:4px 28px}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:719.98px){
+  .k1-hint{display:none}
+  .fx #k1{--scrim:linear-gradient(0deg,rgba(4,6,9,.88) 0%,rgba(4,6,9,.6) 26%,rgba(4,6,9,.2) 44%,transparent 56%)}
+  .era__media{height:auto;aspect-ratio:9/16;max-height:100svh;min-height:0}
+  .era__sheen--d{display:none}.era__sheen--m{display:block}
+  .rm .era__sheen--m{display:none}
+  .era__scrim{background:linear-gradient(180deg,rgba(5,7,11,.7) 0%,rgba(5,7,11,.38) 34%,rgba(5,7,11,0) 52%),linear-gradient(0deg,rgba(5,7,11,.55) 0%,transparent 16%)}
+  .fx #k5{--scrim:linear-gradient(180deg,rgba(6,5,4,.86) 0%,rgba(6,5,4,.68) 30%,rgba(6,5,4,.3) 46%,rgba(6,5,4,0) 60%)}
+  .rm #k5 .k5-copy{max-width:none}
+  .rm #k5 .scrim{background:linear-gradient(180deg,rgba(6,5,4,.9) 0%,rgba(6,5,4,.76) 42%,rgba(6,5,4,.25) 62%,transparent 74%)}
+  .k1-box{width:max(100%,56.25vh);aspect-ratio:9/16}
+  .rm #k1 .k1-box{top:58%}
+}
+@media (max-height:640px){
+  .k1-eye{display:none}
+  .fx .k1-sub .sub{font-size:14px}
+  .k1-hint{display:none}
+  .era__media{min-height:0}
+}
+@media (max-width:719.98px) and (max-height:640px){
+  .era__media{aspect-ratio:auto;height:100svh}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#story">Skip to the story</a>
+
+<header class="top">
+  <a class="mark" href="index.html" aria-label="Emirates NBD Pearl Museum, home">
+    <img class="mark__logo mark__logo--w" src="kit/logo-enbd-white.svg" alt="" width="110" height="30">
+    <img class="mark__logo mark__logo--c" src="kit/logo-enbd-navy.svg" alt="" width="110" height="30">
+    <span class="mark__div" aria-hidden="true"></span><span class="mark__t" aria-hidden="true">Pearl Museum</span>
+  </a>
+  <div class="top__end">
+    <button class="tgl" id="soundTgl" type="button" aria-pressed="false" aria-label="Sound">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path class="w" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/><path class="x" d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+      <span class="lbl" aria-hidden="true" id="soundState">Sound off</span>
+    </button>
+  </div>
+</header>
+
+<main id="story">
+
+  <!-- S1 THE OWL OF ATHENS (scroll-driven, 1 of 2), storyboard rows A0 and A (approved by Ram, 26 Oct).
+       A0: the clean velvet plate and the coin cut-out settle onto the frame the turntable clip starts on (plate method);
+       A: at that exact frame the clip (assets/coinage/k1-turn.mp4) fades in and the coin turns with the scroll under a fixed light.
+       All layers sit in one box with the clip's own aspect (16:9, phones 9:16 crop), so cut-out and clip stay registered.
+       Reduced motion and no JS: the plate and the coin still, no clip. -->
+  <section class="scene scrim--top" id="k1" style="--span:250" data-enter="0" aria-labelledby="k1h">
+    <div class="stage">
+      <div class="frame plate" data-ph="assets/coinage/k1-turn.mp4 (+ -poster.jpg), k1-plate.jpg + k1-owl.jpg (masked)">
+        <div class="k1-box">
+        <picture class="plate__bg" data-kf='{"0":{"scale":1.05},"0.2":{"scale":1}}'>
+          <source media="(max-width:719.98px)" srcset="assets/coinage/k1-plate-m.jpg" width="1080" height="1920">
+          <img data-role="bg" src="assets/coinage/k1-plate.jpg" width="2560" height="1440" decoding="async" fetchpriority="high" alt="">
+        </picture>
+        <div class="plate__shadow" data-kf='{"0":{"opacity":.5,"scale":.86},"0.2":{"opacity":1,"scale":1}}'></div>
+        <div class="plate__cut">
+          <div data-kf='{"0":{"y":-3,"scale":.93,"rot":-3,"blur":3},"0.2":{"y":0,"scale":1,"rot":0,"blur":0}}' data-kf-m='{"0":{"y":-2,"scale":.94,"blur":2},"0.2":{"y":0,"scale":1,"blur":0}}' data-rm-at=".2">
+            <img class="masked m-owl" src="assets/coinage/k1-owl.jpg" width="960" height="908" decoding="async" fetchpriority="high" alt="Illustration: an ancient silver tetradrachm of Athens on dark velvet, the owl in high relief, its head turned to face us, with a small olive sprig and a crescent beside it.">
+          </div>
+        </div>
+        <div class="plane k1-turn fx-layer" data-kf='{"0":{"opacity":0},"0.2":{"opacity":0},"0.23":{"opacity":1}}'>
+          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/coinage/k1-turn-m-poster.jpg" width="608" height="1080"><img src="assets/coinage/k1-turn-poster.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt=""></picture>
+          <video class="scrub" muted playsinline preload="none" aria-hidden="true" data-load="scroll" data-src="assets/coinage/k1-turn.mp4" data-src-m="assets/coinage/k1-turn-m.mp4"></video>
+        </div>
+        </div>
+        <div class="plate__atmos" data-kf='{"0":{"opacity":1},"0.4":{"opacity":.5},"1":{"opacity":.25}}'></div>
+        <div class="scrim"></div>
+      </div>
+      <div class="ln copy--peak-centre-foot k1-head">
+        <p class="beat eyebrow k1-eye" data-cue="-1 2">Coinage Collection</p>
+        <h1 class="beat line line--xl" id="k1h" data-cue="-1 2">Every coin here once changed hands for something <em>precious</em>.</h1>
+      </div>
+      <div class="beat ln copy--peak-centre-foot k1-sub" data-cue=".1 2"><p class="sub">“Unearth the fascinating stories behind dazzling treasures from across the ages.”</p></div>
+      <p class="beat k1-hint hint--base" data-cue="-1 .08" aria-hidden="true">Scroll</p>
+    </div>
+  </section>
+
+  <!-- THE COLLECTION: the museum's own introduction, then the five eras as quiet anchors -->
+  <section class="flow" aria-labelledby="ih">
+    <div class="flow__inner">
+      <article class="ed" data-reveal>
+        <p class="eyebrow">The coinage collection</p>
+        <h2 class="line" id="ih">From the ancient Greeks to the Ottoman and British <em>Empires</em>.</h2>
+        <div class="prose">
+          <p>Not only is Emirates NBD the custodian of Sultan Ali Al-Owais’s pearl collection, it has also amassed a prodigious set of currencies featuring notes and coins from times of the ancient Greeks, to the Ottoman and British Empires.</p>
+          <p>The museum sheds a new light on the money and socio-economic history that helped shape the cultural heritage of the region.</p>
+        </div>
+        <ol class="eindex" aria-label="The eras of the collection">
+          <li><a href="#r1"><i>i.</i>Before Islam</a></li>
+          <li><a href="#e2"><i>ii.</i>622 to 1278 <small>AD</small></a></li>
+          <li><a href="#e3"><i>iii.</i>1278 to 1747 <small>AD</small></a></li>
+          <li><a href="#e4"><i>iv.</i>1747 to 1933 <small>AD</small></a></li>
+          <li><a href="#k5"><i>v.</i>The Trucial States</a></li>
+          <li><a href="#r6"><i>vi.</i>Today</a></li>
+        </ol>
+      </article>
+    </div>
+  </section>
+
+  <!-- I. BEFORE ISLAM: the hero coin opened this era; reading plus a small gallery -->
+  <section class="flow flow--flush-top" id="r1" aria-labelledby="r1h">
+    <div class="flow__inner">
+      <article class="ed ed--wide" data-reveal>
+        <div class="ed__head">
+          <p class="eyebrow">i. Before Islam</p>
+          <h2 class="line" id="r1h">The first coins in Gulf hands came from the <em>Aegean</em>.</h2>
+          <p class="etitle"><b>Pre-Islamic coinage and trade in the Gulf,</b> up to the birth of Prophet Muhammad (PBUH)</p>
+        </div>
+        <div class="prose">
+          <p>Early coins used by traders in the Gulf came from the kingdoms around the Aegean Sea dating from the 6th or 7th century BC.</p>
+          <p>The best known was the famous coinage of Athens, bearing the head of Athena on the obverse and an owl and olive branch on the reverse.</p>
+          <p>Later coinage from the Sabaeans and Himyarites of southern Arabia also followed these Greek models.</p>
+        </div>
+        <div class="prose">
+          <p>Alexander the Great produced the most famous coinage of the ancients, and imitations have continued in the Gulf for many years.</p>
+          <p>Roman coins circulated widely, though at the time of the Prophet Muhammad’s (PBUH) birth, the main coins for trade were Byzantine gold solidi and Sasanian silver drachms.</p>
+        </div>
+      </article>
+      <ul class="gallery coins" style="--cell:230px">
+        <li data-reveal><figure><div class="obj" style="--fit:contain"><img class="masked m-owl" src="assets/coinage/k1-owl.jpg" width="960" height="908" loading="lazy" decoding="async" alt="Illustration: the silver owl of Athens, seen from above."></div><figcaption><b>Athens</b>Silver. The owl and olive branch on the reverse.</figcaption></figure></li>
+        <li data-reveal data-reveal-delay="1"><figure><div class="obj"><img src="assets/coinage/g-alexander.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Illustration: a thick silver coin of the Alexander type, a head in a lion-skin headdress in profile."></div><figcaption><b>Alexander the Great</b>Silver. The most famous coinage of the ancients.</figcaption></figure></li>
+        <li data-reveal data-reveal-delay="2"><figure><div class="obj"><img src="assets/coinage/g-solidus.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Illustration: a small Byzantine gold coin with a cross standing on three steps."></div><figcaption><b>Byzantine solidus</b>Gold. A main coin for trade at the Prophet’s (PBUH) birth.</figcaption></figure></li>
+        <li data-reveal data-reveal-delay="3"><figure><div class="obj"><img src="assets/coinage/g-drachm.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Illustration: a broad, thin Sasanian silver coin with a fire altar between two standing figures."></div><figcaption><b>Sasanian drachm</b>Silver, broad and thin. The other main coin for trade.</figcaption></figure></li>
+      </ul>
+      <p class="note">Coins on this page are illustrations made for this site, to be replaced by photographs of the collection.</p>
+    </div>
+  </section>
+
+  <!-- II. 622 TO 1278: era opener (normal scroll, light sweep), storyboard row D -->
+  <section class="flow era" id="e2" aria-labelledby="e2h">
+    <div class="era__media over">
+      <div class="era__plane">
+        <picture><source media="(max-width:719.98px)" srcset="assets/coinage/k2-dinar-m.jpg" width="1080" height="1920"><img src="assets/coinage/k2-dinar.jpg" width="2560" height="1440" loading="lazy" decoding="async" alt="Illustration: seen low across dark velvet, a thin gold dinar lies in front of a larger, thinner silver dirham; only the gold coin's worn rim is sharp."></picture>
+        <div class="era__sheen era__sheen--d" aria-hidden="true" style="--mask:url(assets/coinage/k2-mask.png)"></div>
+        <div class="era__sheen era__sheen--m" aria-hidden="true" style="--mask:url(assets/coinage/k2-mask-m.png)"></div>
+      </div>
+      <div class="era__scrim"></div>
+      <div class="era__copy copy--low-left copy--m-high">
+        <p class="eyebrow">ii. The coming of Islam</p>
+        <p class="era__yr" aria-label="622 to 1278 AD">622<span>to</span>1278<small>AD</small></p>
+        <h2 class="line" id="e2h">A new coinage, with no <em>images</em>.</h2>
+      </div>
+      <p class="caption era__cap cap--base">Gold dinar and silver dirham. Illustration</p>
+    </div>
+  </section>
+  <section class="flow era-read" aria-labelledby="r2h">
+    <div class="flow__inner">
+      <article class="ed ed--wide" data-reveal>
+        <div class="ed__head">
+          <h3 class="line" id="r2h">A currency of virtually pure <em>gold</em> and silver.</h3>
+          <p class="etitle"><b>The coming of Islam and the establishment of a strong currency</b> (622 to 1278 AD)</p>
+        </div>
+        <div class="prose">
+          <p>Islam ushered in a new approach to coinage, which dispensed with representational images and used appropriate religious references.</p>
+          <p>Abd al-Malik Bin Marwan experimented with earlier Sasanian models but quickly developed a highly effective system using a Gold Dinar weighing about 4.27 grams and a Silver Dirham of about 2.93 grams.</p>
+          <p>These coins were struck from virtually pure gold and silver and were quickly accepted as a standard means of exchange. The establishment of this stable currency helped to create the unprecedented prosperity following the Muslim conquests.</p>
+        </div>
+        <div>
+          <ul class="facts">
+            <li><span class="k">Gold dinar</span><span class="v">About 4.27 grams</span></li>
+            <li><span class="k">Silver dirham</span><span class="v">About 2.93 grams</span></li>
+          </ul>
+          <blockquote class="pull"><p>“Coinages of the time are also valuable records of the cities where the coins were struck, the years in which rulers wielded power, their names and their political and religious <em>relationships</em>.”</p><cite>Emirates NBD Pearl Museum</cite></blockquote>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- III. 1278 TO 1747: era opener, the pearl link -->
+  <section class="flow era" id="e3" aria-labelledby="e3h">
+    <div class="era__media over">
+      <div class="era__plane">
+        <picture><source media="(max-width:719.98px)" srcset="assets/coinage/k3-muhurs-m.jpg" width="1080" height="1920"><img src="assets/coinage/k3-muhurs.jpg" width="2560" height="1440" loading="lazy" decoding="async" alt="Illustration: five natural Gulf pearls of different shapes lie in a beam of light on dark velvet, with three thin gold coins softly out of focus behind them."></picture>
+        <div class="era__sheen era__sheen--d" aria-hidden="true" style="--mask:url(assets/coinage/k3-mask.png)"></div>
+        <div class="era__sheen era__sheen--m" aria-hidden="true" style="--mask:url(assets/coinage/k3-mask-m.png)"></div>
+      </div>
+      <div class="era__scrim"></div>
+      <div class="era__copy copy--low-left copy--m-high">
+        <p class="eyebrow">iii. Expansion, trade and diversity</p>
+        <p class="era__yr" aria-label="1278 to 1747 AD">1278<span>to</span>1747<small>AD</small></p>
+        <h2 class="line" id="e3h">Pearls went out. <em>Gold</em> came back.</h2>
+      </div>
+      <p class="caption era__cap cap--base">Natural pearls and gold coins. Illustration</p>
+    </div>
+  </section>
+  <section class="flow era-read" aria-labelledby="r3h">
+    <div class="flow__inner">
+      <article class="ed ed--wide" data-reveal>
+        <div class="ed__head">
+          <blockquote class="pull pull--flush"><p class="line" id="r3h">“The profitable trading within the Gulf including the export of pearls, brought in gold and silver coins struck by the Sultans and Mughal rulers of northern India, especially their gold <em>Muhurs</em>.”</p><cite>Emirates NBD Pearl Museum</cite></blockquote>
+          <p class="etitle"><b>Expansion, trade and diversity</b> (1278 to 1747 AD)</p>
+        </div>
+        <div class="prose">
+          <p>Despite Mongol invasions and development of powerful competing national groups, the Muslim world continued to expand. Currency and coins were equally diverse.</p>
+          <p>Early Mamluk gold coinage did not observe a standard weight, though later the Ashrafi and the Ottoman Sultani followed the weight of the Venetian ducat, which at a fairly standard 3.45 grams was Europe’s main gold trading coin.</p>
+        </div>
+        <div class="split split--even">
+          <figure class="split__media" style="--ar:1/1"><img src="assets/coinage/g-ducat.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Illustration: a thin Venetian gold ducat with two small standing figures holding a banner between them."></figure>
+          <ul class="facts facts--one">
+            <li><span class="k">Venetian ducat</span><span class="v">A fairly standard 3.45 grams</span></li>
+            <li><span class="k">Its role</span><span class="v">Europe’s main gold trading coin</span></li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- IV. 1747 TO 1933: era opener, the Maria Theresa Thaler -->
+  <section class="flow era" id="e4" aria-labelledby="e4h">
+    <div class="era__media over">
+      <div class="era__plane">
+        <picture><source media="(max-width:719.98px)" srcset="assets/coinage/k4-thaler-m.jpg" width="1080" height="1920"><img src="assets/coinage/k4-thaler.jpg" width="2560" height="1440" loading="lazy" decoding="async" alt="Illustration: a large silver Maria Theresa Thaler on dark velvet, reverse up, a crowned double-headed eagle in crisp relief, its worn legend unreadable."></picture>
+        <div class="era__sheen era__sheen--d" aria-hidden="true" style="--mask:url(assets/coinage/k4-mask.png)"></div>
+        <div class="era__sheen era__sheen--m" aria-hidden="true" style="--mask:url(assets/coinage/k4-mask-m.png)"></div>
+      </div>
+      <div class="era__scrim"></div>
+      <div class="era__copy copy--low-left copy--m-high">
+        <p class="eyebrow">iv. Continuity and complexity</p>
+        <p class="era__yr" aria-label="1747 to 1933 AD">1747<span>to</span>1933<small>AD</small></p>
+        <h2 class="line" id="e4h">One silver coin crossed <em>borders</em>.</h2>
+      </div>
+      <p class="caption era__cap cap--base">Maria Theresa Thaler, reverse. Illustration</p>
+    </div>
+  </section>
+  <section class="flow era-read" aria-labelledby="r4h">
+    <div class="flow__inner">
+      <article class="ed ed--wide" data-reveal>
+        <div class="ed__head">
+          <h3 class="line" id="r4h">The most celebrated coin of the <em>age</em>.</h3>
+          <p class="etitle"><b>Continuity and complexity</b> (1747 to 1933 AD)</p>
+        </div>
+        <div class="prose">
+          <p>The main Islamic coins of this era were struck by Ottoman, Iranian and Mughal leaders, though European silver coinage began to dominate.</p>
+          <p>Circulating with competing European coins, the gold Funduq, Al Zad i-mahbub, Muhur and Tuman were still related to the size and weight of the Ducat and would all have been familiar to traders.</p>
+          <p>Of the European currencies, the crown-sized Spanish silver Pillar Dollar was common but it was an Austrian silver coin which was to become the most popular and celebrated coin of the age.</p>
+          <p>The Maria Theresa Thaler weighing 28 grams became a transnational currency that could be used without exchange controls and with the ‘frozen date’ of 1780, continued to be minted for export to the Middle East for another 200 years.</p>
+        </div>
+        <div>
+          <p class="big1780" aria-hidden="true">1780</p>
+          <p>The ‘frozen date’ of the Maria Theresa Thaler.</p>
+          <ul class="facts facts--after">
+            <li><span class="k">Weight</span><span class="v">28 grams</span></li>
+            <li><span class="k">Minted for export</span><span class="v">To the Middle East, for another 200 years</span></li>
+          </ul>
+        </div>
+      </article>
+      <ul class="gallery gallery--narrow coins" style="--cell:260px">
+        <li data-reveal><figure><div class="obj"><img src="assets/coinage/g-pillar.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Illustration: a large Spanish silver Pillar Dollar, two crowned globes between two columns over the waves."></div><figcaption><b>Spanish Pillar Dollar</b>Silver, crown-sized, and common.</figcaption></figure></li>
+        <li data-reveal data-reveal-delay="1"><figure><div class="obj" style="--fit:contain;--op:50% 50%"><img class="masked m-thaler" src="assets/coinage/k5-thaler.jpg" width="760" height="656" loading="lazy" decoding="async" alt="Illustration: the Maria Theresa Thaler seen at an angle, showing its thick silver edge."></div><figcaption><b>Maria Theresa Thaler</b>Silver, 28 grams. Dated 1780.</figcaption></figure></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- S5 THE PEAK (scroll-driven, 2 of 2), storyboard row B (page-driven, green plate method, built with stills):
+       the deck plate, the diver's open hand (keyed from green), the thaler (cut out from a neutral backdrop) dropping into
+       his palm, a contact shadow as it lands. -->
+  <section class="scene" id="k5" style="--span:280" data-enter=".14" aria-labelledby="k5h">
+    <div class="stage">
+      <div class="frame plate" data-ph="assets/coinage/k5-deck-plate.jpg + k5-hand.jpg + k5-thaler.jpg (masked)">
+        <picture class="plate__bg" data-kf='{"0":{"scale":1.08},"1":{"scale":1}}'>
+          <source media="(max-width:719.98px)" srcset="assets/coinage/k5-deck-plate-m.jpg" width="1080" height="1920">
+          <img data-role="bg" src="assets/coinage/k5-deck-plate.jpg" width="2560" height="1440" decoding="async" loading="lazy" alt="">
+        </picture>
+        <div class="plate__cut">
+          <div class="hand" data-kf='{"0":{"x":34,"y":4},"0.13":{"x":0,"y":0},"0.4":{"y":0},"0.43":{"y":.5},"0.47":{"y":0},"1":{"y":-.5}}' data-kf-m='{"0":{"x":60,"y":3},"0.13":{"x":0,"y":0},"0.4":{"y":0},"0.43":{"y":.4},"0.47":{"y":0}}' data-rm-at="1">
+            <img class="masked m-hand" src="assets/coinage/k5-hand.jpg" width="1600" height="796" decoding="async" loading="lazy" alt="A pearl diver's weathered right hand, held out open and palm up over the deck of a dhow at dawn, with a large silver Maria Theresa Thaler resting in his palm.">
+            <div class="coin__shadow"><div data-kf='{"0":{"opacity":0,"scale":.4},"0.3":{"opacity":.2,"scale":.6},"0.41":{"opacity":1,"scale":1}}' data-rm-at="1"></div></div>
+            <div class="coin"><div data-kf='{"0":{"y":-78,"rot":-38,"opacity":0,"blur":5},"0.14":{"y":-72,"rot":-35,"opacity":1,"blur":4},"0.4":{"y":0,"rot":-4,"blur":0},"0.43":{"y":-1.4,"rot":-6},"0.47":{"y":0,"rot":-5},"1":{"y":0,"rot":-5}}' data-kf-m='{"0":{"y":-60,"rot":-30,"opacity":0,"blur":4},"0.14":{"y":-55,"rot":-28,"opacity":1,"blur":3},"0.4":{"y":0,"rot":-4,"blur":0},"0.43":{"y":-1,"rot":-6},"0.47":{"y":0,"rot":-5}}' data-rm-at="1">
+              <img class="masked m-thaler" src="assets/coinage/k5-thaler.jpg" width="760" height="656" decoding="async" loading="lazy" alt="">
+            </div></div>
+          </div>
+        </div>
+        <div class="plate__atmos" data-kf='{"0":{"opacity":.6},"0.45":{"opacity":1}}'></div>
+        <div class="scrim"></div>
+      </div>
+      <div class="ln copy--low-left copy-stack k5-copy">
+        <p class="beat eyebrow" data-cue="-1 2">v. The Trucial States</p>
+        <h2 class="beat line" id="k5h" data-cue="-1 .27">You came up with <em>pearls</em>.</h2>
+        <div class="beat k5-quote" data-cue=".29 2">
+          <blockquote><p class="line">“Pearl divers were often still paid in Maria Theresa <em>Thalers</em>.”</p><cite class="caption">Emirates NBD Pearl Museum</cite></blockquote>
+          <p class="beat line k5-last" data-cue=".46 2">A breath, paid in <em>silver</em>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- V. THE TRUCIAL STATES: reading, image beside text, the collection's groups -->
+  <section class="flow" aria-labelledby="r5h">
+    <div class="flow__inner">
+      <div class="split split--right">
+        <figure class="split__media" style="--ar:4/3;--op:72% 50%" data-reveal><img src="assets/coinage/k5-trucial.jpg" width="2400" height="1350" loading="lazy" decoding="async" alt="Illustration: worn silver coins and small square nickel coins spill from a faded cotton pouch onto an old teak chest, a folded old banknote behind them, nothing on them readable."></figure>
+        <div class="split__text" data-reveal data-reveal-delay="1">
+          <p class="eyebrow">Coins and banknotes circulating in the Trucial States</p>
+          <h2 class="line" id="r5h">Small change for every day. Silver and gold for the larger <em>trade</em>.</h2>
+          <div class="prose">
+            <p>The British influence was felt far and wide during this period. The coinage of British India, particularly the smaller denominations, were widely used for small everyday trading, whilst silver and gold coins were used for larger, more important transactions.</p>
+          </div>
+          <p class="figcap">Coins and a banknote of the period. Illustration.</p>
+        </div>
+      </div>
+      <article class="ed ed--wide" data-reveal>
+        <div class="ed__head">
+          <h3 class="line">Coins and notes, for a region not yet its <em>own</em>.</h3>
+        </div>
+        <div class="prose">
+          <p>Banknotes issued by the Government of India, the Reserve Bank of India and the Republic of India reveal that the economies of the region were not yet strong enough to warrant their own currencies.</p>
+        </div>
+        <blockquote class="pull"><p>“The Gulf Rupee, issued by the Indian government was not freely convertible and mistrusted by traders in the <em>Gulf</em>.”</p><cite>Emirates NBD Pearl Museum</cite></blockquote>
+      </article>
+      <div data-reveal>
+        <p class="eyebrow eyebrow--over">In the collection</p>
+        <ul class="facts groups">
+          <li><span class="k">Gold coinage</span><span class="v">Victoria; George V, Government of India</span></li>
+          <li><span class="k">Nickel coinage</span><span class="v">Edward VII and George V; George VI</span></li>
+          <li><span class="k">British India</span><span class="v">British India coinage; Indian external</span></li>
+          <li><span class="k">Government of India</span><span class="v">Naye paise and Rupee/anna coinage</span></li>
+          <li><span class="k">Qatar and Dubai</span><span class="v">Currency Board, 1963 to 73</span></li>
+          <li><span class="k">Saudi Arabia</span><span class="v">Saudi Arabian Monetary Agency, 1st issue</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- TODAY: the bright beat -->
+  <section class="flow flow--cream" id="r6" aria-labelledby="r6h">
+    <div class="flow__inner">
+      <div class="split">
+        <figure class="split__media" style="--ar:4/3;--op:74% 60%" data-reveal><img src="assets/coinage/k6-today.jpg" width="2400" height="1350" loading="lazy" decoding="async" alt="Illustration: a few bright modern coins with soft abstract designs on ivory linen in morning light, modern banknotes fanned out of focus behind them."></figure>
+        <div class="split__text" data-reveal data-reveal-delay="1">
+          <p class="eyebrow">vi. Today</p>
+          <h2 class="line on-light" id="r6h">Since 1973, a currency of its <em>own</em>.</h2>
+          <div class="prose">
+            <p>Currency today has the benefit of sophisticated manufacturing techniques which allow complex and beautiful designs.</p>
+            <p>Coins and banknotes with a consistent identity work together to provide the UAE with a modern, respected range of currency. Commemorative issues are wide, varied and enthusiastically collected.</p>
+          </div>
+          <ul class="facts">
+            <li><span class="k">UAE Currency Board</span><span class="v">1973 issue</span></li>
+            <li><span class="k">UAE Central Bank</span><span class="v">1982 issue; 1989 to 1996 issue</span></li>
+            <li><span class="k">Coins</span><span class="v">1973 to 1998 issue</span></li>
+          </ul>
+          <p class="figcap">Modern coins and notes. Illustration, not the UAE’s actual designs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROMISE AND ONE ACTION -->
+  <section class="flow" aria-labelledby="eh">
+    <div class="flow__inner">
+      <article class="ed" data-reveal>
+        <h2 class="line line--xl" id="eh">Come and see them up <em>close</em>.</h2>
+        <div class="end__row">
+          <a class="pill pill--solid" href="visit.html">Plan your visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="end__doors">
+          <a class="door" href="visit.html#request"><span>Bringing a class?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="door" href="merchants.html"><span>Where the pearls were traded</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="door" href="collection.html"><span>The pearl collection</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <p class="note">Every coin on this page is an illustration made for this site, to be replaced by photographs of the actual collection.</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <ul class="foot__nav" aria-label="Pages">
+    <li><a href="index.html">Home</a></li><li><a href="about.html">Sultan Ali Al-Owais</a></li><li><a href="history.html">Our History</a></li><li><a href="collection.html">The Collection</a></li><li><a href="merchants.html">Captains and Merchants</a></li><li><a href="coinage.html" aria-current="page">Coinage</a></li><li><a href="visit.html">Visit Us</a></li>
+  </ul>
+  <p>Emirates NBD Pearl Museum, Emirates NBD HQ, Dubai Creek, Deira. By appointment.</p>
+</footer>
+
+<script>
+/* ---- the turntable: held on its first frame while the plate settles, then turned by the scroll (storyboard row A) ---- */
+(function () {
+  if (!PM.FX) return;
+  let c = null;
+  PM.onFrame((now, dt, y) => {
+    if (!c) { c = (PM.clip('k1') || [])[0]; if (!c) return; c.custom = true; }
+    const s = PM.SI && PM.SI.k1; if (!s || s.far) return;
+    c.update(PM.clamp(((y - s.top) / s.len - .22) / (.58 - .22)));
+  });
+})();
+
+/* ---- era openers: normal scroll; the photo drifts a little slower than the page and a band of light crosses the metal ---- */
+(function () {
+  if (!PM.FX) return;
+  const eras = PM.$$('.era').map(el => ({ el, plane: PM.$('.era__plane', el), last: -1 }));
+  PM.onFrame(() => {
+    const vh = innerHeight;
+    for (const E of eras) {
+      const r = E.el.getBoundingClientRect();
+      if (r.bottom < -50 || r.top > vh + 50) continue;
+      const p = PM.clamp((vh - r.top) / (vh + r.height));
+      if (Math.abs(p - E.last) < .0015) continue; E.last = p;
+      E.plane.style.transform = `translate3d(0,${((p - .5) * -5).toFixed(2)}%,0) scale(1.04)`;
+      E.el.style.setProperty('--sp', (1 - PM.sm(.18, .82, p)).toFixed(4));
+    }
+  });
+})();
+
+/* ---- sound (off until the visitor opts in): the drone and the sparse oud; the deck at dawn under the peak ---- */
+PM.sound.stems({ 'music-drone-bed': ['music', 40, -14, 1], 'music-oud-sparse': ['music', 39, -8, 1], 'amb-dawn-deck': ['bed', 28, -4, 2],
+  'sfx-coin-turn': ['fx', 0, 0, 1], 'sfx-coin-palm': ['fx', 0, 0, 2] });
+// one-shots fire once each time the scroll passes their mark going down
+const past = {}, cross = (key, v, at) => { const was = past[key]; past[key] = v > at; return past[key] && was === false; };
+PM.sound.mix((y, P) => {
+  const k5 = P('k5', y), deck = PM.sm(-.1, .1, k5) * (1 - PM.sm(.95, 1.1, k5));
+  if (cross('turn', P('k1', y), .22)) PM.sound.shot('sfx-coin-turn');
+  if (cross('palm', k5, .39)) PM.sound.shot('sfx-coin-palm');
+  PM.sound.level('music-drone-bed', 1);
+  PM.sound.level('music-oud-sparse', PM.sm(.15, .6, P('k1', y)) * (1 - .5 * deck));
+  PM.sound.level('amb-dawn-deck', deck);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,637 @@
+<!doctype html>
+<!--
+  Emirates NBD Pearl Museum, "Our History". Built on the kit (kit/template.html, site.css, site.js, menu.*).
+  Governing idea: Before the towers, pearls built the Gulf.
+  Spine: a year numeral (the museum's Gregorian year, its Hijri year beneath) that rolls with the scroll at every chapter,
+  plus a small timeline rail on wide screens. The light and the sea age with the years: cool and old at the start,
+  warm gold by 1949, then modern Creek light at 1963.
+  Mix and match (Ram, 2026-10-26): three scroll-driven signature moments only (the diver 1637, the harbour 1924 as a
+  slow drift across one photograph, the last fleet 1949); everything between them is normal-scrolling reading.
+  Beats are ordered by year; the museum's text (CONTENT-SOURCE.md, "Our History") is quoted verbatim.
+
+  FACT-CHECK (for the museum to confirm):
+  - 7,000 years: the museum's sentence reads "The oldest known Gulf Pearl was found in Kuwait by archaeologists is 7000 years old."
+    The page lightly re-punctuates it: "The oldest known Gulf pearl, found by archaeologists in Kuwait, is 7,000 years old." Approve the edit or restore the original.
+  - Music: the museum's text reads "Music on board particularly important, ..."; the page adds "[was]" in square brackets. Approve or restore.
+  - "Dhows in harbors ..." keeps the museum's US spelling inside the quotation.
+  - Al-Biruni: the name is given as on the museum's page ("Abu Rian Al-Biruni, Persian Scholar"); the more usual spelling is Abu Rayhan al-Biruni. No dates for him are stated.
+  - 1681: the engraving is a reimagined image in the manner of the drawing the museum shows ("from a treatise published by F. Bonnani in Rome").
+    It is not that plate. Recommend the museum's own scan of the original replaces it. "Bonnani" is the museum's spelling (usually Buonanni or Bonanni).
+  - 1963 Hijri year: "1383H" is a conversion (19 June 1963 falls in Muharram 1383H); it is not in the museum's text.
+  - 1949, one cautious line not in the museum's text: "By then, cultured pearls were reaching the world's markets, and the old trade was fading." General knowledge, to be checked.
+  - Interpretive lines (ours, not the museum's facts): "It begins with one small pearl.", "Nobody dived alone. Every shell passed through many hands
+    before its pearl was found.", "Every task had its song." and "He kept the pearls, so that we would remember."
+  - Crew role transliterations (nakhuda, saib, ghais) as on the home page: confirm house spelling.
+  - Dates are the museum's as published (both 1637 entries come before 1681 here because the page is ordered by year). The 1637 beats reuse the
+    home page's 1940s-style crew and diver footage, so the pictures are period-true to pearling generally, not records of 1637.
+  - Reimagined, captioned as such: the ancient pearl and shard, the 1681 engraving, the 1924 harbour (v2, one photograph), the 1926 merchant's launch.
+  - The 1963 photograph of the Emirates NBD HQ is the home page's s8-hq (see assets/MANIFEST.md for its source).
+  - The year rail, the rolling numerals and "years ago" imply no dates beyond the museum's own.
+  - The music loop (assets/history/h-singer-loop.mp4) was generated after Ram approved storyboard B (storyboards/history/storyboard.html).
+  MARKETING COPY PASS (2026-10-27, see marketing/copy-changes.md):
+  - The end of the page now offers "Plan your visit" first and a "Bringing a class?" door to the request form (visit.html#request).
+    It invites a request only; it does not say the museum takes school groups. Confirm school visits with the museum.
+  - Please explain the dates: "Pearl divers" and "Life on board" are dated 1637, before "Pearling in the Gulf" 1681. Teachers will
+    ask what the dates refer to (for example, the dates of the source images).
+-->
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Our History: pearling in the Gulf | Emirates NBD Pearl Museum</title>
+<meta name="description" content="Before the towers, pearls built the Gulf. A timeline of Gulf pearling, from a 7,000-year-old pearl to the last pearling fleet of 1949 and the founding of the National Bank of Dubai in 1963.">
+<link rel="canonical" href="history.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Emirates NBD Pearl Museum">
+<meta property="og:title" content="Our History | Emirates NBD Pearl Museum">
+<meta property="og:description" content="Before the towers, pearls built the Gulf. A timeline of Gulf pearling, from a 7,000-year-old pearl to the last pearling fleet of 1949 and the founding of the National Bank of Dubai in 1963.">
+<meta property="og:image" content="assets/og/history.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Our History | Emirates NBD Pearl Museum">
+<meta name="twitter:description" content="Before the towers, pearls built the Gulf. A timeline of Gulf pearling, from a 7,000-year-old pearl to the last pearling fleet of 1949 and the founding of the National Bank of Dubai in 1963.">
+<meta name="twitter:image" content="assets/og/history.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/og/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/og/apple-touch-icon.png">
+<meta name="theme-color" content="#05070b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3CradialGradient id='g' cx='.36' cy='.32' r='.75'%3E%3Cstop offset='0' stop-color='%23fffdf8'/%3E%3Cstop offset='.5' stop-color='%23e6dad0'/%3E%3Cstop offset='1' stop-color='%238f8590'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='12' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/history/h-ancient.jpg" media="(min-width:720px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/history/h-ancient-m.jpg" media="(max-width:719.98px)" fetchpriority="high">
+<link rel="stylesheet" href="kit/site.css">
+<link rel="stylesheet" href="kit/menu.css">
+<script src="kit/site.js"></script>
+<style>
+/* ================= HISTORY: page looks only (the kit covers everything shared) ================= */
+/* placeholder grounds, palette hints while a photo loads */
+#hero{--ph:radial-gradient(70% 60% at 70% 60%,#7d7a73 0%,#3e4247 45%,#14181d 100%)}
+#y1637{--ph:linear-gradient(180deg,#8fc0bd 0%,#3f8086 22%,#14474f 55%,#06191e 100%)}
+#y1924{--ph:linear-gradient(180deg,#efd9b6 0%,#cdb79a 40%,#3c5a5e 52%,#1d3438 100%)}
+#y1949{--ph:linear-gradient(180deg,#e9c69a 0%,#c69a72 36%,#5e5a5c 55%,#2b2f38 100%)}
+
+/* the light ages with the years: a grade per era, applied to the photographs only */
+.g-old img,.g-old video{filter:saturate(.8) sepia(.12) contrast(.97)}
+.g-warm img{filter:saturate(1.04) sepia(.06)}
+.g-dusk img,.g-dusk video{filter:sepia(.3) saturate(1.12) hue-rotate(-6deg) brightness(.92) contrast(1.03)}
+/* the reading grounds age too: cool ink, warm umber, dusk, then the modern Creek navy */
+.flow.era-cool{background:#05080c;--fb:#05080c;--fe:#05080c}
+.flow.era-warm{background:#0e0b08;--fb:#0e0b08;--fe:#0e0b08}
+.flow.era-dusk{background:#110c09;--fb:#110c09;--fe:#110c09}
+.flow.era-now{background:linear-gradient(180deg,#060a12 0%,#071226 100%);--fb:#060a12;--fe:#071226}
+.flow.era-paper{background:radial-gradient(120% 90% at 30% 30%,#f6f0e6 0%,#ede4d6 60%,#e4d9c8 100%);color:var(--umber);--fb:#efe6d8;--fe:#e4d9c8}
+/* a soft edge where reading meets a pinned scene: the photograph fades into the page instead of meeting a hard bar */
+.fx .flow.fe-top::before,.fx .flow.fe-bot::after{content:"";position:absolute;left:0;right:0;height:var(--feather,22vh);pointer-events:none}
+.fx .flow.fe-top::before{bottom:100%;background:linear-gradient(180deg,transparent 0%,var(--fb) 100%)}
+.fx .flow.fe-bot::after{top:100%;background:linear-gradient(0deg,transparent 0%,var(--fe) 100%)}
+.era-paper .line,.era-paper .prose,.era-paper .door,.era-paper .eyebrow{color:var(--umber);text-shadow:none}
+.era-paper .prose em{color:var(--umber)}
+.era-paper .door span{border-color:rgba(29,24,19,.45)}
+.era-paper .pull{border-color:var(--rose-ink)}
+.era-paper .pull p{color:var(--umber)}
+.era-paper .pull cite,.era-paper .figcap{color:var(--rose-ink)}
+.era-paper .figcap{color:var(--umber-2)}
+.era-paper .figcap b{color:var(--umber)}
+
+/* ================= THE YEAR NUMERAL: rolls like a counter as you scroll ================= */
+.yr{display:grid;gap:10px;justify-items:start;color:var(--pearl);font-variant-numeric:tabular-nums lining-nums}
+.yr__row{display:flex;align-items:baseline;gap:.22em;flex-wrap:wrap}
+.yr__n{display:inline-flex;font:400 clamp(64px,8.4vw,136px)/1 var(--f-display);letter-spacing:-.035em;white-space:nowrap}
+.yr__to{font:400 clamp(26px,2.8vw,44px)/1 var(--f-display);letter-spacing:-.02em;font-style:italic;color:var(--pearl-2)}
+.yr__h{font:500 clamp(13px,1vw,15px)/1 var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--pearl-2)}
+.yr__h:empty{display:none}
+.dg{display:inline-block;height:1em;overflow:hidden;line-height:1;margin-right:-.035em}
+.dg__s{display:block;will-change:transform}
+.dg__s span{display:block;height:1em;line-height:1;text-align:center}
+.dg--c{display:inline-block;margin-right:-.035em}
+.yr__n{font-variant-numeric:proportional-nums}
+.era-paper .yr{color:var(--umber)}
+.era-paper .yr__to,.era-paper .yr__h{color:var(--umber-2)}
+.yr--scene .yr__n{font-size:var(--num-fs);text-shadow:0 2px 24px rgba(0,0,0,.35)}
+.yr--scene .yr__h,.yr--scene .yr__to{text-shadow:var(--shadow-t)}
+
+/* ================= CHAPTERS: a sticky year column beside the reading ================= */
+.chap{display:grid;grid-template-columns:minmax(0,3.3fr) minmax(0,8.7fr);column-gap:clamp(24px,4vw,72px);align-items:start;max-width:1280px;margin:0;width:100%}
+.chap__yr{position:sticky;top:var(--top-safe);padding-bottom:24px}
+.chap__body{display:grid;gap:clamp(22px,3.6vh,40px);min-width:0}
+.chap__body > .line{max-width:18em}
+.chap .eyebrow{color:var(--rose)}
+.era-paper .chap .eyebrow{color:var(--rose-ink)}
+.split__text .line{max-width:16em}
+.sp-quote{margin:0}
+.fig{margin:0;min-width:0}
+.split__media picture{display:block;width:100%;height:100%}
+.split--right > .fig{order:2}
+.sp-quote p{font:400 clamp(22px,1.9vw,30px)/1.26 var(--f-display);letter-spacing:-.006em;color:var(--pearl);text-wrap:balance}
+.era-paper .sp-quote p{color:var(--umber)}
+.gallery figcaption i{font-style:italic;color:var(--pearl)}
+.gallery .obj{aspect-ratio:4/5}
+
+/* the end: promise and one action */
+.end{display:grid;gap:clamp(18px,3vh,28px);margin-top:clamp(28px,5vh,56px);padding-top:clamp(28px,5vh,56px);border-top:1px solid var(--line)}
+.end__row{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center}
+.facts .v small{display:block;margin-top:4px;font:400 14px/1.5 var(--f-ui);color:var(--pearl-3)}
+
+/* ================= SCENES ================= */
+.fx .scene .eyebrow{color:var(--pearl);text-shadow:0 1px 2px rgba(0,0,0,.6),0 0 14px rgba(0,0,0,.55)}
+.fx .scene .caption{color:var(--pearl);text-shadow:0 1px 2px rgba(0,0,0,.7),0 0 16px rgba(0,0,0,.7)}
+/* hero: the ancient pearl, cool and old */
+.fx #hero{--scrim:radial-gradient(56% 50% at 14% 34%,rgba(4,7,10,.72) 0%,rgba(4,7,10,.32) 60%,rgba(4,7,10,0) 100%),linear-gradient(90deg,rgba(4,7,10,.66) 0%,rgba(4,7,10,.3) 38%,rgba(4,7,10,0) 62%),linear-gradient(0deg,rgba(4,7,10,.5) 0%,transparent 24%),radial-gradient(36% 22% at 86% 100%,rgba(4,7,10,.7) 0%,rgba(4,7,10,0) 100%)}
+.hero__eyebrow{margin-bottom:clamp(14px,2.4vh,22px)}
+.hero__invite{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:clamp(24px,4vh,40px)}
+.hero__invite .s{font:400 13px/1.3 var(--f-ui);color:var(--pearl);text-shadow:var(--shadow-t)}
+.fx .hero__cue{display:flex;align-items:center;gap:10px}
+.hero__cue svg{width:14px;height:14px}
+.fx .hero__cue svg{animation:nudge 2.4s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+/* 1637 the diver: the same water as the home page, aged */
+.fx #y1637{--scrim:linear-gradient(180deg,rgba(2,10,14,.42) 0%,transparent 22%),radial-gradient(64% 70% at 14% 40%,rgba(2,10,14,.66) 0%,rgba(2,10,14,.3) 52%,transparent 82%),linear-gradient(0deg,rgba(2,10,14,.55) 0%,transparent 30%)}
+/* 1924 the harbour: one photograph with a slow scroll-driven drift and push, haze lifting and the sun warming */
+.fx #y1924{--scrim:radial-gradient(52% 40% at 18% 78%,rgba(10,8,6,.66) 0%,rgba(10,8,6,.34) 55%,transparent 100%),linear-gradient(0deg,rgba(10,8,6,.6) 0%,transparent 34%)}
+.hb-layer{position:absolute;inset:0}
+.hb-layer img{position:absolute;inset:-4%;width:108%;height:108%;max-width:none;object-fit:cover;object-position:50% 50%}
+.hb-haze{z-index:4;background:linear-gradient(180deg,rgba(255,232,196,.0) 0%,rgba(255,226,186,.38) 46%,rgba(250,224,190,.22) 62%,rgba(255,226,186,0) 80%)}
+.hb-sun{z-index:4;background:radial-gradient(30% 34% at 50% 26%,rgba(255,236,196,.6) 0%,rgba(255,212,150,.24) 40%,rgba(255,200,130,0) 74%);mix-blend-mode:screen}
+.scene .backing::before{left:-12%;right:-12%;top:-60%;bottom:-60%;background:radial-gradient(closest-side,rgba(16,10,6,.72) 0%,rgba(16,10,6,.52) 55%,rgba(16,10,6,.2) 82%,rgba(16,10,6,0) 100%)}
+/* 1949 the last fleet: the home page's fleet, graded toward dusk */
+.fx #y1949{--scrim:radial-gradient(66% 44% at 50% 12%,rgba(24,14,8,.72) 0%,rgba(24,14,8,.36) 56%,transparent 88%),linear-gradient(0deg,rgba(14,8,4,.6) 0%,transparent 30%)}
+.dusk{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;background:linear-gradient(180deg,rgba(60,30,40,.5) 0%,rgba(120,60,30,.22) 40%,rgba(20,12,16,.55) 100%)}
+
+/* ================= THE TIMELINE RAIL (wide screens): where you are in the years ================= */
+.rail{position:fixed;right:clamp(14px,1.6vw,28px);top:50%;transform:translateY(-50%);z-index:50;opacity:0;visibility:hidden;transition:opacity .5s,visibility 0s linear .5s}
+.rail.is-on{opacity:1;visibility:visible;transition:opacity .5s}
+.rail::before{content:"";position:absolute;inset:-14px -12px -14px -18px;z-index:-1;border-radius:16px;background:rgba(5,7,11,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 0 0 1px rgba(244,238,230,.08)}
+.theme-light .rail::before{background:rgba(244,238,228,.86);box-shadow:0 0 0 1px rgba(29,24,19,.08)}
+.rail ol{list-style:none;margin:0;padding:0;display:grid;gap:4px;position:relative}
+.rail ol::before{content:"";position:absolute;right:4px;top:12px;bottom:12px;width:1px;background:rgba(244,238,230,.3)}
+.rail a{display:flex;align-items:center;justify-content:flex-end;gap:10px;min-height:24px;padding:2px 0;color:var(--pearl-2);text-decoration:none;font:500 11px/1 var(--f-ui);letter-spacing:.08em;text-shadow:0 1px 2px rgba(0,0,0,.55),0 0 10px rgba(0,0,0,.45)}
+.rail a i{flex:none;width:9px;height:9px;border-radius:50%;border:1px solid rgba(244,238,230,.7);background:rgba(5,7,11,.6);position:relative;z-index:1;transition:background .3s,transform .3s}
+.rail a span{transition:color .3s}
+.rail a[aria-current="true"] span,.rail a:hover span,.rail a:focus-visible span{color:var(--pearl)}
+.theme-light .rail a[aria-current="true"] span{color:var(--umber)}
+.rail a[aria-current="true"] i{background:var(--pearl);transform:scale(1.2)}
+.rail a:focus-visible{border-radius:4px}
+.theme-light .rail a{color:var(--umber);text-shadow:none}
+.theme-light .rail a i{border-color:rgba(29,24,19,.6);background:#efe7da}
+.theme-light .rail a[aria-current="true"] i{background:var(--umber)}
+.theme-light .rail ol::before{background:rgba(29,24,19,.3)}
+@media (max-width:1099.98px){.rail{display:none}}
+@media (min-width:1100px){.flow{padding-right:calc(var(--gut) + 104px)}}
+
+/* over the reading sections the header gets a calm solid ground, so copy never runs under the lock-up */
+.top::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .35s;background:rgba(5,7,11,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(244,238,230,.08)}
+.hdr-solid .top::after{opacity:1}
+.theme-light.hdr-solid .top::after{background:rgba(244,238,228,.92);box-shadow:0 1px 0 rgba(29,24,19,.1)}
+
+/* scenes are revealed as the reading above them lifts away (history-only stage visibility, see the page script) */
+.fx .stage.is-peek{opacity:1}
+.fx .stage.is-gone{visibility:hidden}
+
+/* ================= REDUCED MOTION AND NO JS: scenes become ordinary full-height frames ================= */
+html:not(.fx) .yr--scene{margin-bottom:8px}
+html:not(.fx) .hb-haze,html:not(.fx) .hb-sun{display:none}
+html:not(.fx) .hero__cue{display:none}
+html:not(.fx) .scene .stage .scrim{background:linear-gradient(0deg,rgba(4,6,10,.88) 0%,rgba(4,6,10,.6) 45%,rgba(4,6,10,.2) 75%,rgba(4,6,10,.42) 100%)}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:999.98px){
+  .chap{grid-template-columns:minmax(0,1fr)}
+  .chap__yr{position:relative;top:auto;padding-bottom:clamp(8px,2vh,16px)}
+}
+@media (max-width:719.98px){
+  .yr__n{font-size:clamp(58px,17vw,84px)}
+  .yr__to{font-size:clamp(22px,6vw,30px)}
+  .fx #hero{--scrim:linear-gradient(0deg,rgba(4,7,10,.86) 0%,rgba(4,7,10,.62) 30%,rgba(4,7,10,.24) 50%,transparent 62%)}
+  .fx #y1637{--scrim:linear-gradient(180deg,rgba(2,10,14,.78) 0%,rgba(2,10,14,.5) 34%,transparent 56%),linear-gradient(0deg,rgba(2,10,14,.7) 0%,transparent 34%)}
+  .fx #y1924{--scrim:linear-gradient(0deg,rgba(14,8,4,.84) 0%,rgba(14,8,4,.6) 32%,rgba(14,8,4,.2) 52%,transparent 64%)}
+  .fx #y1949{--scrim:linear-gradient(180deg,rgba(24,14,8,.78) 0%,rgba(24,14,8,.5) 32%,transparent 54%),linear-gradient(0deg,rgba(14,8,4,.66) 0%,transparent 30%)}
+  .fx .hero__cue{display:none}
+  .split__media.engr{--ar:4/5;--op:50% 72%}
+  .split--right > .fig{order:0}
+  .gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .gallery li:last-child:nth-child(odd){grid-column:1 / -1}
+  .gallery li:last-child:nth-child(odd) .obj{aspect-ratio:16/10}
+}
+@media (max-height:640px){
+  .yr__n{font-size:clamp(52px,min(8vw,14vh),110px)}
+  .hero__invite{margin-top:14px}
+  .fx .hero__cue{display:none}
+}
+@media (max-width:719.98px) and (max-height:640px){
+}
+@media (prefers-reduced-motion:reduce){.fx .hero__cue svg{animation:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#story">Skip to the story</a>
+
+<header class="top">
+  <a class="mark" href="index.html" aria-label="Emirates NBD Pearl Museum, home">
+    <img class="mark__logo mark__logo--w" src="kit/logo-enbd-white.svg" alt="" width="110" height="30">
+    <img class="mark__logo mark__logo--c" src="kit/logo-enbd-navy.svg" alt="" width="110" height="30">
+    <span class="mark__div" aria-hidden="true"></span><span class="mark__t" aria-hidden="true">Pearl Museum</span>
+  </a>
+  <div class="top__end">
+    <button class="tgl" id="soundTgl" type="button" aria-pressed="false" aria-label="Sound">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path class="w" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/><path class="x" d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+      <span class="lbl" aria-hidden="true" id="soundState">Sound off</span>
+    </button>
+    <!-- kit/menu.js adds the Menu button here -->
+  </div>
+</header>
+
+<nav class="rail" id="rail" aria-label="Timeline">
+  <ol>
+    <li><a href="#y7000" data-ch="y7000"><span>7,000 years ago</span><i aria-hidden="true"></i></a></li>
+    <li><a href="#y1637" data-ch="y1637"><span>1637</span><i aria-hidden="true"></i></a></li>
+    <li><a href="#y1681" data-ch="y1681"><span>1681</span><i aria-hidden="true"></i></a></li>
+    <li><a href="#y1924" data-ch="y1924"><span>1924</span><i aria-hidden="true"></i></a></li>
+    <li><a href="#music" data-ch="music"><span>1926 to 1957</span><i aria-hidden="true"></i></a></li>
+    <li><a href="#y1926" data-ch="y1926"><span>1926</span><i aria-hidden="true"></i></a></li>
+    <li><a href="#y1949" data-ch="y1949"><span>1949</span><i aria-hidden="true"></i></a></li>
+    <li><a href="#y1963" data-ch="y1963"><span>1963</span><i aria-hidden="true"></i></a></li>
+  </ol>
+</nav>
+
+<main id="story">
+
+  <!-- HERO. The governing idea, then the museum's own proof. The oldest pearl, cool and old light. -->
+  <section class="scene scrim--copy-low" id="hero" style="--span:300" data-enter="0" aria-labelledby="heroh">
+    <div class="stage">
+      <div class="frame" data-ph="history/h-ancient.jpg">
+        <div class="plane plane--bg">
+          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/history/h-ancient-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/history/h-ancient.jpg" width="2560" height="1440" decoding="async" fetchpriority="high" alt="A small, very old pearl, dulled and flaked with age, rests in a hollow of pale sand beside a curved shard of ancient painted pottery."></picture>
+        </div>
+        <div class="scrim"></div>
+      </div>
+      <div class="beat copy ln copy--low-left" data-cue="-1 .28">
+        <p class="eyebrow hero__eyebrow">Our History</p>
+        <h1 class="line" id="heroh">Before the towers, pearls built the <em>Gulf</em>.</h1>
+        <div class="hero__invite">
+          <button class="pill" type="button" data-sound-toggle aria-pressed="false" data-fp="0">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+            <span data-sound-label>Turn on sound</span>
+          </button>
+          <span class="s">Best with headphones</span>
+        </div>
+      </div>
+      <p class="beat ln copy--low-left line" data-cue=".28 .48">Pearling was the foundation on which most of the big merchant dynasties of the Gulf built their <em>fortunes</em>.</p>
+      <p class="beat ln copy--low-left line" data-cue=".48 9">Take a trip back through <em>time</em>.</p>
+      <p class="beat caption hint--base hero__cue" data-cue="-1 .2" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>Scroll</p>
+      <p class="beat caption cap--base" data-cue="-1 9">An ancient pearl and a pottery shard, reimagined</p>
+    </div>
+  </section>
+
+  <!-- ABOUT 7,000 YEARS AGO. A place to slow down: the oldest known Gulf pearl. -->
+  <section class="flow era-cool fe-top fe-bot" id="y7000" aria-labelledby="y7000h">
+    <div class="chap">
+      <div class="chap__yr">
+        <div class="yr" data-to="7000" data-from="0" data-comma="1" aria-hidden="true"><div class="yr__row"><span class="yr__n">7,000</span></div><span class="yr__h">Years ago</span></div>
+      </div>
+      <div class="chap__body" data-reveal>
+        <p class="eyebrow"><span class="sr-only">About 7,000 years ago. </span>The oldest known Gulf pearl</p>
+        <h2 class="line" id="y7000h">It begins with one small <em>pearl</em>.</h2>
+        <div class="prose">
+          <p>The oldest known Gulf pearl, found by archaeologists in Kuwait, is 7,000 years old.</p>
+          <p>Some of the best natural pearls in the world came from the oysters living in the warm, shallow waters of the Gulf.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1637 / 1046H, PEARL DIVERS. Signature moment one: the locked diver from the home page, scrubbed by scroll. -->
+  <section class="scene scene--num scrim--copy-low" id="y1637" style="--span:300" data-enter="0" aria-labelledby="y1637h">
+    <div class="stage">
+      <div class="frame g-old" data-ph="s4-plunge.mp4 (+ -poster.jpg, s4-plunge.jpg)">
+        <div class="plane plane--bg">
+          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s4-plunge-m-poster.jpg" data-next="assets/s4-plunge-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/s4-plunge-poster.jpg" data-alt="assets/s4-plunge.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="A pearl diver in a plain cotton suit sinks feet-first down a rope weighted with a stone, sunlight streaming through the water above him."></picture>
+          <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/s4-plunge.mp4" data-src-m="assets/s4-plunge-m.mp4"></video>
+        </div>
+        <div class="scrim"></div>
+      </div>
+      <div class="beat yr yr--scene num--base" data-cue="0 .6" data-to="1637" data-from="1000" data-roll="-.3 .02" aria-hidden="true"><div class="yr__row"><span class="yr__n">1637</span></div><span class="yr__h">1046H</span></div>
+      <div class="beat copy ln copy--low-left copy--m-high" data-cue=".05 .27">
+        <div class="backing"><p class="eyebrow">Pearl divers</p>
+        <h2 class="line" id="y1637h"><span class="sr-only">1637, 1046H. </span>During certain times of the season divers also wore cotton suits (<em>libis</em>) to protect them from jelly fish stings.</h2></div>
+      </div>
+      <p class="beat ln copy--low-left copy--m-high line" data-cue=".27 .47">Attacks from sharks and sawfish also happened from time to <em>time</em>.</p>
+      <p class="beat ln copy--low-left copy--m-high line" data-cue=".47 9">The life of a diver was often short and <em>harsh</em>.</p>
+    </div>
+  </section>
+
+  <!-- 1637 / 1046H, LIFE ON BOARD. Reading: the opened shell beside the museum's line, then the crew. -->
+  <section class="flow era-cool fe-top" id="y1637b" aria-labelledby="y1637bh">
+    <div class="chap">
+      <div class="chap__yr">
+        <div class="yr" data-to="1637" data-from="1637" aria-hidden="true"><div class="yr__row"><span class="yr__n">1637</span></div><span class="yr__h">1046H</span></div>
+      </div>
+      <div class="chap__body">
+        <div class="split split--right">
+          <figure class="fig" data-reveal><div class="split__media g-old" style="--ar:4/5;--op:66% 50%"><img src="assets/history/h-shells.jpg" width="1600" height="900" decoding="async" loading="lazy" alt="At dawn on the dhow's deck, a diver's weathered hands open an oyster with a small knife, revealing a pearl inside."></div></figure>
+          <div class="split__text" data-reveal data-reveal-delay="1">
+            <p class="eyebrow"><span class="sr-only">1637, 1046H. </span>Life on board</p>
+            <h2 class="line" id="y1637bh">The crew opening the oyster shells the following <em>day</em>.</h2>
+            <div class="prose"><p>Nobody dived alone. Every shell passed through many hands before its pearl was found.</p></div>
+          </div>
+        </div>
+        <ul class="gallery g-old" id="crew" style="--cell:200px" aria-label="The crew">
+          <li data-reveal><figure><div class="obj" style="--op:72% 45%"><img src="assets/history/h-crew-captain.jpg" width="1000" height="562" loading="lazy" decoding="async" alt="The captain stands at the stern of the pearling dhow at dawn, his hand on the tiller."></div><figcaption><b><i>Nakhuda</i>, the captain</b>At the stern, by the tiller</figcaption></figure></li>
+          <li data-reveal data-reveal-delay="1"><figure><div class="obj" style="--op:45% 45%"><img src="assets/history/h-crew-haulers.jpg" width="1000" height="562" loading="lazy" decoding="async" alt="Two haulers lean back on the rope that runs over the side to the sea."></div><figcaption><b><i>Saib</i>, the haulers</b>They pulled the divers back up</figcaption></figure></li>
+          <li data-reveal data-reveal-delay="2"><figure><div class="obj" style="--op:55% 40%"><img src="assets/history/h-crew-diver.jpg" width="1000" height="562" loading="lazy" decoding="async" alt="At the bow the diver fits his nose clip and takes one deep breath, his rope and stone ready."></div><figcaption><b><i>Ghais</i>, the diver</b>One rope, one stone, one breath</figcaption></figure></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1681 / 1092H, PEARLING IN THE GULF. The paper section: Al-Biruni, the engraving, the reach of the trade. -->
+  <section class="flow era-paper fe-bot" id="y1681" aria-labelledby="y1681h" data-light>
+    <div class="chap">
+      <div class="chap__yr">
+        <div class="yr" data-to="1681" data-from="1637" aria-hidden="true"><div class="yr__row"><span class="yr__n">1681</span></div><span class="yr__h">1092H</span></div>
+      </div>
+      <div class="chap__body">
+        <p class="eyebrow" data-reveal><span class="sr-only">1681, 1092H. </span>Pearling in the Gulf</p>
+        <h2 class="sr-only" id="y1681h">Pearling in the Gulf</h2>
+        <blockquote class="pull" data-reveal><p>“The desire for pearls is a thing which is found in all <em>nations</em>.”</p><cite>Abu Rian Al-Biruni, Persian Scholar</cite></blockquote>
+        <div class="split">
+          <figure class="fig" data-reveal><div class="split__media engr" style="--ar:3/2;--op:72% 50%"><picture><source media="(max-width:719.98px)" srcset="assets/history/h-engraving-m.jpg" width="1080" height="1920"><img src="assets/history/h-engraving-1600.jpg" width="1600" height="900" decoding="async" loading="lazy" alt="An antique-style engraving of an opened pearl oyster shell, its scaly outer valve finely hatched and a single pearl resting in the smooth inner valve."></picture></div><figcaption class="figcap"><b>The oyster shell <i lang="la">Pinctada margaritifera</i>,</b> after the drawing in a treatise published by F. Bonnani in Rome. Reimagined.</figcaption></figure>
+          <div class="split__text" data-reveal data-reveal-delay="1">
+            <div class="prose">
+              <p>Some of the best natural pearls in the world came from the oysters living in the warm, shallow waters of the Gulf.</p>
+              <p>Pearls came to represent wealth and power from the shores of India to the Mediterranean and beyond.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1924 / 1342H, PEARLING DHOWS. Signature moment two: one coherent photograph of the harbour, a slow drift and push across the whole frame. -->
+  <section class="scene scene--num scrim--copy-low" id="y1924" style="--span:280" data-enter="0" aria-labelledby="y1924h">
+    <div class="stage">
+      <div class="frame g-warm" data-ph="history/h-harbour.jpg">
+        <!-- ONE coherent photograph, moved honestly: a slow drift and push across the whole frame (no cut-outs, no video) -->
+        <div class="hb-layer" data-kf='{"0":{"x":.9,"scale":1.045},"1":{"x":-.9,"y":-.4,"scale":1}}' data-kf-m='{"0":{"scale":1.08,"y":.8},"1":{"scale":1,"y":-.4}}' data-rm-at="1">
+          <picture><source media="(max-width:719.98px)" srcset="assets/history/h-harbour-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/history/h-harbour.jpg" width="2560" height="1440" decoding="async" loading="lazy" alt="Dawn in a Gulf harbour in the 1920s: wooden pearling dhows at anchor in calm shallows while crews load jars and rope, and three men stand in the water steadying a small boat, smoke rising from cooking fires on the shore."></picture>
+        </div>
+        <div class="hb-layer hb-haze fx-layer" aria-hidden="true" data-kf='{"0":{"opacity":.7,"y":1.5},"1":{"opacity":.1,"y":-3}}'></div>
+        <div class="hb-layer hb-sun fx-layer" aria-hidden="true" data-kf='{"0":{"opacity":.25},"0.7":{"opacity":.7},"1":{"opacity":.8}}'></div>
+        <div class="scrim"></div>
+      </div>
+      <div class="beat yr yr--scene num--base" data-cue="0 .57" data-to="1924" data-from="1681" data-roll="-.3 .02" aria-hidden="true"><div class="yr__row"><span class="yr__n">1924</span></div><span class="yr__h">1342H</span></div>
+      <div class="beat copy ln copy--low-left" data-cue=".08 9">
+        <div class="backing"><p class="eyebrow">Pearling dhows</p>
+        <h2 class="line" id="y1924h"><span class="sr-only">1924, 1342H. </span>“Dhows in harbors at the start of the pearling <em>season</em>.”</h2></div>
+      </div>
+      <p class="beat caption cap--base" data-cue=".08 9">A Gulf harbour in the 1920s, reimagined</p>
+    </div>
+  </section>
+
+  <!-- 1926 TO 1957 / 1344 TO 1376H, THE FLOATING ACADEMY OF MUSIC. Anchor #music. The deck rhythm plays if sound is on. -->
+  <section class="flow era-warm fe-top flow--flush-bottom" id="music" aria-labelledby="musich">
+    <div class="chap">
+      <div class="chap__yr">
+        <div class="yr" data-to="1926" data-from="1924" aria-hidden="true"><div class="yr__row"><span class="yr__n">1926</span><span class="yr__to">to 1957</span></div><span class="yr__h">1344 to 1376H</span></div>
+      </div>
+      <div class="chap__body">
+        <p class="eyebrow" data-reveal><span class="sr-only">1926 to 1957, 1344 to 1376H. </span>The floating academy of music</p>
+        <h2 class="line" id="musich" data-reveal>Every task had its <em>song</em>.</h2>
+        <figure class="loop" data-reveal>
+          <div class="loop__frame" style="--ar:16/9;--op:60% 40%">
+            <video src="assets/history/h-singer-loop.mp4" data-src-m="assets/history/h-singer-loop-m.mp4" poster="assets/history/h-singer-loop-poster.jpg" data-poster-m="assets/history/h-singer-loop-m-poster.jpg" muted loop playsinline preload="metadata" aria-label="Midships on a pearling dhow, the singer leads the chant and claps the rhythm while two haulers lean back on the rope behind him."></video>
+            <button class="loop__ctl" type="button" aria-pressed="false"><svg class="i-pause" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><rect x="2" y="1.5" width="2.6" height="9" rx=".6"/><rect x="7.4" y="1.5" width="2.6" height="9" rx=".6"/></svg><svg class="i-play" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.6v8.8L10.4 6z"/></svg><span class="t">Pause</span></button>
+          </div>
+          <figcaption class="figcap">The singer at work on deck, reimagined</figcaption>
+        </figure>
+        <div class="ed">
+          <div class="prose" data-reveal><p>Music on board [was] particularly important, as their only entertainment was a diverse display of chants, songs, drumming and clapping that kept up their spirits and strengths.</p></div>
+          <blockquote class="pull" data-reveal><p>“Everything on board the dhow was done to the accompaniment of singing, stamping, and hand-<em>clapping</em>.”</p></blockquote>
+          <p data-reveal><button class="pill" type="button" data-sound-toggle aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg><span data-sound-label>Turn on sound</span></button> <span class="sr-only">to hear the deck rhythm</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1926 / 1344H, PEARL MERCHANTS. The antithesis of the diving dhow: warmth, rugs, cushions. -->
+  <section class="flow era-warm fe-bot flow--own-top" id="y1926" aria-labelledby="y1926h">
+    <div class="chap">
+      <div class="chap__yr">
+        <div class="yr" data-to="1926" data-from="1926" aria-hidden="true"><div class="yr__row"><span class="yr__n">1926</span></div><span class="yr__h">1344H</span></div>
+      </div>
+      <div class="chap__body">
+        <div class="split split--right">
+          <figure class="fig" data-reveal><div class="split__media g-warm" style="--ar:4/5;--op:70% 60%"><picture><source media="(max-width:719.98px)" srcset="assets/history/h-launch-m.jpg" width="1080" height="1920"><img src="assets/history/h-launch-1600.jpg" width="1600" height="900" decoding="async" loading="lazy" alt="Inside a pearl merchant's launch under a canvas awning: Persian rugs and cushions, and on a red cloth, heaps of pearls sorted by size beside a small brass balance."></picture></div><figcaption class="figcap">A merchant's launch, reimagined</figcaption></figure>
+          <div class="split__text" data-reveal data-reveal-delay="1">
+            <p class="eyebrow"><span class="sr-only">1926, 1344H. </span>Pearl merchants</p>
+            <h2 class="line" id="y1926h">The pearl merchant's launch was the antithesis of the diving <em>dhow</em>.</h2>
+            <div class="prose"><p>It was carpeted with Persian rugs and provided with cushions.</p></div>
+            <p class="door-wrap"><a class="door" href="merchants.html"><span>Where the pearls went next</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1949 / 1368H, THE END OF AN ERA. Signature moment three: the home page's fleet, graded toward dusk. -->
+  <section class="scene scene--num scrim--copy-low" id="y1949" style="--span:280" data-enter="0" aria-labelledby="y1949h">
+    <div class="stage">
+      <div class="frame g-dusk" data-ph="s2-fleet.mp4 (+ -poster.jpg, s2-fleet.jpg)">
+        <div class="plane plane--bg">
+          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s2-fleet-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/s2-fleet-poster.jpg" data-alt="assets/s2-fleet.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="A fleet of wooden pearling dhows at anchor on a calm, hazy Gulf, the low sun on the horizon."></picture>
+          <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/s2-fleet.mp4" data-m="still"></video>
+        </div>
+        <div class="dusk fx-layer" aria-hidden="true"></div>
+        <div class="scrim"></div>
+      </div>
+      <div class="beat yr yr--scene num--base" data-cue="0 .57" data-to="1949" data-from="1926" data-roll="-.3 .02" aria-hidden="true"><div class="yr__row"><span class="yr__n">1949</span></div><span class="yr__h">1368H</span></div>
+      <div class="beat copy ln copy--low-left copy--m-high" data-cue=".06 .34">
+        <div class="backing"><p class="eyebrow">The end of an era</p>
+        <h2 class="line" id="y1949h"><span class="sr-only">1949, 1368H. </span>The last pearling fleet of any size put into <em>Dubai</em>.</h2></div>
+      </div>
+      <p class="beat ln copy--low-left copy--m-high line backing" data-cue=".34 9">By then, cultured pearls were reaching the world's markets, and the old trade was <em>fading</em>.</p>
+      <p class="beat caption cap--base" data-cue=".06 9">The Gulf, 1949</p>
+    </div>
+  </section>
+
+  <!-- 1963. The keeper and the promise: the charter, the HQ on the Creek, one action. -->
+  <section class="flow era-now fe-top" id="y1963" aria-labelledby="y1963h">
+    <div class="chap">
+      <div class="chap__yr">
+        <div class="yr" data-to="1963" data-from="1949" aria-hidden="true"><div class="yr__row"><span class="yr__n">1963</span></div><span class="yr__h">1383H</span></div>
+      </div>
+      <div class="chap__body">
+        <p class="eyebrow" data-reveal><span class="sr-only">1963, 1383H. </span>A new chapter on the Creek</p>
+        <h2 class="line" id="y1963h" data-reveal>From dhows to divers. A story that began in <em>1963</em>.</h2>
+        <!-- 1967 photo: Getty Images 2217282673 (Chris Ware, Keystone Features, Hulton Archive). This is Getty's watermarked preview:
+             license it from Getty and replace the file with the licensed one before this page goes live. -->
+        <figure class="fig" data-reveal><div class="split__media" style="--ar:3/2;--op:50% 50%"><picture><img src="assets/history/h-nbd-1967-comp.jpg" width="1600" height="1068" decoding="async" loading="lazy" alt="Black and white photograph, 1967: the National Bank of Dubai's white single-storey branch on the bank of Dubai Creek, its name in Arabic and English across the front, with abra boats full of passengers at the steps in front of it."></picture></div><figcaption class="figcap"><b>The National Bank of Dubai,</b> on Dubai Creek, 1967. Photo: Chris Ware, Keystone Features, Hulton Archive, Getty Images</figcaption></figure>
+        <div class="prose" data-reveal>
+          <p>Emirates NBD’s story began on 19 June 1963, when the late Sheikh Rashid bin Saeed Al Maktoum signed the Charter of Incorporation of the National Bank of Dubai (NBD), the first national bank established in Dubai and the United Arab Emirates (UAE).</p>
+          <p>Sultan Ali Al-Owais, the son of a pearl merchant, became a founder of the UAE’s first national bank. He kept the pearls, so that we may understand and respect a way of life now lost.</p>
+        </div>
+        <ul class="facts" data-reveal aria-label="The bank on the Creek">
+          <li><span class="k">19 June 1963</span><span class="v">The Charter of Incorporation of the National Bank of Dubai is signed</span></li>
+          <li><span class="k">06 March 2007</span><span class="v">NBD merges with Emirates Bank International to form Emirates NBD</span></li>
+          <li><span class="k">Today</span><span class="v">The Emirates NBD Pearl Museum, at the HQ on Dubai Creek</span></li>
+        </ul>
+        <div class="end" data-reveal>
+          <p class="line">His wish: to display them “as a reminder of a way of life now lost <em>forever</em>.”</p>
+          <div class="end__row">
+            <a class="pill pill--solid" href="visit.html"><span>Plan your visit</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="door" href="visit.html#request"><span>Bringing a class?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="door" href="collection.html"><span>See the collection</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="door" href="about.html"><span>Sultan Ali Al-Owais</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <ul class="foot__nav" aria-label="Pages">
+    <li><a href="index.html">Home</a></li><li><a href="about.html">Sultan Ali Al-Owais</a></li><li><a href="history.html" aria-current="page">Our History</a></li><li><a href="collection.html">The Collection</a></li><li><a href="merchants.html">Captains and Merchants</a></li><li><a href="coinage.html">Coinage</a></li><li><a href="visit.html">Visit Us</a></li>
+  </ul>
+  <p>Emirates NBD Pearl Museum, Emirates NBD HQ, Dubai Creek, Deira. By appointment.</p>
+</footer>
+
+<script>
+(() => {
+'use strict';
+const { $, $$, clamp, lerp, sm, FX, RM } = PM;
+
+/* ---- scene choreography: positions in scene progress, 0 to 1 ---- */
+PM.timeline('hero', (gsap, T) => T().fromTo('#hero .plane--bg', { scale: 1.07, xPercent: -1 }, { scale: 1, xPercent: 0, ease: 'power1.out' }, 0));
+PM.timeline('y1949', (gsap, T) => T().fromTo('#y1949 .dusk', { opacity: 0 }, { opacity: 1, duration: .45, ease: 'power1.in' }, .18));
+
+/* ---- the music loop: a lighter file and poster on phones ---- */
+{ const v = $('#music video'); if (v && PM.mobile) { v.poster = v.dataset.posterM; v.src = v.dataset.srcM; } }
+
+/* ---- the year numeral: a counter whose digits roll with the scroll ---- */
+// each digit's natural width in the numeral face, so a rolled year sets like a typeset one
+let DW = [];
+const measureDW = () => {
+  const probe = document.createElement('span'); probe.className = 'yr__n'; probe.style.cssText = 'position:absolute;visibility:hidden;left:-9999px;font-size:100px;letter-spacing:0';
+  document.body.appendChild(probe); const w = [];
+  for (let k = 0; k < 10; k++) { probe.textContent = String(k); w[k] = probe.getBoundingClientRect().width / 100; }
+  probe.remove(); DW = w;
+};
+measureDW();
+const YR = $$('.yr').map(el => {
+  const n = $('.yr__n', el), to = +el.dataset.to, from = el.dataset.from != null ? +el.dataset.from : to;
+  const Y = { el, n, to, from, comma: !!el.dataset.comma, scene: el.closest('.scene'), cols: [], v: -1 };
+  if (el.dataset.roll) { const r = el.dataset.roll.split(' ').map(Number); Y.a = r[0]; Y.b = r[1]; }
+  if (!FX || from === to) return Y; // reduced motion and no-op rolls keep the plain text
+  const digits = String(to).length, fin = String(to).padStart(digits, '0');
+  n.textContent = '';
+  for (let i = digits - 1; i >= 0; i--) {
+    if (Y.comma && i === 2) { const c = document.createElement('span'); c.className = 'dg--c'; c.textContent = ','; n.appendChild(c); }
+    const d = document.createElement('span'); d.className = 'dg';
+    const s = document.createElement('span'); s.className = 'dg__s';
+    for (let k = 0; k <= 10; k++) { const c = document.createElement('span'); c.textContent = k % 10; s.appendChild(c); }
+    d.appendChild(s); n.appendChild(d); Y.cols.push({ s, d, f: +fin[digits - 1 - i], p: Math.pow(10, i), last: '' });
+  }
+  return Y;
+});
+const sizeCols = () => YR.forEach(Y => Y.cols.forEach(c => { c.d.style.width = DW[c.f].toFixed(3) + 'em'; }));
+sizeCols();
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { measureDW(); sizeCols(); });
+function setYear(Y, v) {
+  if (!Y.cols.length) return;
+  v = Math.max(0, v); if (v === Y.v || (Math.abs(v - Y.v) < .002 && v !== Y.to && v !== Y.from)) return; Y.v = v;
+  for (const c of Y.cols) {
+    // odometer: the ones turn continuously; each higher digit turns only during the last unit before it rolls over
+    const whole = Math.floor(v / c.p) % 10, rem = v % c.p, carry = c.p === 1 ? v % 1 : Math.max(0, rem - (c.p - 1));
+    const pos = c.p === 1 ? (Math.floor(v) % 10) + (v % 1) : whole + carry;
+    const t = `translate3d(0,${(-pos).toFixed(3)}em,0)`;
+    if (t !== c.last) { c.last = t; c.s.style.transform = t; }
+  }
+}
+const easeOut = t => 1 - Math.pow(1 - t, 3);
+// the roll is short and scroll-linked; the moment scrolling pauses, a rolled year eases onto its real value,
+// so a pause or a screenshot always shows a real year (it only rolls back if you scroll back above its start)
+let lastScroll = 0; addEventListener('scroll', () => { lastScroll = performance.now(); }, { passive: true });
+function updateYears(vh) {
+  const idle = performance.now() - lastScroll > 140;
+  for (const Y of YR) {
+    if (!Y.cols.length) continue;
+    let t;
+    if (Y.scene) t = sm(Y.a, Y.b, PM.P(Y.scene.id));
+    else { const r = Y.el.getBoundingClientRect(); if (r.bottom < -vh || r.top > vh * 2) continue; t = clamp((vh * .98 - r.top) / (vh * .2)); }
+    if (t <= 0) { Y.done = false; setYear(Y, Y.from); continue; }
+    if (t >= 1) Y.done = true;
+    if (Y.done) { if (Y.v !== Y.to) { const v = Y.v + (Y.to - Y.v) * .22; setYear(Y, Math.abs(Y.to - v) < .02 ? Y.to : v); } continue; }
+    if (idle) { Y.done = true; continue; }
+    setYear(Y, lerp(Y.from, Y.to, easeOut(t)));
+  }
+}
+
+/* ---- scenes between reading sections: shown while their own scroll is on screen (the reading above lifts off them) ---- */
+const STAGES = $$('.scene').map(el => ({ el, stage: $('.stage', el), peek: null }));
+function updatePeek(vh) {
+  for (const s of STAGES) {
+    const r = s.el.getBoundingClientRect(), on = r.top < vh && r.bottom > 0;
+    if (on !== s.peek) { s.peek = on; s.stage.classList.toggle('is-peek', on); s.stage.classList.toggle('is-gone', !on); }
+  }
+}
+
+/* ---- the header and the rail turn dark over the paper section ---- */
+const FLOWS = $$('.flow,.foot'), HDR = 72, LIGHT = $$('[data-light]'), rail = $('#rail'), railLinks = $$('#rail a'), CH = railLinks.map(a => document.getElementById(a.dataset.ch));
+let curLast = '', railOn = null;
+function updateChrome(vh) {
+  let light = PM.k != null && PM.scenes && PM.scenes[PM.k] && PM.scenes[PM.k].el.dataset.theme === 'light';
+  for (const el of LIGHT) { const r = el.getBoundingClientRect(); if (r.top <= 56 && r.bottom > 56) light = true; }
+  document.documentElement.classList.toggle('theme-light', light);
+  let solid = false; for (const el of FLOWS) { const r = el.getBoundingClientRect(); if (r.top <= HDR && r.bottom > 0) { solid = true; break; } }
+  document.documentElement.classList.toggle('hdr-solid', solid);
+  // rail: on from the first chapter, the current chapter is the last one whose top has passed the middle of the screen
+  const first = CH[0].getBoundingClientRect().top, on = first < vh * .7;
+  if (on !== railOn) { railOn = on; rail.classList.toggle('is-on', on); }
+  let cur = ''; CH.forEach((el, i) => { if (el.getBoundingClientRect().top < vh * .5) cur = railLinks[i].dataset.ch; });
+  if (cur !== curLast) { curLast = cur; railLinks.forEach(a => { if (a.dataset.ch === cur) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); }); }
+}
+
+let vh = innerHeight;
+PM.onMeasure(() => { vh = innerHeight; });
+PM.onFrame(() => { if (FX) { updatePeek(vh); updateYears(vh); } updateChrome(vh); });
+if (!FX) addEventListener('scroll', () => updateChrome(vh), { passive: true });
+
+/* ---- rail links: a pinned scene's anchor lands where its copy has arrived ---- */
+railLinks.forEach(a => a.addEventListener('click', e => {
+  const el = document.getElementById(a.dataset.ch); if (!el) return;
+  e.preventDefault();
+  const sc = el.classList.contains('scene') && PM.SI && PM.SI[el.id];
+  const y = sc ? sc.top + sc.len * .3 : el.getBoundingClientRect().top + scrollY;
+  scrollTo({ top: y, behavior: RM ? 'auto' : 'smooth' });
+  history.replaceState(null, '', '#' + el.id);
+}));
+
+/* ---- sound: off until opted in; beds and the deck rhythm follow the years ---- */
+PM.sound.stems({
+  'music-drone-bed':   ['music', 40, -8, 1],
+  'amb-underwater':    ['under', 28, -3, 2],
+  'amb-open-sea':      ['bed', 28, -2, 3],
+  'music-deck-rhythm': ['music', 33.568, -5, 4, 1],
+  'music-oud-sparse':  ['music', 39, -7, 5],
+  'amb-creek-1949':    ['bed', 28, -2, 6],
+  'amb-creek-today':   ['bed', 28, -5, 7]
+});
+const vis = id => { const el = document.getElementById(id); if (!el) return 0; const r = el.getBoundingClientRect(); return clamp((Math.min(r.bottom, vh) - Math.max(r.top, 0)) / vh); };
+const inScene = (P, id, y) => { const p = P(id, y); return sm(-.05, .06, p) * (1 - sm(.92, 1.02, p)); };
+PM.sound.mix((y, P) => {
+  const music = sm(.15, .5, vis('music'));
+  PM.sound.level('music-drone-bed', Math.max(vis('hero'), vis('y7000') * .8, vis('y1681') * .7) * (1 - music));
+  PM.sound.level('amb-underwater', inScene(P, 'y1637', y));
+  PM.sound.level('amb-open-sea', Math.max(inScene(P, 'y1924', y), vis('y1637b') * .6));
+  PM.sound.level('music-deck-rhythm', music);
+  PM.sound.level('music-oud-sparse', sm(.2, .6, vis('y1926')) * (1 - music));
+  PM.sound.level('amb-creek-1949', inScene(P, 'y1949', y));
+  PM.sound.level('amb-creek-today', sm(.1, .5, vis('y1963')));
+  PM.sound.filter(inScene(P, 'y1637', y) > .5 ? 900 : 18000);
+});
+})();
+</script>
+</body>
+</html>

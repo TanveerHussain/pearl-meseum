@@ -1,0 +1,481 @@
+<!doctype html>
+<!--
+  Emirates NBD Pearl Museum: The Pearl Collection (wave 1). Built from kit/ (template.html, site.css, site.js, KIT.md).
+  Governing idea: No two pearls are alike. The visitor turns one pearl over, quality by quality; the museum and
+  Sultan Ali Al-Owais are the keepers of a collection the sea will not make again.
+  Three scroll-driven moments only (the hero pearl, lustre, the loupe); everything between them scrolls normally.
+  Video (storyboard approved by Ram: A and C; B skipped, lustre stays the photo crossfade): the hero turntable
+  (assets/collection/c1-turn.mp4, scroll-scrubbed) and the nacre inline loop (c2-nacre-loop.mp4, with a pause control).
+
+  FACT-CHECK (general pearl knowledge, NOT from the museum's own text; please confirm or correct the wording):
+  1. "How a pearl is formed": a pearl oyster lines its shell with nacre (mother-of-pearl); a natural pearl forms
+     when the oyster coats something lodged inside it with the same nacre, layer over layer, over years.
+     We avoid the "grain of sand" myth and give no number of years or layers.
+  2. "Size and weight": the larger a natural pearl, generally the rarer it is; merchants weighed pearls on small,
+     finely balanced scales against small brass weights. No historical units (chow, mithqal, etc.) are named.
+  3. "Shape": perfectly round natural pearls are rare; the four shapes named are round, button (a flat base and a
+     domed top), drop (a teardrop) and baroque (irregular). "Prized for pendants and earrings" for drops.
+  4. "Colour": a pearl has a body colour and an overtone that seems to float over it (rose, silver); "Gulf pearls
+     are often white to cream, many with a soft rose overtone."
+  5. "Lustre": lustre is light reflected from within the nacre; "the deeper the layers, the deeper the glow."
+  6. "Surface quality": tiny pits, lines and marks are natural; the cleaner the surface, the rarer the pearl.
+  7. "The pearls of the Gulf": "The pearls of the Gulf were natural pearls, found by divers, not farmed."
+     (The two sentences quoted from the museum's history page are verbatim.)
+  8. "Natural, cultured or fake?": natural = formed by an oyster in the wild with no human help; cultured = grown
+     in a farmed oyster after a person places a bead or a piece of tissue inside it; imitation = made by people from
+     glass, plastic or shell and coated to look like pearl.
+  9. "Five qualities": the five are the museum's own topic headings; the line that "no single quality decides a
+     pearl's worth, they are read together" is ours.
+  10. Every photograph on this page is an illustrative still-life made for the site, not an object from the
+      collection (a note says so under the tray). The shell is "a pearl oyster shell", the species is not named.
+  11. Quiet doors to merchants.html and coinage.html point to wave 2 pages that do not exist yet; visit.html too.
+  MARKETING COPY PASS (2026-10-27, see marketing/copy-changes.md):
+  - The share text opens with "What the sea no longer gives, the museum keeps." (this page's own heading, the site's words) and ends
+    "come and see Sultan Ali Al-Owais's collection", which rests on the museum's statement that it is on display.
+  - Real photographs of a few pearls from the collection (hero pearl and tray first) would do more for trust than any copy change.
+  - Pass 2: door labels now say where they lead. "Bringing a class?" and "Bringing guests?" open the visit request form; they invite
+    a request only and promise no school or hosting service (see visit.html FACT-CHECK 16 and 17).
+-->
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Pearl Collection: natural Gulf pearls | Emirates NBD Pearl Museum</title>
+<meta name="description" content="No two pearls are alike. Read a natural Gulf pearl the way a merchant would, by size, shape, colour, lustre and surface, then see Sultan Ali Al-Owais's collection.">
+<link rel="canonical" href="collection.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Emirates NBD Pearl Museum">
+<meta property="og:title" content="The Pearl Collection | Emirates NBD Pearl Museum">
+<meta property="og:description" content="What the sea no longer gives, the museum keeps. Learn to read a natural Gulf pearl the way a merchant would, then come and see Sultan Ali Al-Owais's collection.">
+<meta property="og:image" content="assets/og/collection.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Pearl Collection | Emirates NBD Pearl Museum">
+<meta name="twitter:description" content="What the sea no longer gives, the museum keeps. Learn to read a natural Gulf pearl the way a merchant would, then come and see Sultan Ali Al-Owais's collection.">
+<meta name="twitter:image" content="assets/og/collection.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/og/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/og/apple-touch-icon.png">
+<meta name="theme-color" content="#05070b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3CradialGradient id='g' cx='.36' cy='.32' r='.75'%3E%3Cstop offset='0' stop-color='%23fffdf8'/%3E%3Cstop offset='.5' stop-color='%23e6dad0'/%3E%3Cstop offset='1' stop-color='%238f8590'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='12' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/collection/c1-plate.jpg" media="(min-width:720px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/collection/c1-plate-m.jpg" media="(max-width:719.98px)" fetchpriority="high">
+<link rel="stylesheet" href="kit/site.css">
+<link rel="stylesheet" href="kit/menu.css">
+<script src="kit/site.js"></script>
+<style>
+/* ================= page looks (the kit covers everything shared) ================= */
+#c1,#c4,#c5{--ph:radial-gradient(34% 40% at 50% 52%,#ece5db 0%,#b3aaa1 18%,#4a423d 34%,#171312 70%,#0b0909 100%)}
+
+/* S1 the hero pearl: plate + cut-out (green plate method, see storyboard row A0) */
+.fx #c1{--scrim:linear-gradient(0deg,rgba(4,6,9,.86) 0%,rgba(4,6,9,.6) 22%,rgba(4,6,9,.22) 40%,transparent 54%)}
+/* the title sits low and centred, stacked just above the sub-line on the numeral shelf */
+@media (min-width:720px){.fx #c1 .stage .c1-sub .sub{max-width:48em}.fx #c1 .stage .c1-head{bottom:calc(var(--num-b) + var(--lift-foot) + clamp(40px,5.6vh,58px))}}
+@media (max-width:719.98px){.fx #c1 .stage .c1-head{bottom:calc(var(--num-b) + var(--lift-foot) + clamp(70px,10vh,110px))}}
+#c1 .plate__bg img{inset:0;width:100%;height:100%}
+#c1 .plate__cut{--cx:50%;--cy:51.6%;--cw:max(49.8vh,28vw);--cy-m:58.9%;--cw-m:27.9vh}
+#c1 .c1-turn{z-index:4}#c1 .plate__atmos{z-index:5}
+#c1 .plate__shadow{--sy:73.8%;--sw:40vh;--sy-m:71.3%;--sw-m:23vh}
+#c1 .plate__atmos{--atmos:radial-gradient(40% 34% at 36% 30%,rgba(255,236,210,.16),transparent 70%)}
+.rm #c1 .stage{justify-content:flex-start;text-align:center;align-items:center}
+.rm #c1 .plate__cut{top:62%;width:min(40vh,24vw)}.rm #c1 .plate__shadow{top:80%}
+.c1-hint{font:500 11px/1 var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--pearl-3)}
+.rm .c1-hint{display:none}
+
+/* the five qualities index; anchored sections land below the header */
+#q1,#q2,#q3{scroll-margin-top:calc(var(--top-safe) - 24px)}
+.qindex{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px 12px}
+.qindex a{display:inline-flex;align-items:baseline;gap:8px;padding:10px 16px;border:1px solid rgba(244,238,230,.3);border-radius:999px;color:var(--pearl);text-decoration:none;font:400 15px/1 var(--f-ui);transition:border-color .3s,background .3s}
+.qindex a:hover{border-color:rgba(244,238,230,.8);background:rgba(244,238,230,.06)}
+.qindex i{font:italic 500 13px/1 var(--f-display);color:var(--rose)}
+
+/* shapes grid: velvet tiles, one word each */
+.shapes .obj{background:#07090d}
+.shapes figcaption b{font:400 clamp(20px,1.8vw,26px)/1.2 var(--f-display);letter-spacing:-.01em}
+
+/* colour: the editorial device, varied from the home coda (giant words standing over their pearls) */
+.qc__grid{list-style:none;margin:clamp(8px,2vh,24px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,2vw,32px)}
+.qc__item{position:relative;display:grid;justify-items:center;text-align:center}
+.qc__word{position:relative;z-index:0;font:400 clamp(40px,6vw,104px)/.9 var(--f-display);letter-spacing:-.035em;color:var(--umber);white-space:nowrap;margin-bottom:-.36em}
+.qc__img{position:relative;z-index:1;width:100%;aspect-ratio:1;-webkit-mask-image:radial-gradient(closest-side,#000 62%,rgba(0,0,0,.6) 80%,transparent 100%);mask-image:radial-gradient(closest-side,#000 62%,rgba(0,0,0,.6) 80%,transparent 100%)}
+.qc__img img{width:100%;height:100%;object-fit:cover}
+.qc__note{margin-top:4px;font:400 14px/1.5 var(--f-ui);color:var(--umber-2);max-width:16em}
+.flow--cream .eyebrow{color:var(--rose-ink,#8e4f3e);text-shadow:none}
+.flow--cream .prose{color:var(--umber-2)}
+.flow--cream .prose em{color:var(--umber)}
+
+/* S4 lustre: three registered photographs of the same pearl, crossfaded by scroll (storyboard row B) */
+.rm #c4 .stage{justify-content:center}
+.rm .c4-copy{max-width:min(34vw,440px)}
+.rm #c4 .line{font-size:clamp(22px,2.1vw,32px)}
+.rm #c5 .stage{justify-content:flex-end}
+
+/* S5 the loupe (storyboard row D) */
+#c5 .stage{--r:0vmax;--lx:47%;--ly:54%}
+/* a soft lens: the magnified disc is feathered (opaque to about 83% of the radius, then an eased falloff to clear), no stroke */
+.fx #c5 .loupe{--lens:radial-gradient(circle var(--r) at var(--lx) var(--ly),#000 0%,#000 83%,rgba(0,0,0,.94) 86%,rgba(0,0,0,.8) 89%,rgba(0,0,0,.6) 92%,rgba(0,0,0,.36) 95%,rgba(0,0,0,.14) 98%,transparent 100%);-webkit-mask-image:var(--lens);mask-image:var(--lens)}
+/* a faint glass rim: a soft inner glow and a light vignette inside the feather, low opacity, so it still reads as a lens */
+.fx #c5 .loupe__ring{position:absolute;left:var(--lx);top:var(--ly);width:calc(var(--r) * 2);height:calc(var(--r) * 2);transform:translate(-50%,-50%);border-radius:50%;z-index:2;pointer-events:none;background:radial-gradient(closest-side,transparent 0%,transparent 72%,rgba(5,7,11,.07) 82%,rgba(255,246,236,.07) 88%,rgba(255,246,236,.03) 92%,transparent 96%)}
+.fx #c5{--scrim:linear-gradient(180deg,rgba(4,6,9,.6) 0%,rgba(4,6,9,.2) 30%,transparent 46%),linear-gradient(0deg,rgba(4,6,9,.88) 0%,rgba(4,6,9,.66) 30%,rgba(4,6,9,.2) 48%,transparent 60%)}
+.rm #c5 .plane--base{display:none}
+
+/* the tray: whole on desktop, dragged sideways on phones (storyboard row E) */
+.flow--tray{padding:0}
+.tray{position:relative;margin:0;padding:0 0 clamp(40px,8vh,96px)}
+.tray__scroll{overflow:hidden}
+.tray__scroll img{display:block;width:100%;height:auto}
+.tray figcaption{padding:14px var(--gut) 0;font:400 13px/1.55 var(--f-ui);color:var(--pearl-3);max-width:60em}
+.tray figcaption b{font-weight:500;color:var(--pearl)}
+.tray__hint{display:none}
+
+/* close */
+.end__row{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center}
+.end__doors{display:flex;flex-wrap:wrap;gap:4px 28px}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:719.98px){
+  .fx #c1{--scrim:linear-gradient(0deg,rgba(4,6,9,.88) 0%,rgba(4,6,9,.6) 26%,rgba(4,6,9,.2) 44%,transparent 56%)}
+  /* the lustre and loupe frames are 16:9 photographs of a centred pearl: on a phone they sit as a wide band in the middle, feathered into the ground */
+  #c4 .frame,#c5 .frame{background:#05070b}
+  .fx #c1 .c1-turn,.fx #c4 .plane,.fx #c5 .plane--base{top:30%;bottom:auto;height:56%;-webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 16%,#000 84%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0%,#000 16%,#000 84%,transparent 100%)}
+  .fx #c4{--scrim:none;--scrim-copy:none}
+  #c5 .stage{--lx:45%;--ly:57%}
+  .qc__grid{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:28px}
+  .qc__word{font-size:clamp(40px,12vw,58px)}
+  .tray__scroll{overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+  .tray__scroll img{width:auto;height:min(62vh,520px);max-width:none}
+  .tray__hint{display:block;padding:0 var(--gut) 12px;font:500 11px/1.4 var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--pearl-3)}
+  .tray__scroll:focus-visible{outline:2px solid var(--rose);outline-offset:-2px;border-radius:0}
+  .rm #c4 .stage{justify-content:flex-end}
+  .rm #c4 .frame{background:#05070b}
+  .rm #c4 .plane{bottom:40%;-webkit-mask-image:linear-gradient(180deg,#000 80%,transparent 100%);mask-image:linear-gradient(180deg,#000 80%,transparent 100%)}
+  .rm #c4 .scrim{background:none}
+  .rm .c4-copy{max-width:none}
+  .rm #c1 .plate__cut{top:64%;width:56vw}
+  .rm #c1 .plate__shadow{top:76%;width:46vw}
+}
+@media (max-height:640px){
+  .c1-eye{display:none}
+  .fx .c1-sub .sub{font-size:14px}
+  .c1-hint{display:none}
+}
+@media (max-width:719.98px) and (max-height:640px){
+  .fx #c1 .c1-turn,.fx #c4 .plane,.fx #c5 .plane--base{top:36%;height:58%}
+  #c1 .plate__cut{--cy-m:65.9%;--cw-m:28.8vh}
+  #c1 .plate__shadow{--sy-m:78.7%}
+  .fx .c4-copy .line{font-size:19px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#story">Skip to the story</a>
+
+<header class="top">
+  <a class="mark" href="index.html" aria-label="Emirates NBD Pearl Museum, home">
+    <img class="mark__logo mark__logo--w" src="kit/logo-enbd-white.svg" alt="" width="110" height="30">
+    <img class="mark__logo mark__logo--c" src="kit/logo-enbd-navy.svg" alt="" width="110" height="30">
+    <span class="mark__div" aria-hidden="true"></span><span class="mark__t" aria-hidden="true">Pearl Museum</span>
+  </a>
+  <div class="top__end">
+    <button class="tgl" id="soundTgl" type="button" aria-pressed="false" aria-label="Sound">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path class="w" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/><path class="x" d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+      <span class="lbl" aria-hidden="true" id="soundState">Sound off</span>
+    </button>
+  </div>
+</header>
+
+<main id="story">
+
+  <!-- S1 THE HERO PEARL (scroll-driven, 1 of 3), storyboard row A (approved).
+       A0: the clean velvet plate and the pearl cut-out settle into place (plate method); at the exact frame they reach,
+       A1 to A3: the turntable clip (whose first frame is the same photograph) fades in and turns with the scroll. -->
+  <section class="scene scrim--top" id="c1" style="--span:320" data-enter="0" aria-labelledby="c1h">
+    <div class="stage">
+      <div class="frame plate" data-ph="assets/collection/c1-turn.mp4 (+ -poster.jpg), c1-plate.jpg + c1-pearl-cut.png">
+        <picture class="plate__bg" data-kf='{"0":{"scale":1.05},"0.15":{"scale":1}}'>
+          <source media="(max-width:719.98px)" srcset="assets/collection/c1-plate-m.jpg" width="1080" height="1920">
+          <img data-role="bg" src="assets/collection/c1-plate.jpg" width="2560" height="1440" decoding="async" fetchpriority="high" alt="">
+        </picture>
+        <div class="plate__shadow" data-kf='{"0":{"opacity":.6,"scale":.9},"0.15":{"opacity":1,"scale":1}}'></div>
+        <div class="plate__cut">
+          <div data-kf='{"0":{"y":-2.5,"scale":.93},"0.15":{"y":0,"scale":1},"0.2":{"opacity":1},"0.22":{"opacity":0}}' data-kf-m='{"0":{"y":-1.5,"scale":.94},"0.15":{"y":0,"scale":1},"0.2":{"opacity":1},"0.22":{"opacity":0}}' data-rm-at=".15">
+            <picture><source srcset="assets/collection/c1-pearl-cut.webp" type="image/webp"><img src="assets/collection/c1-pearl-cut.png" width="1100" height="1006" decoding="async" fetchpriority="high" alt="A single natural Gulf pearl resting on dark velvet, softly lit from the upper left: warm white with a rose overtone, a little flattened, with two tiny natural pits."></picture>
+          </div>
+        </div>
+        <div class="plane c1-turn fx-layer" data-kf='{"0":{"opacity":0},"0.16":{"opacity":0},"0.2":{"opacity":1}}'>
+          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/collection/c1-turn-m-poster.jpg" width="1280" height="720"><img src="assets/collection/c1-turn-poster.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt=""></picture>
+          <video class="scrub" muted playsinline preload="none" aria-hidden="true" data-load="scroll" data-src="assets/collection/c1-turn.mp4" data-src-m="assets/collection/c1-turn-m.mp4"></video>
+        </div>
+        <div class="plate__atmos" data-kf='{"0":{"opacity":1},"0.2":{"opacity":.35}}'></div>
+        <div class="scrim"></div>
+      </div>
+      <div class="ln copy--peak-centre-foot c1-head">
+        <p class="beat eyebrow c1-eye" data-cue="-1 2">The Pearl Collection</p>
+        <h1 class="beat line line--xl" id="c1h" data-cue="-1 2">No two pearls are <em>alike</em>.</h1>
+      </div>
+      <div class="beat ln copy--peak-centre-foot c1-sub" data-cue=".08 2"><p class="sub">“Delve into the array of defining factors that contribute to the beauty of each and every pearl.”</p></div>
+      <p class="beat c1-hint hint--base" data-cue="-1 .07" aria-hidden="true">Scroll</p>
+    </div>
+  </section>
+
+  <!-- THE JEWELS OF THE SEA: editorial block with the museum's own line -->
+  <section class="flow" aria-labelledby="jh">
+    <div class="flow__inner">
+      <article class="ed" data-reveal>
+        <p class="eyebrow">The jewels of the sea</p>
+        <h2 class="line" id="jh">What the sea no longer gives, the museum <em>keeps</em>.</h2>
+        <blockquote class="pull"><p>“The disappearance of industrial-scale pearling in the Gulf has only served to increase the value and significance of the collection on display.”</p><cite>Emirates NBD Pearl Museum</cite></blockquote>
+      </article>
+    </div>
+  </section>
+
+  <!-- HOW A PEARL IS FORMED: image beside text. Storyboard row C: the inline nacre loop replaces this still once approved. -->
+  <section class="flow" aria-labelledby="fh">
+    <div class="flow__inner">
+      <div class="split">
+        <figure class="loop split__media" style="--ar:5/4" data-reveal>
+          <div class="loop__frame" style="--ar:5/4;--op:72% 50%">
+            <video muted loop playsinline preload="none" poster="assets/collection/c2-nacre-loop-poster.jpg" src="assets/collection/c2-nacre-loop.mp4" aria-label="An empty pearl oyster shell on dark velvet; a soft band of light drifts across its mother-of-pearl lining, the colours shifting from silver to rose, green and violet."></video>
+            <button class="loop__ctl" type="button" aria-pressed="false"><svg class="i-pause" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><rect x="2" y="1.5" width="2.6" height="9" rx=".6"/><rect x="7.4" y="1.5" width="2.6" height="9" rx=".6"/></svg><svg class="i-play" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.6v8.8L10.4 6z"/></svg><span class="t">Pause</span></button>
+          </div>
+        </figure>
+        <div class="split__text" data-reveal data-reveal-delay="1">
+          <p class="eyebrow">How a pearl is formed</p>
+          <h2 class="line" id="fh">Built layer by <em>layer</em>, in the dark.</h2>
+          <div class="prose">
+            <p>Inside its shell, a pearl oyster lines its home with nacre: the lustrous mother-of-pearl you see here.</p>
+            <p>When something unwanted lodges inside it, the oyster may coat it in the same nacre, one fine layer over another, for years. A natural pearl is that patience, made solid.</p>
+          </div>
+          <p class="figcap">Mother-of-pearl, the nacre lining a pearl oyster’s shell.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT MAKES A PEARL SPECIAL: the five qualities, as an index of quiet anchors -->
+  <section class="flow" aria-labelledby="qh">
+    <div class="flow__inner">
+      <article class="ed" data-reveal>
+        <p class="eyebrow">Understanding pearls</p>
+        <h2 class="line line--xl" id="qh">What makes a pearl <em>special</em>?</h2>
+        <div class="prose"><p>Five qualities, read together. No single one decides a pearl’s worth.</p></div>
+        <ol class="qindex" aria-label="The five qualities">
+          <li><a href="#q1"><i>i.</i>Size and weight</a></li>
+          <li><a href="#q2"><i>ii.</i>Shape</a></li>
+          <li><a href="#q3"><i>iii.</i>Colour</a></li>
+          <li><a href="#c4"><i>iv.</i>Lustre</a></li>
+          <li><a href="#c5"><i>v.</i>Surface quality</a></li>
+        </ol>
+      </article>
+    </div>
+  </section>
+
+  <!-- i. SIZE AND WEIGHT: image beside text -->
+  <section class="flow" id="q1" aria-labelledby="q1h">
+    <div class="flow__inner">
+      <div class="split split--right">
+        <figure class="split__media" style="--ar:5/4;--op:76% 50%" data-reveal>
+          <picture><source media="(max-width:719.98px)" srcset="assets/collection/c3-scales-m.jpg" width="1200" height="1000"><img src="assets/collection/c3-scales.jpg" width="2560" height="1440" decoding="async" loading="lazy" alt="A small old brass balance on dark velvet: three pearls in one pan, tiny brass weights in the other, two loose pearls in front."></picture>
+        </figure>
+        <div class="split__text" data-reveal data-reveal-delay="1">
+          <p class="eyebrow">i. Size and weight</p>
+          <h2 class="line" id="q1h">Every pearl was <em>weighed</em>.</h2>
+          <div class="prose">
+            <p>Size and weight come first. In general, the larger a natural pearl, the rarer it is.</p>
+            <p>Merchants weighed pearls on small, finely balanced scales, against tiny brass weights.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ii. SHAPE: a grid of four objects -->
+  <section class="flow" id="q2" aria-labelledby="q2h">
+    <div class="flow__inner">
+      <article class="ed" data-reveal>
+        <p class="eyebrow">ii. Shape</p>
+        <h2 class="line" id="q2h">Few are perfectly <em>round</em>.</h2>
+        <div class="prose"><p>A perfectly round natural pearl is rare. Most grow into a shape of their own.</p></div>
+      </article>
+      <ul class="gallery shapes" style="--cell:230px">
+        <li data-reveal><figure><div class="obj"><img src="assets/collection/shape-round.jpg" width="800" height="800" loading="lazy" decoding="async" alt="A round natural pearl on dark velvet."></div><figcaption><b>Round</b>Near spherical, and the rarest.</figcaption></figure></li>
+        <li data-reveal data-reveal-delay="1"><figure><div class="obj"><img src="assets/collection/shape-button.jpg" width="800" height="800" loading="lazy" decoding="async" alt="A button pearl seen from above: round in outline with a low domed top."></div><figcaption><b>Button</b>A flat base and a domed top.</figcaption></figure></li>
+        <li data-reveal data-reveal-delay="2"><figure><div class="obj"><img src="assets/collection/shape-drop.jpg" width="800" height="800" loading="lazy" decoding="async" alt="A drop pearl, a smooth teardrop lying on its side."></div><figcaption><b>Drop</b>A teardrop, prized for pendants and earrings.</figcaption></figure></li>
+        <li data-reveal data-reveal-delay="3"><figure><div class="obj"><img src="assets/collection/shape-baroque.jpg" width="800" height="800" loading="lazy" decoding="async" alt="A baroque pearl with an irregular, lumpy shape."></div><figcaption><b>Baroque</b>Irregular, and like no other.</figcaption></figure></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- iii. COLOUR: the bright beat. Giant words stand over their pearls (the home coda's device, varied) -->
+  <section class="flow flow--cream" id="q3" aria-labelledby="q3h">
+    <div class="flow__inner">
+      <article class="ed" data-reveal>
+        <p class="eyebrow">iii. Colour</p>
+        <h2 class="line" id="q3h">Each pearl wears <em>two</em> colours.</h2>
+        <div class="prose"><p>Its body colour, and a faint overtone that seems to float over it, such as rose or silver. Gulf pearls are often white to cream, many with a soft rose overtone.</p></div>
+      </article>
+      <ul class="qc__grid">
+        <li class="qc__item" data-reveal><span class="qc__word" aria-hidden="true">White</span><div class="qc__img"><img src="assets/collection/colour-white.jpg" width="800" height="800" loading="lazy" decoding="async" alt="A white pearl with a cool silver overtone."></div><p class="qc__note"><b>White</b>, with a cool silver overtone</p></li>
+        <li class="qc__item" data-reveal data-reveal-delay="1"><span class="qc__word" aria-hidden="true">Cream</span><div class="qc__img"><img src="assets/collection/colour-cream.jpg" width="800" height="800" loading="lazy" decoding="async" alt="A warm cream pearl."></div><p class="qc__note"><b>Cream</b>, warm and soft</p></li>
+        <li class="qc__item" data-reveal data-reveal-delay="2"><span class="qc__word" aria-hidden="true">Rose</span><div class="qc__img"><img src="assets/collection/colour-rose.jpg" width="800" height="800" loading="lazy" decoding="async" alt="A white pearl with a soft rose-pink overtone and a few fine natural marks."></div><p class="qc__note"><b>Rose</b>, a white body with a pink overtone</p></li>
+        <li class="qc__item" data-reveal data-reveal-delay="3"><span class="qc__word" aria-hidden="true">Silver</span><div class="qc__img"><img src="assets/collection/colour-silver.jpg" width="800" height="800" loading="lazy" decoding="async" alt="A pale silver-grey pearl with a faint green sheen."></div><p class="qc__note"><b>Silver</b>, pale grey with a green sheen</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- iv. LUSTRE (scroll-driven, 2 of 3): the same pearl, three registered photographs, the light moving left, top, right.
+       Storyboard row B: a continuous light-sweep clip can replace the crossfade if approved. -->
+  <section class="scene scrim--copy-low" id="c4" style="--span:260;--copy-span:4" data-enter="0" aria-labelledby="c4h">
+    <div class="stage">
+      <div class="frame" data-ph="assets/collection/c6-lustre-1..3.jpg">
+        <div class="plane plane--bg"><img data-role="bg" src="assets/collection/c6-lustre-2.jpg" width="2560" height="1440" decoding="async" loading="lazy" alt="The same pearl lit from above: a bright soft reflection on its crown, rose and green sheen at its edges."></div>
+        <div class="plane fx-layer l1"><img src="assets/collection/c6-lustre-1.jpg" width="2560" height="1440" decoding="async" loading="lazy" alt=""></div>
+        <div class="plane fx-layer l3"><img src="assets/collection/c6-lustre-3.jpg" width="2560" height="1440" decoding="async" loading="lazy" alt=""></div>
+        <div class="scrim"></div>
+      </div>
+      <div class="ln copy--low-left copy--m-high copy-stack c4-copy">
+        <p class="beat eyebrow c4-eye" data-cue=".02 .97">iv. Lustre</p>
+        <h2 class="beat line" id="c4h" data-cue=".04 .36">Watch the light <em>move</em>.</h2>
+        <p class="beat line" data-cue=".38 .64">Lustre is light, returned from deep inside the <em>nacre</em>.</p>
+        <p class="beat line" data-cue=".66 .95">The deeper the layers, the deeper the <em>glow</em>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- v. SURFACE QUALITY (scroll-driven, 3 of 3): a loupe opens over the pearl and grows into the macro (storyboard row D) -->
+  <section class="scene scrim--copy-low scrim--copy-m-high" id="c5" style="--span:290;--copy-span:4" data-enter="0" aria-labelledby="c5h">
+    <div class="stage">
+      <div class="frame" data-ph="assets/collection/c7-surface.jpg">
+        <div class="plane plane--bg plane--base fx-layer"><img src="assets/collection/c6-lustre-3.jpg" width="2560" height="1440" decoding="async" loading="lazy" alt=""></div>
+        <div class="plane loupe"><picture><source media="(max-width:719.98px)" srcset="assets/collection/c7-surface-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/collection/c7-surface.jpg" width="2560" height="1440" decoding="async" loading="lazy" alt="Extreme close-up of a pearl's surface: faint growth lines, two tiny pits and a fine mosaic in the nacre, glowing rose and green."></picture></div>
+        <div class="loupe__ring fx-only" aria-hidden="true"></div>
+        <div class="scrim"></div>
+      </div>
+      <div class="ln copy--low-left copy--m-high copy-stack c5-copy">
+        <p class="beat eyebrow" data-cue="-1 .5">v. Surface quality</p>
+        <h2 class="beat line line--xl" id="c5h" data-cue=".0 .4">Look <em>closer</em>.</h2>
+        <div class="beat c5-copy2" data-cue=".42 2">
+          <p class="line">Tiny pits and lines are a natural pearl’s own <em>history</em>.</p>
+          <div class="copy__after"><p class="sub">The cleaner the surface, the rarer the pearl.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PEARLS OF THE GULF: image beside text, the museum's own words -->
+  <section class="flow" aria-labelledby="gh">
+    <div class="flow__inner">
+      <div class="split split--right">
+        <figure class="split__media" style="--ar:4/5;--op:60% 50%" data-reveal><img src="assets/s6-morning.jpg" width="2560" height="1440" decoding="async" loading="lazy" alt="At dawn on the dhow's deck, a diver's weathered hands open an oyster with a small knife, revealing a pearl inside."></figure>
+        <div class="split__text" data-reveal data-reveal-delay="1">
+          <p class="eyebrow">The pearls of the Gulf</p>
+          <h2 class="line" id="gh">Prized, because the sea made them <em>alone</em>.</h2>
+          <blockquote class="pull"><p>“Some of the best natural pearls in the world came from the oysters living in the warm, shallow waters of the Gulf.”</p><cite>Our History, Emirates NBD Pearl Museum</cite></blockquote>
+          <div class="prose"><p>The pearls of the Gulf were natural pearls, found by divers, not farmed. They “came to represent wealth and power from the shores of India to the Mediterranean and beyond.”</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NATURAL, CULTURED OR FAKE: a quiet fact list -->
+  <section class="flow" aria-labelledby="nh">
+    <div class="flow__inner">
+      <article class="ed" data-reveal>
+        <p class="eyebrow">Natural, cultured or fake?</p>
+        <h2 class="line" id="nh">Three pearls can look alike. Only one is <em>natural</em>.</h2>
+      </article>
+      <ul class="facts" data-reveal>
+        <li><span class="k">Natural</span><span class="v">Formed by an oyster in the wild, with no human help.</span></li>
+        <li><span class="k">Cultured</span><span class="v">Grown in a farmed oyster, after a person places a bead or a piece of tissue inside it.</span></li>
+        <li><span class="k">Imitation</span><span class="v">Made by people, from glass, plastic or shell, and coated to look like pearl.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- THE COLLECTION: the museum's own line, then the tray -->
+  <section class="flow flow--tight-bottom" aria-labelledby="kh">
+    <div class="flow__inner">
+      <article class="ed" data-reveal>
+        <p class="eyebrow">The collection</p>
+        <h2 class="line line--xl" id="kh">One man kept the sea’s <em>variety</em>.</h2>
+        <blockquote class="pull"><p>“Sultan Ali Al-Owais’s natural marine collection is truly one of a kind; famous not only for its immense size and value, but for the variety and quality of its contents.”</p><cite>Emirates NBD Pearl Museum</cite></blockquote>
+      </article>
+    </div>
+  </section>
+  <section class="flow flow--tray" aria-label="The tray">
+  <figure class="tray">
+    <p class="tray__hint" aria-hidden="true">Drag along the tray</p>
+    <div class="tray__scroll" data-reveal tabindex="0" role="region" aria-label="A tray of natural pearls sorted by size; on small screens, scroll sideways along it">
+      <img src="assets/collection/c8-tray.jpg" width="3360" height="1360" decoding="async" loading="lazy" alt="Looking down into a long wooden tray lined with indigo velvet: natural pearls sorted by size, from a cluster of the largest at the left to a fine scatter of seed pearls at the right.">
+    </div>
+    <figcaption><b>Sorted by size, from the largest to the seed pearls.</b> Photographs on this page are illustrative still lifes made for this site, not objects from the collection.</figcaption>
+  </figure>
+  </section>
+
+  <!-- THE PROMISE AND ONE ACTION -->
+  <section class="flow" aria-labelledby="eh">
+    <div class="flow__inner">
+      <article class="ed" data-reveal>
+        <h2 class="line line--xl" id="eh">No two are alike. Come and see for <em>yourself</em>.</h2>
+        <div class="end__row">
+          <a class="pill pill--solid" href="visit.html">Plan your visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="end__doors">
+          <a class="door" href="visit.html#request"><span>Bringing a class?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="door" href="about.html"><span>Sultan Ali Al-Owais</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="door" href="merchants.html"><span>Where the pearls were traded</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="door" href="coinage.html"><span>The coinage collection</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <ul class="foot__nav" aria-label="Pages">
+    <li><a href="index.html">Home</a></li><li><a href="about.html">Sultan Ali Al-Owais</a></li><li><a href="history.html">Our History</a></li><li><a href="collection.html" aria-current="page">The Collection</a></li><li><a href="merchants.html">Captains and Merchants</a></li><li><a href="coinage.html">Coinage</a></li><li><a href="visit.html">Visit Us</a></li>
+  </ul>
+  <p>Emirates NBD Pearl Museum, Emirates NBD HQ, Dubai Creek, Deira. By appointment.</p>
+</footer>
+
+<script>
+/* ---- lustre: the light moves left, over the top, to the right (three registered photographs) ---- */
+PM.timeline('c4', (gsap, T) => T()
+  .fromTo('#c4 .l1', { opacity: 1 }, { opacity: 0, duration: .2, ease: 'sine.inOut' }, .3)
+  .fromTo('#c4 .l3', { opacity: 0 }, { opacity: 1, duration: .2, ease: 'sine.inOut' }, .62)
+  .fromTo('#c4 .plane', { scale: 1 }, { scale: 1.04, duration: 1 }, 0));
+/* ---- the loupe: a small lens over the crown, then it grows past the edges ---- */
+PM.timeline('c5', (gsap, T) => T()
+  .set('#c5 .plane', { scale: 1.04 }, 0)
+  .fromTo('#c5 .stage', { '--r': '0vmax' }, { '--r': '9vmax', duration: .1, ease: 'power2.out' }, .04)
+  .to('#c5 .stage', { '--r': '12vmax', duration: .14 }, .14)
+  .to('#c5 .stage', { '--r': '130vmax', duration: .14, ease: 'power2.in' }, .28)
+  .fromTo('#c5 .loupe__ring', { opacity: 1 }, { opacity: 0, duration: .06 }, .36)
+  .fromTo('#c5 .loupe img', { scale: 1.12 }, { scale: 1, duration: .5, ease: 'power1.out' }, .04));
+
+/* ---- the turntable: held on its first frame while the plate settles, then turned by the scroll ---- */
+(function () {
+  if (!PM.FX) return;
+  let c = null;
+  PM.onFrame((now, dt, y) => {
+    if (!c) { c = (PM.clip('c1') || [])[0]; if (!c) return; c.custom = true; }
+    const s = PM.SI && PM.SI.c1; if (!s || s.far) return;
+    c.update(PM.clamp(((y - s.top) / s.len - .2) / (.66 - .2)));
+  });
+})();
+
+/* ---- sound (off until the visitor opts in): a low drone and the sparse oud, quiet under the reading ---- */
+PM.sound.stems({ 'music-drone-bed': ['music', 40, -14, 1], 'music-oud-sparse': ['music', 39, -8, 1], 'sfx-pearls-pour': ['fx', 0, 0, 2] });
+const tray = document.querySelector('.flow--tray');
+let trayWas = null;
+PM.sound.mix((y, P) => {
+  PM.sound.level('music-drone-bed', 1); PM.sound.level('music-oud-sparse', PM.sm(.15, .6, P('c1', y)));
+  // the tray of pearls: once each time it comes half into view from below
+  if (tray) { const r = tray.getBoundingClientRect(), on = r.top < innerHeight * .55 && r.bottom > innerHeight * .3; if (on && trayWas === false) PM.sound.shot('sfx-pearls-pour'); trayWas = on; }
+});
+</script>
+</body>
+</html>
