@@ -48,7 +48,6 @@
 <meta name="theme-color" content="#05070b">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3CradialGradient id='g' cx='.36' cy='.32' r='.75'%3E%3Cstop offset='0' stop-color='%23fffdf8'/%3E%3Cstop offset='.5' stop-color='%23e6dad0'/%3E%3Cstop offset='1' stop-color='%238f8590'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='12' fill='url(%23g)'/%3E%3C/svg%3E">
 <link rel="preload" href="kit/fonts/plus-jakarta-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link href="kit/fonts.css" rel="stylesheet">
 <link rel="preload" as="image" href="assets/s1-arrival.jpg" media="(min-width:720px)" fetchpriority="high">
 <link rel="preload" as="image" href="assets/s1-arrival-m.jpg" media="(max-width:719.98px)" fetchpriority="high">
 <script>
@@ -77,6 +76,7 @@
     }, true);
   })();
 </script>
+<link rel="stylesheet" href="kit/style.min.css">
 <style>
 /* ================= FOUNDATION - tokens ================= */
 :root{
@@ -247,7 +247,7 @@ html:not(.js) .holdui{display:none}
 /* close */
 .end__row{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center;margin-top:clamp(28px,4.8vh,44px)}
 .end__doors{display:flex;flex-wrap:wrap;gap:4px 28px;margin-top:clamp(14px,2.6vh,24px)}
-.foot{position:relative;z-index:6;padding:20px var(--gut) 28px;font:400 12px/1.6 var(--f-ui);color:var(--pearl-3);background:var(--ink)}
+.foot{position:relative;z-index:6;padding:20px var(--gut) 28px;font:400 12px/1.6 var(--f-ui);color:var(--pearl-3);background:var(--ink);display:block;gap:normal}
 
 /* ================= SCENES: cinematic layout ================= */
 .fx .scene{height:calc(var(--span) * 1vh)}
@@ -547,8 +547,6 @@ html:not(.fx) .deck-rm{display:block;list-style:none;margin:0;padding:0}
   *,*::before,*::after{transition:none!important;animation:none!important}
 }
 </style>
-<link rel="stylesheet" href="kit/placement.css">
-<link rel="stylesheet" href="kit/menu.css">
 <script src="kit/menu.js" defer></script>
 <script src="kit/vendor/gsap-3.12.5.min.js" defer></script>
 </head>
