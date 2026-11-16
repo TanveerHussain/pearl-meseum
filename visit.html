@@ -82,128 +82,9 @@
 <link rel="stylesheet" href="kit/style.min.css">
 <!-- site.js is the only script tag: it loads kit/menu.js and GSAP (kit/vendor) on its own, without blocking -->
 <script src="kit/site.js"></script>
-<style>
-/* ================= page looks (the kit covers everything shared) ================= */
-
-/* 1 the opening still: the HQ on the Creek, copy on the calm sky to the left of the tower */
-#v1{--ph:linear-gradient(180deg,#4c5c86 0%,#7b84a3 46%,#2a2d35 100%)}
-#v1 .plane--bg{--op:0% 50%}
-.fx #v1{--scrim:radial-gradient(48% 56% at 14% 66%,rgba(8,11,22,.66) 0%,rgba(8,11,22,.34) 56%,rgba(8,11,22,0) 88%),linear-gradient(0deg,rgba(5,7,11,.6) 0%,rgba(5,7,11,0) 20%)}
-.v1-copy .eyebrow{margin-bottom:clamp(14px,2.2vh,22px)}
-.v1-copy .sub{max-width:20em}
-.v1-copy .door-wrap{margin-top:clamp(20px,3.4vh,32px)}
-html:not(.fx) .v1-copy{max-width:480px}
-@media (max-width:719.98px){
-  #v1 .plane--bg{--op:50% 50%}
-  .fx #v1{--scrim-copy:none;--scrim:linear-gradient(180deg,rgba(8,11,22,.9) 0,rgba(8,11,22,.84) calc(var(--top-safe) + 290px),rgba(8,11,22,.4) calc(var(--top-safe) + 390px),rgba(8,11,22,0) calc(var(--top-safe) + 480px)),linear-gradient(0deg,rgba(5,7,11,.7) 0%,rgba(5,7,11,0) 16%)}
-}
-
-/* reading sections */
-.flow:not(.flow--cream) + .flow:not(.flow--cream){padding-top:0}
-.flow--cream .eyebrow{color:var(--umber-2);text-shadow:none}
-.flow--cream :focus-visible{outline-color:var(--rose-ink)}
-.flow--cream .pill--solid{background:var(--umber);border-color:var(--umber);color:var(--pearl)}
-.flow--cream .pill--solid:hover{background:#000}
-.note{font:400 13px/1.55 var(--f-ui);color:var(--pearl-3);max-width:44em}
-.flow--cream .note{color:var(--umber-2)}
-.tbc{display:inline-block;margin-left:.5em;padding:3px 8px 2px;border:1px dashed currentColor;border-radius:999px;font:500 10px/1.3 var(--f-ui);letter-spacing:.12em;text-transform:uppercase;vertical-align:.25em;color:var(--pearl-3);white-space:nowrap}
-.flow--cream .tbc{color:var(--rose-ink)}
-.facts--one{grid-template-columns:minmax(0,1fr)}
-.nw{white-space:nowrap}
-#where:focus{outline:none}
-
-/* 2 where: text beside the line map */
-.where{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,88px);align-items:center}
-.where__text{display:grid;gap:clamp(18px,3vh,28px);align-content:start}
-.where__text .facts{margin-top:4px}
-.where__act{margin-top:4px}
-.pill .ext{width:14px;height:14px}
-
-/* the line map: OpenStreetMap geometry drawn as an engraved chart, labels in HTML so they stay readable at any size */
-.map{margin:0}
-.map__frame{position:relative;aspect-ratio:1000/829;border:1px solid rgba(29,24,19,.16);border-radius:2px;overflow:hidden;background:#efe8dd}
-.map__svg{position:absolute;inset:0;width:100%;height:100%;display:block}
-.map__land{fill:#f1ebe2}
-.map__water{fill:#d3dcdc}
-.map__wl{stroke:#9fb1b3;opacity:.55}
-.map__wg{stroke:#d3dcdc}
-.map__bank{stroke:#4a3f35;stroke-width:1.15;stroke-linejoin:round}
-.map__road{fill:none;stroke:#8e4f3e;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:.75}
-.map__bridge{fill:none;stroke:#8e4f3e;stroke-width:3.4;stroke-linecap:round;opacity:.75}
-.map__halo{fill:rgba(142,79,62,.12)}
-.map__ring{fill:none;stroke:#8e4f3e;stroke-width:1.6}
-.map__pearl{fill:#fbf8f3;stroke:#4a3f35;stroke-width:1.2}
-.map__scale path,.map__north path{fill:none;stroke:#4a3f35;stroke-width:1.6}
-.map__north path{fill:#4a3f35;stroke-width:1}
-.map__lbl{position:absolute;margin:0;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;font:500 11px/1.2 var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--umber-2)}
-/* each label sits at its chart coordinates, passed on the element: --x, --y (or --b from the bottom), --t for a rotation */
-.map__lbl{left:var(--x,auto);top:var(--y,auto);bottom:var(--b,auto)}
-.map__lbl[style*="--t"]{transform:var(--t)}
-.map__lbl--water{font:italic 400 clamp(12px,1.1vw,15px)/1.2 var(--f-display);letter-spacing:.04em;text-transform:none;color:#3f5558}
-.map__lbl--road{font-size:9.5px;letter-spacing:.14em;color:var(--rose-ink)}
-.map__lbl--hq{transform:none;white-space:normal;width:max-content;max-width:8.6em;font:500 12px/1.3 var(--f-ui);letter-spacing:.02em;text-transform:none;color:var(--umber);padding:0 0 14px 10px;border-left:1px solid #8e4f3e;margin-left:-.5px}
-.map__lbl--scale{transform:none;font-size:9.5px;letter-spacing:.14em}
-.map__lbl--n{font-size:10px;letter-spacing:0}
-.map figcaption{margin-top:12px}
-@media (max-width:560px){.map__lbl{font-size:9.5px;letter-spacing:.13em}.map__lbl--hq{font-size:11px;letter-spacing:.01em;max-width:9.5em}.map__lbl--road,.map__lbl--scale{font-size:8.5px}}
-
-/* 3 how to visit */
-.how{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(32px,6vw,96px);align-items:start}
-.how__text{display:grid;gap:clamp(18px,3vh,28px)}
-.how__side{display:grid;gap:clamp(22px,3.4vh,32px)}
-.contact{border:1px dashed rgba(244,238,230,.42);border-radius:2px;padding:clamp(20px,2.6vw,30px);background:repeating-linear-gradient(135deg,rgba(244,238,230,.03) 0 12px,rgba(244,238,230,0) 12px 24px)}
-.contact__k{font:500 11px/1.5 var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--rose)}
-.contact__v{margin-top:8px;font:400 clamp(18px,1.5vw,22px)/1.4 var(--f-display);color:var(--pearl)}
-.contact__s{margin-top:8px;font:400 13px/1.55 var(--f-ui);color:var(--pearl-3)}
-
-/* 4 what you will see: four quiet doors as object cards */
-.see__head{display:grid;gap:clamp(16px,2.6vh,24px);max-width:44em}
-.see{--cell:230px;grid-template-columns:repeat(4,minmax(0,1fr))}
-.see__card{display:block;text-decoration:none;color:inherit;border-radius:3px}
-.see__card:focus-visible{outline-offset:6px;border-radius:3px}
-.see .obj img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
-.see__card:hover .obj img{transform:scale(1.035)}
-.see figcaption b{display:flex;align-items:center;gap:8px}
-.see figcaption b svg{width:14px;height:14px;flex:none;transition:transform .3s}
-.see__card:hover figcaption b svg{transform:translateX(3px)}
-.see__card:hover figcaption b span{text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(244,238,230,.5)}
-@media (max-width:980px){.see{grid-template-columns:repeat(2,minmax(0,1fr))}}
-
-/* 5 request a visit: the form, design only */
-.req{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(32px,6vw,96px);align-items:start}
-.req__head{display:grid;gap:clamp(16px,2.6vh,24px)}
-.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 24px}
-.field{display:grid;gap:8px;align-content:start}
-.field--wide,.form__foot{grid-column:1 / -1}
-.field label{font:500 13px/1.4 var(--f-ui);letter-spacing:.02em;color:var(--umber)}
-.field label .opt{font-weight:400;color:var(--umber-2)}
-.field__hint{font:400 13px/1.5 var(--f-ui);color:var(--umber-2)}
-.field input,.field textarea{width:100%;min-height:50px;padding:12px 14px;border:1px solid rgba(29,24,19,.42);border-radius:10px;background:rgba(255,255,255,.62);color:var(--umber);font:400 16px/1.4 var(--f-ui);color-scheme:light;transition:border-color .2s,background .2s}
-.field textarea{min-height:132px;resize:vertical}
-.field input:hover,.field textarea:hover{border-color:rgba(29,24,19,.7)}
-.field input:focus-visible,.field textarea:focus-visible{outline:2px solid var(--rose-ink);outline-offset:2px;border-radius:10px;border-color:var(--umber);background:#fff}
-.field [aria-invalid="true"]{border-color:var(--rose-ink);border-width:1.5px;background:rgba(142,79,62,.06)}
-.field__err{display:flex;gap:8px;align-items:flex-start;font:500 13px/1.45 var(--f-ui);color:var(--rose-ink)}
-.field__err[hidden]{display:none}
-.field__err svg{width:16px;height:16px;flex:none;margin-top:1px}
-.form__foot{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:6px;padding-top:24px;border-top:1px solid rgba(29,24,19,.16)}
-.form__foot .pill[disabled]{background:transparent;color:var(--umber-2);border:1px dashed rgba(29,24,19,.55);cursor:not-allowed;font-weight:500}
-.form__note{font:400 13px/1.55 var(--f-ui);color:var(--umber-2);max-width:30em}
-.form__status{flex-basis:100%;font:500 14px/1.5 var(--f-ui);color:var(--umber)}
-.form__status[hidden]{display:none}
-
-@media (max-width:719.98px){
-  .where,.how,.req{grid-template-columns:minmax(0,1fr)}
-  .form{grid-template-columns:minmax(0,1fr)}
-}
-@media (min-width:720px) and (max-width:1100px){
-  .where,.req{grid-template-columns:minmax(0,1fr)}
-  .where .map{max-width:760px}
-  .req__head{max-width:40em}
-}
-</style>
 </head>
 <body>
+<div class="pm-page pm-page--visit">
 <a class="skip" href="#where">Skip to the visit details</a>
 
 <header class="top">
@@ -453,5 +334,6 @@ PM.timeline('v1', (gsap, T) => T().fromTo('#v1 .plane--bg', { scale: 1.06 }, { s
 PM.sound.stems({ 'amb-creek-today': ['bed', 28, -6, 1] });
 PM.sound.mix((y, P) => { PM.sound.level('amb-creek-today', 1 - .5 * PM.sm(.6, 2.4, P('v1', y))); });
 </script>
+</div>
 </body>
 </html>

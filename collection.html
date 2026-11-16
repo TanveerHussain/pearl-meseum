@@ -63,111 +63,9 @@
 <link rel="preload" as="image" href="assets/collection/c1-plate-m.jpg" media="(max-width:719.98px)" fetchpriority="high">
 <link rel="stylesheet" href="kit/style.min.css">
 <script src="kit/site.js"></script>
-<style>
-/* ================= page looks (the kit covers everything shared) ================= */
-#c1,#c4,#c5{--ph:radial-gradient(34% 40% at 50% 52%,#ece5db 0%,#b3aaa1 18%,#4a423d 34%,#171312 70%,#0b0909 100%)}
-
-/* S1 the hero pearl: plate + cut-out (green plate method, see storyboard row A0) */
-.fx #c1{--scrim:linear-gradient(0deg,rgba(4,6,9,.86) 0%,rgba(4,6,9,.6) 22%,rgba(4,6,9,.22) 40%,transparent 54%)}
-/* the title sits low and centred, stacked just above the sub-line on the numeral shelf */
-@media (min-width:720px){.fx #c1 .stage .c1-sub .sub{max-width:48em}.fx #c1 .stage .c1-head{bottom:calc(var(--num-b) + var(--lift-foot) + clamp(40px,5.6vh,58px))}}
-@media (max-width:719.98px){.fx #c1 .stage .c1-head{bottom:calc(var(--num-b) + var(--lift-foot) + clamp(70px,10vh,110px))}}
-#c1 .plate__bg img{inset:0;width:100%;height:100%}
-#c1 .plate__cut{--cx:50%;--cy:51.6%;--cw:max(49.8vh,28vw);--cy-m:58.9%;--cw-m:27.9vh}
-#c1 .c1-turn{z-index:4}#c1 .plate__atmos{z-index:5}
-#c1 .plate__shadow{--sy:73.8%;--sw:40vh;--sy-m:71.3%;--sw-m:23vh}
-#c1 .plate__atmos{--atmos:radial-gradient(40% 34% at 36% 30%,rgba(255,236,210,.16),transparent 70%)}
-.rm #c1 .stage{justify-content:flex-start;text-align:center;align-items:center}
-.rm #c1 .plate__cut{top:62%;width:min(40vh,24vw)}.rm #c1 .plate__shadow{top:80%}
-.c1-hint{font:500 11px/1 var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--pearl-3)}
-.rm .c1-hint{display:none}
-
-/* the five qualities index; anchored sections land below the header */
-#q1,#q2,#q3{scroll-margin-top:calc(var(--top-safe) - 24px)}
-.qindex{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px 12px}
-.qindex a{display:inline-flex;align-items:baseline;gap:8px;padding:10px 16px;border:1px solid rgba(244,238,230,.3);border-radius:999px;color:var(--pearl);text-decoration:none;font:400 15px/1 var(--f-ui);transition:border-color .3s,background .3s}
-.qindex a:hover{border-color:rgba(244,238,230,.8);background:rgba(244,238,230,.06)}
-.qindex i{font:italic 500 13px/1 var(--f-display);color:var(--rose)}
-
-/* shapes grid: velvet tiles, one word each */
-.shapes .obj{background:#07090d}
-.shapes figcaption b{font:400 clamp(20px,1.8vw,26px)/1.2 var(--f-display);letter-spacing:-.01em}
-
-/* colour: the editorial device, varied from the home coda (giant words standing over their pearls) */
-.qc__grid{list-style:none;margin:clamp(8px,2vh,24px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,2vw,32px)}
-.qc__item{position:relative;display:grid;justify-items:center;text-align:center}
-.qc__word{position:relative;z-index:0;font:400 clamp(40px,6vw,104px)/.9 var(--f-display);letter-spacing:-.035em;color:var(--umber);white-space:nowrap;margin-bottom:-.36em}
-.qc__img{position:relative;z-index:1;width:100%;aspect-ratio:1;-webkit-mask-image:radial-gradient(closest-side,#000 62%,rgba(0,0,0,.6) 80%,transparent 100%);mask-image:radial-gradient(closest-side,#000 62%,rgba(0,0,0,.6) 80%,transparent 100%)}
-.qc__img img{width:100%;height:100%;object-fit:cover}
-.qc__note{margin-top:4px;font:400 14px/1.5 var(--f-ui);color:var(--umber-2);max-width:16em}
-.flow--cream .eyebrow{color:var(--rose-ink,#8e4f3e);text-shadow:none}
-.flow--cream .prose{color:var(--umber-2)}
-.flow--cream .prose em{color:var(--umber)}
-
-/* S4 lustre: three registered photographs of the same pearl, crossfaded by scroll (storyboard row B) */
-.rm #c4 .stage{justify-content:center}
-.rm .c4-copy{max-width:min(34vw,440px)}
-.rm #c4 .line{font-size:clamp(22px,2.1vw,32px)}
-.rm #c5 .stage{justify-content:flex-end}
-
-/* S5 the loupe (storyboard row D) */
-#c5 .stage{--r:0vmax;--lx:47%;--ly:54%}
-/* a soft lens: the magnified disc is feathered (opaque to about 83% of the radius, then an eased falloff to clear), no stroke */
-.fx #c5 .loupe{--lens:radial-gradient(circle var(--r) at var(--lx) var(--ly),#000 0%,#000 83%,rgba(0,0,0,.94) 86%,rgba(0,0,0,.8) 89%,rgba(0,0,0,.6) 92%,rgba(0,0,0,.36) 95%,rgba(0,0,0,.14) 98%,transparent 100%);-webkit-mask-image:var(--lens);mask-image:var(--lens)}
-/* a faint glass rim: a soft inner glow and a light vignette inside the feather, low opacity, so it still reads as a lens */
-.fx #c5 .loupe__ring{position:absolute;left:var(--lx);top:var(--ly);width:calc(var(--r) * 2);height:calc(var(--r) * 2);transform:translate(-50%,-50%);border-radius:50%;z-index:2;pointer-events:none;background:radial-gradient(closest-side,transparent 0%,transparent 72%,rgba(5,7,11,.07) 82%,rgba(255,246,236,.07) 88%,rgba(255,246,236,.03) 92%,transparent 96%)}
-.fx #c5{--scrim:linear-gradient(180deg,rgba(4,6,9,.6) 0%,rgba(4,6,9,.2) 30%,transparent 46%),linear-gradient(0deg,rgba(4,6,9,.88) 0%,rgba(4,6,9,.66) 30%,rgba(4,6,9,.2) 48%,transparent 60%)}
-.rm #c5 .plane--base{display:none}
-
-/* the tray: whole on desktop, dragged sideways on phones (storyboard row E) */
-.flow--tray{padding:0}
-.tray{position:relative;margin:0;padding:0 0 clamp(40px,8vh,96px)}
-.tray__scroll{overflow:hidden}
-.tray__scroll img{display:block;width:100%;height:auto}
-.tray figcaption{padding:14px var(--gut) 0;font:400 13px/1.55 var(--f-ui);color:var(--pearl-3);max-width:60em}
-.tray figcaption b{font-weight:500;color:var(--pearl)}
-.tray__hint{display:none}
-
-/* close */
-.end__row{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center}
-.end__doors{display:flex;flex-wrap:wrap;gap:4px 28px}
-
-/* ================= RESPONSIVE ================= */
-@media (max-width:719.98px){
-  .fx #c1{--scrim:linear-gradient(0deg,rgba(4,6,9,.88) 0%,rgba(4,6,9,.6) 26%,rgba(4,6,9,.2) 44%,transparent 56%)}
-  /* the lustre and loupe frames are 16:9 photographs of a centred pearl: on a phone they sit as a wide band in the middle, feathered into the ground */
-  #c4 .frame,#c5 .frame{background:#05070b}
-  .fx #c1 .c1-turn,.fx #c4 .plane,.fx #c5 .plane--base{top:30%;bottom:auto;height:56%;-webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 16%,#000 84%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0%,#000 16%,#000 84%,transparent 100%)}
-  .fx #c4{--scrim:none;--scrim-copy:none}
-  #c5 .stage{--lx:45%;--ly:57%}
-  .qc__grid{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:28px}
-  .qc__word{font-size:clamp(40px,12vw,58px)}
-  .tray__scroll{overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
-  .tray__scroll img{width:auto;height:min(62vh,520px);max-width:none}
-  .tray__hint{display:block;padding:0 var(--gut) 12px;font:500 11px/1.4 var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--pearl-3)}
-  .tray__scroll:focus-visible{outline:2px solid var(--rose);outline-offset:-2px;border-radius:0}
-  .rm #c4 .stage{justify-content:flex-end}
-  .rm #c4 .frame{background:#05070b}
-  .rm #c4 .plane{bottom:40%;-webkit-mask-image:linear-gradient(180deg,#000 80%,transparent 100%);mask-image:linear-gradient(180deg,#000 80%,transparent 100%)}
-  .rm #c4 .scrim{background:none}
-  .rm .c4-copy{max-width:none}
-  .rm #c1 .plate__cut{top:64%;width:56vw}
-  .rm #c1 .plate__shadow{top:76%;width:46vw}
-}
-@media (max-height:640px){
-  .c1-eye{display:none}
-  .fx .c1-sub .sub{font-size:14px}
-  .c1-hint{display:none}
-}
-@media (max-width:719.98px) and (max-height:640px){
-  .fx #c1 .c1-turn,.fx #c4 .plane,.fx #c5 .plane--base{top:36%;height:58%}
-  #c1 .plate__cut{--cy-m:65.9%;--cw-m:28.8vh}
-  #c1 .plate__shadow{--sy-m:78.7%}
-  .fx .c4-copy .line{font-size:19px}
-}
-</style>
 </head>
 <body>
+<div class="pm-page pm-page--collection">
 <a class="skip" href="#story">Skip to the story</a>
 
 <header class="top">
@@ -474,5 +372,6 @@ PM.sound.mix((y, P) => {
   if (tray) { const r = tray.getBoundingClientRect(), on = r.top < innerHeight * .55 && r.bottom > innerHeight * .3; if (on && trayWas === false) PM.sound.shot('sfx-pearls-pour'); trayWas = on; }
 });
 </script>
+</div>
 </body>
 </html>

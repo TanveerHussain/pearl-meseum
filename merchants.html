@@ -69,107 +69,9 @@
 <link rel="preload" as="image" href="assets/merchants/m1-captain-m.jpg" media="(max-width:719.98px)" fetchpriority="high">
 <link rel="stylesheet" href="kit/style.min.css">
 <script src="kit/site.js"></script>
-<style>
-/* ================= page looks (the kit covers everything shared) ================= */
-#m1{--ph:linear-gradient(180deg,#5d5a7e 0%,#b48a8c 42%,#e2a477 56%,#2c3140 57%,#14161d 100%)}
-#m3{--ph:linear-gradient(180deg,#efdcbc 0%,#e6cfa9 40%,#8d8a7c 41%,#2c3c40 100%)}
-#m9{--ph:linear-gradient(180deg,#24283a 0%,#6e5060 30%,#c98a63 44%,#3a2a26 46%,#120e0d 100%)}
-
-/* S1 the captain at dusk: the copy in the empty sky on the left */
-.fx #m1{--scrim:radial-gradient(52% 50% at 20% 40%,rgba(8,8,16,.62) 0%,rgba(8,8,16,.3) 58%,transparent 92%),linear-gradient(90deg,rgba(8,8,16,.5) 0%,rgba(8,8,16,.18) 40%,transparent 60%),linear-gradient(0deg,rgba(8,8,16,.5) 0%,transparent 24%)}
-#m1 .plane--bg img{object-position:62% 50%}
-.m1-copy{max-width:min(42vw,620px)}
-.m1-copy .eyebrow{margin-bottom:16px}
-.m1-hint{display:inline-flex;align-items:center;gap:8px}
-.m1-hint svg{width:14px;height:14px}
-html:not(.fx) .m1-hint{display:none}
-.m1-dusk{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;background:linear-gradient(180deg,rgba(20,20,44,.5) 0%,rgba(30,20,36,.2) 46%,rgba(6,8,14,.55) 100%)}
-
-/* S3 the launch comes alongside: green plate layers (clean plate, keyed launch, its reflection and waterline shadow) */
-.fx #m3{--scrim:linear-gradient(0deg,rgba(8,14,18,.62) 0%,rgba(8,14,18,.34) 30%,rgba(8,14,18,0) 52%)}
-/* copy low left on the grid margin (TEXT-PLACEMENT.md default), light type over the darker water, the boats stay clear above */
-/* the quote is long: a step smaller */
-.fx #m3 p.copy--low-left.line{font-size:clamp(22px,min(2.3vw,4vh),36px)}
-.fx #m3 .m3-cap{color:var(--pearl-2);text-shadow:var(--shadow-t)}
-
-/* the interior, reused full-bleed from the history page, the museum's line laid over its calm left side */
-.inside{position:relative;z-index:20;background:var(--ink)}
-.inside .bleed__img{height:clamp(440px,92vh,1000px)}
-.inside .bleed__img::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,6,10,.74) 0%,rgba(6,6,10,.48) 34%,rgba(6,6,10,0) 62%),linear-gradient(0deg,rgba(6,6,10,.6) 0%,transparent 30%)}
-.inside__copy{z-index:2}
-.inside__copy .line{text-shadow:var(--shadow-t)}
-
-/* grading gallery: brass on dark wood */
-.grades .obj{background:#0b0908}
-.grades figcaption b{font:400 clamp(18px,1.6vw,22px)/1.25 var(--f-display)}
-
-/* onward from the Gulf: the map on paper (true coastlines drawn by the page, labels in HTML) */
-.map{position:relative;margin:0;border-radius:2px;overflow:hidden;background:#efe6d6 url(assets/merchants/m7-paper.jpg) center/cover;box-shadow:0 1px 0 rgba(29,24,19,.08),0 24px 60px -30px rgba(29,24,19,.45)}
-.map__svg{display:block;width:100%;height:auto;mix-blend-mode:multiply}
-.map__land{fill:url(#hatch);stroke:#4b3829;stroke-width:1.1;stroke-linejoin:round}
-.map__coast2{fill:none;stroke:#4b3829;stroke-width:5;opacity:.07}
-.map__route{fill:none;stroke:#8e4f3e;stroke-width:3.6;stroke-linecap:round;stroke-dasharray:.5 10}
-.map__lbl{position:absolute;transform:translate(-50%,-50%);font:500 clamp(9px,.9vw,12px)/1.2 var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:#3f2f22;white-space:nowrap}
-.map__lbl--sea{font:italic 400 clamp(12px,1.25vw,18px)/1.2 var(--f-display);letter-spacing:.02em;text-transform:none;color:#5a4636}
-.map__lbl--key{color:#7a4232}
-.map__dot{position:absolute;z-index:2;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:radial-gradient(circle at 36% 32%,#fffdf8 0%,#efe3d6 42%,#a7978c 100%);box-shadow:0 0 0 5px rgba(239,205,191,.45),0 1px 3px rgba(29,24,19,.4)}
-/* each pin and label sits at its map coordinates, passed as --x and --y on the element */
-.map__lbl,.map__dot{left:var(--x,auto);top:var(--y,auto)}
-.map + .figcap{margin-top:14px}
-.flow--cream .pull cite,.flow--cream .eyebrow{color:var(--rose-ink);text-shadow:none}
-.flow--cream .pull{border-left-color:rgba(142,79,62,.5)}
-.onward{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(28px,5vw,80px);align-items:start}
-
-/* the fortunes: type alone */
-.fort .line--xl{max-width:14em}
-
-/* S9 the empty launch at dusk: the light leaves as you scroll */
-.fx #m9{--scrim:radial-gradient(74% 46% at 50% 14%,rgba(6,8,16,.8) 0%,rgba(6,8,16,.5) 56%,transparent 92%),linear-gradient(0deg,rgba(6,6,10,.55) 0%,transparent 30%)}
-.m9-night{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;background:linear-gradient(180deg,rgba(8,12,30,.5) 0%,rgba(14,14,30,.42) 46%,rgba(4,4,8,.66) 100%)}
-.m9-copy .line,.m9-copy.line{max-width:17em}
-.m9-copy .eyebrow{margin-bottom:14px}
-
-/* close */
-.end__row{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center}
-.end__doors{display:flex;flex-wrap:wrap;gap:4px 28px}
-.end__doors .door{flex-direction:row}
-.door small{font:400 12px/1 var(--f-ui);letter-spacing:.02em;text-transform:none;color:var(--pearl-3);margin-left:2px}
-
-/* reduced motion and no JS: scenes stack as stills with their copy */
-html:not(.fx) .m1-dusk,html:not(.fx) .m9-night{display:none}
-html:not(.fx) #m3 .stage{justify-content:flex-end}
-html:not(.fx) #m3 .scrim{background:linear-gradient(0deg,rgba(8,14,18,.72) 0%,rgba(8,14,18,.36) 40%,transparent 60%)}
-html:not(.fx) #m3 .m3-cap{color:var(--pearl);text-shadow:var(--shadow-t)}
-html:not(.fx) #m9 .stage{justify-content:flex-start}
-html:not(.fx) #m9 .scrim{background:linear-gradient(180deg,rgba(6,8,16,.8) 0%,rgba(6,8,16,.5) 50%,rgba(6,8,16,.2) 70%,rgba(6,8,16,.6) 100%)}
-
-/* ================= RESPONSIVE ================= */
-@media (max-width:1099.98px){.onward{grid-template-columns:minmax(0,1fr)}}
-@media (max-width:719.98px){
-  .fx #m1{--scrim:linear-gradient(180deg,rgba(8,8,16,.66) 0%,rgba(8,8,16,.42) 30%,rgba(8,8,16,0) 50%),linear-gradient(0deg,rgba(8,8,16,.5) 0%,transparent 22%)}
-  #m1 .plane--bg img{object-position:50% 50%}
-  .m1-copy{max-width:none}
-  .fx #m3{--scrim:linear-gradient(0deg,rgba(8,14,18,.7) 0%,rgba(8,14,18,.4) 30%,transparent 50%)}
-  .fx #m3 .m3-cap{display:none}
-  /* phones: the launch fills the lower middle of the 9:16 window, so the copy drops to the foot, on the caption's baseline */
-  .fx #m3 .stage .copy--low-left{bottom:calc(var(--num-b) + var(--lift-foot))}
-  .inside .bleed__img{height:auto;aspect-ratio:9/14}
-  .inside .bleed__img::after{background:linear-gradient(180deg,rgba(6,6,10,.78) 0%,rgba(6,6,10,.5) 34%,rgba(6,6,10,0) 56%)}
-  .inside .bleed__img::after{background:linear-gradient(180deg,rgba(6,6,10,.86) 0%,rgba(6,6,10,.62) 36%,rgba(6,6,10,0) 60%)}
-  .map__lbl{font-size:8px;letter-spacing:.12em}
-  .map__lbl--sea{font-size:11px}
-  .map__dot{width:10px;height:10px;margin:-5px 0 0 -5px;box-shadow:0 0 0 3px rgba(239,205,191,.45)}
-  .map__route{stroke-width:3.4;stroke-dasharray:2 11}
-  .fx #m9 .m9-cap{display:none}
-}
-@media (max-height:640px){
-  .m1-copy .eyebrow{display:none}
-  .fx .m1-hint{display:none}
-  .fx #m3 .m3-cap{display:none}
-}
-</style>
 </head>
 <body>
+<div class="pm-page pm-page--merchants">
 <a class="skip" href="#story">Skip to the story</a>
 
 <header class="top">
@@ -487,5 +389,6 @@ PM.sound.mix((y, P) => {
 });
 })();
 </script>
+</div>
 </body>
 </html>

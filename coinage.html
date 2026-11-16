@@ -66,129 +66,9 @@
 <link rel="preload" as="image" href="assets/coinage/k1-plate-m.jpg" media="(max-width:719.98px)" fetchpriority="high">
 <link rel="stylesheet" href="kit/style.min.css">
 <script src="kit/site.js"></script>
-<style>
-/* ================= page looks (the kit covers everything shared) ================= */
-#k1,#k5{--ph:radial-gradient(34% 40% at 50% 60%,#5b5650 0%,#2a2724 22%,#121110 60%,#070606 100%)}
-
-/* a cut-out shown as a JPEG plus an alpha mask (lighter than a 24-bit PNG) */
-.masked{-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
-.m-owl{-webkit-mask-image:url(assets/coinage/k1-owl-mask.png);mask-image:url(assets/coinage/k1-owl-mask.png)}
-.m-hand{-webkit-mask-image:url(assets/coinage/k5-hand-mask.png);mask-image:url(assets/coinage/k5-hand-mask.png)}
-.m-thaler{-webkit-mask-image:url(assets/coinage/k5-thaler-mask.png);mask-image:url(assets/coinage/k5-thaler-mask.png)}
-
-/* S1 the owl coin (plate method): velvet plate, the coin settles, the raking light moves from left to right */
-.fx #k1{--scrim:linear-gradient(0deg,rgba(4,6,9,.86) 0%,rgba(4,6,9,.6) 22%,rgba(4,6,9,.22) 40%,transparent 54%)}
-/* the title sits low and centred, stacked just above the sub-line on the numeral shelf */
-@media (min-width:720px){.fx #k1 .stage .k1-sub .sub{max-width:48em}.fx #k1 .stage .k1-head{bottom:calc(var(--num-b) + var(--lift-foot) + clamp(40px,5.6vh,58px))}}
-@media (max-width:719.98px){.fx #k1 .stage .k1-head{bottom:calc(var(--num-b) + var(--lift-foot) + clamp(70px,10vh,110px))}}
-/* one box with the clip's aspect, covering the frame: plate, shadow, cut-out and clip share its percentages */
-.k1-box{position:absolute;left:50%;top:50%;width:max(100%,177.78vh);aspect-ratio:16/9;transform:translate(-50%,-50%)}
-#k1 .plate__bg img{inset:0;width:100%;height:100%}
-#k1 .plate__cut{--cx:50%;--cy:58%;--cw:24.74%;--cx-m:50%;--cy-m:58%;--cw-m:78.13%}
-#k1 .plate__shadow{--sx:50%;--sy:79%;--sw:22.5%;--sx-m:50%;--sy-m:79%;--sw-m:71.05%}
-#k1 .k1-turn{position:absolute;inset:0;z-index:4}
-#k1 .k1-turn img,#k1 .k1-turn video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-#k1 .plate__atmos{z-index:5}
-#k1 .plate__atmos{--atmos:radial-gradient(36% 30% at 40% 46%,rgba(255,236,210,.12),transparent 70%)}
-.k1-hint{font:500 11px/1 var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--pearl-3)}
-.rm .k1-hint{display:none}
-.rm #k1 .stage{justify-content:flex-start;text-align:center;align-items:center}
-.rm #k1 .k1-box{top:56%}
-.rm #k1 .k1-sub .sub{margin-inline:auto}
-.rm #k1 .scrim{background:radial-gradient(90% 52% at 50% 16%,rgba(4,6,9,.86) 0%,rgba(4,6,9,.6) 55%,transparent 92%)}
-.rm #k5 .scrim{background:linear-gradient(90deg,rgba(6,5,4,.78) 0%,rgba(6,5,4,.52) 38%,rgba(6,5,4,0) 62%)}
-
-/* the era index */
-.eindex{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px 12px}
-.eindex a{display:inline-flex;align-items:baseline;gap:8px;padding:10px 16px;border:1px solid rgba(244,238,230,.3);border-radius:999px;color:var(--pearl);text-decoration:none;font:400 15px/1.2 var(--f-ui);transition:border-color .3s,background .3s}
-.eindex a:hover{border-color:rgba(244,238,230,.8);background:rgba(244,238,230,.06)}
-.eindex i{font:italic 500 13px/1 var(--f-display);color:var(--rose)}
-.eindex small{font:400 12px/1 var(--f-ui);color:var(--pearl-3);letter-spacing:.02em}
-[id^="r"]{scroll-margin-top:calc(var(--top-safe) - 24px)}
-.era{scroll-margin-top:0}
-
-/* ERA OPENER: one coin on velvet, full bleed, normal scroll; a band of light sweeps across the metal only */
-.era{padding:0;overflow:hidden;--tint:rgba(5,7,11,.7)}
-.era__media{position:relative;height:min(100vh,56.25vw);min-height:520px;overflow:hidden;background:#06080c}
-.era__plane{position:absolute;inset:-3% 0;will-change:transform}
-.era__plane img,.era__sheen{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.era__sheen{pointer-events:none;mix-blend-mode:soft-light;opacity:.95;background:linear-gradient(100deg,transparent 0%,transparent 40%,rgba(255,240,214,.95) 50%,transparent 60%,transparent 100%);background-size:260% 100%;background-position:calc(var(--sp,.5) * 100%) 0;-webkit-mask-size:cover;mask-size:cover;-webkit-mask-position:center;mask-position:center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
-/* each sheen is masked to its own coin, the mask passed as --mask on the element */
-.era__sheen{-webkit-mask-image:var(--mask);mask-image:var(--mask)}
-.era__sheen--m{display:none}
-.rm .era__sheen{display:none}
-.era__scrim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(5,7,11,.72) 0%,rgba(5,7,11,.42) 30%,rgba(5,7,11,0) 55%),linear-gradient(0deg,rgba(5,7,11,.6) 0%,transparent 22%)}
-.era__copy{display:grid;gap:clamp(10px,1.8vh,18px)}
-.era__yr{margin:0;font:400 clamp(52px,min(7.4vw,12vh),124px)/.95 var(--f-display);letter-spacing:-.035em;color:var(--pearl);text-shadow:var(--shadow-t);font-variant-numeric:lining-nums}
-.era__yr span{font-size:.42em;letter-spacing:-.01em;color:var(--pearl-2);vertical-align:.32em;margin:0 .18em}
-.era__yr small{font-size:.24em;letter-spacing:.08em;color:var(--pearl-3);margin-left:.3em;vertical-align:.1em}
-.era__copy .line{margin:0;max-width:13em;text-align:left}
-.era__cap{margin:0;max-width:32em}
-
-/* reading after each opener */
-.era-read{padding-top:clamp(48px,9vh,110px)}
-.etitle{font:400 15px/1.5 var(--f-ui);color:var(--pearl-3);max-width:40em;margin:-6px 0 0}
-.etitle b{font-weight:500;color:var(--pearl-2)}
-.coins .obj{background:#07090d}
-.coins figcaption b{font:400 clamp(18px,1.6vw,23px)/1.25 var(--f-display);letter-spacing:-.01em}
-.note{font:400 13px/1.55 var(--f-ui);color:var(--pearl-3);max-width:46em;margin:0}
-.big1780{font:400 clamp(72px,10vw,168px)/.9 var(--f-display);letter-spacing:-.04em;color:var(--pearl);margin:0}
-.big1780 + p{margin:10px 0 0;font:400 14px/1.55 var(--f-ui);color:var(--pearl-3);max-width:24em}
-
-/* S5 THE PEAK: the thaler drops into the diver's open hand (plate method) */
-.fx #k5{--scrim:linear-gradient(90deg,rgba(6,5,4,.62) 0%,rgba(6,5,4,.34) 30%,rgba(6,5,4,0) 52%)}
-#k5 .plate__bg img{inset:0;width:100%;height:100%}
-#k5 .plate__cut{--cx:76%;--cy:66%;--cw:min(56vw,104vh);--cx-m:62%;--cy-m:70%;--cw-m:120vw}
-.hand{position:relative}
-.hand > img{display:block;width:100%;height:auto}
-.coin{position:absolute;left:37.5%;top:40%;width:14%;transform:translate(-50%,-66%);z-index:2}
-.coin img{display:block;width:100%;height:auto}
-.coin__shadow{position:absolute;left:38%;top:41.5%;width:15%;aspect-ratio:3.4/1;transform:translate(-50%,-50%);z-index:1}
-.coin__shadow > div{width:100%;height:100%;border-radius:50%;background:radial-gradient(closest-side,rgba(40,20,8,.6),rgba(40,20,8,0))}
-#k5 .plate__atmos{--atmos:linear-gradient(200deg,rgba(255,226,180,.16),transparent 40%)}
-.k5-copy .line{text-align:left;margin:0}
-.k5-copy .caption{display:block;margin-top:14px}
-.k5-last{margin-top:clamp(28px,6vh,64px)!important}
-.fx .k5-last{position:relative}
-.rm #k5 .stage{justify-content:flex-start}
-.rm #k5 .k5-copy{max-width:min(40vw,560px)}
-
-/* the Trucial States and Today */
-.groups .k{font:500 12px/1.5 var(--f-ui);letter-spacing:.12em;text-transform:uppercase}
-.flow--cream .eyebrow{color:var(--rose-ink,#8e4f3e);text-shadow:none}
-.flow--cream .prose{color:var(--umber-2)}
-.flow--cream .prose em{color:var(--umber)}
-.flow--cream .figcap{color:var(--umber-2)}
-.flow--cream .note{color:var(--umber-2)}
-.end__row{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center}
-.end__doors{display:flex;flex-wrap:wrap;gap:4px 28px}
-
-/* ================= RESPONSIVE ================= */
-@media (max-width:719.98px){
-  .k1-hint{display:none}
-  .fx #k1{--scrim:linear-gradient(0deg,rgba(4,6,9,.88) 0%,rgba(4,6,9,.6) 26%,rgba(4,6,9,.2) 44%,transparent 56%)}
-  .era__media{height:auto;aspect-ratio:9/16;max-height:100svh;min-height:0}
-  .era__sheen--d{display:none}.era__sheen--m{display:block}
-  .rm .era__sheen--m{display:none}
-  .era__scrim{background:linear-gradient(180deg,rgba(5,7,11,.7) 0%,rgba(5,7,11,.38) 34%,rgba(5,7,11,0) 52%),linear-gradient(0deg,rgba(5,7,11,.55) 0%,transparent 16%)}
-  .fx #k5{--scrim:linear-gradient(180deg,rgba(6,5,4,.86) 0%,rgba(6,5,4,.68) 30%,rgba(6,5,4,.3) 46%,rgba(6,5,4,0) 60%)}
-  .rm #k5 .k5-copy{max-width:none}
-  .rm #k5 .scrim{background:linear-gradient(180deg,rgba(6,5,4,.9) 0%,rgba(6,5,4,.76) 42%,rgba(6,5,4,.25) 62%,transparent 74%)}
-  .k1-box{width:max(100%,56.25vh);aspect-ratio:9/16}
-  .rm #k1 .k1-box{top:58%}
-}
-@media (max-height:640px){
-  .k1-eye{display:none}
-  .fx .k1-sub .sub{font-size:14px}
-  .k1-hint{display:none}
-  .era__media{min-height:0}
-}
-@media (max-width:719.98px) and (max-height:640px){
-  .era__media{aspect-ratio:auto;height:100svh}
-}
-</style>
 </head>
 <body>
+<div class="pm-page pm-page--coinage">
 <a class="skip" href="#story">Skip to the story</a>
 
 <header class="top">
@@ -299,8 +179,8 @@
     <div class="era__media over">
       <div class="era__plane">
         <picture><source media="(max-width:719.98px)" srcset="assets/coinage/k2-dinar-m.jpg" width="1080" height="1920"><img src="assets/coinage/k2-dinar.jpg" width="2560" height="1440" loading="lazy" decoding="async" alt="Illustration: seen low across dark velvet, a thin gold dinar lies in front of a larger, thinner silver dirham; only the gold coin's worn rim is sharp."></picture>
-        <div class="era__sheen era__sheen--d" aria-hidden="true" style="--mask:url(assets/coinage/k2-mask.png)"></div>
-        <div class="era__sheen era__sheen--m" aria-hidden="true" style="--mask:url(assets/coinage/k2-mask-m.png)"></div>
+        <div class="era__sheen era__sheen--d" aria-hidden="true" style="-webkit-mask-image:url(assets/coinage/k2-mask.png);mask-image:url(assets/coinage/k2-mask.png)"></div>
+        <div class="era__sheen era__sheen--m" aria-hidden="true" style="-webkit-mask-image:url(assets/coinage/k2-mask-m.png);mask-image:url(assets/coinage/k2-mask-m.png)"></div>
       </div>
       <div class="era__scrim"></div>
       <div class="era__copy copy--low-left copy--m-high">
@@ -339,8 +219,8 @@
     <div class="era__media over">
       <div class="era__plane">
         <picture><source media="(max-width:719.98px)" srcset="assets/coinage/k3-muhurs-m.jpg" width="1080" height="1920"><img src="assets/coinage/k3-muhurs.jpg" width="2560" height="1440" loading="lazy" decoding="async" alt="Illustration: five natural Gulf pearls of different shapes lie in a beam of light on dark velvet, with three thin gold coins softly out of focus behind them."></picture>
-        <div class="era__sheen era__sheen--d" aria-hidden="true" style="--mask:url(assets/coinage/k3-mask.png)"></div>
-        <div class="era__sheen era__sheen--m" aria-hidden="true" style="--mask:url(assets/coinage/k3-mask-m.png)"></div>
+        <div class="era__sheen era__sheen--d" aria-hidden="true" style="-webkit-mask-image:url(assets/coinage/k3-mask.png);mask-image:url(assets/coinage/k3-mask.png)"></div>
+        <div class="era__sheen era__sheen--m" aria-hidden="true" style="-webkit-mask-image:url(assets/coinage/k3-mask-m.png);mask-image:url(assets/coinage/k3-mask-m.png)"></div>
       </div>
       <div class="era__scrim"></div>
       <div class="era__copy copy--low-left copy--m-high">
@@ -378,8 +258,8 @@
     <div class="era__media over">
       <div class="era__plane">
         <picture><source media="(max-width:719.98px)" srcset="assets/coinage/k4-thaler-m.jpg" width="1080" height="1920"><img src="assets/coinage/k4-thaler.jpg" width="2560" height="1440" loading="lazy" decoding="async" alt="Illustration: a large silver Maria Theresa Thaler on dark velvet, reverse up, a crowned double-headed eagle in crisp relief, its worn legend unreadable."></picture>
-        <div class="era__sheen era__sheen--d" aria-hidden="true" style="--mask:url(assets/coinage/k4-mask.png)"></div>
-        <div class="era__sheen era__sheen--m" aria-hidden="true" style="--mask:url(assets/coinage/k4-mask-m.png)"></div>
+        <div class="era__sheen era__sheen--d" aria-hidden="true" style="-webkit-mask-image:url(assets/coinage/k4-mask.png);mask-image:url(assets/coinage/k4-mask.png)"></div>
+        <div class="era__sheen era__sheen--m" aria-hidden="true" style="-webkit-mask-image:url(assets/coinage/k4-mask-m.png);mask-image:url(assets/coinage/k4-mask-m.png)"></div>
       </div>
       <div class="era__scrim"></div>
       <div class="era__copy copy--low-left copy--m-high">
@@ -581,5 +461,6 @@ PM.sound.mix((y, P) => {
   PM.sound.level('amb-dawn-deck', deck);
 });
 </script>
+</div>
 </body>
 </html>

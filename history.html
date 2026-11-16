@@ -61,167 +61,9 @@
 <link rel="preload" as="image" href="assets/history/h-ancient-m.jpg" media="(max-width:719.98px)" fetchpriority="high">
 <link rel="stylesheet" href="kit/style.min.css">
 <script src="kit/site.js"></script>
-<style>
-/* ================= HISTORY: page looks only (the kit covers everything shared) ================= */
-/* placeholder grounds, palette hints while a photo loads */
-#hero{--ph:radial-gradient(70% 60% at 70% 60%,#7d7a73 0%,#3e4247 45%,#14181d 100%)}
-#y1637{--ph:linear-gradient(180deg,#8fc0bd 0%,#3f8086 22%,#14474f 55%,#06191e 100%)}
-#y1924{--ph:linear-gradient(180deg,#efd9b6 0%,#cdb79a 40%,#3c5a5e 52%,#1d3438 100%)}
-#y1949{--ph:linear-gradient(180deg,#e9c69a 0%,#c69a72 36%,#5e5a5c 55%,#2b2f38 100%)}
-
-/* the light ages with the years: a grade per era, applied to the photographs only */
-.g-old img,.g-old video{filter:saturate(.8) sepia(.12) contrast(.97)}
-.g-warm img{filter:saturate(1.04) sepia(.06)}
-.g-dusk img,.g-dusk video{filter:sepia(.3) saturate(1.12) hue-rotate(-6deg) brightness(.92) contrast(1.03)}
-/* the reading grounds age too: cool ink, warm umber, dusk, then the modern Creek navy */
-.flow.era-cool{background:#05080c;--fb:#05080c;--fe:#05080c}
-.flow.era-warm{background:#0e0b08;--fb:#0e0b08;--fe:#0e0b08}
-.flow.era-dusk{background:#110c09;--fb:#110c09;--fe:#110c09}
-.flow.era-now{background:linear-gradient(180deg,#060a12 0%,#071226 100%);--fb:#060a12;--fe:#071226}
-.flow.era-paper{background:radial-gradient(120% 90% at 30% 30%,#f6f0e6 0%,#ede4d6 60%,#e4d9c8 100%);color:var(--umber);--fb:#efe6d8;--fe:#e4d9c8}
-/* a soft edge where reading meets a pinned scene: the photograph fades into the page instead of meeting a hard bar */
-.fx .flow.fe-top::before,.fx .flow.fe-bot::after{content:"";position:absolute;left:0;right:0;height:var(--feather,22vh);pointer-events:none}
-.fx .flow.fe-top::before{bottom:100%;background:linear-gradient(180deg,transparent 0%,var(--fb) 100%)}
-.fx .flow.fe-bot::after{top:100%;background:linear-gradient(0deg,transparent 0%,var(--fe) 100%)}
-.era-paper .line,.era-paper .prose,.era-paper .door,.era-paper .eyebrow{color:var(--umber);text-shadow:none}
-.era-paper .prose em{color:var(--umber)}
-.era-paper .door span{border-color:rgba(29,24,19,.45)}
-.era-paper .pull{border-color:var(--rose-ink)}
-.era-paper .pull p{color:var(--umber)}
-.era-paper .pull cite,.era-paper .figcap{color:var(--rose-ink)}
-.era-paper .figcap{color:var(--umber-2)}
-.era-paper .figcap b{color:var(--umber)}
-
-/* ================= THE YEAR NUMERAL: rolls like a counter as you scroll ================= */
-.yr{display:grid;gap:10px;justify-items:start;color:var(--pearl);font-variant-numeric:tabular-nums lining-nums}
-.yr__row{display:flex;align-items:baseline;gap:.22em;flex-wrap:wrap}
-.yr__n{display:inline-flex;font:400 clamp(64px,8.4vw,136px)/1 var(--f-display);letter-spacing:-.035em;white-space:nowrap}
-.yr__to{font:400 clamp(26px,2.8vw,44px)/1 var(--f-display);letter-spacing:-.02em;font-style:italic;color:var(--pearl-2)}
-.yr__h{font:500 clamp(13px,1vw,15px)/1 var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--pearl-2)}
-.yr__h:empty{display:none}
-.dg{display:inline-block;height:1em;overflow:hidden;line-height:1;margin-right:-.035em}
-.dg__s{display:block;will-change:transform}
-.dg__s span{display:block;height:1em;line-height:1;text-align:center}
-.dg--c{display:inline-block;margin-right:-.035em}
-.yr__n{font-variant-numeric:proportional-nums}
-.era-paper .yr{color:var(--umber)}
-.era-paper .yr__to,.era-paper .yr__h{color:var(--umber-2)}
-.yr--scene .yr__n{font-size:var(--num-fs);text-shadow:0 2px 24px rgba(0,0,0,.35)}
-.yr--scene .yr__h,.yr--scene .yr__to{text-shadow:var(--shadow-t)}
-
-/* ================= CHAPTERS: a sticky year column beside the reading ================= */
-.chap{display:grid;grid-template-columns:minmax(0,3.3fr) minmax(0,8.7fr);column-gap:clamp(24px,4vw,72px);align-items:start;max-width:1280px;margin:0;width:100%}
-.chap__yr{position:sticky;top:var(--top-safe);padding-bottom:24px}
-.chap__body{display:grid;gap:clamp(22px,3.6vh,40px);min-width:0}
-.chap__body > .line{max-width:18em}
-.chap .eyebrow{color:var(--rose)}
-.era-paper .chap .eyebrow{color:var(--rose-ink)}
-.split__text .line{max-width:16em}
-.sp-quote{margin:0}
-.fig{margin:0;min-width:0}
-.split__media picture{display:block;width:100%;height:100%}
-.split--right > .fig{order:2}
-.sp-quote p{font:400 clamp(22px,1.9vw,30px)/1.26 var(--f-display);letter-spacing:-.006em;color:var(--pearl);text-wrap:balance}
-.era-paper .sp-quote p{color:var(--umber)}
-.gallery figcaption i{font-style:italic;color:var(--pearl)}
-.gallery .obj{aspect-ratio:4/5}
-
-/* the end: promise and one action */
-.end{display:grid;gap:clamp(18px,3vh,28px);margin-top:clamp(28px,5vh,56px);padding-top:clamp(28px,5vh,56px);border-top:1px solid var(--line)}
-.end__row{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center}
-.facts .v small{display:block;margin-top:4px;font:400 14px/1.5 var(--f-ui);color:var(--pearl-3)}
-
-/* ================= SCENES ================= */
-.fx .scene .eyebrow{color:var(--pearl);text-shadow:0 1px 2px rgba(0,0,0,.6),0 0 14px rgba(0,0,0,.55)}
-.fx .scene .caption{color:var(--pearl);text-shadow:0 1px 2px rgba(0,0,0,.7),0 0 16px rgba(0,0,0,.7)}
-/* hero: the ancient pearl, cool and old */
-.fx #hero{--scrim:radial-gradient(56% 50% at 14% 34%,rgba(4,7,10,.72) 0%,rgba(4,7,10,.32) 60%,rgba(4,7,10,0) 100%),linear-gradient(90deg,rgba(4,7,10,.66) 0%,rgba(4,7,10,.3) 38%,rgba(4,7,10,0) 62%),linear-gradient(0deg,rgba(4,7,10,.5) 0%,transparent 24%),radial-gradient(36% 22% at 86% 100%,rgba(4,7,10,.7) 0%,rgba(4,7,10,0) 100%)}
-.hero__eyebrow{margin-bottom:clamp(14px,2.4vh,22px)}
-.hero__invite{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:clamp(24px,4vh,40px)}
-.hero__invite .s{font:400 13px/1.3 var(--f-ui);color:var(--pearl);text-shadow:var(--shadow-t)}
-.fx .hero__cue{display:flex;align-items:center;gap:10px}
-.hero__cue svg{width:14px;height:14px}
-.fx .hero__cue svg{animation:nudge 2.4s ease-in-out infinite}
-@keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
-/* 1637 the diver: the same water as the home page, aged */
-.fx #y1637{--scrim:linear-gradient(180deg,rgba(2,10,14,.42) 0%,transparent 22%),radial-gradient(64% 70% at 14% 40%,rgba(2,10,14,.66) 0%,rgba(2,10,14,.3) 52%,transparent 82%),linear-gradient(0deg,rgba(2,10,14,.55) 0%,transparent 30%)}
-/* 1924 the harbour: one photograph with a slow scroll-driven drift and push, haze lifting and the sun warming */
-.fx #y1924{--scrim:radial-gradient(52% 40% at 18% 78%,rgba(10,8,6,.66) 0%,rgba(10,8,6,.34) 55%,transparent 100%),linear-gradient(0deg,rgba(10,8,6,.6) 0%,transparent 34%)}
-.hb-layer{position:absolute;inset:0}
-.hb-layer img{position:absolute;inset:-4%;width:108%;height:108%;max-width:none;object-fit:cover;object-position:50% 50%}
-.hb-haze{z-index:4;background:linear-gradient(180deg,rgba(255,232,196,.0) 0%,rgba(255,226,186,.38) 46%,rgba(250,224,190,.22) 62%,rgba(255,226,186,0) 80%)}
-.hb-sun{z-index:4;background:radial-gradient(30% 34% at 50% 26%,rgba(255,236,196,.6) 0%,rgba(255,212,150,.24) 40%,rgba(255,200,130,0) 74%);mix-blend-mode:screen}
-.scene .backing::before{left:-12%;right:-12%;top:-60%;bottom:-60%;background:radial-gradient(closest-side,rgba(16,10,6,.72) 0%,rgba(16,10,6,.52) 55%,rgba(16,10,6,.2) 82%,rgba(16,10,6,0) 100%)}
-/* 1949 the last fleet: the home page's fleet, graded toward dusk */
-.fx #y1949{--scrim:radial-gradient(66% 44% at 50% 12%,rgba(24,14,8,.72) 0%,rgba(24,14,8,.36) 56%,transparent 88%),linear-gradient(0deg,rgba(14,8,4,.6) 0%,transparent 30%)}
-.dusk{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;background:linear-gradient(180deg,rgba(60,30,40,.5) 0%,rgba(120,60,30,.22) 40%,rgba(20,12,16,.55) 100%)}
-
-/* ================= THE TIMELINE RAIL (wide screens): where you are in the years ================= */
-.rail{position:fixed;right:clamp(14px,1.6vw,28px);top:50%;transform:translateY(-50%);z-index:50;opacity:0;visibility:hidden;transition:opacity .5s,visibility 0s linear .5s}
-.rail.is-on{opacity:1;visibility:visible;transition:opacity .5s}
-.rail::before{content:"";position:absolute;inset:-14px -12px -14px -18px;z-index:-1;border-radius:16px;background:rgba(5,7,11,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 0 0 1px rgba(244,238,230,.08)}
-.theme-light .rail::before{background:rgba(244,238,228,.86);box-shadow:0 0 0 1px rgba(29,24,19,.08)}
-.rail ol{list-style:none;margin:0;padding:0;display:grid;gap:4px;position:relative}
-.rail ol::before{content:"";position:absolute;right:4px;top:12px;bottom:12px;width:1px;background:rgba(244,238,230,.3)}
-.rail a{display:flex;align-items:center;justify-content:flex-end;gap:10px;min-height:24px;padding:2px 0;color:var(--pearl-2);text-decoration:none;font:500 11px/1 var(--f-ui);letter-spacing:.08em;text-shadow:0 1px 2px rgba(0,0,0,.55),0 0 10px rgba(0,0,0,.45)}
-.rail a i{flex:none;width:9px;height:9px;border-radius:50%;border:1px solid rgba(244,238,230,.7);background:rgba(5,7,11,.6);position:relative;z-index:1;transition:background .3s,transform .3s}
-.rail a span{transition:color .3s}
-.rail a[aria-current="true"] span,.rail a:hover span,.rail a:focus-visible span{color:var(--pearl)}
-.theme-light .rail a[aria-current="true"] span{color:var(--umber)}
-.rail a[aria-current="true"] i{background:var(--pearl);transform:scale(1.2)}
-.rail a:focus-visible{border-radius:4px}
-.theme-light .rail a{color:var(--umber);text-shadow:none}
-.theme-light .rail a i{border-color:rgba(29,24,19,.6);background:#efe7da}
-.theme-light .rail a[aria-current="true"] i{background:var(--umber)}
-.theme-light .rail ol::before{background:rgba(29,24,19,.3)}
-@media (max-width:1099.98px){.rail{display:none}}
-@media (min-width:1100px){.flow{padding-right:calc(var(--gut) + 104px)}}
-
-/* over the reading sections the header gets a calm solid ground, so copy never runs under the lock-up */
-.top::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .35s;background:rgba(5,7,11,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(244,238,230,.08)}
-.hdr-solid .top::after{opacity:1}
-.theme-light.hdr-solid .top::after{background:rgba(244,238,228,.92);box-shadow:0 1px 0 rgba(29,24,19,.1)}
-
-/* scenes are revealed as the reading above them lifts away (history-only stage visibility, see the page script) */
-.fx .stage.is-peek{opacity:1}
-.fx .stage.is-gone{visibility:hidden}
-
-/* ================= REDUCED MOTION AND NO JS: scenes become ordinary full-height frames ================= */
-html:not(.fx) .yr--scene{margin-bottom:8px}
-html:not(.fx) .hb-haze,html:not(.fx) .hb-sun{display:none}
-html:not(.fx) .hero__cue{display:none}
-html:not(.fx) .scene .stage .scrim{background:linear-gradient(0deg,rgba(4,6,10,.88) 0%,rgba(4,6,10,.6) 45%,rgba(4,6,10,.2) 75%,rgba(4,6,10,.42) 100%)}
-
-/* ================= RESPONSIVE ================= */
-@media (max-width:999.98px){
-  .chap{grid-template-columns:minmax(0,1fr)}
-  .chap__yr{position:relative;top:auto;padding-bottom:clamp(8px,2vh,16px)}
-}
-@media (max-width:719.98px){
-  .yr__n{font-size:clamp(58px,17vw,84px)}
-  .yr__to{font-size:clamp(22px,6vw,30px)}
-  .fx #hero{--scrim:linear-gradient(0deg,rgba(4,7,10,.86) 0%,rgba(4,7,10,.62) 30%,rgba(4,7,10,.24) 50%,transparent 62%)}
-  .fx #y1637{--scrim:linear-gradient(180deg,rgba(2,10,14,.78) 0%,rgba(2,10,14,.5) 34%,transparent 56%),linear-gradient(0deg,rgba(2,10,14,.7) 0%,transparent 34%)}
-  .fx #y1924{--scrim:linear-gradient(0deg,rgba(14,8,4,.84) 0%,rgba(14,8,4,.6) 32%,rgba(14,8,4,.2) 52%,transparent 64%)}
-  .fx #y1949{--scrim:linear-gradient(180deg,rgba(24,14,8,.78) 0%,rgba(24,14,8,.5) 32%,transparent 54%),linear-gradient(0deg,rgba(14,8,4,.66) 0%,transparent 30%)}
-  .fx .hero__cue{display:none}
-  .split__media.engr{--ar:4/5;--op:50% 72%}
-  .split--right > .fig{order:0}
-  .gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .gallery li:last-child:nth-child(odd){grid-column:1 / -1}
-  .gallery li:last-child:nth-child(odd) .obj{aspect-ratio:16/10}
-}
-@media (max-height:640px){
-  .yr__n{font-size:clamp(52px,min(8vw,14vh),110px)}
-  .hero__invite{margin-top:14px}
-  .fx .hero__cue{display:none}
-}
-@media (max-width:719.98px) and (max-height:640px){
-}
-@media (prefers-reduced-motion:reduce){.fx .hero__cue svg{animation:none}}
-</style>
 </head>
 <body>
+<div class="pm-page pm-page--history">
 <a class="skip" href="#story">Skip to the story</a>
 
 <header class="top">
@@ -511,7 +353,7 @@ PM.timeline('y1949', (gsap, T) => T().fromTo('#y1949 .dusk', { opacity: 0 }, { o
 let DW = [];
 const measureDW = () => {
   const probe = document.createElement('span'); probe.className = 'yr__n'; probe.style.cssText = 'position:absolute;visibility:hidden;left:-9999px;font-size:100px;letter-spacing:0';
-  document.body.appendChild(probe); const w = [];
+  (document.querySelector('.pm-page') || document.body).appendChild(probe); const w = [];
   for (let k = 0; k < 10; k++) { probe.textContent = String(k); w[k] = probe.getBoundingClientRect().width / 100; }
   probe.remove(); DW = w;
 };
@@ -630,5 +472,6 @@ PM.sound.mix((y, P) => {
 });
 })();
 </script>
+</div>
 </body>
 </html>

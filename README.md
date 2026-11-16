@@ -25,8 +25,18 @@ Any static host works: upload the folder as is (no build step). Serve `assets/` 
 
 ## CSS
 
-One stylesheet: edit `kit/style.css` (fonts, placement, site, menu, in that order), pages load `kit/style.min.css`.
-Each page also keeps its own `<style>` block for page-specific rules. After editing `style.css`, rebuild:
+One stylesheet, no `<style>` blocks in the pages: edit `kit/style.css`, pages load `kit/style.min.css`.
+
+- Shared sections first (fonts, placement, site, menu), then one section per page.
+- Each page's content sits in `<div class="pm-page pm-page--NAME">` (`display:contents`, so it draws no box).
+- Page rules are scoped on the element they style, with no added specificity:
+  - inside the page: `.note:where(.pm-page--about *)`
+  - on `<html>`/`<body>` (incl. the html state classes `js`, `fx`, `rm`, …): `.fx:where(:has(.pm-page--index))`
+- Asset urls in `style.css` are relative to `kit/` (`url(../assets/...)`). Don't pass relative urls through CSS
+  variables from the HTML: they resolve against the stylesheet, not the page.
+- Scripts that add elements styled by page rules append them to `.pm-page`, not `body`.
+
+After editing `style.css`, rebuild:
 
 ```bash
 npx esbuild@0.24.0 kit/style.css --minify --outfile=kit/style.min.css
