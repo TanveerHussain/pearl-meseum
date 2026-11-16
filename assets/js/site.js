@@ -1,8 +1,8 @@
 /* =====================================================================================================
    Pearl Museum kit: site.js (load it in <head>, WITHOUT defer). It needs nothing else to be loaded first:
-     - it loads GSAP itself (kit/vendor/gsap-3.12.5.min.js) without blocking;
+     - it loads GSAP itself (assets/js/vendor/gsap-3.12.5.min.js) without blocking;
        copy, cues, clips and the menu work before GSAP arrives, page timelines are added once it is there
-     - it loads kit/menu.js itself as soon as the page is parsed (a <script src="kit/menu.js"> tag is harmless)
+     - it loads assets/js/menu.js itself as soon as the page is parsed (a <script src="assets/js/menu.js"> tag is harmless)
      - it boots when the document is parsed, without waiting for deferred scripts
    The engine from index.html, made reusable:
      - html classes: js + fx (cinematic) or rm (reduced motion, also ?rm=1); no JS = flow layout

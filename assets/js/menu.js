@@ -34,7 +34,7 @@
     ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true'); ov.setAttribute('aria-label', 'Site menu'); ov.hidden = true;
     ov.innerHTML = `
       <div class="pm-menu__bar">
-        <a class="pm-menu__mark" href="index.html" aria-label="Emirates NBD Pearl Museum, home"><img src="${base}logo-enbd-white.svg" alt="" width="110" height="30"><span class="div" aria-hidden="true"></span><span class="t" aria-hidden="true">Pearl Museum</span></a>
+        <a class="pm-menu__mark" href="index.html" aria-label="Emirates NBD Pearl Museum, home"><img src="${base}../images/logo-enbd-white.svg" alt="" width="110" height="30"><span class="div" aria-hidden="true"></span><span class="t" aria-hidden="true">Pearl Museum</span></a>
         <button type="button" class="pm-menu__close"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M1 1l10 10M11 1L1 11"/></svg><span>Close</span></button>
       </div>
       <nav class="pm-menu__body" aria-label="Site">

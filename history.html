@@ -27,7 +27,7 @@
   - Reimagined, captioned as such: the ancient pearl and shard, the 1681 engraving, the 1924 harbour (v2, one photograph), the 1926 merchant's launch.
   - The 1963 photograph of the Emirates NBD HQ is the home page's s8-hq (see assets/MANIFEST.md for its source).
   - The year rail, the rolling numerals and "years ago" imply no dates beyond the museum's own.
-  - The music loop (assets/history/h-singer-loop.mp4) was generated after Ram approved storyboard B (storyboards/history/storyboard.html).
+  - The music loop (assets/videos/history/h-singer-loop.mp4) was generated after Ram approved storyboard B (storyboards/history/storyboard.html).
   MARKETING COPY PASS (2026-10-27, see marketing/copy-changes.md):
   - The end of the page now offers "Plan your visit" first and a "Bringing a class?" door to the request form (visit.html#request).
     It invites a request only; it does not say the museum takes school groups. Confirm school visits with the museum.
@@ -45,22 +45,22 @@
 <meta property="og:site_name" content="Emirates NBD Pearl Museum">
 <meta property="og:title" content="Our History | Emirates NBD Pearl Museum">
 <meta property="og:description" content="Before the towers, pearls built the Gulf. A timeline of Gulf pearling, from a 7,000-year-old pearl to the last pearling fleet of 1949 and the founding of the National Bank of Dubai in 1963.">
-<meta property="og:image" content="assets/og/history.jpg">
+<meta property="og:image" content="assets/images/og/history.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Our History | Emirates NBD Pearl Museum">
 <meta name="twitter:description" content="Before the towers, pearls built the Gulf. A timeline of Gulf pearling, from a 7,000-year-old pearl to the last pearling fleet of 1949 and the founding of the National Bank of Dubai in 1963.">
-<meta name="twitter:image" content="assets/og/history.jpg">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/og/favicon-32.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/og/apple-touch-icon.png">
+<meta name="twitter:image" content="assets/images/og/history.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/og/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/og/apple-touch-icon.png">
 <meta name="theme-color" content="#05070b">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3CradialGradient id='g' cx='.36' cy='.32' r='.75'%3E%3Cstop offset='0' stop-color='%23fffdf8'/%3E%3Cstop offset='.5' stop-color='%23e6dad0'/%3E%3Cstop offset='1' stop-color='%238f8590'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='12' fill='url(%23g)'/%3E%3C/svg%3E">
-<link rel="preload" href="kit/fonts/plus-jakarta-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="assets/history/h-ancient.jpg" media="(min-width:720px)" fetchpriority="high">
-<link rel="preload" as="image" href="assets/history/h-ancient-m.jpg" media="(max-width:719.98px)" fetchpriority="high">
-<link rel="stylesheet" href="kit/style.min.css">
-<script src="kit/site.js"></script>
+<link rel="preload" href="assets/fonts/plus-jakarta-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="assets/images/history/h-ancient.jpg" media="(min-width:720px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/images/history/h-ancient-m.jpg" media="(max-width:719.98px)" fetchpriority="high">
+<link rel="stylesheet" href="assets/css/style.min.css">
+<script src="assets/js/site.js"></script>
 </head>
 <body>
 <div class="pm-page pm-page--history">
@@ -68,8 +68,8 @@
 
 <header class="top">
   <a class="mark" href="index.html" aria-label="Emirates NBD Pearl Museum, home">
-    <img class="mark__logo mark__logo--w" src="kit/logo-enbd-white.svg" alt="" width="110" height="30">
-    <img class="mark__logo mark__logo--c" src="kit/logo-enbd-navy.svg" alt="" width="110" height="30">
+    <img class="mark__logo mark__logo--w" src="assets/images/logo-enbd-white.svg" alt="" width="110" height="30">
+    <img class="mark__logo mark__logo--c" src="assets/images/logo-enbd-navy.svg" alt="" width="110" height="30">
     <span class="mark__div" aria-hidden="true"></span><span class="mark__t" aria-hidden="true">Pearl Museum</span>
   </a>
   <div class="top__end">
@@ -77,7 +77,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path class="w" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/><path class="x" d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
       <span class="lbl" aria-hidden="true" id="soundState">Sound off</span>
     </button>
-    <!-- kit/menu.js adds the Menu button here -->
+    <!-- assets/js/menu.js adds the Menu button here -->
   </div>
 </header>
 
@@ -101,7 +101,7 @@
     <div class="stage">
       <div class="frame" data-ph="history/h-ancient.jpg">
         <div class="plane plane--bg">
-          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/history/h-ancient-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/history/h-ancient.jpg" width="2560" height="1440" decoding="async" fetchpriority="high" alt="A small, very old pearl, dulled and flaked with age, rests in a hollow of pale sand beside a curved shard of ancient painted pottery."></picture>
+          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/images/history/h-ancient-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/images/history/h-ancient.jpg" width="2560" height="1440" decoding="async" fetchpriority="high" alt="A small, very old pearl, dulled and flaked with age, rests in a hollow of pale sand beside a curved shard of ancient painted pottery."></picture>
         </div>
         <div class="scrim"></div>
       </div>
@@ -145,8 +145,8 @@
     <div class="stage">
       <div class="frame g-old" data-ph="s4-plunge.mp4 (+ -poster.jpg, s4-plunge.jpg)">
         <div class="plane plane--bg">
-          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s4-plunge-m-poster.jpg" data-next="assets/s4-plunge-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/s4-plunge-poster.jpg" data-alt="assets/s4-plunge.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="A pearl diver in a plain cotton suit sinks feet-first down a rope weighted with a stone, sunlight streaming through the water above him."></picture>
-          <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/s4-plunge.mp4" data-src-m="assets/s4-plunge-m.mp4"></video>
+          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/images/s4-plunge-m-poster.jpg" data-next="assets/images/s4-plunge-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/images/s4-plunge-poster.jpg" data-alt="assets/images/s4-plunge.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="A pearl diver in a plain cotton suit sinks feet-first down a rope weighted with a stone, sunlight streaming through the water above him."></picture>
+          <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/videos/s4-plunge.mp4" data-src-m="assets/videos/s4-plunge-m.mp4"></video>
         </div>
         <div class="scrim"></div>
       </div>
@@ -168,7 +168,7 @@
       </div>
       <div class="chap__body">
         <div class="split split--right">
-          <figure class="fig" data-reveal><div class="split__media g-old" style="--ar:4/5;--op:66% 50%"><img src="assets/history/h-shells.jpg" width="1600" height="900" decoding="async" loading="lazy" alt="At dawn on the dhow's deck, a diver's weathered hands open an oyster with a small knife, revealing a pearl inside."></div></figure>
+          <figure class="fig" data-reveal><div class="split__media g-old" style="--ar:4/5;--op:66% 50%"><img src="assets/images/history/h-shells.jpg" width="1600" height="900" decoding="async" loading="lazy" alt="At dawn on the dhow's deck, a diver's weathered hands open an oyster with a small knife, revealing a pearl inside."></div></figure>
           <div class="split__text" data-reveal data-reveal-delay="1">
             <p class="eyebrow"><span class="sr-only">1637, 1046H. </span>Life on board</p>
             <h2 class="line" id="y1637bh">The crew opening the oyster shells the following <em>day</em>.</h2>
@@ -176,9 +176,9 @@
           </div>
         </div>
         <ul class="gallery g-old" id="crew" style="--cell:200px" aria-label="The crew">
-          <li data-reveal><figure><div class="obj" style="--op:72% 45%"><img src="assets/history/h-crew-captain.jpg" width="1000" height="562" loading="lazy" decoding="async" alt="The captain stands at the stern of the pearling dhow at dawn, his hand on the tiller."></div><figcaption><b><i>Nakhuda</i>, the captain</b>At the stern, by the tiller</figcaption></figure></li>
-          <li data-reveal data-reveal-delay="1"><figure><div class="obj" style="--op:45% 45%"><img src="assets/history/h-crew-haulers.jpg" width="1000" height="562" loading="lazy" decoding="async" alt="Two haulers lean back on the rope that runs over the side to the sea."></div><figcaption><b><i>Saib</i>, the haulers</b>They pulled the divers back up</figcaption></figure></li>
-          <li data-reveal data-reveal-delay="2"><figure><div class="obj" style="--op:55% 40%"><img src="assets/history/h-crew-diver.jpg" width="1000" height="562" loading="lazy" decoding="async" alt="At the bow the diver fits his nose clip and takes one deep breath, his rope and stone ready."></div><figcaption><b><i>Ghais</i>, the diver</b>One rope, one stone, one breath</figcaption></figure></li>
+          <li data-reveal><figure><div class="obj" style="--op:72% 45%"><img src="assets/images/history/h-crew-captain.jpg" width="1000" height="562" loading="lazy" decoding="async" alt="The captain stands at the stern of the pearling dhow at dawn, his hand on the tiller."></div><figcaption><b><i>Nakhuda</i>, the captain</b>At the stern, by the tiller</figcaption></figure></li>
+          <li data-reveal data-reveal-delay="1"><figure><div class="obj" style="--op:45% 45%"><img src="assets/images/history/h-crew-haulers.jpg" width="1000" height="562" loading="lazy" decoding="async" alt="Two haulers lean back on the rope that runs over the side to the sea."></div><figcaption><b><i>Saib</i>, the haulers</b>They pulled the divers back up</figcaption></figure></li>
+          <li data-reveal data-reveal-delay="2"><figure><div class="obj" style="--op:55% 40%"><img src="assets/images/history/h-crew-diver.jpg" width="1000" height="562" loading="lazy" decoding="async" alt="At the bow the diver fits his nose clip and takes one deep breath, his rope and stone ready."></div><figcaption><b><i>Ghais</i>, the diver</b>One rope, one stone, one breath</figcaption></figure></li>
         </ul>
       </div>
     </div>
@@ -195,7 +195,7 @@
         <h2 class="sr-only" id="y1681h">Pearling in the Gulf</h2>
         <blockquote class="pull" data-reveal><p>“The desire for pearls is a thing which is found in all <em>nations</em>.”</p><cite>Abu Rian Al-Biruni, Persian Scholar</cite></blockquote>
         <div class="split">
-          <figure class="fig" data-reveal><div class="split__media engr" style="--ar:3/2;--op:72% 50%"><picture><source media="(max-width:719.98px)" srcset="assets/history/h-engraving-m.jpg" width="1080" height="1920"><img src="assets/history/h-engraving-1600.jpg" width="1600" height="900" decoding="async" loading="lazy" alt="An antique-style engraving of an opened pearl oyster shell, its scaly outer valve finely hatched and a single pearl resting in the smooth inner valve."></picture></div><figcaption class="figcap"><b>The oyster shell <i lang="la">Pinctada margaritifera</i>,</b> after the drawing in a treatise published by F. Bonnani in Rome. Reimagined.</figcaption></figure>
+          <figure class="fig" data-reveal><div class="split__media engr" style="--ar:3/2;--op:72% 50%"><picture><source media="(max-width:719.98px)" srcset="assets/images/history/h-engraving-m.jpg" width="1080" height="1920"><img src="assets/images/history/h-engraving-1600.jpg" width="1600" height="900" decoding="async" loading="lazy" alt="An antique-style engraving of an opened pearl oyster shell, its scaly outer valve finely hatched and a single pearl resting in the smooth inner valve."></picture></div><figcaption class="figcap"><b>The oyster shell <i lang="la">Pinctada margaritifera</i>,</b> after the drawing in a treatise published by F. Bonnani in Rome. Reimagined.</figcaption></figure>
           <div class="split__text" data-reveal data-reveal-delay="1">
             <div class="prose">
               <p>Some of the best natural pearls in the world came from the oysters living in the warm, shallow waters of the Gulf.</p>
@@ -213,7 +213,7 @@
       <div class="frame g-warm" data-ph="history/h-harbour.jpg">
         <!-- ONE coherent photograph, moved honestly: a slow drift and push across the whole frame (no cut-outs, no video) -->
         <div class="hb-layer" data-kf='{"0":{"x":.9,"scale":1.045},"1":{"x":-.9,"y":-.4,"scale":1}}' data-kf-m='{"0":{"scale":1.08,"y":.8},"1":{"scale":1,"y":-.4}}' data-rm-at="1">
-          <picture><source media="(max-width:719.98px)" srcset="assets/history/h-harbour-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/history/h-harbour.jpg" width="2560" height="1440" decoding="async" loading="lazy" alt="Dawn in a Gulf harbour in the 1920s: wooden pearling dhows at anchor in calm shallows while crews load jars and rope, and three men stand in the water steadying a small boat, smoke rising from cooking fires on the shore."></picture>
+          <picture><source media="(max-width:719.98px)" srcset="assets/images/history/h-harbour-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/images/history/h-harbour.jpg" width="2560" height="1440" decoding="async" loading="lazy" alt="Dawn in a Gulf harbour in the 1920s: wooden pearling dhows at anchor in calm shallows while crews load jars and rope, and three men stand in the water steadying a small boat, smoke rising from cooking fires on the shore."></picture>
         </div>
         <div class="hb-layer hb-haze fx-layer" aria-hidden="true" data-kf='{"0":{"opacity":.7,"y":1.5},"1":{"opacity":.1,"y":-3}}'></div>
         <div class="hb-layer hb-sun fx-layer" aria-hidden="true" data-kf='{"0":{"opacity":.25},"0.7":{"opacity":.7},"1":{"opacity":.8}}'></div>
@@ -239,7 +239,7 @@
         <h2 class="line" id="musich" data-reveal>Every task had its <em>song</em>.</h2>
         <figure class="loop" data-reveal>
           <div class="loop__frame" style="--ar:16/9;--op:60% 40%">
-            <video src="assets/history/h-singer-loop.mp4" data-src-m="assets/history/h-singer-loop-m.mp4" poster="assets/history/h-singer-loop-poster.jpg" data-poster-m="assets/history/h-singer-loop-m-poster.jpg" muted loop playsinline preload="metadata" aria-label="Midships on a pearling dhow, the singer leads the chant and claps the rhythm while two haulers lean back on the rope behind him."></video>
+            <video src="assets/videos/history/h-singer-loop.mp4" data-src-m="assets/videos/history/h-singer-loop-m.mp4" poster="assets/images/history/h-singer-loop-poster.jpg" data-poster-m="assets/images/history/h-singer-loop-m-poster.jpg" muted loop playsinline preload="metadata" aria-label="Midships on a pearling dhow, the singer leads the chant and claps the rhythm while two haulers lean back on the rope behind him."></video>
             <button class="loop__ctl" type="button" aria-pressed="false"><svg class="i-pause" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><rect x="2" y="1.5" width="2.6" height="9" rx=".6"/><rect x="7.4" y="1.5" width="2.6" height="9" rx=".6"/></svg><svg class="i-play" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.6v8.8L10.4 6z"/></svg><span class="t">Pause</span></button>
           </div>
           <figcaption class="figcap">The singer at work on deck, reimagined</figcaption>
@@ -261,7 +261,7 @@
       </div>
       <div class="chap__body">
         <div class="split split--right">
-          <figure class="fig" data-reveal><div class="split__media g-warm" style="--ar:4/5;--op:70% 60%"><picture><source media="(max-width:719.98px)" srcset="assets/history/h-launch-m.jpg" width="1080" height="1920"><img src="assets/history/h-launch-1600.jpg" width="1600" height="900" decoding="async" loading="lazy" alt="Inside a pearl merchant's launch under a canvas awning: Persian rugs and cushions, and on a red cloth, heaps of pearls sorted by size beside a small brass balance."></picture></div><figcaption class="figcap">A merchant's launch, reimagined</figcaption></figure>
+          <figure class="fig" data-reveal><div class="split__media g-warm" style="--ar:4/5;--op:70% 60%"><picture><source media="(max-width:719.98px)" srcset="assets/images/history/h-launch-m.jpg" width="1080" height="1920"><img src="assets/images/history/h-launch-1600.jpg" width="1600" height="900" decoding="async" loading="lazy" alt="Inside a pearl merchant's launch under a canvas awning: Persian rugs and cushions, and on a red cloth, heaps of pearls sorted by size beside a small brass balance."></picture></div><figcaption class="figcap">A merchant's launch, reimagined</figcaption></figure>
           <div class="split__text" data-reveal data-reveal-delay="1">
             <p class="eyebrow"><span class="sr-only">1926, 1344H. </span>Pearl merchants</p>
             <h2 class="line" id="y1926h">The pearl merchant's launch was the antithesis of the diving <em>dhow</em>.</h2>
@@ -278,8 +278,8 @@
     <div class="stage">
       <div class="frame g-dusk" data-ph="s2-fleet.mp4 (+ -poster.jpg, s2-fleet.jpg)">
         <div class="plane plane--bg">
-          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s2-fleet-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/s2-fleet-poster.jpg" data-alt="assets/s2-fleet.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="A fleet of wooden pearling dhows at anchor on a calm, hazy Gulf, the low sun on the horizon."></picture>
-          <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/s2-fleet.mp4" data-m="still"></video>
+          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/images/s2-fleet-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/images/s2-fleet-poster.jpg" data-alt="assets/images/s2-fleet.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="A fleet of wooden pearling dhows at anchor on a calm, hazy Gulf, the low sun on the horizon."></picture>
+          <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/videos/s2-fleet.mp4" data-m="still"></video>
         </div>
         <div class="dusk fx-layer" aria-hidden="true"></div>
         <div class="scrim"></div>
@@ -305,7 +305,7 @@
         <h2 class="line" id="y1963h" data-reveal>From dhows to divers. A story that began in <em>1963</em>.</h2>
         <!-- 1967 photo: Getty Images 2217282673 (Chris Ware, Keystone Features, Hulton Archive). This is Getty's watermarked preview:
              license it from Getty and replace the file with the licensed one before this page goes live. -->
-        <figure class="fig" data-reveal><div class="split__media" style="--ar:3/2;--op:50% 50%"><picture><img src="assets/history/h-nbd-1967-comp.jpg" width="1600" height="1068" decoding="async" loading="lazy" alt="Black and white photograph, 1967: the National Bank of Dubai's white single-storey branch on the bank of Dubai Creek, its name in Arabic and English across the front, with abra boats full of passengers at the steps in front of it."></picture></div><figcaption class="figcap"><b>The National Bank of Dubai,</b> on Dubai Creek, 1967. Photo: Chris Ware, Keystone Features, Hulton Archive, Getty Images</figcaption></figure>
+        <figure class="fig" data-reveal><div class="split__media" style="--ar:3/2;--op:50% 50%"><picture><img src="assets/images/history/h-nbd-1967-comp.jpg" width="1600" height="1068" decoding="async" loading="lazy" alt="Black and white photograph, 1967: the National Bank of Dubai's white single-storey branch on the bank of Dubai Creek, its name in Arabic and English across the front, with abra boats full of passengers at the steps in front of it."></picture></div><figcaption class="figcap"><b>The National Bank of Dubai,</b> on Dubai Creek, 1967. Photo: Chris Ware, Keystone Features, Hulton Archive, Getty Images</figcaption></figure>
         <div class="prose" data-reveal>
           <p>Emirates NBD’s story began on 19 June 1963, when the late Sheikh Rashid bin Saeed Al Maktoum signed the Charter of Incorporation of the National Bank of Dubai (NBD), the first national bank established in Dubai and the United Arab Emirates (UAE).</p>
           <p>Sultan Ali Al-Owais, the son of a pearl merchant, became a founder of the UAE’s first national bank. He kept the pearls, so that we may understand and respect a way of life now lost.</p>

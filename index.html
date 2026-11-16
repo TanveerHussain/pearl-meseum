@@ -4,7 +4,7 @@
   Governing idea (STORY.md): Everything precious here began with one breath.
   The visitor is the diver. The museum and Sultan Ali Al-Owais are the keepers. The pearl is what the story earns.
 
-  Every scene is a short scroll-scrubbed clip (assets/sN-name.mp4) with its poster first (sN-name-poster.jpg),
+  Every scene is a short scroll-scrubbed clip (assets/videos/sN-name.mp4) with its poster first (sN-name-poster.jpg),
   the still as fallback (sN-name.jpg, sN-name-m.jpg on phones), and the dive's own clips
   (s4-ascent, s4-surface, s4-redive). Every layer carries a CSS gradient fallback and shows the expected file name while it is missing.
   Code only does type, layout, scroll choreography, parallax between photo planes, grade shifts, transitions and the hold-to-dive.
@@ -36,20 +36,20 @@
 <meta property="og:site_name" content="Emirates NBD Pearl Museum">
 <meta property="og:title" content="One Breath | Emirates NBD Pearl Museum, Dubai">
 <meta property="og:description" content="Everything precious here began with one breath. Take one with a 1949 pearling crew, dive for a Gulf pearl, then come and see the real collection on Dubai Creek.">
-<meta property="og:image" content="assets/og/index.jpg">
+<meta property="og:image" content="assets/images/og/index.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="One Breath | Emirates NBD Pearl Museum, Dubai">
 <meta name="twitter:description" content="Everything precious here began with one breath. Take one with a 1949 pearling crew, dive for a Gulf pearl, then come and see the real collection on Dubai Creek.">
-<meta name="twitter:image" content="assets/og/index.jpg">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/og/favicon-32.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/og/apple-touch-icon.png">
+<meta name="twitter:image" content="assets/images/og/index.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/og/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/og/apple-touch-icon.png">
 <meta name="theme-color" content="#05070b">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3CradialGradient id='g' cx='.36' cy='.32' r='.75'%3E%3Cstop offset='0' stop-color='%23fffdf8'/%3E%3Cstop offset='.5' stop-color='%23e6dad0'/%3E%3Cstop offset='1' stop-color='%238f8590'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='12' fill='url(%23g)'/%3E%3C/svg%3E">
-<link rel="preload" href="kit/fonts/plus-jakarta-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="assets/s1-arrival.jpg" media="(min-width:720px)" fetchpriority="high">
-<link rel="preload" as="image" href="assets/s1-arrival-m.jpg" media="(max-width:719.98px)" fetchpriority="high">
+<link rel="preload" href="assets/fonts/plus-jakarta-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="assets/images/s1-arrival.jpg" media="(min-width:720px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/images/s1-arrival-m.jpg" media="(max-width:719.98px)" fetchpriority="high">
 <script>
   (function(){
     var q = new URLSearchParams(location.search);
@@ -67,7 +67,7 @@
           t.dataset.fbm = '1'; s.parentNode.removeChild(s); return;
         }
       }
-      if (t.dataset.standin && !t.dataset.sti) { t.dataset.sti = '1'; if (pic && pic.querySelector('source')) pic.querySelector('source').srcset = 'assets/s1-arrival-m.jpg'; t.src = 'assets/s1-arrival.jpg'; t.classList.add('is-standin'); var fr = t.closest('.frame'); if (fr) fr.classList.add('is-ph'); return; }
+      if (t.dataset.standin && !t.dataset.sti) { t.dataset.sti = '1'; if (pic && pic.querySelector('source')) pic.querySelector('source').srcset = 'assets/images/s1-arrival-m.jpg'; t.src = 'assets/images/s1-arrival.jpg'; t.classList.add('is-standin'); var fr = t.closest('.frame'); if (fr) fr.classList.add('is-ph'); return; }
       if (t.dataset.alt) { var a = t.dataset.alt.split('|'); t.src = a.shift(); if (a.length) t.dataset.alt = a.join('|'); else delete t.dataset.alt; return; }
       t.classList.add('is-missing');
       var f = t.closest('.frame');
@@ -76,9 +76,9 @@
     }, true);
   })();
 </script>
-<link rel="stylesheet" href="kit/style.min.css">
-<script src="kit/menu.js" defer></script>
-<script src="kit/vendor/gsap-3.12.5.min.js" defer></script>
+<link rel="stylesheet" href="assets/css/style.min.css">
+<script src="assets/js/menu.js" defer></script>
+<script src="assets/js/vendor/gsap-3.12.5.min.js" defer></script>
 </head>
 <body>
 <div class="pm-page pm-page--index">
@@ -107,10 +107,10 @@
       <div class="frame" data-ph="s1-arrival.jpg + s1-arrival-1949.jpg">
         <div class="plane plane--bg s1-drift">
           <div class="s1-breathe">
-            <picture class="s1-now"><source media="(max-width:719.98px)" srcset="assets/s1-arrival-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/s1-arrival.jpg" width="2560" height="1440" decoding="async" fetchpriority="high" alt="An abra crosses Dubai Creek at sunset, the old Deira waterfront in silhouette against a golden sky."></picture>
+            <picture class="s1-now"><source media="(max-width:719.98px)" srcset="assets/images/s1-arrival-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/images/s1-arrival.jpg" width="2560" height="1440" decoding="async" fetchpriority="high" alt="An abra crosses Dubai Creek at sunset, the old Deira waterfront in silhouette against a golden sky."></picture>
             <!-- the Creek today moves: stock video "Traditional Abra Cruising On Dubai Creek Near Al Fahidi District" (BlackBoxGuild, Freepik premium,
                  downloaded on Hakan's account 2026-10-29), 1 to 9 s cut into an 8 s loop with a 1 s dissolve. The still above stays for reduced motion. -->
-            <video class="s1-vid fx-layer" muted playsinline loop preload="auto" aria-hidden="true" poster="assets/s1-abra-poster.jpg" data-src="assets/s1-abra.mp4" data-src-m="assets/s1-abra-m.mp4" data-poster-m="assets/s1-abra-m-poster.jpg"></video>
+            <video class="s1-vid fx-layer" muted playsinline loop preload="auto" aria-hidden="true" poster="assets/images/s1-abra-poster.jpg" data-src="assets/videos/s1-abra.mp4" data-src-m="assets/videos/s1-abra-m.mp4" data-poster-m="assets/images/s1-abra-m-poster.jpg"></video>
           </div>
         </div>
         <div class="scrim"></div>
@@ -130,7 +130,7 @@
       <p class="beat caption cap--base s1-cap" data-cue="-1 .93">Dubai Creek, today</p>
     </div>
     <div class="s1-rm">
-      <picture><source media="(max-width:719.98px)" srcset="assets/s1-arrival-m.jpg" width="1080" height="1920"><img src="assets/s1-arrival.jpg" data-alt="assets/s1-arrival-poster.jpg" width="2560" height="1440" decoding="async" loading="lazy" alt="The same view reimagined around 1949: a small wooden boat on the Creek, low coral-stone houses, wind towers and moored dhows along the bank."></picture>
+      <picture><source media="(max-width:719.98px)" srcset="assets/images/s1-arrival-m.jpg" width="1080" height="1920"><img src="assets/images/s1-arrival.jpg" data-alt="assets/images/s1-arrival-poster.jpg" width="2560" height="1440" decoding="async" loading="lazy" alt="The same view reimagined around 1949: a small wooden boat on the Creek, low coral-stone houses, wind towers and moored dhows along the bank."></picture>
       <div class="s1-rm__copy">
         <p class="line line--xl">Take a <em>breath</em>.</p>
         <p class="caption">Dubai Creek, today</p>
@@ -143,8 +143,8 @@
     <div class="stage">
       <div class="frame" data-ph="s2-fleet.mp4 (+ -poster.jpg, s2-fleet.jpg)">
         <div class="plane plane--bg">
-          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s2-fleet-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/s2-fleet-poster.jpg" data-alt="assets/s2-fleet.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="Dawn, 1949: a fleet of wooden pearling dhows at anchor on a calm, hazy Gulf, the low sun on the horizon."></picture>
-          <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/s2-fleet.mp4" data-m="still"></video>
+          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/images/s2-fleet-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/images/s2-fleet-poster.jpg" data-alt="assets/images/s2-fleet.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="Dawn, 1949: a fleet of wooden pearling dhows at anchor on a calm, hazy Gulf, the low sun on the horizon."></picture>
+          <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/videos/s2-fleet.mp4" data-m="still"></video>
         </div>
         <div class="scrim"></div>
       </div>
@@ -161,15 +161,15 @@
     <div class="stage">
       <div class="frame deck" data-ph="s3-deck-film-b.mp4 (falls back to s3-deck)">
         <div class="plane plane--bg deck__fb">
-          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s3-deck-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/s3-deck-poster.jpg" data-alt="assets/s3-deck.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="On deck at sunrise, 1949: the crew of a pearling dhow, the captain, the singer, the haulers on the rope and the diver."></picture>
-          <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/s3-deck.mp4" data-m="still" data-deck="fb"></video>
+          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/images/s3-deck-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/images/s3-deck-poster.jpg" data-alt="assets/images/s3-deck.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="On deck at sunrise, 1949: the crew of a pearling dhow, the captain, the singer, the haulers on the rope and the diver."></picture>
+          <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/videos/s3-deck.mp4" data-m="still" data-deck="fb"></video>
         </div>
-        <!-- the deck film (Ram's new cut, 2026-11-03, source assets/s3-deck-video/1031.mp4): one continuous move, captain 0 to 1.4 s, the seated singer to 3.4,
+        <!-- the deck film (Ram's new cut, 2026-11-03, source assets/videos/s3-deck-video/1031.mp4): one continuous move, captain 0 to 1.4 s, the seated singer to 3.4,
              the hauler on the rope to 4.5, then the diver: nose clip, breath, the step off the rail and the splash. The 2026-10-29 cut (s3-deck-film) and the
              old four clips with the s3b plate move stay in assets as earlier versions. -->
         <div class="plane deck__seg fx-layer" data-seg="0">
-          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s3-deck-film-b-m-poster.jpg" width="608" height="1080"><img src="assets/s3-deck-film-b-poster.jpg" data-alt="assets/s3-deck-poster.jpg|assets/s3-deck.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt=""></picture>
-          <video class="scrub" muted playsinline preload="none" aria-hidden="true" data-src="assets/s3-deck-film-b.mp4" data-src-m="assets/s3-deck-film-b-m.mp4" data-m-only="1" data-deck="0"></video>
+          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/images/s3-deck-film-b-m-poster.jpg" width="608" height="1080"><img src="assets/images/s3-deck-film-b-poster.jpg" data-alt="assets/images/s3-deck-poster.jpg|assets/images/s3-deck.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt=""></picture>
+          <video class="scrub" muted playsinline preload="none" aria-hidden="true" data-src="assets/videos/s3-deck-film-b.mp4" data-src-m="assets/videos/s3-deck-film-b-m.mp4" data-m-only="1" data-deck="0"></video>
         </div>
         <div class="tx tx--warm fx-layer"></div>
         <div class="scrim"></div>
@@ -184,34 +184,34 @@
     </div>
     <ol class="deck-rm" aria-label="The crew">
         <li class="deck-rm__beat">
-          <picture><source media="(max-width:719.98px)" srcset="assets/s3a-captain-m-still.jpg" data-next="assets/s3a-captain-m-poster.jpg|assets/s3a-captain-m.jpg|assets/s3-deck-m.jpg" width="1080" height="1920"><img src="assets/s3a-captain-still.jpg" data-alt="assets/s3a-captain-poster.jpg|assets/s3-deck.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="The captain stands at the stern of the pearling dhow at dawn, calm, watching the water."></picture>
+          <picture><source media="(max-width:719.98px)" srcset="assets/images/s3a-captain-m-still.jpg" data-next="assets/images/s3a-captain-m-poster.jpg|assets/images/s3a-captain-m.jpg|assets/images/s3-deck-m.jpg" width="1080" height="1920"><img src="assets/images/s3a-captain-still.jpg" data-alt="assets/images/s3a-captain-poster.jpg|assets/images/s3-deck.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="The captain stands at the stern of the pearling dhow at dawn, calm, watching the water."></picture>
           <div class="deck-rm__copy">
             <h2 class="line">No pearl was ever found <em>alone</em>.</h2>
             <p class="line"><em>Nakhuda</em>, the captain</p>
           </div>
         </li>
         <li class="deck-rm__beat">
-          <picture><source media="(max-width:719.98px)" srcset="assets/s3a2-captain-close-m-still.jpg" data-next="assets/s3a2-captain-close-m-poster.jpg|assets/s3a-captain-m-still.jpg|assets/s3-deck-m.jpg" width="1080" height="1920"><img src="assets/s3a2-captain-close-still.jpg" data-alt="assets/s3a2-captain-close-poster.jpg|assets/s3a-captain-still.jpg|assets/s3-deck.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="Close on the captain at the tiller, his weathered face in profile, eyes on the horizon, the wind in his head cloth."></picture>
+          <picture><source media="(max-width:719.98px)" srcset="assets/images/s3a2-captain-close-m-still.jpg" data-next="assets/images/s3a2-captain-close-m-poster.jpg|assets/images/s3a-captain-m-still.jpg|assets/images/s3-deck-m.jpg" width="1080" height="1920"><img src="assets/images/s3a2-captain-close-still.jpg" data-alt="assets/images/s3a2-captain-close-poster.jpg|assets/images/s3a-captain-still.jpg|assets/images/s3-deck.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="Close on the captain at the tiller, his weathered face in profile, eyes on the horizon, the wind in his head cloth."></picture>
           <div class="deck-rm__copy">
             <p class="line">Every voyage answered to <em>him</em>.</p>
           </div>
         </li>
         <li class="deck-rm__beat">
-          <svg class="s3b-still s3b-still--d" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Midships, the singer leads the chant and claps the rhythm, the haulers on the rope beside him."><image href="assets/s3b-plates/s3b-L0-sky-sea.jpg" x="0" y="0" width="1920.0" height="1080.0"/><image href="assets/s3b-plates/s3b-L1-deck-sea.webp" x="0" y="576" width="2045.333" height="504.0"/><image href="assets/s3b-plates/s3b-C2-man-at-bow-shadow.webp" x="956.5" y="673" width="131.333" height="58.0"/><image href="assets/s3b-plates/s3b-C2-man-at-bow.webp" x="965.3" y="454" width="82.667" height="254.667"/><image href="assets/s3b-plates/s3b-L2-mast-rigging.webp" x="0" y="0" width="2045.333" height="840.0"/><image href="assets/s3b-plates/s3b-C3-haulers-shadow.webp" x="676.4" y="893.7" width="156.667" height="58.0"/><path d="M678 720 L636 753" stroke="#8a6247" stroke-width="5.4" stroke-linecap="round" fill="none"/><path d="M678 720 L636 753" stroke="#4f3726" stroke-width="5.4" stroke-dasharray="1.3 2.5" opacity=".38" fill="none"/><image href="assets/s3b-plates/s3b-C3-haulers.webp" x="662" y="460" width="304.0" height="469.333"/><image href="assets/s3b-plates/s3b-C4-singer-shadow.webp" x="1101.3" y="863" width="145.333" height="58.0"/><image href="assets/s3b-plates/s3b-C4-singer.webp" x="1074" y="403.3" width="138.667" height="495.333"/></svg><svg class="s3b-still s3b-still--m" viewBox="841 0 608 1080" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><image href="assets/s3b-plates/s3b-L0-sky-sea.jpg" x="0" y="0" width="1920.0" height="1080.0"/><image href="assets/s3b-plates/s3b-L1-deck-sea.webp" x="0" y="576" width="2045.333" height="504.0"/><image href="assets/s3b-plates/s3b-C2-man-at-bow-shadow.webp" x="956.5" y="673" width="131.333" height="58.0"/><image href="assets/s3b-plates/s3b-C2-man-at-bow.webp" x="965.3" y="454" width="82.667" height="254.667"/><image href="assets/s3b-plates/s3b-L2-mast-rigging.webp" x="0" y="0" width="2045.333" height="840.0"/><image href="assets/s3b-plates/s3b-C3-haulers-shadow.webp" x="676.4" y="893.7" width="156.667" height="58.0"/><path d="M678 720 L636 753" stroke="#8a6247" stroke-width="5.4" stroke-linecap="round" fill="none"/><path d="M678 720 L636 753" stroke="#4f3726" stroke-width="5.4" stroke-dasharray="1.3 2.5" opacity=".38" fill="none"/><image href="assets/s3b-plates/s3b-C3-haulers.webp" x="662" y="460" width="304.0" height="469.333"/><image href="assets/s3b-plates/s3b-C4-singer-shadow.webp" x="1101.3" y="863" width="145.333" height="58.0"/><image href="assets/s3b-plates/s3b-C4-singer.webp" x="1074" y="403.3" width="138.667" height="495.333"/></svg>
+          <svg class="s3b-still s3b-still--d" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Midships, the singer leads the chant and claps the rhythm, the haulers on the rope beside him."><image href="assets/images/s3b-plates/s3b-L0-sky-sea.jpg" x="0" y="0" width="1920.0" height="1080.0"/><image href="assets/images/s3b-plates/s3b-L1-deck-sea.webp" x="0" y="576" width="2045.333" height="504.0"/><image href="assets/images/s3b-plates/s3b-C2-man-at-bow-shadow.webp" x="956.5" y="673" width="131.333" height="58.0"/><image href="assets/images/s3b-plates/s3b-C2-man-at-bow.webp" x="965.3" y="454" width="82.667" height="254.667"/><image href="assets/images/s3b-plates/s3b-L2-mast-rigging.webp" x="0" y="0" width="2045.333" height="840.0"/><image href="assets/images/s3b-plates/s3b-C3-haulers-shadow.webp" x="676.4" y="893.7" width="156.667" height="58.0"/><path d="M678 720 L636 753" stroke="#8a6247" stroke-width="5.4" stroke-linecap="round" fill="none"/><path d="M678 720 L636 753" stroke="#4f3726" stroke-width="5.4" stroke-dasharray="1.3 2.5" opacity=".38" fill="none"/><image href="assets/images/s3b-plates/s3b-C3-haulers.webp" x="662" y="460" width="304.0" height="469.333"/><image href="assets/images/s3b-plates/s3b-C4-singer-shadow.webp" x="1101.3" y="863" width="145.333" height="58.0"/><image href="assets/images/s3b-plates/s3b-C4-singer.webp" x="1074" y="403.3" width="138.667" height="495.333"/></svg><svg class="s3b-still s3b-still--m" viewBox="841 0 608 1080" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><image href="assets/images/s3b-plates/s3b-L0-sky-sea.jpg" x="0" y="0" width="1920.0" height="1080.0"/><image href="assets/images/s3b-plates/s3b-L1-deck-sea.webp" x="0" y="576" width="2045.333" height="504.0"/><image href="assets/images/s3b-plates/s3b-C2-man-at-bow-shadow.webp" x="956.5" y="673" width="131.333" height="58.0"/><image href="assets/images/s3b-plates/s3b-C2-man-at-bow.webp" x="965.3" y="454" width="82.667" height="254.667"/><image href="assets/images/s3b-plates/s3b-L2-mast-rigging.webp" x="0" y="0" width="2045.333" height="840.0"/><image href="assets/images/s3b-plates/s3b-C3-haulers-shadow.webp" x="676.4" y="893.7" width="156.667" height="58.0"/><path d="M678 720 L636 753" stroke="#8a6247" stroke-width="5.4" stroke-linecap="round" fill="none"/><path d="M678 720 L636 753" stroke="#4f3726" stroke-width="5.4" stroke-dasharray="1.3 2.5" opacity=".38" fill="none"/><image href="assets/images/s3b-plates/s3b-C3-haulers.webp" x="662" y="460" width="304.0" height="469.333"/><image href="assets/images/s3b-plates/s3b-C4-singer-shadow.webp" x="1101.3" y="863" width="145.333" height="58.0"/><image href="assets/images/s3b-plates/s3b-C4-singer.webp" x="1074" y="403.3" width="138.667" height="495.333"/></svg>
           <div class="deck-rm__copy">
             <p class="line"><em>Nahham</em>, the singer</p>
             <p class="line">Everything on board was done to <em>singing</em>, stamping and hand-clapping.</p>
           </div>
         </li>
         <li class="deck-rm__beat">
-          <picture><source media="(max-width:719.98px)" srcset="assets/s3c-haulers-m-still.jpg" data-next="assets/s3d-diver-m-poster.jpg|assets/s3c-haulers-m.jpg|assets/s3-deck-m.jpg" width="1080" height="1920"><img src="assets/s3c-haulers-still.jpg" data-alt="assets/s3d-diver-poster.jpg|assets/s3-deck.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="Two haulers lean back on the rope that runs over the side to the sea."></picture>
+          <picture><source media="(max-width:719.98px)" srcset="assets/images/s3c-haulers-m-still.jpg" data-next="assets/images/s3d-diver-m-poster.jpg|assets/images/s3c-haulers-m.jpg|assets/images/s3-deck-m.jpg" width="1080" height="1920"><img src="assets/images/s3c-haulers-still.jpg" data-alt="assets/images/s3d-diver-poster.jpg|assets/images/s3-deck.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="Two haulers lean back on the rope that runs over the side to the sea."></picture>
           <div class="deck-rm__copy">
             <p class="line"><em>Saib</em>, the haulers who pulled the divers back up</p>
             <p><a class="door" href="history.html#crew"><span>Meet the crew</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
           </div>
         </li>
         <li class="deck-rm__beat">
-          <picture><source media="(max-width:719.98px)" srcset="assets/s3d-diver-m-still.jpg" data-next="assets/s3d-diver-m.jpg|assets/s3-deck-m.jpg" width="1080" height="1920"><img src="assets/s3d-diver-still.jpg" data-alt="assets/s3-deck.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="At the forward rail the diver fits his nose clip and takes one deep breath, his rope and stone ready."></picture>
+          <picture><source media="(max-width:719.98px)" srcset="assets/images/s3d-diver-m-still.jpg" data-next="assets/images/s3d-diver-m.jpg|assets/images/s3-deck-m.jpg" width="1080" height="1920"><img src="assets/images/s3d-diver-still.jpg" data-alt="assets/images/s3-deck.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="At the forward rail the diver fits his nose clip and takes one deep breath, his rope and stone ready."></picture>
           <div class="deck-rm__copy">
             <p class="line"><em>Ghais</em>, the diver</p>
             <p class="line">Take a <em>breath</em> with him.</p>
@@ -226,20 +226,20 @@
       <div class="frame" data-ph="s4-plunge.mp4 (falls back to s4-plunge-v1)">
         <div class="pulse" id="pulse4">
           <div class="plane plane--bg">
-            <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s4-plunge-m-poster.jpg" data-next="assets/s4-plunge-m.jpg|assets/s4-plunge-v1-m-poster.jpg|assets/s4-plunge-v1-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/s4-plunge-poster.jpg" data-alt="assets/s4-plunge.jpg|assets/s4-plunge-v1-poster.jpg|assets/s4-plunge-v1.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="A pearl diver in a plain cotton suit sinks feet-first down a rope weighted with a stone, sunlight streaming through the water above him."></picture>
-            <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/s4-plunge.mp4|assets/s4-plunge-v1.mp4" data-src-m="assets/s4-plunge-m.mp4|assets/s4-plunge-v1-m.mp4"></video>
+            <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/images/s4-plunge-m-poster.jpg" data-next="assets/images/s4-plunge-m.jpg|assets/images/s4-plunge-v1-m-poster.jpg|assets/images/s4-plunge-v1-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/images/s4-plunge-poster.jpg" data-alt="assets/images/s4-plunge.jpg|assets/images/s4-plunge-v1-poster.jpg|assets/images/s4-plunge-v1.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="A pearl diver in a plain cotton suit sinks feet-first down a rope weighted with a stone, sunlight streaming through the water above him."></picture>
+            <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/videos/s4-plunge.mp4|assets/videos/s4-plunge-v1.mp4" data-src-m="assets/videos/s4-plunge-m.mp4|assets/videos/s4-plunge-v1-m.mp4"></video>
           </div>
           <div class="plane st-plane" data-st="ascent" data-ph="s4-ascent.mp4">
-            <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s4-ascent-m-poster.jpg" width="608" height="1080"><img src="assets/s4-ascent-poster.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="The haulers pull the diver up the taut rope toward the bright surface."></picture>
-            <video class="stclip fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/s4-ascent.mp4" data-src-m="assets/s4-ascent-m.mp4" data-dur="3.6"></video>
+            <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/images/s4-ascent-m-poster.jpg" width="608" height="1080"><img src="assets/images/s4-ascent-poster.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="The haulers pull the diver up the taut rope toward the bright surface."></picture>
+            <video class="stclip fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/videos/s4-ascent.mp4" data-src-m="assets/videos/s4-ascent-m.mp4" data-dur="3.6"></video>
           </div>
           <div class="plane st-plane" data-st="surface" data-ph="s4-surface.mp4">
-            <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s4-surface-m-poster.jpg" width="608" height="1080"><img src="assets/s4-surface-poster.jpg" data-still="assets/s4-surface-still.jpg" data-still-m="assets/s4-surface-m-still.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="Beside the dark wooden hull, the diver breaks the surface and gasps for air, one hand on the rope."></picture>
-            <video class="stclip fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/s4-surface.mp4" data-src-m="assets/s4-surface-m.mp4" data-dur="4.2"></video>
+            <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/images/s4-surface-m-poster.jpg" width="608" height="1080"><img src="assets/images/s4-surface-poster.jpg" data-still="assets/images/s4-surface-still.jpg" data-still-m="assets/images/s4-surface-m-still.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="Beside the dark wooden hull, the diver breaks the surface and gasps for air, one hand on the rope."></picture>
+            <video class="stclip fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/videos/s4-surface.mp4" data-src-m="assets/videos/s4-surface-m.mp4" data-dur="4.2"></video>
           </div>
           <div class="plane st-plane" data-st="redive" data-ph="s4-redive.mp4">
-            <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s4-redive-m-poster.jpg" width="608" height="1080"><img src="assets/s4-redive-poster.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="At the surface the diver takes one breath and sinks feet-first along the rope."></picture>
-            <video class="stclip fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/s4-redive.mp4" data-src-m="assets/s4-redive-m.mp4" data-dur="4"></video>
+            <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/images/s4-redive-m-poster.jpg" width="608" height="1080"><img src="assets/images/s4-redive-poster.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="At the surface the diver takes one breath and sinks feet-first along the rope."></picture>
+            <video class="stclip fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/videos/s4-redive.mp4" data-src-m="assets/videos/s4-redive-m.mp4" data-dur="4"></video>
           </div>
         </div>
         <div class="scrim"></div>
@@ -280,8 +280,8 @@
     <div class="stage">
       <div class="frame" data-ph="s5-seabed.mp4 (+ -poster.jpg, s5-seabed.jpg)">
         <div class="plane plane--bg">
-          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s5-seabed-m-poster.jpg" data-next="assets/s5-seabed-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/s5-seabed-poster.jpg" data-alt="assets/s5-seabed.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="In near darkness on the seabed, a diver's hands feel for oysters and gather them into a rope net basket."></picture>
-          <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/s5-seabed.mp4" data-src-m="assets/s5-seabed-m.mp4"></video>
+          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/images/s5-seabed-m-poster.jpg" data-next="assets/images/s5-seabed-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/images/s5-seabed-poster.jpg" data-alt="assets/images/s5-seabed.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="In near darkness on the seabed, a diver's hands feel for oysters and gather them into a rope net basket."></picture>
+          <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/videos/s5-seabed.mp4" data-src-m="assets/videos/s5-seabed-m.mp4"></video>
         </div>
         <div class="shade fx-layer"></div>
         <div class="scrim"></div>
@@ -298,8 +298,8 @@
       <div class="tx tx--black fx-layer" aria-hidden="true"></div>
       <div class="frame" data-ph="s6-morning.mp4 (+ -poster.jpg, s6-morning.jpg)">
         <div class="plane plane--bg">
-          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s6-morning-m-poster.jpg" data-next="assets/s6-morning-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/s6-morning-poster.jpg" data-alt="assets/s6-morning.jpg" data-still="assets/s6-morning.jpg" data-still-m="assets/s6-morning-m.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="At dawn on the dhow's deck, a diver's weathered hands open an oyster with a small knife, revealing a pearl inside."></picture>
-          <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/s6-morning.mp4" data-src-m="assets/s6-morning-m.mp4"></video>
+          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/images/s6-morning-m-poster.jpg" data-next="assets/images/s6-morning-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/images/s6-morning-poster.jpg" data-alt="assets/images/s6-morning.jpg" data-still="assets/images/s6-morning.jpg" data-still-m="assets/images/s6-morning-m.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="At dawn on the dhow's deck, a diver's weathered hands open an oyster with a small knife, revealing a pearl inside."></picture>
+          <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/videos/s6-morning.mp4" data-src-m="assets/videos/s6-morning-m.mp4"></video>
         </div>
         <div class="scrim"></div>
       </div>
@@ -315,8 +315,8 @@
     <div class="stage">
       <div class="frame" data-ph="s7-pearl.mp4 (+ -poster.jpg, s7-pearl.jpg)">
         <div class="plane plane--bg">
-          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s7-pearl-m-poster.jpg" data-next="assets/s7-pearl-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/s7-pearl-poster.jpg" data-alt="assets/s7-pearl.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="A single natural Gulf pearl, softly lit on dark velvet, its surface glowing with a faint rose and green sheen."></picture>
-          <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/s7-pearl.mp4" data-src-m="assets/s7-pearl-m.mp4"></video>
+          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/images/s7-pearl-m-poster.jpg" data-next="assets/images/s7-pearl-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/images/s7-pearl-poster.jpg" data-alt="assets/images/s7-pearl.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="A single natural Gulf pearl, softly lit on dark velvet, its surface glowing with a faint rose and green sheen."></picture>
+          <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/videos/s7-pearl.mp4" data-src-m="assets/videos/s7-pearl-m.mp4"></video>
         </div>
         <div class="scrim"></div>
       </div>
@@ -350,7 +350,7 @@
       </div>
       <div class="qpearl" aria-hidden="true">
         <div class="qp"><span class="qshadow fx-layer"></span><div class="qfloat">
-          <img src="assets/s7-pearl-cut.png" width="892" height="822" decoding="async" loading="lazy" alt="">
+          <img src="assets/images/s7-pearl-cut.png" width="892" height="822" decoding="async" loading="lazy" alt="">
           <span class="ph-pearl"></span><span class="ph-tag">s7-pearl-cut.png</span>
           <span class="qshine fx-layer"></span>
         </div></div>
@@ -379,8 +379,8 @@
       <div class="tx tx--dusk fx-layer" aria-hidden="true"></div>
       <div class="frame" data-ph="s8-hq.mp4 (+ -poster.jpg, s8-hq.jpg)">
         <div class="plane plane--bg">
-          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/s8-hq-m-poster.jpg" data-next="assets/s8-hq-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/s8-hq-poster.jpg" data-alt="assets/s8-hq.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="The Emirates NBD headquarters on the Deira bank of Dubai Creek in golden late-afternoon light, its curved bronze glass facade rising above the water."></picture>
-          <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/s8-hq.mp4" data-src-m="assets/s8-hq-m.mp4"></video>
+          <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/images/s8-hq-m-poster.jpg" data-next="assets/images/s8-hq-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/images/s8-hq-poster.jpg" data-alt="assets/images/s8-hq.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="The Emirates NBD headquarters on the Deira bank of Dubai Creek in golden late-afternoon light, its curved bronze glass facade rising above the water."></picture>
+          <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/videos/s8-hq.mp4" data-src-m="assets/videos/s8-hq-m.mp4"></video>
         </div>
         <div class="scrim"></div>
       </div>
