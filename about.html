@@ -66,7 +66,7 @@
 <link rel="preload" as="image" href="assets/images/about/a1-hero-loop-m-poster.jpg" media="(max-width:719.98px)" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/style.min.css">
 <!-- site.js is the only script tag: it loads assets/js/menu.js and GSAP (kit/vendor) on its own -->
-<script src="assets/js/site.js"></script>
+<script src="assets/js/script.min.js" data-page="about"></script>
 </head>
 <body>
 <div class="pm-page pm-page--about">
@@ -292,28 +292,6 @@
   <p>Emirates NBD Pearl Museum, Emirates NBD HQ, Dubai Creek, Deira. By appointment.</p>
 </footer>
 
-<script>
-/* ---- page choreography: positions in scene progress 0 to 1 ---- */
-// 7 the wish: a calm settle onto the HQ
-PM.timeline('wish', (gsap, T) => T().fromTo('#wish .plane--bg', { scale: 1.07 }, { scale: 1.0, ease: 'power1.out' }, 0));
-
-/* ---- sound: off until opted in (header toggle) ---- */
-PM.sound.stems({
-  'amb-open-sea': ['bed', 28, 0, 1],
-  'music-drone-bed': ['music', 40, -16, 1],
-  'music-oud-sparse': ['music', 39, -4, 2],
-  'amb-creek-today': ['bed', 28, -6, 3],
-  'music-end-resolve': ['music', 0, -3, 3]
-});
-PM.sound.mix((y, P) => {
-  const v = y / innerHeight, po = P('poet', y), w = P('wish', y);
-  PM.sound.level('amb-open-sea', 1 - PM.sm(.5, 2.2, v));
-  PM.sound.level('music-drone-bed', .6 + .4 * PM.sm(-.3, .1, po) * (1 - PM.sm(.9, 1.4, po)));
-  PM.sound.level('music-oud-sparse', PM.sm(-.15, .12, po) * (1 - PM.sm(.85, 1.3, po)));
-  PM.sound.level('amb-creek-today', PM.sm(-.2, .2, w));
-  if (w > .6) PM.sound.cue('music-end-resolve', true); else if (w < .3) PM.sound.cue('music-end-resolve', false, 1.2);
-});
-</script>
 </div>
 </body>
 </html>

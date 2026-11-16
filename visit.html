@@ -81,7 +81,7 @@
 <link rel="preload" as="image" href="assets/images/s8-hq-m.jpg" media="(max-width:719.98px)" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/style.min.css">
 <!-- site.js is the only script tag: it loads assets/js/menu.js and GSAP (kit/vendor) on its own, without blocking -->
-<script src="assets/js/site.js"></script>
+<script src="assets/js/script.min.js" data-page="visit"></script>
 </head>
 <body>
 <div class="pm-page pm-page--visit">
@@ -289,51 +289,6 @@
   <p>Emirates NBD Pearl Museum, Emirates NBD HQ, Dubai Creek, Deira. By appointment.</p>
 </footer>
 
-<script>
-/* ---- page choreography: one calm settle onto the HQ as the visitor scrolls ---- */
-PM.timeline('v1', (gsap, T) => T().fromTo('#v1 .plane--bg', { scale: 1.06 }, { scale: 1.0, ease: 'power1.out' }, 0));
-
-/* ---- the request form: design only. Nothing is ever sent; fields show validation once touched ---- */
-(() => {
-  const form = document.getElementById('reqForm');
-  if (!form) return;
-  const date = document.getElementById('fDate');
-  const t = new Date(); t.setDate(t.getDate() + 1);
-  date.min = `${t.getFullYear()}-${String(t.getMonth() + 1).padStart(2, '0')}-${String(t.getDate()).padStart(2, '0')}`;
-  const rules = {
-    fName: el => el.value.trim() ? '' : 'Please enter your name.',
-    fDate: el => !el.value ? 'Please choose a preferred date.' : (el.value < el.min ? 'Please choose a date after today.' : ''),
-    fSize: el => (/^\d+$/.test(el.value.trim()) && +el.value >= 1) ? '' : 'Please enter a whole number, 1 or more.'
-  };
-  const check = el => {
-    const msg = rules[el.id](el), err = document.getElementById(el.id + 'Err');
-    el.setAttribute('aria-invalid', msg ? 'true' : 'false');
-    err.querySelector('span').textContent = msg || err.querySelector('span').textContent;
-    err.hidden = !msg;
-  };
-  Object.keys(rules).forEach(id => {
-    const el = document.getElementById(id);
-    // a field is checked once the visitor has typed in it (so simply tabbing past an empty field stays quiet)
-    const mark = () => { el.dataset.touched = '1'; };
-    el.addEventListener('input', () => { if (el.dataset.blurred) check(el); else mark(); });
-    el.addEventListener('change', mark);
-    el.addEventListener('blur', () => { if (el.dataset.touched) { el.dataset.blurred = '1'; check(el); } });
-  });
-  // Send request: check every required field; nothing is sent yet (no backend), the status line says so
-  const status = document.getElementById('reqStatus');
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const bad = Object.keys(rules).map(id => document.getElementById(id)).filter(el => { el.dataset.blurred = '1'; check(el); return el.getAttribute('aria-invalid') === 'true'; });
-    if (bad.length) { status.hidden = true; bad[0].focus(); return; }
-    status.textContent = 'Thank you. Online requests are not open yet, so this request has not been sent.';
-    status.hidden = false;
-  });
-})();
-
-/* ---- sound: off until opted in (header toggle); the Creek today, quietly ---- */
-PM.sound.stems({ 'amb-creek-today': ['bed', 28, -6, 1] });
-PM.sound.mix((y, P) => { PM.sound.level('amb-creek-today', 1 - .5 * PM.sm(.6, 2.4, P('v1', y))); });
-</script>
 </div>
 </body>
 </html>

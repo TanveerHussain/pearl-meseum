@@ -62,7 +62,7 @@
 <link rel="preload" as="image" href="assets/images/collection/c1-plate.jpg" media="(min-width:720px)" fetchpriority="high">
 <link rel="preload" as="image" href="assets/images/collection/c1-plate-m.jpg" media="(max-width:719.98px)" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/style.min.css">
-<script src="assets/js/site.js"></script>
+<script src="assets/js/script.min.js" data-page="collection"></script>
 </head>
 <body>
 <div class="pm-page pm-page--collection">
@@ -336,42 +336,6 @@
   <p>Emirates NBD Pearl Museum, Emirates NBD HQ, Dubai Creek, Deira. By appointment.</p>
 </footer>
 
-<script>
-/* ---- lustre: the light moves left, over the top, to the right (three registered photographs) ---- */
-PM.timeline('c4', (gsap, T) => T()
-  .fromTo('#c4 .l1', { opacity: 1 }, { opacity: 0, duration: .2, ease: 'sine.inOut' }, .3)
-  .fromTo('#c4 .l3', { opacity: 0 }, { opacity: 1, duration: .2, ease: 'sine.inOut' }, .62)
-  .fromTo('#c4 .plane', { scale: 1 }, { scale: 1.04, duration: 1 }, 0));
-/* ---- the loupe: a small lens over the crown, then it grows past the edges ---- */
-PM.timeline('c5', (gsap, T) => T()
-  .set('#c5 .plane', { scale: 1.04 }, 0)
-  .fromTo('#c5 .stage', { '--r': '0vmax' }, { '--r': '9vmax', duration: .1, ease: 'power2.out' }, .04)
-  .to('#c5 .stage', { '--r': '12vmax', duration: .14 }, .14)
-  .to('#c5 .stage', { '--r': '130vmax', duration: .14, ease: 'power2.in' }, .28)
-  .fromTo('#c5 .loupe__ring', { opacity: 1 }, { opacity: 0, duration: .06 }, .36)
-  .fromTo('#c5 .loupe img', { scale: 1.12 }, { scale: 1, duration: .5, ease: 'power1.out' }, .04));
-
-/* ---- the turntable: held on its first frame while the plate settles, then turned by the scroll ---- */
-(function () {
-  if (!PM.FX) return;
-  let c = null;
-  PM.onFrame((now, dt, y) => {
-    if (!c) { c = (PM.clip('c1') || [])[0]; if (!c) return; c.custom = true; }
-    const s = PM.SI && PM.SI.c1; if (!s || s.far) return;
-    c.update(PM.clamp(((y - s.top) / s.len - .2) / (.66 - .2)));
-  });
-})();
-
-/* ---- sound (off until the visitor opts in): a low drone and the sparse oud, quiet under the reading ---- */
-PM.sound.stems({ 'music-drone-bed': ['music', 40, -14, 1], 'music-oud-sparse': ['music', 39, -8, 1], 'sfx-pearls-pour': ['fx', 0, 0, 2] });
-const tray = document.querySelector('.flow--tray');
-let trayWas = null;
-PM.sound.mix((y, P) => {
-  PM.sound.level('music-drone-bed', 1); PM.sound.level('music-oud-sparse', PM.sm(.15, .6, P('c1', y)));
-  // the tray of pearls: once each time it comes half into view from below
-  if (tray) { const r = tray.getBoundingClientRect(), on = r.top < innerHeight * .55 && r.bottom > innerHeight * .3; if (on && trayWas === false) PM.sound.shot('sfx-pearls-pour'); trayWas = on; }
-});
-</script>
 </div>
 </body>
 </html>

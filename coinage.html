@@ -65,7 +65,7 @@
 <link rel="preload" as="image" href="assets/images/coinage/k1-plate.jpg" media="(min-width:720px)" fetchpriority="high">
 <link rel="preload" as="image" href="assets/images/coinage/k1-plate-m.jpg" media="(max-width:719.98px)" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/style.min.css">
-<script src="assets/js/site.js"></script>
+<script src="assets/js/script.min.js" data-page="coinage"></script>
 </head>
 <body>
 <div class="pm-page pm-page--coinage">
@@ -418,49 +418,6 @@
   <p>Emirates NBD Pearl Museum, Emirates NBD HQ, Dubai Creek, Deira. By appointment.</p>
 </footer>
 
-<script>
-/* ---- the turntable: held on its first frame while the plate settles, then turned by the scroll (storyboard row A) ---- */
-(function () {
-  if (!PM.FX) return;
-  let c = null;
-  PM.onFrame((now, dt, y) => {
-    if (!c) { c = (PM.clip('k1') || [])[0]; if (!c) return; c.custom = true; }
-    const s = PM.SI && PM.SI.k1; if (!s || s.far) return;
-    c.update(PM.clamp(((y - s.top) / s.len - .22) / (.58 - .22)));
-  });
-})();
-
-/* ---- era openers: normal scroll; the photo drifts a little slower than the page and a band of light crosses the metal ---- */
-(function () {
-  if (!PM.FX) return;
-  const eras = PM.$$('.era').map(el => ({ el, plane: PM.$('.era__plane', el), last: -1 }));
-  PM.onFrame(() => {
-    const vh = innerHeight;
-    for (const E of eras) {
-      const r = E.el.getBoundingClientRect();
-      if (r.bottom < -50 || r.top > vh + 50) continue;
-      const p = PM.clamp((vh - r.top) / (vh + r.height));
-      if (Math.abs(p - E.last) < .0015) continue; E.last = p;
-      E.plane.style.transform = `translate3d(0,${((p - .5) * -5).toFixed(2)}%,0) scale(1.04)`;
-      E.el.style.setProperty('--sp', (1 - PM.sm(.18, .82, p)).toFixed(4));
-    }
-  });
-})();
-
-/* ---- sound (off until the visitor opts in): the drone and the sparse oud; the deck at dawn under the peak ---- */
-PM.sound.stems({ 'music-drone-bed': ['music', 40, -14, 1], 'music-oud-sparse': ['music', 39, -8, 1], 'amb-dawn-deck': ['bed', 28, -4, 2],
-  'sfx-coin-turn': ['fx', 0, 0, 1], 'sfx-coin-palm': ['fx', 0, 0, 2] });
-// one-shots fire once each time the scroll passes their mark going down
-const past = {}, cross = (key, v, at) => { const was = past[key]; past[key] = v > at; return past[key] && was === false; };
-PM.sound.mix((y, P) => {
-  const k5 = P('k5', y), deck = PM.sm(-.1, .1, k5) * (1 - PM.sm(.95, 1.1, k5));
-  if (cross('turn', P('k1', y), .22)) PM.sound.shot('sfx-coin-turn');
-  if (cross('palm', k5, .39)) PM.sound.shot('sfx-coin-palm');
-  PM.sound.level('music-drone-bed', 1);
-  PM.sound.level('music-oud-sparse', PM.sm(.15, .6, P('k1', y)) * (1 - .5 * deck));
-  PM.sound.level('amb-dawn-deck', deck);
-});
-</script>
 </div>
 </body>
 </html>

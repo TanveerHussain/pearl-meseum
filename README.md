@@ -5,7 +5,7 @@ Static site, no build step. Pages: `index`, `history`, `collection`, `coinage`, 
 ```
 assets/
   css/      style.css (source), style.min.css (what the pages load)
-  js/       site.js, menu.js, vendor/gsap-3.12.5.min.js
+  js/       script.js (source), script.min.js (what the pages load), vendor/gsap-3.12.5.min.js
   fonts/    Plus Jakarta Sans (woff2)
   images/   photos, posters, masks, logos, og/ share images (per-page subfolders)
   videos/   mp4 loops and scenes (per-page subfolders)
@@ -35,8 +35,8 @@ Any static host works: upload the folder as is (no build step). Serve `assets/` 
 
 - Pages reference files from the site root: `assets/images/...`, `assets/videos/...`, `assets/js/...`.
 - `style.css` lives in `assets/css/`, so its urls step up one level: `url(../images/...)`, `url(../fonts/...)`.
-- `site.js` loads `menu.js` and `vendor/gsap-3.12.5.min.js` relative to its own location, and `menu.js` loads the logo
-  from `../images/`: keep the three scripts together in `assets/js/`.
+- `script.js` loads `vendor/gsap-3.12.5.min.js` relative to its own location and the menu logo from `../images/`:
+  keep it and `vendor/` together in `assets/js/`.
 - Sound stems load from `assets/audio/<name>.m4a` (names listed in each page's `STEMS`).
 
 ## CSS
@@ -55,4 +55,24 @@ After editing `style.css`, rebuild:
 
 ```bash
 npx esbuild@0.24.0 assets/css/style.css --minify --outfile=assets/css/style.min.css
+```
+
+## JS
+
+One script, no inline `<script>` blocks: edit `assets/js/script.js`, pages load `assets/js/script.min.js`.
+GSAP stays a separate vendor file (third-party, loaded without blocking).
+
+- Each page has one tag in `<head>`, without `defer`, naming the page:
+  `<script src="assets/js/script.min.js" data-page="about"></script>`
+- Inside `script.js`, code runs at the same moments as the separate scripts it replaced:
+  - `SITE` (the shared engine, was `site.js`) runs in `<head>` on every page except index; index runs `HEAD.index`.
+  - `PAGE.<name>` (was the page's inline script at the end of `<body>`) runs once the document is parsed,
+    before `SITE` boots. On index, `MENU` runs right after it (it was a deferred `menu.js`).
+  - `MENU` (was `menu.js`) is started by `SITE` on the other pages.
+- A new page: add `PAGE.<name> = function () { ... }` to `script.js` and give its tag `data-page="<name>"`.
+
+After editing `script.js`, rebuild:
+
+```bash
+npx esbuild@0.24.0 assets/js/script.js --minify --outfile=assets/js/script.min.js
 ```
