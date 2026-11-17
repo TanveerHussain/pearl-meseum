@@ -108,7 +108,7 @@
   <section class="scene scrim--copy-low" id="v1" style="--span:135;--copy-span:4" data-enter="0" aria-labelledby="v1h">
     <div class="stage">
       <div class="frame" data-ph="assets/images/s8-hq.jpg">
-        <div class="plane plane--bg">
+        <div class="plane plane--bg" data-tween="scale 1.06 1 0 1 power1.out">
           <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/images/s8-hq-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/images/s8-hq.jpg" data-alt="assets/images/s8-hq-poster.jpg" width="2560" height="1440" decoding="async" fetchpriority="high" alt="The Emirates NBD headquarters on the Deira bank of Dubai Creek in golden late-afternoon light, its curved bronze glass facade rising above the water."></picture>
         </div>
         <div class="scrim"></div>
@@ -237,7 +237,7 @@
         <form class="form" id="reqForm" novalidate aria-labelledby="reqh" data-reveal data-reveal-delay="1">
           <div class="field">
             <label for="fName">Name</label>
-            <input id="fName" name="name" type="text" autocomplete="name" required aria-required="true" aria-describedby="fNameErr">
+            <input id="fName" name="name" type="text" autocomplete="name" required aria-required="true" aria-describedby="fNameErr" data-msg-required="Please enter your name.">
             <p class="field__err" id="fNameErr" hidden><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="8" cy="8" r="6.5"/><path d="M8 4.6v4.2M8 10.9v.5" stroke-linecap="round"/></svg><span>Please enter your name.</span></p>
           </div>
           <div class="field">
@@ -255,12 +255,12 @@
           </div>
           <div class="field">
             <label for="fDate">Preferred date</label>
-            <input id="fDate" name="date" type="date" required aria-required="true" aria-describedby="fDateErr">
+            <input id="fDate" name="date" type="date" required aria-required="true" aria-describedby="fDateErr" data-msg-required="Please choose a preferred date." data-msg-min="Please choose a date after today." data-min="tomorrow">
             <p class="field__err" id="fDateErr" hidden><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="8" cy="8" r="6.5"/><path d="M8 4.6v4.2M8 10.9v.5" stroke-linecap="round"/></svg><span>Please choose a date after today.</span></p>
           </div>
           <div class="field">
             <label for="fSize">Group size</label>
-            <input id="fSize" name="group" type="number" inputmode="numeric" min="1" step="1" required aria-required="true" aria-describedby="fSizeHint fSizeErr">
+            <input id="fSize" name="group" type="number" inputmode="numeric" min="1" step="1" required aria-required="true" aria-describedby="fSizeHint fSizeErr" data-msg-required="Please enter a whole number, 1 or more." data-msg-invalid="Please enter a whole number, 1 or more.">
             <p class="field__hint" id="fSizeHint">Number of people, including you.</p>
             <p class="field__err" id="fSizeErr" hidden><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="8" cy="8" r="6.5"/><path d="M8 4.6v4.2M8 10.9v.5" stroke-linecap="round"/></svg><span>Please enter a whole number, 1 or more.</span></p>
           </div>

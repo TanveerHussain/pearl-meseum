@@ -69,7 +69,10 @@ GSAP stays a separate vendor file (third-party, loaded without blocking).
   - `PAGE.<name>` (was the page's inline script at the end of `<body>`) runs once the document is parsed,
     before `SITE` boots. On index, `MENU` runs right after it (it was a deferred `menu.js`).
   - `MENU` (was `menu.js`) is started by `SITE` on the other pages.
-- A new page: add `PAGE.<name> = function () { ... }` to `script.js` and give its tag `data-page="<name>"`.
+- Components start from their markup alone (class + `data-*`, no ids, no page code): scenes, `data-tween`
+  choreography, `data-cue`, `data-kf`, scrubbed clips (`data-scrub`), loops, `.yr`, `.rail`, `.map`, `.era`,
+  `data-peek`, the request form. `PAGE.<name>` now only holds each page's sound mix (and history's header rule).
+- CMS / Sitecore rich text: see [docs/SITECORE-HANDOVER.md](docs/SITECORE-HANDOVER.md).
 
 After editing `script.js`, rebuild:
 

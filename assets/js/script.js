@@ -349,7 +349,9 @@ window.PM = (() => {
   function parseKF(str) {
     if (!str) return null;
     // .6 is accepted as well as 0.6
-    let o; try { o = JSON.parse(str.replace(/([:\[,]\s*-?)\.(\d)/g, '$10.$2')); } catch (e) { console.error('data-kf is not valid JSON', str); return null; }
+    // also tolerant of what rich text editors do to attribute JSON: single quotes, and unquoted keys ({0:{y:8}})
+    const fixed = str.replace(/'/g, '"').replace(/([{,]\s*)(-?[\w.]+)\s*:/g, '$1"$2":').replace(/([:\[,]\s*-?)\.(\d)/g, '$10.$2');
+    let o; try { o = JSON.parse(fixed); } catch (e) { console.error('data-kf is not valid JSON', str); return null; }
     const stops = Object.keys(o).map(Number).sort((a, b) => a - b).map(t => ({ t, v: o[String(t)] || o[t] }));
     let cur = { ...KF_KEYS }; stops.forEach(s => { cur = { ...cur, ...s.v }; s.v = cur; });
     return stops;
@@ -423,6 +425,243 @@ window.PM = (() => {
     if (mixFn && SNDX.on && now - sndT > 60) { sndT = now; mixFn(y, P); }
   }
 
+  /* ================= COMPONENTS: everything below starts from the markup alone (class + data-* attributes), so
+     content pasted into a CMS rich text field works without page code or fixed ids. Attribute values use spaces
+     and semicolons only (no quotes), so editors that rewrite quotes in attributes cannot break them. ============== */
+
+  // videos: set the playback flags in script too (rich text filters can drop valueless attributes like muted)
+  function bootVideos() {
+    $$('video').forEach(v => { v.muted = true; v.playsInline = true; v.setAttribute('playsinline', ''); });
+    // phone files for plain (non-scrub) videos: data-src-m, data-poster-m
+    if (MQ.matches) $$('video[data-src-m]:not(.scrub)').forEach(v => { if (v.dataset.posterM) v.poster = v.dataset.posterM; v.src = v.dataset.srcM; });
+    // motion-only artwork: under motion an image (or <source>) swaps to data-src-fx / data-srcset-fx (e.g. the clip's first frame)
+    if (FX) {
+      $$('img[data-src-fx]').forEach(i => { i.src = i.dataset.srcFx; });
+      $$('source[data-srcset-fx]').forEach(s => { s.srcset = s.dataset.srcsetFx; });
+    }
+  }
+
+  // data-tween="prop from to at duration ease; ..." on any element inside a .scene: a GSAP tween on that scene's
+  // timeline, positioned in scene progress (0 to 1). duration 0 sets the value. Example:
+  //   <div class="plane plane--bg" data-tween="scale 1.07 1 0 1 power1.out; xPercent -1 0 0 1 power1.out">
+  const num = v => /^-?(\d+\.?\d*|\.\d+)$/.test(v) ? +v : v;
+  function parseTween(s) {
+    return (s || '').split(';').map(x => x.trim().split(/\s+/)).filter(a => a.length >= 5)
+      .map(([prop, from, to, at, dur, ease]) => ({ prop, from: num(from), to: num(to), at: +at, dur: +dur, ease: ease || 'none' }));
+  }
+  function bootTweens() {
+    const byScene = {};
+    $$('[data-tween]').forEach(el => { const sc = el.closest('.scene'); if (sc) (byScene[sc.id] = byScene[sc.id] || []).push(el); });
+    Object.keys(byScene).forEach(id => PM.timeline(id, (gsap, T) => {
+      const tl = T(), seen = new Map(); // element -> properties already tweened in this timeline
+      byScene[id].forEach(el => parseTween(el.dataset.tween).forEach(t => {
+        const props = seen.get(el) || new Set(); seen.set(el, props);
+        if (t.dur === 0) tl.set(el, { [t.prop]: t.to }, t.at);
+        // a later tween of the same property continues from where the previous one ended (no jump at creation)
+        else if (props.has(t.prop)) tl.to(el, { [t.prop]: t.to, duration: t.dur, ease: t.ease }, t.at);
+        else tl.fromTo(el, { [t.prop]: t.from }, { [t.prop]: t.to, duration: t.dur, ease: t.ease }, t.at);
+        props.add(t.prop);
+      }));
+      return tl;
+    }));
+  }
+
+  // data-scrub="from to" on video.scrub: the clip plays across that part of its scene (default: the whole scene, with dwell)
+  function bootScrubRanges() {
+    if (!FX) return;
+    const R = CLIPS.filter(c => c.v.dataset.scrub).map(c => { const [a, b] = c.v.dataset.scrub.split(/\s+/).map(Number); c.custom = true; return { c, a, b }; });
+    if (R.length) hooks.frame.push((now, dt, y) => R.forEach(({ c, a, b }) => {
+      const s = SI[c.scene]; if (!s || s.far) return;
+      c.update(clamp(((y - s.top) / s.len - a) / (b - a)));
+    }));
+  }
+
+  // .era: an era opener that scrolls normally; its .era__plane drifts a little slower than the page and --sp
+  // (sheen position, 1 to 0) sweeps a band of light across the metal
+  function bootEras() {
+    if (!FX) return;
+    const eras = $$('.era').map(el => ({ el, plane: $('.era__plane', el), last: -1 })).filter(E => E.plane);
+    if (eras.length) hooks.frame.push(() => {
+      const vh = innerHeight;
+      for (const E of eras) {
+        const r = E.el.getBoundingClientRect();
+        if (r.bottom < -50 || r.top > vh + 50) continue;
+        const p = clamp((vh - r.top) / (vh + r.height));
+        if (Math.abs(p - E.last) < .0015) continue; E.last = p;
+        E.plane.style.transform = `translate3d(0,${((p - .5) * -5).toFixed(2)}%,0) scale(1.04)`;
+        E.el.style.setProperty('--sp', (1 - sm(.18, .82, p)).toFixed(4));
+      }
+    });
+  }
+
+  // .map: each .map__mk path (an SVG mask stroke with pathLength="1") draws as the map rises into view;
+  // data-draw="from to" sets the part of that rise it draws over (default 0 1). Complete under reduced motion.
+  function bootMaps() {
+    $$('.map').forEach(map => {
+      const mks = $$('.map__mk', map).map(el => { const [a, b] = (el.dataset.draw || '0 1').split(/\s+/).map(Number); return { el, a, b }; });
+      if (!mks.length) return;
+      const setDraw = (el, v) => el.setAttribute('stroke-dashoffset', (1 - v).toFixed(4));
+      if (!FX) { mks.forEach(m => setDraw(m.el, 1)); return; }
+      mks.forEach(m => setDraw(m.el, 0));
+      let last = -1;
+      hooks.frame.push(() => {
+        const r = map.getBoundingClientRect(), vh = innerHeight;
+        const q = clamp((vh * .92 - r.top) / (r.height * .9 + vh * .3));
+        if (Math.abs(q - last) < .002) return; last = q;
+        mks.forEach(m => setDraw(m.el, sm(m.a, m.b, q)));
+      });
+    });
+  }
+
+  // .yr: a year numeral whose digits roll like an odometer. data-to (the year), data-from (where the roll starts),
+  // data-comma (thousands comma), data-roll="from to" (scene progress of the roll when inside a .scene; otherwise it
+  // rolls as it enters the screen). The plain number in .yr__n is what no-JS and reduced motion show.
+  function bootYears() {
+    const els = $$('.yr'); if (!els.length) return;
+    let DW = [];
+    const measureDW = () => {
+      const probe = document.createElement('span'); probe.className = 'yr__n'; probe.style.cssText = 'position:absolute;visibility:hidden;left:-9999px;font-size:100px;letter-spacing:0';
+      // measured inside the content, so the numeral face from the page's styles applies
+      (els[0].parentNode || document.body).appendChild(probe); const w = [];
+      for (let k = 0; k < 10; k++) { probe.textContent = String(k); w[k] = probe.getBoundingClientRect().width / 100; }
+      probe.remove(); DW = w;
+    };
+    measureDW();
+    const YR = els.map(el => {
+      const n = $('.yr__n', el), to = +el.dataset.to, from = el.dataset.from != null ? +el.dataset.from : to;
+      const Y = { el, n, to, from, comma: !!el.dataset.comma, scene: el.closest('.scene'), cols: [], v: -1 };
+      if (el.dataset.roll) { const r = el.dataset.roll.split(' ').map(Number); Y.a = r[0]; Y.b = r[1]; }
+      if (!FX || from === to || !n) return Y;
+      const digits = String(to).length, fin = String(to).padStart(digits, '0');
+      n.textContent = '';
+      for (let i = digits - 1; i >= 0; i--) {
+        if (Y.comma && i === 2) { const c = document.createElement('span'); c.className = 'dg--c'; c.textContent = ','; n.appendChild(c); }
+        const d = document.createElement('span'); d.className = 'dg';
+        const s = document.createElement('span'); s.className = 'dg__s';
+        for (let k = 0; k <= 10; k++) { const c = document.createElement('span'); c.textContent = k % 10; s.appendChild(c); }
+        d.appendChild(s); n.appendChild(d); Y.cols.push({ s, d, f: +fin[digits - 1 - i], p: Math.pow(10, i), last: '' });
+      }
+      return Y;
+    });
+    const sizeCols = () => YR.forEach(Y => Y.cols.forEach(c => { c.d.style.width = DW[c.f].toFixed(3) + 'em'; }));
+    sizeCols();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { measureDW(); sizeCols(); });
+    if (!FX) return;
+    function setYear(Y, v) {
+      if (!Y.cols.length) return;
+      v = Math.max(0, v); if (v === Y.v || (Math.abs(v - Y.v) < .002 && v !== Y.to && v !== Y.from)) return; Y.v = v;
+      for (const c of Y.cols) {
+        // odometer: the ones turn continuously; each higher digit turns only during the last unit before it rolls over
+        const whole = Math.floor(v / c.p) % 10, rem = v % c.p, carry = c.p === 1 ? v % 1 : Math.max(0, rem - (c.p - 1));
+        const pos = c.p === 1 ? (Math.floor(v) % 10) + (v % 1) : whole + carry;
+        const t = `translate3d(0,${(-pos).toFixed(3)}em,0)`;
+        if (t !== c.last) { c.last = t; c.s.style.transform = t; }
+      }
+    }
+    const easeOut = t => 1 - Math.pow(1 - t, 3);
+    // the roll is short and scroll-linked; the moment scrolling pauses, a rolled year eases onto its real value
+    let lastScroll = 0; addEventListener('scroll', () => { lastScroll = performance.now(); }, { passive: true });
+    hooks.frame.push(() => {
+      const vh = innerHeight, idle = performance.now() - lastScroll > 140;
+      for (const Y of YR) {
+        if (!Y.cols.length) continue;
+        let t;
+        if (Y.scene) t = sm(Y.a, Y.b, P(Y.scene.id));
+        else { const r = Y.el.getBoundingClientRect(); if (r.bottom < -vh || r.top > vh * 2) continue; t = clamp((vh * .98 - r.top) / (vh * .2)); }
+        if (t <= 0) { Y.done = false; setYear(Y, Y.from); continue; }
+        if (t >= 1) Y.done = true;
+        if (Y.done) { if (Y.v !== Y.to) { const v = Y.v + (Y.to - Y.v) * .22; setYear(Y, Math.abs(Y.to - v) < .02 ? Y.to : v); } continue; }
+        if (idle) { Y.done = true; continue; }
+        setYear(Y, lerp(Y.from, Y.to, easeOut(t)));
+      }
+    });
+  }
+
+  // .scene[data-peek]: a scene between reading sections, shown only while its own scroll is on screen
+  function bootPeek() {
+    if (!FX) return;
+    const ST = SC.filter(s => s.el.hasAttribute('data-peek') && s.stage).map(s => ({ el: s.el, stage: s.stage, on: null }));
+    if (ST.length) hooks.frame.push(() => {
+      const vh = innerHeight;
+      for (const s of ST) {
+        const r = s.el.getBoundingClientRect(), on = r.top < vh && r.bottom > 0;
+        if (on !== s.on) { s.on = on; s.stage.classList.toggle('is-peek', on); s.stage.classList.toggle('is-gone', !on); }
+      }
+    });
+  }
+
+  // .rail: a chapter rail of links to sections (href="#id", or data-ch="id"). It shows once the first chapter is
+  // near, marks the current chapter, and a link to a pinned scene lands where that scene's copy has arrived.
+  function bootRails() {
+    $$('.rail').forEach(rail => {
+      const links = $$('a', rail).filter(a => a.dataset.ch || (a.getAttribute('href') || '').startsWith('#'));
+      const chId = a => a.dataset.ch || a.getAttribute('href').slice(1);
+      const CH = links.map(a => document.getElementById(chId(a)));
+      if (!links.length || CH.some(c => !c)) return;
+      let on = null, cur = '';
+      const update = () => {
+        const vh = innerHeight, o = CH[0].getBoundingClientRect().top < vh * .7;
+        if (o !== on) { on = o; rail.classList.toggle('is-on', o); }
+        let c = ''; CH.forEach((el, i) => { if (el.getBoundingClientRect().top < vh * .5) c = chId(links[i]); });
+        if (c !== cur) { cur = c; links.forEach(a => { if (chId(a) === c) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); }); }
+      };
+      hooks.frame.push(update);
+      if (!FX) addEventListener('scroll', update, { passive: true });
+      links.forEach(a => a.addEventListener('click', e => {
+        const el = document.getElementById(chId(a)); if (!el) return;
+        e.preventDefault();
+        const sc = el.classList.contains('scene') && SI[el.id];
+        const y = sc ? sc.top + sc.len * .3 : el.getBoundingClientRect().top + scrollY;
+        scrollTo({ top: y, behavior: RM ? 'auto' : 'smooth' });
+        history.replaceState(null, '', '#' + el.id);
+      }));
+    });
+  }
+
+  // form.form[novalidate]: fields with data-msg-* are checked once the visitor has typed in them, and all of them on
+  // submit. data-msg-required (empty), data-msg-invalid (a number field that is not a whole number >= min),
+  // data-msg-min (a date before min; data-min="tomorrow" sets min to tomorrow). The error shows in the field's
+  // .field__err (named in aria-describedby). Nothing is sent: the .form__status line says so (design only).
+  function bootForms() {
+    $$('form.form').forEach(form => {
+      const fields = $$('[data-msg-required],[data-msg-invalid],[data-msg-min]', form);
+      if (!fields.length) return;
+      fields.forEach(el => {
+        if (el.dataset.min === 'tomorrow') { const t = new Date(); t.setDate(t.getDate() + 1); el.min = `${t.getFullYear()}-${String(t.getMonth() + 1).padStart(2, '0')}-${String(t.getDate()).padStart(2, '0')}`; }
+      });
+      const rule = el => {
+        const v = el.value.trim();
+        if (!v) return el.dataset.msgRequired || '';
+        if (el.type === 'number' && el.dataset.msgInvalid && !(/^\d+$/.test(v) && +v >= (+el.min || 0))) return el.dataset.msgInvalid;
+        if (el.type === 'date' && el.dataset.msgMin && el.min && el.value < el.min) return el.dataset.msgMin;
+        return '';
+      };
+      const errOf = el => (el.getAttribute('aria-describedby') || '').split(/\s+/).map(id => document.getElementById(id)).find(e => e && e.classList.contains('field__err'));
+      const check = el => {
+        const msg = rule(el), err = errOf(el);
+        el.setAttribute('aria-invalid', msg ? 'true' : 'false');
+        if (err) { const sp = err.querySelector('span') || err; if (msg) sp.textContent = msg; err.hidden = !msg; }
+      };
+      fields.forEach(el => {
+        const mark = () => { el.dataset.touched = '1'; };
+        el.addEventListener('input', () => { if (el.dataset.blurred) check(el); else mark(); });
+        el.addEventListener('change', mark);
+        el.addEventListener('blur', () => { if (el.dataset.touched) { el.dataset.blurred = '1'; check(el); } });
+      });
+      const status = $('.form__status', form);
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const bad = fields.filter(el => { el.dataset.blurred = '1'; check(el); return el.getAttribute('aria-invalid') === 'true'; });
+        if (bad.length) { if (status) status.hidden = true; bad[0].focus(); return; }
+        if (status) { status.textContent = status.dataset.msg || 'Thank you. Online requests are not open yet, so this request has not been sent.'; status.hidden = false; }
+      });
+    });
+  }
+
+  function bootComponents() {
+    bootTweens(); bootScrubRanges(); bootEras(); bootMaps(); bootYears(); bootPeek(); bootRails(); bootForms();
+  }
+
   /* ================= BOOT ================= */
   PM.onFrame = fn => hooks.frame.push(fn);
   PM.onMeasure = fn => hooks.measure.push(fn);
@@ -441,7 +680,7 @@ window.PM = (() => {
     CLIPS = $$('video.scrub').map(v => new Clip(v));
     if (RM) $$('img[data-still]').forEach(i => useStill(i.parentNode));
     measure();
-    bootContent(); bootPlates();
+    bootVideos(); bootContent(); bootPlates(); bootComponents();
     if (FX && !buildTimelines()) root.classList.add('no-tl');
     $$('#soundTgl,[data-sound-toggle]').forEach(b => b.addEventListener('click', toggleSound));
     syncSoundUI();
@@ -1515,111 +1754,20 @@ addEventListener('load', measure);
 'use strict';
 const { $, $$, clamp, lerp, sm, FX, RM } = PM;
 
-/* ---- scene choreography: positions in scene progress, 0 to 1 ---- */
-PM.timeline('hero', (gsap, T) => T().fromTo('#hero .plane--bg', { scale: 1.07, xPercent: -1 }, { scale: 1, xPercent: 0, ease: 'power1.out' }, 0));
-PM.timeline('y1949', (gsap, T) => T().fromTo('#y1949 .dusk', { opacity: 0 }, { opacity: 1, duration: .45, ease: 'power1.in' }, .18));
-
-/* ---- the music loop: a lighter file and poster on phones ---- */
-{ const v = $('#music video'); if (v && PM.mobile) { v.poster = v.dataset.posterM; v.src = v.dataset.srcM; } }
-
-/* ---- the year numeral: a counter whose digits roll with the scroll ---- */
-// each digit's natural width in the numeral face, so a rolled year sets like a typeset one
-let DW = [];
-const measureDW = () => {
-  const probe = document.createElement('span'); probe.className = 'yr__n'; probe.style.cssText = 'position:absolute;visibility:hidden;left:-9999px;font-size:100px;letter-spacing:0';
-  (document.querySelector('.pm-page') || document.body).appendChild(probe); const w = [];
-  for (let k = 0; k < 10; k++) { probe.textContent = String(k); w[k] = probe.getBoundingClientRect().width / 100; }
-  probe.remove(); DW = w;
-};
-measureDW();
-const YR = $$('.yr').map(el => {
-  const n = $('.yr__n', el), to = +el.dataset.to, from = el.dataset.from != null ? +el.dataset.from : to;
-  const Y = { el, n, to, from, comma: !!el.dataset.comma, scene: el.closest('.scene'), cols: [], v: -1 };
-  if (el.dataset.roll) { const r = el.dataset.roll.split(' ').map(Number); Y.a = r[0]; Y.b = r[1]; }
-  if (!FX || from === to) return Y; // reduced motion and no-op rolls keep the plain text
-  const digits = String(to).length, fin = String(to).padStart(digits, '0');
-  n.textContent = '';
-  for (let i = digits - 1; i >= 0; i--) {
-    if (Y.comma && i === 2) { const c = document.createElement('span'); c.className = 'dg--c'; c.textContent = ','; n.appendChild(c); }
-    const d = document.createElement('span'); d.className = 'dg';
-    const s = document.createElement('span'); s.className = 'dg__s';
-    for (let k = 0; k <= 10; k++) { const c = document.createElement('span'); c.textContent = k % 10; s.appendChild(c); }
-    d.appendChild(s); n.appendChild(d); Y.cols.push({ s, d, f: +fin[digits - 1 - i], p: Math.pow(10, i), last: '' });
-  }
-  return Y;
-});
-const sizeCols = () => YR.forEach(Y => Y.cols.forEach(c => { c.d.style.width = DW[c.f].toFixed(3) + 'em'; }));
-sizeCols();
-if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { measureDW(); sizeCols(); });
-function setYear(Y, v) {
-  if (!Y.cols.length) return;
-  v = Math.max(0, v); if (v === Y.v || (Math.abs(v - Y.v) < .002 && v !== Y.to && v !== Y.from)) return; Y.v = v;
-  for (const c of Y.cols) {
-    // odometer: the ones turn continuously; each higher digit turns only during the last unit before it rolls over
-    const whole = Math.floor(v / c.p) % 10, rem = v % c.p, carry = c.p === 1 ? v % 1 : Math.max(0, rem - (c.p - 1));
-    const pos = c.p === 1 ? (Math.floor(v) % 10) + (v % 1) : whole + carry;
-    const t = `translate3d(0,${(-pos).toFixed(3)}em,0)`;
-    if (t !== c.last) { c.last = t; c.s.style.transform = t; }
-  }
-}
-const easeOut = t => 1 - Math.pow(1 - t, 3);
-// the roll is short and scroll-linked; the moment scrolling pauses, a rolled year eases onto its real value,
-// so a pause or a screenshot always shows a real year (it only rolls back if you scroll back above its start)
-let lastScroll = 0; addEventListener('scroll', () => { lastScroll = performance.now(); }, { passive: true });
-function updateYears(vh) {
-  const idle = performance.now() - lastScroll > 140;
-  for (const Y of YR) {
-    if (!Y.cols.length) continue;
-    let t;
-    if (Y.scene) t = sm(Y.a, Y.b, PM.P(Y.scene.id));
-    else { const r = Y.el.getBoundingClientRect(); if (r.bottom < -vh || r.top > vh * 2) continue; t = clamp((vh * .98 - r.top) / (vh * .2)); }
-    if (t <= 0) { Y.done = false; setYear(Y, Y.from); continue; }
-    if (t >= 1) Y.done = true;
-    if (Y.done) { if (Y.v !== Y.to) { const v = Y.v + (Y.to - Y.v) * .22; setYear(Y, Math.abs(Y.to - v) < .02 ? Y.to : v); } continue; }
-    if (idle) { Y.done = true; continue; }
-    setYear(Y, lerp(Y.from, Y.to, easeOut(t)));
-  }
-}
-
-/* ---- scenes between reading sections: shown while their own scroll is on screen (the reading above lifts off them) ---- */
-const STAGES = $$('.scene').map(el => ({ el, stage: $('.stage', el), peek: null }));
-function updatePeek(vh) {
-  for (const s of STAGES) {
-    const r = s.el.getBoundingClientRect(), on = r.top < vh && r.bottom > 0;
-    if (on !== s.peek) { s.peek = on; s.stage.classList.toggle('is-peek', on); s.stage.classList.toggle('is-gone', !on); }
-  }
-}
-
-/* ---- the header and the rail turn dark over the paper section ---- */
-const FLOWS = $$('.flow,.foot'), HDR = 72, LIGHT = $$('[data-light]'), rail = $('#rail'), railLinks = $$('#rail a'), CH = railLinks.map(a => document.getElementById(a.dataset.ch));
-let curLast = '', railOn = null;
+/* ---- the header turns dark over the paper section (header behaviour: phase 2 moves it to the header) ---- */
+const FLOWS = $$('.flow,.foot'), HDR = 72, LIGHT = $$('[data-light]');
 function updateChrome(vh) {
   let light = PM.k != null && PM.scenes && PM.scenes[PM.k] && PM.scenes[PM.k].el.dataset.theme === 'light';
   for (const el of LIGHT) { const r = el.getBoundingClientRect(); if (r.top <= 56 && r.bottom > 56) light = true; }
   document.documentElement.classList.toggle('theme-light', light);
   let solid = false; for (const el of FLOWS) { const r = el.getBoundingClientRect(); if (r.top <= HDR && r.bottom > 0) { solid = true; break; } }
   document.documentElement.classList.toggle('hdr-solid', solid);
-  // rail: on from the first chapter, the current chapter is the last one whose top has passed the middle of the screen
-  const first = CH[0].getBoundingClientRect().top, on = first < vh * .7;
-  if (on !== railOn) { railOn = on; rail.classList.toggle('is-on', on); }
-  let cur = ''; CH.forEach((el, i) => { if (el.getBoundingClientRect().top < vh * .5) cur = railLinks[i].dataset.ch; });
-  if (cur !== curLast) { curLast = cur; railLinks.forEach(a => { if (a.dataset.ch === cur) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); }); }
 }
 
 let vh = innerHeight;
 PM.onMeasure(() => { vh = innerHeight; });
-PM.onFrame(() => { if (FX) { updatePeek(vh); updateYears(vh); } updateChrome(vh); });
+PM.onFrame(() => updateChrome(vh));
 if (!FX) addEventListener('scroll', () => updateChrome(vh), { passive: true });
-
-/* ---- rail links: a pinned scene's anchor lands where its copy has arrived ---- */
-railLinks.forEach(a => a.addEventListener('click', e => {
-  const el = document.getElementById(a.dataset.ch); if (!el) return;
-  e.preventDefault();
-  const sc = el.classList.contains('scene') && PM.SI && PM.SI[el.id];
-  const y = sc ? sc.top + sc.len * .3 : el.getBoundingClientRect().top + scrollY;
-  scrollTo({ top: y, behavior: RM ? 'auto' : 'smooth' });
-  history.replaceState(null, '', '#' + el.id);
-}));
 
 /* ---- sound: off until opted in; beds and the deck rhythm follow the years ---- */
 PM.sound.stems({
@@ -1649,31 +1797,6 @@ PM.sound.mix((y, P) => {
 
   /* ================= PAGE.collection: runs when collection.html is parsed ================= */
   PAGE.collection = function () {
-/* ---- lustre: the light moves left, over the top, to the right (three registered photographs) ---- */
-PM.timeline('c4', (gsap, T) => T()
-  .fromTo('#c4 .l1', { opacity: 1 }, { opacity: 0, duration: .2, ease: 'sine.inOut' }, .3)
-  .fromTo('#c4 .l3', { opacity: 0 }, { opacity: 1, duration: .2, ease: 'sine.inOut' }, .62)
-  .fromTo('#c4 .plane', { scale: 1 }, { scale: 1.04, duration: 1 }, 0));
-/* ---- the loupe: a small lens over the crown, then it grows past the edges ---- */
-PM.timeline('c5', (gsap, T) => T()
-  .set('#c5 .plane', { scale: 1.04 }, 0)
-  .fromTo('#c5 .stage', { '--r': '0vmax' }, { '--r': '9vmax', duration: .1, ease: 'power2.out' }, .04)
-  .to('#c5 .stage', { '--r': '12vmax', duration: .14 }, .14)
-  .to('#c5 .stage', { '--r': '130vmax', duration: .14, ease: 'power2.in' }, .28)
-  .fromTo('#c5 .loupe__ring', { opacity: 1 }, { opacity: 0, duration: .06 }, .36)
-  .fromTo('#c5 .loupe img', { scale: 1.12 }, { scale: 1, duration: .5, ease: 'power1.out' }, .04));
-
-/* ---- the turntable: held on its first frame while the plate settles, then turned by the scroll ---- */
-(function () {
-  if (!PM.FX) return;
-  let c = null;
-  PM.onFrame((now, dt, y) => {
-    if (!c) { c = (PM.clip('c1') || [])[0]; if (!c) return; c.custom = true; }
-    const s = PM.SI && PM.SI.c1; if (!s || s.far) return;
-    c.update(PM.clamp(((y - s.top) / s.len - .2) / (.66 - .2)));
-  });
-})();
-
 /* ---- sound (off until the visitor opts in): a low drone and the sparse oud, quiet under the reading ---- */
 PM.sound.stems({ 'music-drone-bed': ['music', 40, -14, 1], 'music-oud-sparse': ['music', 39, -8, 1], 'sfx-pearls-pour': ['fx', 0, 0, 2] });
 const tray = document.querySelector('.flow--tray');
@@ -1687,34 +1810,6 @@ PM.sound.mix((y, P) => {
 
   /* ================= PAGE.coinage: runs when coinage.html is parsed ================= */
   PAGE.coinage = function () {
-/* ---- the turntable: held on its first frame while the plate settles, then turned by the scroll (storyboard row A) ---- */
-(function () {
-  if (!PM.FX) return;
-  let c = null;
-  PM.onFrame((now, dt, y) => {
-    if (!c) { c = (PM.clip('k1') || [])[0]; if (!c) return; c.custom = true; }
-    const s = PM.SI && PM.SI.k1; if (!s || s.far) return;
-    c.update(PM.clamp(((y - s.top) / s.len - .22) / (.58 - .22)));
-  });
-})();
-
-/* ---- era openers: normal scroll; the photo drifts a little slower than the page and a band of light crosses the metal ---- */
-(function () {
-  if (!PM.FX) return;
-  const eras = PM.$$('.era').map(el => ({ el, plane: PM.$('.era__plane', el), last: -1 }));
-  PM.onFrame(() => {
-    const vh = innerHeight;
-    for (const E of eras) {
-      const r = E.el.getBoundingClientRect();
-      if (r.bottom < -50 || r.top > vh + 50) continue;
-      const p = PM.clamp((vh - r.top) / (vh + r.height));
-      if (Math.abs(p - E.last) < .0015) continue; E.last = p;
-      E.plane.style.transform = `translate3d(0,${((p - .5) * -5).toFixed(2)}%,0) scale(1.04)`;
-      E.el.style.setProperty('--sp', (1 - PM.sm(.18, .82, p)).toFixed(4));
-    }
-  });
-})();
-
 /* ---- sound (off until the visitor opts in): the drone and the sparse oud; the deck at dawn under the peak ---- */
 PM.sound.stems({ 'music-drone-bed': ['music', 40, -14, 1], 'music-oud-sparse': ['music', 39, -8, 1], 'amb-dawn-deck': ['bed', 28, -4, 2],
   'sfx-coin-turn': ['fx', 0, 0, 1], 'sfx-coin-palm': ['fx', 0, 0, 2] });
@@ -1735,47 +1830,6 @@ PM.sound.mix((y, P) => {
 (() => {
 'use strict';
 const { $, $$, clamp, lerp, sm, FX, RM } = PM;
-
-/* ---- scene choreography: positions in scene progress, 0 to 1 ---- */
-PM.timeline('m1', (gsap, T) => T()
-  .fromTo('#m1 .plane--bg', { scale: 1.07, xPercent: 1 }, { scale: 1, xPercent: 0, duration: 1, ease: 'power1.out' }, 0)
-  .fromTo('#m1 .m1-dusk', { opacity: 0 }, { opacity: .8, duration: .5, ease: 'power1.in' }, .3));
-PM.timeline('m9', (gsap, T) => T()
-  .fromTo('#m9 .plane--bg', { scale: 1.06 }, { scale: 1, duration: 1, ease: 'power1.out' }, 0)
-  .fromTo('#m9 .m9-night', { opacity: 0 }, { opacity: 1, duration: .45, ease: 'power1.in' }, .2));
-
-/* ---- the sieve loop: a lighter file on phones ---- */
-{ const v = $('.loop video[data-src-m]'); if (v && PM.mobile) v.src = v.dataset.srcM; }
-
-/* ---- the launch: the photograph for reduced motion and no JS; under motion the clip's first frame is the poster,
-   and the slowed clip (it stops just short of the dhow) plays from 4 to 80 percent of a longer scene, so the launch glides in ---- */
-if (FX) { $('#m3Poster').src = 'assets/images/merchants/m3-launch-poster.jpg'; $('#m3PosterM').srcset = 'assets/images/merchants/m3-launch-m-poster.jpg'; }
-(function () {
-  if (!FX) return;
-  let c = null;
-  PM.onFrame((now, dt, y) => {
-    if (!c) { c = (PM.clip('m3') || [])[0]; if (!c) return; c.custom = true; }
-    const s = PM.SI && PM.SI.m3; if (!s || s.far) return;
-    c.update(clamp(((y - s.top) / s.len - .04) / (.8 - .04)));
-  });
-})();
-
-/* ---- the map: each route draws as the map rises into view (complete under reduced motion and without JS) ---- */
-const map = $('#map'), mks = $$('.map__mk');
-const setDraw = (el, v) => el.setAttribute('stroke-dashoffset', (1 - v).toFixed(4));
-if (map && mks.length) {
-  if (!FX) mks.forEach(el => setDraw(el, 1));
-  else {
-    mks.forEach(el => setDraw(el, 0));
-    let lastM = -1;
-    PM.onFrame(() => {
-      const r = map.getBoundingClientRect(), vh = innerHeight;
-      const q = clamp((vh * .92 - r.top) / (r.height * .9 + vh * .3));
-      if (Math.abs(q - lastM) < .002) return; lastM = q;
-      setDraw(mks[0], sm(.05, .6, q)); setDraw(mks[1], sm(.25, .85, q));
-    });
-  }
-}
 
 /* ---- sound: off until opted in; dusk sea, the open water, the drone under the reading ---- */
 PM.sound.stems({
@@ -1803,10 +1857,6 @@ PM.sound.mix((y, P) => {
 
   /* ================= PAGE.about: runs when about.html is parsed ================= */
   PAGE.about = function () {
-/* ---- page choreography: positions in scene progress 0 to 1 ---- */
-// 7 the wish: a calm settle onto the HQ
-PM.timeline('wish', (gsap, T) => T().fromTo('#wish .plane--bg', { scale: 1.07 }, { scale: 1.0, ease: 'power1.out' }, 0));
-
 /* ---- sound: off until opted in (header toggle) ---- */
 PM.sound.stems({
   'amb-open-sea': ['bed', 28, 0, 1],
@@ -1827,46 +1877,6 @@ PM.sound.mix((y, P) => {
 
   /* ================= PAGE.visit: runs when visit.html is parsed ================= */
   PAGE.visit = function () {
-/* ---- page choreography: one calm settle onto the HQ as the visitor scrolls ---- */
-PM.timeline('v1', (gsap, T) => T().fromTo('#v1 .plane--bg', { scale: 1.06 }, { scale: 1.0, ease: 'power1.out' }, 0));
-
-/* ---- the request form: design only. Nothing is ever sent; fields show validation once touched ---- */
-(() => {
-  const form = document.getElementById('reqForm');
-  if (!form) return;
-  const date = document.getElementById('fDate');
-  const t = new Date(); t.setDate(t.getDate() + 1);
-  date.min = `${t.getFullYear()}-${String(t.getMonth() + 1).padStart(2, '0')}-${String(t.getDate()).padStart(2, '0')}`;
-  const rules = {
-    fName: el => el.value.trim() ? '' : 'Please enter your name.',
-    fDate: el => !el.value ? 'Please choose a preferred date.' : (el.value < el.min ? 'Please choose a date after today.' : ''),
-    fSize: el => (/^\d+$/.test(el.value.trim()) && +el.value >= 1) ? '' : 'Please enter a whole number, 1 or more.'
-  };
-  const check = el => {
-    const msg = rules[el.id](el), err = document.getElementById(el.id + 'Err');
-    el.setAttribute('aria-invalid', msg ? 'true' : 'false');
-    err.querySelector('span').textContent = msg || err.querySelector('span').textContent;
-    err.hidden = !msg;
-  };
-  Object.keys(rules).forEach(id => {
-    const el = document.getElementById(id);
-    // a field is checked once the visitor has typed in it (so simply tabbing past an empty field stays quiet)
-    const mark = () => { el.dataset.touched = '1'; };
-    el.addEventListener('input', () => { if (el.dataset.blurred) check(el); else mark(); });
-    el.addEventListener('change', mark);
-    el.addEventListener('blur', () => { if (el.dataset.touched) { el.dataset.blurred = '1'; check(el); } });
-  });
-  // Send request: check every required field; nothing is sent yet (no backend), the status line says so
-  const status = document.getElementById('reqStatus');
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const bad = Object.keys(rules).map(id => document.getElementById(id)).filter(el => { el.dataset.blurred = '1'; check(el); return el.getAttribute('aria-invalid') === 'true'; });
-    if (bad.length) { status.hidden = true; bad[0].focus(); return; }
-    status.textContent = 'Thank you. Online requests are not open yet, so this request has not been sent.';
-    status.hidden = false;
-  });
-})();
-
 /* ---- sound: off until opted in (header toggle); the Creek today, quietly ---- */
 PM.sound.stems({ 'amb-creek-today': ['bed', 28, -6, 1] });
 PM.sound.mix((y, P) => { PM.sound.level('amb-creek-today', 1 - .5 * PM.sm(.6, 2.4, P('v1', y))); });

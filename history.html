@@ -97,10 +97,10 @@
 <main id="story">
 
   <!-- HERO. The governing idea, then the museum's own proof. The oldest pearl, cool and old light. -->
-  <section class="scene scrim--copy-low" id="hero" style="--span:300" data-enter="0" aria-labelledby="heroh">
+  <section class="scene scrim--copy-low" id="hero" style="--span:300" data-enter="0" aria-labelledby="heroh" data-peek>
     <div class="stage">
       <div class="frame" data-ph="history/h-ancient.jpg">
-        <div class="plane plane--bg">
+        <div class="plane plane--bg" data-tween="scale 1.07 1 0 1 power1.out; xPercent -1 0 0 1 power1.out">
           <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/images/history/h-ancient-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/images/history/h-ancient.jpg" width="2560" height="1440" decoding="async" fetchpriority="high" alt="A small, very old pearl, dulled and flaked with age, rests in a hollow of pale sand beside a curved shard of ancient painted pottery."></picture>
         </div>
         <div class="scrim"></div>
@@ -141,7 +141,7 @@
   </section>
 
   <!-- 1637 / 1046H, PEARL DIVERS. Signature moment one: the locked diver from the home page, scrubbed by scroll. -->
-  <section class="scene scene--num scrim--copy-low" id="y1637" style="--span:300" data-enter="0" aria-labelledby="y1637h">
+  <section class="scene scene--num scrim--copy-low" id="y1637" style="--span:300" data-enter="0" aria-labelledby="y1637h" data-peek>
     <div class="stage">
       <div class="frame g-old" data-ph="s4-plunge.mp4 (+ -poster.jpg, s4-plunge.jpg)">
         <div class="plane plane--bg">
@@ -208,7 +208,7 @@
   </section>
 
   <!-- 1924 / 1342H, PEARLING DHOWS. Signature moment two: one coherent photograph of the harbour, a slow drift and push across the whole frame. -->
-  <section class="scene scene--num scrim--copy-low" id="y1924" style="--span:280" data-enter="0" aria-labelledby="y1924h">
+  <section class="scene scene--num scrim--copy-low" id="y1924" style="--span:280" data-enter="0" aria-labelledby="y1924h" data-peek>
     <div class="stage">
       <div class="frame g-warm" data-ph="history/h-harbour.jpg">
         <!-- ONE coherent photograph, moved honestly: a slow drift and push across the whole frame (no cut-outs, no video) -->
@@ -274,14 +274,14 @@
   </section>
 
   <!-- 1949 / 1368H, THE END OF AN ERA. Signature moment three: the home page's fleet, graded toward dusk. -->
-  <section class="scene scene--num scrim--copy-low" id="y1949" style="--span:280" data-enter="0" aria-labelledby="y1949h">
+  <section class="scene scene--num scrim--copy-low" id="y1949" style="--span:280" data-enter="0" aria-labelledby="y1949h" data-peek>
     <div class="stage">
       <div class="frame g-dusk" data-ph="s2-fleet.mp4 (+ -poster.jpg, s2-fleet.jpg)">
         <div class="plane plane--bg">
           <picture class="poster"><source media="(max-width:719.98px)" srcset="assets/images/s2-fleet-m.jpg" width="1080" height="1920"><img data-role="bg" src="assets/images/s2-fleet-poster.jpg" data-alt="assets/images/s2-fleet.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="A fleet of wooden pearling dhows at anchor on a calm, hazy Gulf, the low sun on the horizon."></picture>
           <video class="scrub fx-layer" muted playsinline preload="none" aria-hidden="true" data-src="assets/videos/s2-fleet.mp4" data-m="still"></video>
         </div>
-        <div class="dusk fx-layer" aria-hidden="true"></div>
+        <div class="dusk fx-layer" aria-hidden="true" data-tween="opacity 0 1 .18 .45 power1.in"></div>
         <div class="scrim"></div>
       </div>
       <div class="beat yr yr--scene num--base" data-cue="0 .57" data-to="1949" data-from="1926" data-roll="-.3 .02" aria-hidden="true"><div class="yr__row"><span class="yr__n">1949</span></div><span class="yr__h">1368H</span></div>
