@@ -45,7 +45,9 @@ One stylesheet, no `<style>` blocks in the pages: edit `assets/css/style.css`, p
 
 - Shared sections first (fonts, placement, site, menu), then one section per page.
 - Each page's content sits in `<div class="pm-page pm-page--NAME">` (`display:contents`, so it draws no box).
-- Page rules are scoped on the element they style, with no added specificity:
+- A page section's rules are global when they name a class only that page's components use (they then work on any
+  page). Page theming of shared names (and all of index) is scoped on the element it styles, with no added
+  specificity:
   - inside the page: `.note:where(.pm-page--about *)`
   - on `<html>`/`<body>` (incl. the html state classes `js`, `fx`, `rm`, …): `.fx:where(:has(.pm-page--index))`
 - Don't pass relative urls through CSS variables from the HTML: they resolve against the stylesheet, not the page.
@@ -71,7 +73,10 @@ GSAP stays a separate vendor file (third-party, loaded without blocking).
   - `MENU` (was `menu.js`) is started by `SITE` on the other pages.
 - Components start from their markup alone (class + `data-*`, no ids, no page code): scenes, `data-tween`
   choreography, `data-cue`, `data-kf`, scrubbed clips (`data-scrub`), loops, `.yr`, `.rail`, `.map`, `.era`,
-  `data-peek`, the request form. `PAGE.<name>` now only holds each page's sound mix (and history's header rule).
+  `data-peek`, the request form, sound (`data-sound`). Only the home page (`index`) has page code (`HEAD.index`,
+  `PAGE.index`); content pages need no `data-page`.
+- Page CSS sections: rules tied to a component's own class are global; only page theming of shared names stays
+  scoped to `.pm-page--NAME`.
 - CMS / Sitecore rich text: see [docs/SITECORE-HANDOVER.md](docs/SITECORE-HANDOVER.md).
 
 After editing `script.js`, rebuild:

@@ -243,10 +243,14 @@ window.PM = (() => {
   // light scenes switch the lock-up to navy; light reading sections also get a soft blur and a tint of their own ground
   // behind the header (set --tint on a section to match it), so copy never runs under the logo unbacked
   let HL = [], headH = 72, sceneLight = false, headLast = '';
+  // [data-light]: a section that turns the lock-up navy while it passes under the header (it keeps its own tint);
+  // .hdr-solid: set while any reading section or the footer is under the header, for page styles that draw a bar
+  let DL = [], SOLID = [];
   const HEAD_TINT = 'rgba(244,239,232,.78)', HEAD_TINT_DARK = 'rgba(6,8,12,.7)';
   const LIGHT_SEL = '.flow--cream,[data-theme="light"]';
   function measureHeader() {
     const top = $('header.top'); headH = top ? top.offsetHeight : 72;
+    DL = $$('[data-light]'); SOLID = $$('.flow,.foot');
     // every reading section gets a backing as it passes under the header; light ones also switch the lock-up to navy
     const sel = '.flow,.bleed[data-theme="light"],.foot[data-theme="light"]' + (FX ? '' : ',.scene[data-theme="light"]');
     HL = $$(sel).map(el => { const r = el.getBoundingClientRect(), light = el.matches(LIGHT_SEL); return { el, light, top: r.top + scrollY, bot: r.bottom + scrollY, tint: getComputedStyle(el).getPropertyValue('--tint').trim() || (light ? HEAD_TINT : HEAD_TINT_DARK) }; });
@@ -254,10 +258,13 @@ window.PM = (() => {
   function updateHeader(y) {
     const line = y + headH * .5;
     let hit = null; for (const h of HL) if (h.top <= line && h.bot > line) { hit = h; break; }
-    const light = sceneLight || !!(hit && hit.light);
-    const key = (light ? 'L' : 'D') + (hit ? hit.tint : '');
+    let dl = false; for (const el of DL) { const r = el.getBoundingClientRect(); if (r.top <= 56 && r.bottom > 56) { dl = true; break; } }
+    let solid = false; for (const el of SOLID) { const r = el.getBoundingClientRect(); if (r.top <= 72 && r.bottom > 0) { solid = true; break; } }
+    const light = sceneLight || !!(hit && hit.light) || dl;
+    const key = (light ? 'L' : 'D') + (solid ? 'S' : '') + (hit ? hit.tint : '');
     if (key === headLast) return; headLast = key;
     root.classList.toggle('theme-light', light);
+    root.classList.toggle('hdr-solid', solid);
     root.classList.toggle('head-backed', !!hit);
     if (hit) root.style.setProperty('--head-tint', hit.tint);
   }
@@ -658,8 +665,97 @@ window.PM = (() => {
     });
   }
 
+  // data-sound: the page's sound mix, declared on the elements it follows (off until the visitor opts in).
+  //   data-sound="stem gain [measure] [options]; ..."   e.g.  data-sound="music-oud-sparse -8 in .15 .6"
+  // stem      a file in assets/audio (bus and loop length come from SOUND_KIT below); gain in dB
+  // measure   scene   progress through the element's scene, 0 to 1 (default on a .scene)
+  //           view    share of the screen the element covers, 0 to 1 (default elsewhere)
+  //           seen    share of the element that is on screen, 0 to 1
+  //           page    screens scrolled from the top
+  //           band a b  1 while the element crosses the band from a to b (screen heights from the top), else 0
+  //           always  1
+// with no in/out fades the level is the measure itself (clamped 0 to 1)
+  // options   in a b      fade in as the measure goes from a to b       out c d   fade out from c to d
+  //           base b      floor of the level (level = b + (1 - b) * fades)   x k   scale the level
+  //           duck stem k lower by k times that stem's level              tc t      level smoothing (s)
+  //           shot at     a one-shot each time the measure passes "at" going down the page
+  //           cue on off fade   start at "on", stop below "off" with a fade (a one-shot that should end)
+  //           filter hz   muffle everything (low-pass) while this level is above .5
+  // The same stem can be declared on several elements: the loudest wins.
+  const SOUND_KIT = {
+    'amb-creek-today': ['bed', 28], 'amb-creek-1949': ['bed', 28], 'amb-open-sea': ['bed', 28], 'amb-deck': ['bed', 28],
+    'amb-dawn-deck': ['bed', 28], 'amb-underwater': ['under', 28], 'amb-seabed': ['under', 28],
+    'music-drone-bed': ['music', 40], 'music-oud-sparse': ['music', 39], 'music-deck-rhythm': ['music', 33.568, 1],
+    'music-end-resolve': ['music', 0], 'music-pearl-theme': ['music', 0], 'music-ascent-swell': ['music', 0], 'music-nahham-voice': ['fx', 28.8],
+    'sfx-oar-strokes': ['bed', 10], 'sfx-sieve-pearls': ['bed', 8], 'sfx-heartbeat-loop': ['under', 5.19],
+    'sfx-pearls-pour': ['fx', 0], 'sfx-coin-turn': ['fx', 0], 'sfx-coin-palm': ['fx', 0], 'sfx-rope-roller': ['fx', 0], 'sfx-inhale': ['fx', 0],
+    'sfx-sail-gust': ['fx', 0], 'sfx-splash-entry': ['fx', 0], 'sfx-surface-break': ['fx', 0], 'sfx-gasp': ['fx', 0], 'sfx-redive-close': ['fx', 0],
+    'sfx-shell-open': ['fx', 0], 'sfx-heartbeat': ['under', 0], 'sfx-bubbles-nose': ['under', 0], 'sfx-ascent-rush': ['under', 0], 'sfx-shell-lift': ['under', 0]
+  };
+  function parseSound(el, s) {
+    const t = s.trim().split(/\s+/); if (t.length < 2) return null;
+    const d = { el, stem: t[0], gain: +t[1], measure: el.classList.contains('scene') ? 'scene' : 'view', base: 0, x: 1 };
+    for (let i = 2; i < t.length; i++) {
+      const k = t[i], a = +t[i + 1], b = +t[i + 2];
+      if (k === 'scene' || k === 'view' || k === 'seen' || k === 'page' || k === 'always') d.measure = k;
+      else if (k === 'band') { d.measure = 'band'; d.band = [a, b]; i += 2; }
+      else if (k === 'in') { d.in = [a, b]; i += 2; }
+      else if (k === 'out') { d.out = [a, b]; i += 2; }
+      else if (k === 'base') { d.base = a; i += 1; }
+      else if (k === 'x') { d.x = a; i += 1; }
+      else if (k === 'tc') { d.tc = a; i += 1; }
+      else if (k === 'shot') { d.shot = a; i += 1; }
+      else if (k === 'filter') { d.filter = a; i += 1; }
+      else if (k === 'duck') { (d.duck = d.duck || []).push([t[i + 1], +t[i + 2]]); i += 2; }
+      else if (k === 'cue') { d.cue = [a, b, +t[i + 3] || 0]; i += 3; }
+    }
+    return d;
+  }
+  function bootSound() {
+    const D = [];
+    $$('[data-sound]').forEach(el => el.dataset.sound.split(';').forEach(s => { const d = parseSound(el, s); if (d && SOUND_KIT[d.stem]) D.push(d); }));
+    if (!D.length) return;
+    // load order: the number of the scene the declaration sits in (or follows), nearest first when sound is turned on
+    const sceneNo = el => { const sc = el.closest('.scene'); if (sc) return SC.findIndex(s => s.el === sc) + 1; let n = 1; SC.forEach((s, i) => { if (s.el.compareDocumentPosition(el) & Node.DOCUMENT_POSITION_FOLLOWING) n = i + 1; }); return n; };
+    const defs = {};
+    D.forEach(d => { if (!defs[d.stem]) { const k = SOUND_KIT[d.stem]; defs[d.stem] = [k[0], k[1], d.gain, sceneNo(d.el)]; if (k[2]) defs[d.stem].push(k[2]); } });
+    PM.sound.stems(defs);
+    const measure = (d, y, P, vh) => {
+      if (d.measure === 'always') return 1;
+      if (d.measure === 'page') return y / vh;
+      if (d.measure === 'scene') { const sc = d.el.closest('.scene'); return sc ? P(sc.id, y) : 0; }
+      const r = d.el.getBoundingClientRect();
+      if (d.measure === 'band') return r.top < vh * d.band[1] && r.bottom > vh * d.band[0] ? 1 : 0;
+      if (d.measure === 'seen') return clamp((Math.min(r.bottom, vh) - Math.max(r.top, 0)) / Math.max(1, r.height));
+      return clamp((Math.min(r.bottom, vh) - Math.max(r.top, 0)) / vh);
+    };
+    const LEVELS = D.filter(d => d.shot == null && !d.cue), past = new Map();
+    PM.sound.mix((y, P) => {
+      const vh = innerHeight, raw = new Map(), L0 = {};
+      for (const d of D) {
+        const m = measure(d, y, P, vh);
+        if (d.shot != null) { const was = past.get(d), now = m > d.shot; past.set(d, now); if (now && was === false) PM.sound.shot(d.stem); continue; }
+        if (d.cue) { if (m > d.cue[0]) PM.sound.cue(d.stem, true); else if (m < d.cue[1]) PM.sound.cue(d.stem, false, d.cue[2]); continue; }
+        // with no fades the level follows the measure itself (0 to 1)
+        const env = !d.in && !d.out ? clamp(m) : (d.in ? sm(d.in[0], d.in[1], m) : 1) * (d.out ? 1 - sm(d.out[0], d.out[1], m) : 1);
+        const v = (d.base + (1 - d.base) * env) * d.x;
+        raw.set(d, v); L0[d.stem] = Math.max(L0[d.stem] || 0, v);
+      }
+      const L = {}, TC = {}; let hz = 0;
+      for (const d of LEVELS) {
+        let v = raw.get(d);
+        if (d.duck) d.duck.forEach(([s, k]) => { v *= 1 - k * (L0[s] || 0); });
+        L[d.stem] = Math.max(L[d.stem] || 0, v);
+        if (d.tc) TC[d.stem] = d.tc;
+        if (d.filter && raw.get(d) > .5) hz = hz ? Math.min(hz, d.filter) : d.filter;
+      }
+      for (const s in L) PM.sound.level(s, L[s], TC[s]);
+      if (LEVELS.some(d => d.filter)) PM.sound.filter(hz || 18000);
+    });
+  }
+
   function bootComponents() {
-    bootTweens(); bootScrubRanges(); bootEras(); bootMaps(); bootYears(); bootPeek(); bootRails(); bootForms();
+    bootTweens(); bootScrubRanges(); bootEras(); bootMaps(); bootYears(); bootPeek(); bootRails(); bootForms(); bootSound();
   }
 
   /* ================= BOOT ================= */
@@ -1746,140 +1842,6 @@ if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
 if (document.readyState !== 'complete') document.addEventListener('DOMContentLoaded', boot); else boot();
 addEventListener('load', measure);
 })();
-  };
-
-  /* ================= PAGE.history: runs when history.html is parsed ================= */
-  PAGE.history = function () {
-(() => {
-'use strict';
-const { $, $$, clamp, lerp, sm, FX, RM } = PM;
-
-/* ---- the header turns dark over the paper section (header behaviour: phase 2 moves it to the header) ---- */
-const FLOWS = $$('.flow,.foot'), HDR = 72, LIGHT = $$('[data-light]');
-function updateChrome(vh) {
-  let light = PM.k != null && PM.scenes && PM.scenes[PM.k] && PM.scenes[PM.k].el.dataset.theme === 'light';
-  for (const el of LIGHT) { const r = el.getBoundingClientRect(); if (r.top <= 56 && r.bottom > 56) light = true; }
-  document.documentElement.classList.toggle('theme-light', light);
-  let solid = false; for (const el of FLOWS) { const r = el.getBoundingClientRect(); if (r.top <= HDR && r.bottom > 0) { solid = true; break; } }
-  document.documentElement.classList.toggle('hdr-solid', solid);
-}
-
-let vh = innerHeight;
-PM.onMeasure(() => { vh = innerHeight; });
-PM.onFrame(() => updateChrome(vh));
-if (!FX) addEventListener('scroll', () => updateChrome(vh), { passive: true });
-
-/* ---- sound: off until opted in; beds and the deck rhythm follow the years ---- */
-PM.sound.stems({
-  'music-drone-bed':   ['music', 40, -8, 1],
-  'amb-underwater':    ['under', 28, -3, 2],
-  'amb-open-sea':      ['bed', 28, -2, 3],
-  'music-deck-rhythm': ['music', 33.568, -5, 4, 1],
-  'music-oud-sparse':  ['music', 39, -7, 5],
-  'amb-creek-1949':    ['bed', 28, -2, 6],
-  'amb-creek-today':   ['bed', 28, -5, 7]
-});
-const vis = id => { const el = document.getElementById(id); if (!el) return 0; const r = el.getBoundingClientRect(); return clamp((Math.min(r.bottom, vh) - Math.max(r.top, 0)) / vh); };
-const inScene = (P, id, y) => { const p = P(id, y); return sm(-.05, .06, p) * (1 - sm(.92, 1.02, p)); };
-PM.sound.mix((y, P) => {
-  const music = sm(.15, .5, vis('music'));
-  PM.sound.level('music-drone-bed', Math.max(vis('hero'), vis('y7000') * .8, vis('y1681') * .7) * (1 - music));
-  PM.sound.level('amb-underwater', inScene(P, 'y1637', y));
-  PM.sound.level('amb-open-sea', Math.max(inScene(P, 'y1924', y), vis('y1637b') * .6));
-  PM.sound.level('music-deck-rhythm', music);
-  PM.sound.level('music-oud-sparse', sm(.2, .6, vis('y1926')) * (1 - music));
-  PM.sound.level('amb-creek-1949', inScene(P, 'y1949', y));
-  PM.sound.level('amb-creek-today', sm(.1, .5, vis('y1963')));
-  PM.sound.filter(inScene(P, 'y1637', y) > .5 ? 900 : 18000);
-});
-})();
-  };
-
-  /* ================= PAGE.collection: runs when collection.html is parsed ================= */
-  PAGE.collection = function () {
-/* ---- sound (off until the visitor opts in): a low drone and the sparse oud, quiet under the reading ---- */
-PM.sound.stems({ 'music-drone-bed': ['music', 40, -14, 1], 'music-oud-sparse': ['music', 39, -8, 1], 'sfx-pearls-pour': ['fx', 0, 0, 2] });
-const tray = document.querySelector('.flow--tray');
-let trayWas = null;
-PM.sound.mix((y, P) => {
-  PM.sound.level('music-drone-bed', 1); PM.sound.level('music-oud-sparse', PM.sm(.15, .6, P('c1', y)));
-  // the tray of pearls: once each time it comes half into view from below
-  if (tray) { const r = tray.getBoundingClientRect(), on = r.top < innerHeight * .55 && r.bottom > innerHeight * .3; if (on && trayWas === false) PM.sound.shot('sfx-pearls-pour'); trayWas = on; }
-});
-  };
-
-  /* ================= PAGE.coinage: runs when coinage.html is parsed ================= */
-  PAGE.coinage = function () {
-/* ---- sound (off until the visitor opts in): the drone and the sparse oud; the deck at dawn under the peak ---- */
-PM.sound.stems({ 'music-drone-bed': ['music', 40, -14, 1], 'music-oud-sparse': ['music', 39, -8, 1], 'amb-dawn-deck': ['bed', 28, -4, 2],
-  'sfx-coin-turn': ['fx', 0, 0, 1], 'sfx-coin-palm': ['fx', 0, 0, 2] });
-// one-shots fire once each time the scroll passes their mark going down
-const past = {}, cross = (key, v, at) => { const was = past[key]; past[key] = v > at; return past[key] && was === false; };
-PM.sound.mix((y, P) => {
-  const k5 = P('k5', y), deck = PM.sm(-.1, .1, k5) * (1 - PM.sm(.95, 1.1, k5));
-  if (cross('turn', P('k1', y), .22)) PM.sound.shot('sfx-coin-turn');
-  if (cross('palm', k5, .39)) PM.sound.shot('sfx-coin-palm');
-  PM.sound.level('music-drone-bed', 1);
-  PM.sound.level('music-oud-sparse', PM.sm(.15, .6, P('k1', y)) * (1 - .5 * deck));
-  PM.sound.level('amb-dawn-deck', deck);
-});
-  };
-
-  /* ================= PAGE.merchants: runs when merchants.html is parsed ================= */
-  PAGE.merchants = function () {
-(() => {
-'use strict';
-const { $, $$, clamp, lerp, sm, FX, RM } = PM;
-
-/* ---- sound: off until opted in; dusk sea, the open water, the drone under the reading ---- */
-PM.sound.stems({
-  'amb-open-sea':     ['bed', 28, -2, 1],
-  'music-drone-bed':  ['music', 40, -12, 1],
-  'music-oud-sparse': ['music', 39, -8, 2],
-  'amb-creek-1949':   ['bed', 28, -6, 3],
-  'sfx-oar-strokes':  ['bed', 10, 0, 2],
-  'sfx-sieve-pearls': ['bed', 8, -2, 3]
-});
-const vis = id => { const el = document.getElementById(id); if (!el) return 0; const r = el.getBoundingClientRect(); return clamp((Math.min(r.bottom, innerHeight) - Math.max(r.top, 0)) / innerHeight); };
-const sieve = document.querySelector('figure.loop video[src*="m6-sieve"]');
-const visEl = el => { const r = el.getBoundingClientRect(); return clamp((Math.min(r.bottom, innerHeight) - Math.max(r.top, 0)) / Math.max(1, r.height)); };
-const inScene = (P, id, y) => { const p = P(id, y); return sm(-.05, .06, p) * (1 - sm(.92, 1.02, p)); };
-PM.sound.mix((y, P) => {
-  PM.sound.level('amb-open-sea', Math.max(inScene(P, 'm1', y), inScene(P, 'm3', y)));
-  PM.sound.level('music-drone-bed', .7);
-  PM.sound.level('music-oud-sparse', Math.max(sm(.2, .6, vis('onward')), inScene(P, 'm9', y)));
-  PM.sound.level('amb-creek-1949', inScene(P, 'm9', y) * .7);
-  const m3 = P('m3', y); PM.sound.level('sfx-oar-strokes', sm(.02, .08, m3) * (1 - sm(.7, .82, m3)), .5);
-  PM.sound.level('sfx-sieve-pearls', sieve ? sm(.25, .6, visEl(sieve)) : 0, .5);
-});
-})();
-  };
-
-  /* ================= PAGE.about: runs when about.html is parsed ================= */
-  PAGE.about = function () {
-/* ---- sound: off until opted in (header toggle) ---- */
-PM.sound.stems({
-  'amb-open-sea': ['bed', 28, 0, 1],
-  'music-drone-bed': ['music', 40, -16, 1],
-  'music-oud-sparse': ['music', 39, -4, 2],
-  'amb-creek-today': ['bed', 28, -6, 3],
-  'music-end-resolve': ['music', 0, -3, 3]
-});
-PM.sound.mix((y, P) => {
-  const v = y / innerHeight, po = P('poet', y), w = P('wish', y);
-  PM.sound.level('amb-open-sea', 1 - PM.sm(.5, 2.2, v));
-  PM.sound.level('music-drone-bed', .6 + .4 * PM.sm(-.3, .1, po) * (1 - PM.sm(.9, 1.4, po)));
-  PM.sound.level('music-oud-sparse', PM.sm(-.15, .12, po) * (1 - PM.sm(.85, 1.3, po)));
-  PM.sound.level('amb-creek-today', PM.sm(-.2, .2, w));
-  if (w > .6) PM.sound.cue('music-end-resolve', true); else if (w < .3) PM.sound.cue('music-end-resolve', false, 1.2);
-});
-  };
-
-  /* ================= PAGE.visit: runs when visit.html is parsed ================= */
-  PAGE.visit = function () {
-/* ---- sound: off until opted in (header toggle); the Creek today, quietly ---- */
-PM.sound.stems({ 'amb-creek-today': ['bed', 28, -6, 1] });
-PM.sound.mix((y, P) => { PM.sound.level('amb-creek-today', 1 - .5 * PM.sm(.6, 2.4, P('v1', y))); });
   };
 
   if (HEAD[NAME]) HEAD[NAME](); else SITE();

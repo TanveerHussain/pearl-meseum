@@ -10,7 +10,7 @@ How the site's markup, CSS and JS map onto Sitecore: what is a coded template, w
 | `<head>` assets | Layout | `assets/css/style.min.css`, `assets/js/script.min.js` (in `<head>`, **no** `defer`) |
 | Header (`header.top`, sound toggle `#soundTgl`, `#soundState`) | Coded rendering | Dynamic. The menu overlay is built by the JS from the header |
 | Footer (`.foot`) | Coded rendering | Dynamic |
-| Page wrapper `<div class="pm-page pm-page--{type}">` | Page template | Required: the page styles are scoped to it (see 5) |
+| Page wrapper `<div class="pm-page pm-page--{type}">` | Page template | Sets the page theme (see 5). Components work without it |
 | Home page (`index.html`) | **Coded page template** | Bespoke dive experience; its own engine (`HEAD.index` / `PAGE.index`). Make its copy editable through fields, not RTE |
 | Everything else between header and footer | **Rich text field** | Components below; they start from their markup alone |
 
@@ -18,14 +18,14 @@ Script tag per page type:
 
 ```html
 <!-- every page except home -->
-<script src="/assets/js/script.min.js" data-page="history"></script>
+<script src="/assets/js/script.min.js"></script>
 <!-- home only -->
 <script src="/assets/js/script.min.js" data-page="index"></script>
 <script src="/assets/js/vendor/gsap-3.12.5.min.js" defer></script>
 ```
 
-`data-page` is optional on content pages. Today it only selects the page's sound mix (and the history header rule,
-see 6). A page without it gets every component working, with no sound mix.
+Only the home page needs `data-page`. On content pages it does nothing (the current pages still carry it; harmless):
+everything, sound included, comes from the components' markup.
 
 ## 2. Components (all self-initialising)
 
@@ -52,9 +52,39 @@ Attribute values never need quotes inside them (spaces and `;` only), because th
 | Chapter rail | `nav.rail` with `a[href="#section-id"]` | Shows, marks the current chapter, smooth-scrolls (`data-ch` also accepted) |
 | Request form (design only) | `form.form[novalidate]` | `data-msg-required`, `data-msg-invalid` (numbers), `data-msg-min` + `data-min="tomorrow"` (dates); errors in the field's `.field__err` (via `aria-describedby`); `.form__status` |
 | Sound toggle | `[data-sound-toggle]`, `[data-sound-label]` | Optional extra toggles in content |
+| Sound | `data-sound` on any element | See below |
+| Light section | `[data-light]` on a reading section | Header lock-up turns navy while it passes under the header |
 
 The video flags (`muted`, `playsinline`) are set by the script, so it does not matter if the RTE drops valueless
 attributes from `<video>`.
+
+### Sound (`data-sound`)
+
+The page's sound mix is declared on the elements it follows. Nothing plays until the visitor turns sound on.
+
+```
+data-sound="stem gain [measure] [options]; stem gain ..."
+```
+
+- `stem`: a file in `assets/audio` (without `.m4a`); its bus and loop length are in `SOUND_KIT` in `script.js`.
+  `gain` in dB.
+- `measure`: `scene` (progress through the element's scene, default on a `.scene`), `view` (share of the screen
+  the element covers, default elsewhere), `seen` (share of the element on screen), `page` (screens scrolled),
+  `band a b` (1 while the element crosses that band of the screen), `always` (1).
+- Without fades the level is the measure itself (0 to 1). Options: `in a b` (fade in), `out c d` (fade out),
+  `base b` (floor), `x k` (scale), `duck stem k` (lower while another stem plays), `tc t` (smoothing),
+  `shot at` (one-shot when the measure passes `at`), `cue on off fade` (start / stop a one-shot),
+  `filter hz` (muffle everything while this level is above .5).
+- The same stem on several elements: the loudest wins.
+
+Examples from the site:
+
+```html
+<section class="scene" data-sound="music-drone-bed -14 always; music-oud-sparse -8 in .15 .6">            <!-- collection -->
+<section class="scene" data-sound="amb-underwater -3 in -.05 .06 out .92 1.02 filter 900">               <!-- history -->
+<section class="flow" data-sound="music-oud-sparse -7 view in .2 .6 duck music-deck-rhythm 1">            <!-- history -->
+<div class="flow flow--tray" data-sound="sfx-pearls-pour 0 band .3 .55 shot .5">                          <!-- collection -->
+```
 
 ## 3. Rich text field configuration (required)
 
@@ -78,19 +108,28 @@ Content markup references `assets/images/...`, `assets/videos/...` from the site
 Media Library URLs; anything referenced from CSS (`style.css`, relative to `assets/css/`) must stay at the same
 relative place, or be changed in `style.css`.
 
-## 5. CSS scope (known limitation)
+## 5. CSS: components and page themes
 
-Each page type's styles are scoped to its wrapper (`.pm-page--about`, ...). Components therefore look right on
-their own page type. Eleven class names (`.note`, `.end__row`, `.map`, ...) are styled differently per page, so a
-component taken from one page type onto another may need its styles moved to a shared, uniquely named class first.
+- **Component styles work on any page.** A rule that names a class used by one component (`.era__plane`,
+  `.yr__n`, `.loupe__ring`, `.k1-box`, ...) applies wherever that component is placed, with or without the page
+  wrapper.
+- **Page themes need the wrapper.** 87 rules restyle shared names per page type and stay scoped to
+  `.pm-page--{type}`. They cover how these look on that page type: `.note`, `.eyebrow` and `.prose` in cream
+  sections, `.end__row` / `.end__doors` (the closing doors), `.map` / `.map__svg` / `.map__lbl` (merchants and visit
+  maps differ), `.split__media`, `.gallery`, `.facts`, `.verse`, `.cap1`, `.door`, `.pill--solid`, `.form__note`,
+  plus page-level settings on `html` / `body`. Choose the page type in the template to get that theme.
+- A component moved to another page type keeps its own look; only those shared names follow the new page's theme
+  (checked: coinage content under the about theme keeps 425 of 431 elements identical).
+- The home page's styles (`.pm-page--index`) stay scoped: it is a template, not rich text.
 
-## 6. Still page-level (next step)
+## 6. Header behaviour (in the shared script)
 
-- **Sound mixes**: each page's mix is a function keyed to section ids (`PAGE.<name>` in `script.js`). It runs when
-  the page tag names the page and those ids exist; otherwise the page is silent (no errors). Making sound
-  declarative per component is the next step.
-- **History header rule**: history sets `theme-light` / `hdr-solid` with its own rule; it belongs with the header
-  rendering.
+The header reacts to the content under it; nothing is page-specific:
+
+- `theme-light` (navy lock-up): over a scene with `data-theme="light"`, a `.flow--cream` section, or any
+  `[data-light]` section.
+- `head-backed` + `--head-tint` (blurred backing behind the header): over any reading section (`.flow`).
+- `hdr-solid`: over any reading section or the footer (used by the history theme's solid bar).
 
 ## 7. Editing and rebuilding
 
